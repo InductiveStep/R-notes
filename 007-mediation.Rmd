@@ -1,0 +1,92 @@
+```{r include=FALSE}
+library(tidyverse)
+library(car)
+options(scipen=1)
+```
+
+# Mediation analysis
+
+(Very much work in progress!)
+
+In this example, let's make up some data for an experiment where people are randomised to one of two groups. The intervention group receives £2000 and the control group receives £500. The hypothesis is that one month later, the intervention group will have more savings than the control group; i.e., they won't just spend all of the money they have received.
+
+```{r}
+set.seed(42)
+study_n <- 200
+dat <- tibble(savings_start = rnorm(study_n, 5000, 2000) %>%
+                ifelse(. < 0, 0, .),
+              treat_group    = rbinom(study_n, size = 1, p = .5),
+              money_received = ifelse(treat_group == 1,
+                                      2000,
+                                      500) + rnorm(study_n, 0, 5),
+              savings_end    = -500 + savings_start + money_received +
+                                 rnorm(study_n, 0, 600) %>%
+                ifelse(. < 0, 0, .))
+                            
+dat <- dat %>%
+  mutate(treat_group = dplyr::recode(treat_group,
+                                       `1` = "Intervention",
+                                       `0` = "Control")) %>%
+  mutate(treat_group = as.factor(treat_group))
+dat
+```
+
+Here's a graph:
+
+```{r fig.height=3, fig.width=4}
+dat %>%
+  group_by(treat_group) %>%
+  summarise(savings_Pre  = mean(savings_start),
+            savings_Post = mean(savings_end)) %>%
+  pivot_longer(cols = starts_with("savings"),
+               names_to = "time",
+               values_to = "savings",
+               names_prefix = "savings_") %>%
+  mutate(time = factor(time)) %>%
+  mutate(time = relevel(time, "Pre")) %>%
+  ggplot(aes(x = time, y = savings, fill = treat_group)) +
+    geom_col(position = "dodge") +
+    labs(x = "Time",
+         y = "Savings",
+         fill = "Group")
+```
+
+Fit the two models:
+
+```{r}
+mod_med <- lm(money_received ~ savings_start + treat_group, data = dat)
+mod_out <- lm(savings_end ~ savings_start + treat_group + money_received, data = dat)
+```
+
+Have a look:
+
+```{r}
+summary(mod_med)
+```
+
+The coefficients for the model regressing savings on treatment group and money received wipe each other out...
+
+```{r}
+summary(mod_out)
+```
+
+Check out the VIF:
+
+```{r}
+vif(mod_out)
+```
+
+Test the mediation:
+
+```{r}
+library(mediation)
+test_med <- mediate(model.m = mod_med,
+                    model.y = mod_out,
+                    treat = "treat_group",
+                    mediator = "money_received",
+                    robustSE = TRUE,
+                    sims = 100,
+                    control.value = "Control",
+                    treat.value = "Intervention")
+summary(test_med)
+```

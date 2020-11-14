@@ -394,7 +394,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.13.2" data-path="logistic-regression.html"><a href="logistic-regression.html#an-answer"><i class="fa fa-check"></i><b>7.13.2</b> (An) Answer</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="chapter" data-level="8" data-path="mediation-analysis.html"><a href="mediation-analysis.html"><i class="fa fa-check"></i><b>8</b> Mediation analysis</a></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -564,14 +565,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here is an example with 50 values with a mean of 20 and an SD of 5:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="starting-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb27-2"><a href="starting-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>random_values</span></code></pre></div>
-<pre><code>##  [1] 16.268491 28.287815 20.493150 19.891465 24.257436 27.055616 18.669441
-##  [8] 28.430971 11.720088 16.485930 16.052889 19.175013 19.647940 24.034943
-## [15] 17.663762 15.419008 22.987911 27.550809  7.726624 22.226921 24.865203
-## [22] 17.485915 13.897646 21.101444 21.855851 22.881498 20.297699 21.299018
-## [29] 16.411445 18.104470 19.946633 21.229179 22.716011 11.494451 12.354284
-## [36] 20.081704 21.311597 18.748557 12.060925 21.980235 21.208014 16.918368
-## [43] 23.831673 24.243132 27.809307 16.856484 25.866117 23.969939 19.871301
-## [50] 23.495507</code></pre>
+<pre><code>##  [1] 26.406427 21.276902 11.100502 14.676429 25.517894 25.264473 16.758749
+##  [8] 22.713255 24.034018 19.777035 13.827635 24.472102 15.044577 22.357162
+## [15] 29.473714 11.754165 28.153476 28.300279 19.307188 20.662631 19.336635
+## [22] 20.879076 15.449581 19.012793 22.364033 19.473038  9.567864 20.566643
+## [29] 18.009667 17.930232 24.914750 19.841490 19.368798 17.708179 26.919294
+## [36] 16.986461 15.879933 10.891905 20.639485 15.887728 14.076252 26.937441
+## [43] 17.405660 18.545876 25.990043 20.746940 22.864682 18.523070 33.998604
+## [50] 21.267895</code></pre>
 <p>When you run it you will probably get different numbers to me.</p>
 <p>Here is a histogram of values I got:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="starting-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(random_values)</span></code></pre></div>
@@ -584,9 +585,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.6.2</span> Answer</h3>
 <p>Here’s what I got:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="starting-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 20.1648</code></pre>
+<pre><code>## [1] 20.25725</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="starting-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 4.671029</code></pre>
+<pre><code>## [1] 5.16693</code></pre>
 <p>Unless you were very lucky, you probably discovered like me that the mean was different to 20 and the SD was different to 5. This is something we will return to in another session, but can you guess now why this has happened?</p>
 </div>
 </div>
@@ -735,18 +736,18 @@ package ‘praise’ successfully unpacked and MD5 sums checked</code></pre>
 <h3><span class="header-section-number">2.9.2</span> Answer</h3>
 <p>I’ll run it a few times…</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="starting-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are neat!&quot;</code></pre>
+<pre><code>## [1] &quot;You are riveting!&quot;</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="starting-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are superb!&quot;</code></pre>
+<pre><code>## [1] &quot;You are cat&#39;s meow!&quot;</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="starting-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are remarkable!&quot;</code></pre>
+<pre><code>## [1] &quot;You are breathtaking!&quot;</code></pre>
 <p>Not a big data science algorithm, but you may find it helpful as the course progresses :)</p>
 </div>
 </div>
 <div id="the-end" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> The end!</h2>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="starting-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are pioneering!&quot;</code></pre>
+<pre><code>## [1] &quot;You are slick!&quot;</code></pre>
 
 </div>
 </div>

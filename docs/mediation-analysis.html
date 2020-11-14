@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 References | R notes</title>
+  <title>Chapter 8 Mediation analysis | R notes</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 References | R notes" />
+  <meta property="og:title" content="Chapter 8 Mediation analysis | R notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 References | R notes" />
+  <meta name="twitter:title" content="Chapter 8 Mediation analysis | R notes" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="mediation-analysis.html"/>
-
+<link rel="prev" href="logistic-regression.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -416,19 +416,161 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> References</h1>
-<p>Belsey, D. A., Kuh, E., &amp; Welsch, R. E. (1980). Regression Diagnostics: Identifying Influential Data and Sources of Collinearity. Hoboken, NJ: John Wiley &amp; Sons, Inc.</p>
-<p>Bollen, K. A., &amp; Jackman, R. W. (1985). Regression Diagnostics: An Expository Treatment of Outliers and Influential Cases. <em>Sociological Methods &amp; Research</em>, <em>13</em>(4), 510–542.</p>
-<p>Chang, W. (2020). <a href="https://r-graphics.org/">R Graphics Cookbook</a> (2nd ed.). Sebastopol, CA: O’Reilly.</p>
-<p>Fox, J. &amp; Weisberg, S. (2019). <em>An R Companion to Applied Regression</em>, Third Edition, Sage.</p>
-<p>Gelman, A., &amp; Hill, J. (2007). <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Cambridge: Cambridge University Press.</p>
-<p>Healy, K. (2019). <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a>. Princeton University Press.</p>
-<p>Lüdecke D (2018). <a href="https://joss.theoj.org/papers/10.21105/joss.00772">ggeffects: Tidy Data Frames of Marginal Effects from Regression Models</a>. Journal of Open Source Software, 3(26), 772. doi: 10.21105/joss.00772</p>
-<p>Mroz, T. A. (1987). The sensitivity of an empirical model of married women’s hours of work to economic and statistical assumptions. <em>Econometrica</em>, <em>55</em>, 765–799.</p>
-<p>Noether, G. E. (1984). Nonparametrics: The Early Years-Impressions and Recollections. <em>American Statistician</em>, <em>38</em>, 173-178]</p>
-<p>Wickham, H., &amp; Grolemund, G. (2017). <a href="http://r4ds.had.co.nz/">R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</a>. Sebastopol, CA: O’Reilly.</p>
-<p>Wolfowitz, J. (1942). Additive Partition Functions and a Class of Statistical Hypotheses. <em>Annals of Mathematical Statistics</em>, <em>13</em>, 247-279</p>
+<div id="mediation-analysis" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Mediation analysis</h1>
+<p>(Very much work in progress!)</p>
+<p>In this example, let’s make up some data for an experiment where people are randomised to one of two groups. The intervention group receives £2000 and the control group receives £500. The hypothesis is that one month later, the intervention group will have more savings than the control group; i.e., they won’t just spend all of the money they have received.</p>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="mediation-analysis.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb573-2"><a href="mediation-analysis.html#cb573-2" aria-hidden="true" tabindex="-1"></a>study_n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb573-3"><a href="mediation-analysis.html#cb573-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">savings_start =</span> <span class="fu">rnorm</span>(study_n, <span class="dv">5000</span>, <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb573-4"><a href="mediation-analysis.html#cb573-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, .),</span>
+<span id="cb573-5"><a href="mediation-analysis.html#cb573-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">treat_group    =</span> <span class="fu">rbinom</span>(study_n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">p =</span> .<span class="dv">5</span>),</span>
+<span id="cb573-6"><a href="mediation-analysis.html#cb573-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">money_received =</span> <span class="fu">ifelse</span>(treat_group <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb573-7"><a href="mediation-analysis.html#cb573-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="dv">2000</span>,</span>
+<span id="cb573-8"><a href="mediation-analysis.html#cb573-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="dv">500</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(study_n, <span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb573-9"><a href="mediation-analysis.html#cb573-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">savings_end    =</span> <span class="sc">-</span><span class="dv">500</span> <span class="sc">+</span> savings_start <span class="sc">+</span> money_received <span class="sc">+</span></span>
+<span id="cb573-10"><a href="mediation-analysis.html#cb573-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">rnorm</span>(study_n, <span class="dv">0</span>, <span class="dv">600</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb573-11"><a href="mediation-analysis.html#cb573-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, .))</span>
+<span id="cb573-12"><a href="mediation-analysis.html#cb573-12" aria-hidden="true" tabindex="-1"></a>                            </span>
+<span id="cb573-13"><a href="mediation-analysis.html#cb573-13" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb573-14"><a href="mediation-analysis.html#cb573-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treat_group =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(treat_group,</span>
+<span id="cb573-15"><a href="mediation-analysis.html#cb573-15" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Intervention&quot;</span>,</span>
+<span id="cb573-16"><a href="mediation-analysis.html#cb573-16" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">`</span><span class="at">0</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Control&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb573-17"><a href="mediation-analysis.html#cb573-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treat_group =</span> <span class="fu">as.factor</span>(treat_group))</span>
+<span id="cb573-18"><a href="mediation-analysis.html#cb573-18" aria-hidden="true" tabindex="-1"></a>dat</span></code></pre></div>
+<pre><code>## # A tibble: 200 x 4
+##    savings_start treat_group  money_received savings_end
+##            &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt;       &lt;dbl&gt;
+##  1         7742. Control                500.       8359.
+##  2         3871. Intervention          2004.       5923.
+##  3         5726. Intervention          2000.       7226.
+##  4         6266. Control                504.       6351.
+##  5         5809. Intervention          1999.       7308.
+##  6         4788. Control                500.       4787.
+##  7         8023. Intervention          2002.       9525.
+##  8         4811. Control                505.       4816.
+##  9         9037. Control                494.       9031.
+## 10         4875. Control                500.       5376.
+## # ... with 190 more rows</code></pre>
+<p>Here’s a graph:</p>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="mediation-analysis.html#cb575-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb575-2"><a href="mediation-analysis.html#cb575-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treat_group) <span class="sc">%&gt;%</span></span>
+<span id="cb575-3"><a href="mediation-analysis.html#cb575-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">savings_Pre  =</span> <span class="fu">mean</span>(savings_start),</span>
+<span id="cb575-4"><a href="mediation-analysis.html#cb575-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">savings_Post =</span> <span class="fu">mean</span>(savings_end)) <span class="sc">%&gt;%</span></span>
+<span id="cb575-5"><a href="mediation-analysis.html#cb575-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;savings&quot;</span>),</span>
+<span id="cb575-6"><a href="mediation-analysis.html#cb575-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb575-7"><a href="mediation-analysis.html#cb575-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;savings&quot;</span>,</span>
+<span id="cb575-8"><a href="mediation-analysis.html#cb575-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;savings_&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb575-9"><a href="mediation-analysis.html#cb575-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">factor</span>(time)) <span class="sc">%&gt;%</span></span>
+<span id="cb575-10"><a href="mediation-analysis.html#cb575-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">relevel</span>(time, <span class="st">&quot;Pre&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb575-11"><a href="mediation-analysis.html#cb575-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> savings, <span class="at">fill =</span> treat_group)) <span class="sc">+</span></span>
+<span id="cb575-12"><a href="mediation-analysis.html#cb575-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb575-13"><a href="mediation-analysis.html#cb575-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb575-14"><a href="mediation-analysis.html#cb575-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Savings&quot;</span>,</span>
+<span id="cb575-15"><a href="mediation-analysis.html#cb575-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-368-1.png" width="384" /></p>
+<p>Fit the two models:</p>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="mediation-analysis.html#cb577-1" aria-hidden="true" tabindex="-1"></a>mod_med <span class="ot">&lt;-</span> <span class="fu">lm</span>(money_received <span class="sc">~</span> savings_start <span class="sc">+</span> treat_group, <span class="at">data =</span> dat)</span>
+<span id="cb577-2"><a href="mediation-analysis.html#cb577-2" aria-hidden="true" tabindex="-1"></a>mod_out <span class="ot">&lt;-</span> <span class="fu">lm</span>(savings_end <span class="sc">~</span> savings_start <span class="sc">+</span> treat_group <span class="sc">+</span> money_received, <span class="at">data =</span> dat)</span></code></pre></div>
+<p>Have a look:</p>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="mediation-analysis.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_med)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = money_received ~ savings_start + treat_group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.6671  -3.0849  -0.1591   3.3646  14.6775 
+## 
+## Coefficients:
+##                           Estimate Std. Error  t value Pr(&gt;|t|)    
+## (Intercept)              4.998e+02  9.703e-01  515.100   &lt;2e-16 ***
+## savings_start           -5.186e-05  1.753e-04   -0.296    0.768    
+## treat_groupIntervention  1.501e+03  6.794e-01 2208.806   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.772 on 197 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 2.442e+06 on 2 and 197 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The coefficients for the model regressing savings on treatment group and money received wipe each other out…</p>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="mediation-analysis.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_out)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = savings_end ~ savings_start + treat_group + money_received, 
+##     data = dat)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -265.4 -249.8 -199.9  180.2 1742.1 
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              170.10314 2532.28559   0.067    0.947    
+## savings_start              0.99974    0.01246  80.223   &lt;2e-16 ***
+## treat_groupIntervention 1185.99116 7600.14736   0.156    0.876    
+## money_received             0.17450    5.06477   0.034    0.973    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 339.2 on 196 degrees of freedom
+## Multiple R-squared:  0.9745, Adjusted R-squared:  0.9741 
+## F-statistic:  2500 on 3 and 196 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Check out the VIF:</p>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="mediation-analysis.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_out)</span></code></pre></div>
+<pre><code>##  savings_start    treat_group money_received 
+##       1.001488   24792.453868   24792.238825</code></pre>
+<p>Test the mediation:</p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="mediation-analysis.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span></code></pre></div>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Loading required package: sandwich</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;lme4&#39;:
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car</code></pre>
+<pre><code>## mediation: Causal Mediation Analysis
+## Version: 4.5.0</code></pre>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="mediation-analysis.html#cb595-1" aria-hidden="true" tabindex="-1"></a>test_med <span class="ot">&lt;-</span> <span class="fu">mediate</span>(<span class="at">model.m =</span> mod_med,</span>
+<span id="cb595-2"><a href="mediation-analysis.html#cb595-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model.y =</span> mod_out,</span>
+<span id="cb595-3"><a href="mediation-analysis.html#cb595-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">treat =</span> <span class="st">&quot;treat_group&quot;</span>,</span>
+<span id="cb595-4"><a href="mediation-analysis.html#cb595-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mediator =</span> <span class="st">&quot;money_received&quot;</span>,</span>
+<span id="cb595-5"><a href="mediation-analysis.html#cb595-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">robustSE =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb595-6"><a href="mediation-analysis.html#cb595-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sims =</span> <span class="dv">100</span>,</span>
+<span id="cb595-7"><a href="mediation-analysis.html#cb595-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">control.value =</span> <span class="st">&quot;Control&quot;</span>,</span>
+<span id="cb595-8"><a href="mediation-analysis.html#cb595-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">treat.value =</span> <span class="st">&quot;Intervention&quot;</span>)</span>
+<span id="cb595-9"><a href="mediation-analysis.html#cb595-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test_med)</span></code></pre></div>
+<pre><code>## 
+## Causal Mediation Analysis 
+## 
+## Quasi-Bayesian Confidence Intervals
+## 
+##                  Estimate 95% CI Lower 95% CI Upper p-value    
+## ACME              812.599   -16287.267        17423    0.98    
+## ADE               636.341   -15973.607        17711    0.80    
+## Total Effect     1448.940     1368.180         1507  &lt;2e-16 ***
+## Prop. Mediated      0.282      -11.547           12    0.98    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Sample Size Used: 200 
+## 
+## 
+## Simulations: 100</code></pre>
 
 </div>
             </section>
@@ -436,8 +578,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="mediation-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
