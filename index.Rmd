@@ -23,5 +23,7 @@ knitr::knit_hooks$set(webgl = hook_webgl)
 
 # Introduction
 
-These are under development...
+These notes are under development...
+
+Click around and enjoy!
 
