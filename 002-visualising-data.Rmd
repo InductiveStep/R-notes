@@ -1,0 +1,645 @@
+
+# Visualising data in the tidyverse
+
+By the end of this tutorial you will:
+
+* Have explored a key example visualisation in depth, using packages in the tidyverse.
+* Understand what happens when you tweak this in various ways.
+* Know where to look for ideas and code for other visualisations.
+
+
+## Getting setup
+
+You will need to create a new *R* or Markdown (*Rmd*) file (depending on your preference -- I recommend Markdown) and save it somewhere sensible where you can find it again in a few months time.
+
+We will be using the [Gapminder dataset](https://github.com/jennybc/gapminder) dataset from last time.
+
+```{r}
+gap <- read.csv("gapminder.csv")
+```
+
+Previously we used the "base" plot function:
+
+```{r}
+plot(lifeExp ~ year,
+     data = gap,
+     xlab = "Year",
+     ylab = "Life expectancy at birth")
+```
+
+We can do better than this.
+
+A collection of packages called the [tidyverse](https://www.tidyverse.org/) has become an industry standard in R (though see also [an alternate view](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md)).
+
+This command will include tidyverse and make a bit of noise as it arrives...
+
+```{r message=FALSE}
+library(tidyverse)
+```
+
+If that didn't work, there are two things you can do. You could try saving your R/Rmd file. This may prompt RStudio to notice that the package isn't installed and ask you if you want to install it.
+
+Alternatively, just use the `install.packages` command as per last week:
+
+```{r eval = F}
+install.packages("tidyverse")
+```
+
+To see if that worked, run this:
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year, y = lifeExp)) +
+  geom_point() +
+  labs(x = "Year",
+       y = "Life expectancy at birth")
+```
+
+Ta-da: a graph! This used `ggplot`, which is part of the `ggplot2` package which, in turn, is part of `tidyverse`.
+
+The rest of this tutorial will explore how to develop this into a more useful visualisation.
+
+
+## An interlude on functions
+
+Previously, I described R *functions* as magical computational machines which take inputs and transform them in some way, giving an output.
+
+Above, we have seen that the output of a function can be a picture. It can also be a vibration (that's how sounds are made) or anything else that can be plugged into a computer. It might be a humble number, like a mean.
+
+Sometimes I'll call functions "commands" and sometimes I'll call the inputs "options" or "parameters" or "arguments". Hopefully it will be clear from the context what I mean. If not, even after scratching your head, then do ask!
+
+
+## A scatterplot in ggplot {.tabset}
+
+Let's build the previous example step-by-step.
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year, y = lifeExp))
+```
+
+This first part tells `ggplot` what data to use and an aesthetic mapping. *Aesthetics* in tidyverse are properties of the objects in your plot and the mapping tells `ggplot` how those objects relate to your data. Two basic properties are *x* and *y* locations on a plot. Here they have been mapped to year and life expectancy, respectively.
+
+When you run that code, you will see that nothing was actually done with the mappings. The next stage is to add a *geom* -- a geometric object -- for each row of data. That's where the point geom, `geom_point`, comes in:
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year, y = lifeExp)) +
+  geom_point()
+```
+
+Note how the "+" symbol is used here to mean adding elements to a plot. The meaning of "+" depends on context.
+
+I could also have made this plot by giving a name to the first part:
+
+```{r}
+the_basic_plot <- ggplot(data = gap,
+                  mapping = aes(x = year, y = lifeExp))
+```
+
+Then added this to the geom:
+
+```{r}
+plot_with_stuff_on <- the_basic_plot + geom_point()
+```
+
+The plot hasn't displayed yet, though.
+
+
+### Warm-up activity
+
+(a) What do you need to do to get the `plot_with_stuff_on` plot to display?
+
+(b) How could you change the axis labels on `plot_with_stuff_on`? (Look up for a clue!)
+
+
+### Answer
+
+(a) What do you need to do to get the plot to display?
+
+```{r}
+plot_with_stuff_on
+```
+
+(b) How could you change the axis labels on `plot_with_stuff_on`?
+
+Either:
+
+```{r}
+plot_with_stuff_on + 
+  labs(x = "Year",
+       y = "Life expectancy at birth")
+```
+
+Or:
+
+```{r eval = F}
+final_plot <- plot_with_stuff_on + 
+                labs(x = "Year",
+                     y = "Life expectancy at birth")
+final_plot
+```
+
+## Another aesthetic: colour
+
+This is a simple change, but begins to highlight patterns in the data. Here I have just copied and pasted a chunk from above and added the mapping `colour = continent`.
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year,
+                     y = lifeExp,
+                     colour = continent)) +
+  geom_point() +
+  labs(x = "Year",
+       y = "Life expectancy at birth")
+```
+
+Can you spot any patterns in the graph?
+
+A legend has appeared at the right hand side explaining what the colours represent.
+
+By default the legend title is the same as the variable name. In this case it's "continent" which is clear, but sometimes it will be something like "group_2_id" which is less pleasing on the eye (and I cringe when I see something like this in a journal article).
+
+The legend title is easy to change by adding another option to `labs`:
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year,
+                     y = lifeExp,
+                     colour = continent)) +
+  geom_point() +
+  labs(x = "Year",
+       y = "Life expectancy at birth",
+       colour = "Continent")
+```
+
+
+## Another geom: jitter {.tabset}
+
+Making graphs often involves playing around with different ways of showing the information. Here's the *jitter* geom, which is the same as the point geom but with "a small amount of random variation to the location of each point" (see `?geom_jitter`).
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year,
+                     y = lifeExp,
+                     colour = continent)) +
+  geom_jitter() +
+  labs(x = "Year",
+       y = "Life expectancy at birth",
+       colour = "Continent")
+```
+
+### Activity to develop your help-searching skill!
+
+How can you vary the amount of jitter?
+
+Tip: you might find the help useful:
+
+```{r eval = F}
+?geom_jitter
+```
+
+Alternatively, try Google.
+
+If that doesn't deliver anything useful, try [this reference link](https://ggplot2.tidyverse.org/reference/geom_jitter.html#examples).
+
+
+### Answer
+
+There are two options, `width` and `height`, which specify how wide the jitteriness is. Set these to zero, and the plot is indistinguishable from the point geom:
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year,
+                     y = lifeExp,
+                     colour = continent)) +
+  geom_jitter(width = 0, height = 0) +
+  labs(x = "Year",
+       y = "Life expectancy at birth",
+       color = "Continent")
+```
+
+Here's a little jitter added only to the width:
+
+```{r}
+ggplot(data = gap,
+       mapping = aes(x = year, y = lifeExp, colour = continent)) +
+  geom_jitter(width = 1, height = 0) +
+  labs(x = "Year",
+       y = "Life expectancy at birth",
+       color = "Continent")
+```
+
+
+## Aggregating/summarising data by group {.tabset}
+
+Last time, we saw how to calculate the mean of a variable. Here's the mean of life expectancy, across all countries and years:
+
+```{r}
+mean(gap$lifeExp)
+```
+
+I don't know what to make of that!
+
+Typically we want to calculate means by group rather than for a whole variable. This is known as *aggregating* or *summarising* by group. For instance, looking at the plots above it seems that there will be a mean difference in life expectancy between continents, and it would be interesting to see that.
+
+For this, we will use `dplyr` (pronounced "DEE-ply-er"). It's part of `tidyverse` so already included, but it's useful to know the name of this specific part for when you are searching for help.
+
+I'm going to work through an example in excruciating detail, but it will be worth it I promise.
+
+The punchline is that to calculate mean life expectancy by year and continent, you do this:
+
+```{r}
+mean_life_exp_gap <- gap %>%
+  group_by(year, continent) %>%
+  summarise(mean_life_exp = mean(lifeExp))
+```
+
+(Have a look and see.)
+
+
+Here's a longer worked example.
+
+**Step 1.** Use `group_by` to tell R what variables you want to group the data by. The first parameter of `group_by` is the dataset you want to group. The remaining parameters are the variables in that dataset to group by:
+
+```{r}
+grouped_gap <- group_by(gap, year, continent)
+```
+
+So this says, group the `gap` data frame by `year` and `continent`.
+
+This new variable, `grouped_gap` is a *grouped data frame*. It has all the same information as before, plus a little note (semi-hidden) to say that analyses on this should be grouped.
+
+Here's how to peek at this note:
+
+```{r}
+group_vars(grouped_gap)
+```
+
+**Step 2.** Use `summarise` on this grouped data frame to calculate what you want. The first argument of summarise is the data frame (grouped or otherwise) followed by new variable names and what you want them to contain.
+
+```{r}
+summarised_grouped_gap <- summarise(grouped_gap,
+                                    mean_life_exp = mean(lifeExp))
+```
+
+Let's have a look at the top 10 rows:
+
+```{r}
+head(summarised_grouped_gap, 10)
+```
+
+It worked! We could now use this in `ggplot` (and shall do so below).
+
+
+### Activity
+
+Do the same again but this time calculate means only by year, averaging across continents.
+
+### Answer
+
+```{r}
+grouped_gap_year <- group_by(gap, year)
+summarised_grouped_year <- summarise(grouped_gap_year,
+                                     mean_life_exp = mean(lifeExp))
+summarised_grouped_year
+```
+
+
+## Pipes
+
+R analyses often feel like making information flow along a pipe, transforming it in various ways as it goes. Maybe reshaping it, selecting some variables, filtering, grouping, calculating. Finally, out flows an answer.
+
+This leads to another member of the tidyverse family, `magrittr`, named after René Magritte because of his [1929 painting](https://en.wikipedia.org/wiki/The_Treachery_of_Images) showing a pipe and a caption "Ceci n'est pas une pipe" ("This is not a pipe").
+
+![](MagrittePipe.jpg)
+
+
+You may have noticed that both `group_by` and `summarise` had a data frame as their first argument. They also both outputted a data frame. 
+
+The *forward pipe operator*, `%>%`, allows you to pass the data frame along your information flow, without having to save results in interim variables.
+
+You start with the name of the input data frame and then pipe it into the first function. For example, here is how to group the data:
+
+```{r eval = F}
+gap %>%
+  group_by(year, continent)
+```
+
+As before you can then save the result:
+
+```{r}
+grouped <- gap %>%
+  group_by(year, continent)
+```
+
+To flow this onto summarise, just add another pipe like so:
+
+```{r}
+grouped <- gap %>%
+  group_by(year, continent) %>%
+  summarise(mean_life_exp = mean(lifeExp))
+```
+
+The `%>%` is purely designed to make the flow of information easier to see and hopefully also easier to design.
+
+
+## Plot the mean life expectancy by continent {.tabset}
+
+By here you hopefully get the gist of how to use pipes to group data frames and summarise them. There will be further opportunities to practice this skill.
+
+Here's an aggregated data frame with mean life expectancy by year and continent:
+
+```{r}
+mean_life_exp_gap <- gap %>%
+  group_by(year, continent) %>%
+  summarise(mean_life_exp = mean(lifeExp))
+```
+
+You can view this to check the information is as you expect:
+
+```{r eval = F}
+View(mean_life_exp_gap)
+```
+
+Here are the variable names, for ease of reference.
+
+```{r}
+names(mean_life_exp_gap)
+```
+
+
+### Actvity
+
+Now your challenge is to plot the mean life expectancy by year, with colour showing the continent.
+
+You could try adapting an example from above to help you.
+
+### Answer
+
+```{r}
+ggplot(mean_life_exp_gap, aes(x = year,
+                              y = mean_life_exp,
+                              colour = continent)) +
+  geom_point()
+```
+
+
+## Yet another geom: line {.tabset}
+
+Instead of plotting points for each year, you may wish to join the data with lines. Here's how -- just use `geom_line`:
+
+```{r}
+ggplot(mean_life_exp_gap, aes(x = year,
+                              y = mean_life_exp,
+                              colour = continent)) +
+  geom_line() +
+  labs(x = "Year",
+     y = "Life expectancy at birth",
+     colour = "Continent")
+```
+
+
+### Activity
+
+How could you add points back to the lines?
+
+### Answer
+
+Simply use "+" again:
+
+```{r}
+ggplot(mean_life_exp_gap, aes(x = year,
+                              y = mean_life_exp,
+                              colour = continent)) +
+  geom_point() +
+  geom_line()
+```
+
+I've been a bit lazy here and haven't bothered changing the axis labels and legend title. That is fine when playing around with different visualisations and learning. Just remember to tidy it all up before adding to a written report!
+
+
+## Filtering data along the pipeline {.tabset}
+
+Analysing by continent clearly doesn't do the data justice: in the jittered points we saw there was loads of variation within continent.
+
+The mean plots highlighted that improvement in life expectancy in Africa stalled around 1990. I wonder if this was the same for all countries therein?
+
+The next tidyverse function we will explore to help us is called `filter`. (See the help for lots of examples using a Star Wars dataset.)
+
+Here is how to filter the data so we only have rows for Africa:
+
+```{r}
+gap %>% 
+  filter(continent == "Africa") %>%
+  head(10)
+```
+
+Note the double equals, `==`, not to be confused with `=` which is used to set inputs (also known as arguments). To see how it works, compare:
+
+```{r}
+11 + 3 == 14
+```
+
+And:
+
+```{r}
+11 + 3 == 2
+```
+
+Now I'm going to try piping this filtered data frame directly into `ggplot`, without saving it. This should work because `ggplot`'s first argument is the data frame.
+
+```{r}
+gap %>% 
+  filter(continent == "Africa") %>%
+  ggplot(aes(x = year, y = lifeExp, colour = country)) +
+    geom_point() +
+    geom_line()
+```
+
+Well... it did... but the plot is very busy and I'm not sure I could distinguish between all those colours!
+
+Let's try again without the legend to see what's going on.
+
+At this point you may wonder, "How on earth will I be able to remember all these commands?" I will share a trick.
+
+![](google_hide_legend.png)
+
+Attempt 2:
+
+```{r}
+gap %>% 
+  filter(continent == "Africa") %>%
+  ggplot(aes(x = year, y = lifeExp, colour = country)) +
+    geom_point() +
+    geom_line() +
+    theme(legend.position = "none")
+```
+
+### Activity
+
+One of the countries' life expectancies dropped below 25. Can you work out which one it was by using `filter`?
+
+Tip: `==` was equals. You can use `<` for less than.
+
+```{r}
+2 < 3
+```
+
+
+### Answer
+
+```{r}
+gap %>%
+  filter(lifeExp < 25)
+```
+
+So the answer is Rwanda.
+
+
+## Other handy tools: select, slice, bind, and arrange
+
+Often you will have datasets with a huge number of variables and will want to select a few of those to make the tables easier to read. The command for that is `select`; give it the names of the variables you want.
+
+Another useful function is `arrange` which sorts a data frames by the variable(s) you provide.
+
+Here is an example illustrating both. I have also added the operator `&` for "and".
+
+```{r}
+gap %>%
+  filter(year == 2007 &
+           continent == "Africa") %>%
+  arrange(lifeExp) %>%
+  select(country, lifeExp)
+```
+
+This filters `gap` to data from 2007 *and* Africa, sorts it by life expectancy, and then selects the country and life expectancy variables.
+
+The `slice` family of functions can be used to zoom into to the top or bottom slices of rows, or a random sample.
+
+Here's an example. First save the previous chunk results above in `africa2007`:
+
+```{r}
+africa2007 <- gap %>%
+  filter(year == 2007 &
+           continent == "Africa") %>%
+  arrange(lifeExp) %>%
+  select(country, lifeExp)
+```
+
+The following R code saves the "head" of the dataset, which has the lowest life expectancies. The `n` is 3, so three rows are returned. Note the single `=` here: it's an parameter *setting* `n` to 3 rather than an equality `==` *checking* whether `n` is 3.
+
+```{r}
+africa2007min <- africa2007 %>%
+  slice_head(n = 3)
+africa2007min
+```
+
+Do this again for the tail, i.e., the bottom of the dataset, which is actually the highest values for life expectancy.
+
+```{r}
+africa2007max <- africa2007 %>%
+  slice_tail(n = 3)
+africa2007max
+```
+
+
+We can bind the two data frames together again using `bind_rows`:
+
+```{r}
+top_and_bottom <- bind_rows(africa2007min, africa2007max)
+top_and_bottom
+```
+
+
+
+## Filtering for members of a vector {.tabset}
+
+The `top_and_bottom` data frame has the names of countries with the top and bottom three life expectancies.
+
+```{r}
+top_and_bottom$country
+```
+Next we are going to filter the data set to only these countries, using the `%in%` operator which returns true if a value is in the vector you provide and false otherwise.
+
+Here are two examples:
+
+```{r}
+"Libya" %in% top_and_bottom$country
+```
+```{r}
+"Uganda" %in% top_and_bottom$country
+```
+
+```{r}
+gap %>%
+  filter(country %in% top_and_bottom$country) %>%
+  ggplot(aes(x = year,
+             y = lifeExp,
+             colour = country)) +
+  geom_line()
+```
+
+We can add `Rwanda` back in by using the `c` operator. Here's an example to show how it works:
+
+```{r}
+some_numbers <- c(1,2,3)
+c(some_numbers,4)
+```
+
+Back to the graph. Below I have also enlarged the `size` of the lines to make the colours easier to distinguish.
+
+```{r}
+gap %>%
+  filter(country %in% c(top_and_bottom$country, "Rwanda")) %>%
+  ggplot(aes(x = year,
+             y = lifeExp,
+             colour = country)) +
+  geom_line(size = 1) + 
+  labs(x = "Year",
+       y = "Mean life expectancy (years)",
+       colour = "Country")
+```
+
+You might now consider a qualitative analysis of these countries (or lookup Wikipedia, for the purposes of a weekly R ехеrcise) to conjecture why there are these differences.
+
+
+## Final challenge {.tabset}
+
+### Activity
+
+Plot life expectancy against GDP per capita for all countries in the dataset at the most recent time point. Colour the points by continent.
+
+
+### Answer
+
+Here's how I did it.
+
+First, check the variable names:
+
+```{r}
+names(gap)
+```
+
+So we want `lifeExp` and `gdpPercap`.
+
+The most recent year is:
+
+```{r}
+max(gap$year)
+```
+
+(You could also find that by looking at the data frame using `View`.)
+
+Now make filter and make the graph in one go:
+
+```{r}
+gap %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  labs(y = "Mean life expectancy (years)",
+       x = "GDP per capita (US$, inflation-adjusted)",
+       colour = "Continent",
+       title = "Life expectancy and GDP per capita in 2007")
+```

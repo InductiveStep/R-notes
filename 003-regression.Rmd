@@ -1,0 +1,790 @@
+# Linear regression
+
+By the end of this tutorial you will:
+
+* Know how fit and compare regression models using R (three commands: `lm`, `summary`, `anova`)
+* Understand how to interpret the output from these commands
+* Have explored some more examples of tidyverse analyses
+
+**Note:** Next week we will explore how to check model assumptions, which may or may not hold for the models we fit.
+
+
+## Before we begin
+
+Download the [prestige dataset](./prestige.csv), create an R Markdown file, and ensure they are both saved in a folder you will find again. I recommend writing down any questions you have as you go, perhaps in your Markdown file, so that we can discuss them in the live session or on Moodle.
+
+
+## The dataset
+
+This week we will use a dataset on occupational prestige from Canada, 1971, which is used by Fox and Weisberg (2019). Each row in the dataset describes an occupation, and aggregated data about that occupation.
+
+| Variable name | Description |
+|---------------|-------------|
+| occ       | Occupation |
+| education | Average years of education for people in job |
+| income    | Average income in dollars |
+| women     | Percentage of women in occupation |
+| prestige  | A Pineo-Porter prestige score for the occupation with a possible range of 0-100 (higher = more prestigious)  |
+| type      | "bc" = blue collar <br> "wc" = white collar <br> "prof" = professional, managerial, or technical |
+
+I'm going to read it in as `dat` but feel free to choose any name you desire.
+
+```{r}
+dat <- read.csv("prestige.csv")
+```
+
+Here are the top 5 rows:
+
+```{r}
+head(dat, 5)
+```
+
+Spend some time checking that you understand each row.
+
+Our challenge for this tutorial is to work out what predicts the prestige of occupations.
+
+
+## Interlude on methodology
+
+The objective of this tutorial is simply to understand linear regression; however, I think it's worth commenting briefly on methodology.
+
+It is important to develop research questions and (if possible, directional) statistical hypotheses *before* obtaining data, based on prior evidence and theory.
+
+These days, analysis plans are often published before any data are obtained. This is to avoid "data dredging" (also known as "p-hacking") which makes it likely to find results by "capitalising on chance" that have no hope of replicating or generalising beyond the sample. Looking at graphs of data counts as data dredging; you can't create hypotheses from hindsight. See this page from the [Center for Open Science](https://www.cos.io/initiatives/prereg) for more info.
+
+
+
+## Descriptives {.tabset}
+
+I'll include `tidyverse` for `ggplot`, pipes, etc., as they will come in handy later:
+
+```{r message=FALSE}
+library(tidyverse)
+```
+
+
+The base R `summary` command is a quick way to obtain a summary of all variables; give it the data frame you wish to summarise as follows:
+
+```{r}
+summary(dat)
+```
+
+There are a variety of ways to create what is often known as "Table 1", so called because it is usually the first table in quantitative journal articles.
+
+Here is one, in the `tableone` package:
+
+```{r}
+library(tableone)
+
+dat %>%
+  select(-occ) %>%
+  CreateTableOne(data = .)
+```
+
+The `select` line says to remove the `occ` (occupation) variable (can you see why I did that?). The `data = .` option is there because `CreateTableOne` doesn't understand `%>%` plumbing. The `.` represents the output from the previous line so connects the information flow correctly.
+
+You will also usually want to create scatterplots of relationships between continuous variables, similar to what we did with the Gapminder dataset. Which leads onto the following activity.
+
+
+### Activity
+
+Create the following scatterplots:
+
+(a) prestige against education
+(b) prestige against income
+
+Describe the relationship you see.
+
+### Answer
+
+**(a) prestige against education**
+
+```{r}
+dat %>%
+  ggplot(aes(x = education, y = prestige)) +
+  geom_point() +
+  labs(x = "Average years of education",
+       y = "Pineo-Porter prestige")
+```
+
+There appears to be a linear association between education and prestige; more education is associated with higher prestige.
+
+
+**(b) prestige against income**
+
+```{r}
+dat %>%
+  ggplot(aes(x = income, y = prestige)) +
+  geom_point() +
+  labs(x = "Average income (dollars)",
+       y = "Pineo-Porter prestige")
+```
+
+From up to around $10000, there seems to be a linear correlation between income and prestige, after which the relationship flattens out, i.e., more income does not lead to higher prestige. (At least, that's what I see!)
+
+
+
+
+
+
+## Prep to understand the simplest regression model {.tabset}
+
+
+### Activity
+
+The simplest regression model we will explore in a moment just models the mean of the outcome variable. So that we can see how it works, first calculate the mean and SD of prestige.
+
+
+### Answer
+
+```{r}
+mean(dat$prestige)
+```
+```{r}
+sd(dat$prestige)
+```
+
+
+
+## The simplest regression model: intercept only model {.tabset}
+
+The command for fitting a regression model is called `lm`, which is short for *linear model*. It wants a formula, describing the model to be fitted, and the name of a data frame containing your data.
+
+Here is how to fit the intercept-only model:
+
+```{r}
+mod0 <- lm(formula = prestige ~ 1, data = dat)
+```
+
+
+The left-hand side of `~` (tilde) is the *outcome* or *response* variable we want to explain/predict. The right-hand side lists predictors. Here `1` denotes the intercept.
+
+Since the first two parameters of `lm` are formula and data (check `?lm`), this can be abbreviated to:
+
+```{r}
+mod0 <- lm(prestige ~ 1, dat)
+```
+
+As ever, since we have saved the result in a variable, nothing has visibly happened. You could have a peek at the result with:
+
+```{r eval = T}
+mod0
+```
+
+There is a LOT more info in the object which you can see with this structure command, `str`:
+
+```{r eval = F}
+str(mod0)
+```
+
+If you run this you will see why we usually prefer to use `summary` on the output; this pulls out useful info and presents it in a straightforward way:
+
+```{r}
+summary(mod0)
+```
+
+The estimate for the intercept is 46.833, the same as the mean of prestige we calculated above.
+
+There is other information:
+
+* The **standard error (SE)**, which provides information on the precision of the estimate: the smaller the SE, the more precise the estimate of the population mean.
+* The **t-value**, which is equal to the estimate divided by the SE. This is used to test whether the estimate is different to zero, which isn't particularly informative for the intercept; it's more so when we get to slopes in a moment.
+* The **p-value** is calculated from the distribution of *t* under the assumption that the population estimate is 0 and helps us interpret the *t*. R presents it here as "<2e-16". This says that *p* is less than 0.0000000000000002, or $2 \times 10^{-16}$. So, for what it's worth, and using the usual not-entirely-correct applied stats vernacular: the intercept, here mean prestige, is statistically significantly greater than zero.
+* We will get to the **residual standard error** later, but for now observe that it is the same as the SD of prestige.
+
+```{r}
+sd(dat$prestige)
+```
+
+Okay, so you have calculated the mean and SD of a variable in an absurdly convolved way, alongside a statistical test that probably isn't any use. 
+Why have I done this to you?
+
+Two reasons:
+
+1. It is useful to see what models do for the simplest possible specification -- increasingly useful as the models become more complicated.
+2. The intercept-only model can be compared with more complex models, i.e., models with more predictors, to see if adding predictors actually explains more variance.
+
+
+
+### Activity
+
+Try fitting the intercept-only model again for the education variable. Compare the result with its mean and SD.
+
+
+### Answer
+
+The mean is:
+
+```{r}
+mean(dat$education)
+```
+
+The SD:
+
+```{r}
+sd(dat$education)
+```
+
+Fit the model:
+
+```{r}
+lm(education ~ 1, data = dat) %>%
+  summary()
+```
+
+(Here I have used a pipe -- again do whatever makes most sense!)
+
+
+
+## Adding a slope to the regression model {.tabset}
+
+So that was a silly model.
+
+Next we are going to add years of education as a predictor to see if it explains any of the variation in prestige. Before doing so, here is a picture of the relationship from earlier.
+
+
+```{r}
+plot_ed_prestige <- ggplot(dat, aes(x = education,
+                                    y = prestige)) +
+                      geom_point()
+plot_ed_prestige
+```
+
+I am confident that there is a positive relationship between education and prestige, using the [interocular trauma test](https://www.johndcook.com/blog/2009/08/31/the-iot-test/), but it is instructive to see the intercept-only model prediction overlaid on this graph.
+
+To extract the coefficients from a model, we use `coef`:
+
+```{r}
+coef(mod0)
+```
+
+In this case, there only is one estimate, so this is equivalent to:
+
+```{r}
+coef(mod0)[1]
+```
+
+But usually there will be more than one coefficient in a model.
+
+Since we saved the earlier plot, it is easy to add on a horizontal line for the intercept-only model:
+
+```{r}
+plot_ed_prestige +
+  geom_hline(yintercept = coef(mod0)[1])
+```
+
+Now let's fit the surely better model:
+
+```{r}
+mod1 <- lm(prestige ~ 1 + education, data = dat)
+summary(mod1)
+```
+
+(Note: `prestige ~ 1 + education` is equivalent to `prestige ~ education`; R puts the intercept in by default. Try both to see!)
+
+We can plot the the predicted mean prestige for each year of education using the model's coefficients...
+
+```{r}
+coef(mod1)
+```
+
+... with `geom_abline` (pronounced "A B line", named after a base R function `abline` where *a* is the intercept and *b* is the slope) like so:
+
+```{r}
+plot_ed_prestige +
+  geom_abline(intercept = coef(mod1)[1],
+              slope     = coef(mod1)[2])
+```
+
+
+
+The **intercept** is -10.732. This is clearly no longer the mean of prestige (scroll up and you will see that the measure is defined as a number between 0-100); rather, **the intercept is the predicted mean of the outcome variable where other predictors are zero** so it depends on what other predictors are present in the model.
+
+Here's another picture, stretched to show where the intercept is:
+
+```{r class.source = "fold-hide"}
+plot_ed_prestige +
+  geom_abline(intercept = coef(mod1)[1],
+              slope     = coef(mod1)[2]) +
+  xlim(0,   NA) + 
+  ylim(-20, NA) +
+  geom_vline(xintercept = 0, colour = "purple") +
+  annotate(geom = "curve",
+           x = 2, y = -12, xend = .05, yend = -12, 
+           curvature = -.5, arrow = arrow(), colour = "purple") +
+  annotate("text", x = 2.05, y = -12,
+           label = "The intercept is over here",
+           colour = "purple",
+           hjust = "left")
+```
+
+It is not uncommon for the intercept to be substantively nonsense, but statistically necessary to ensure accurate slopes. We will see later how to make the intercept more interpretable, without changing the slope estimates.
+
+The **slope for education** is 5.361. This means that for every unit increase in education, the prestige score increases by 5.361. The units for education are years, so we should say something like: every year increase in education is associated with 5.4 more prestige points. Is this a big effect do you reckon?
+
+As before, the *t*'s and *p*'s are present. Now the p-value for education is actually useful. The value is `< 2e-16`, i.e., less than $2 \times 10^{-16}$. This means the sample-estimate of the slope we got would be very unlikely if the population slope were zero. Or, in the usual applied stats vernacular: there is a statistically significant relationship between education and prestige. (Keep a look out for how results are summarised in the literature you are exploring -- again I urge you to look at journal articles in your field to get ideas for write-up aesthetics.)
+
+The $R^2$ is also useful. The `summary` command presents $R^2$ as a proportion; it represent the proportion of the variance in the outcome variable explained by the predictors. Generally we use the adjusted $R^2$ because this adjusts for the number of predictors in the model and reduces bias in the estimate. If $R^2$ were 0 then that would mean that the predictors don't explain any variance in the outcome. If it were 1, that would mean that the predictors explain all the variance -- statistically, knowing the outcome variable does not add any further information.
+
+
+
+### Activity
+
+Use a regression model with prestige as the outcome variable and average income as a predictor. Describe the relationship according to the model and whether it is statistically significant.
+
+It will help to check above to see what units the income is measured in.
+
+
+### Answer
+
+```{r}
+mod_income <- lm(prestige ~ income, data = dat)
+summary(mod_income)
+```
+
+The slope for income is "statistically significant" at the traditional 5% level, with a very small $p$. But what did you make of that slope estimate, `2.897e-03`? This is equivalent to $2.897 \times 10^{-3}$ or about 0.0029. So for every unit increase in income, the prestige score goes up by 0.0029 on a scale from 0-100. The income units here are the Canadian dollar. We probably don't expect much of an increase in prestige for one extra dollar income!
+
+Here's the coefficient:
+
+```{r}
+coef(mod_income)[2]
+```
+
+We might expect 1000 dollars more salary to have more of an impact:
+
+
+```{r}
+coef(mod_income)[2] * 1000
+```
+
+So $1000 more salary is associated with about 2.9 more prestige points.
+
+Another way to do this is as follows.
+
+First transform the salary so it is in thousands of dollars rather than single dollars. I'll `mutate` the data frame to add a new variable called `income_1000s`:
+
+```{r}
+dat <- dat %>%
+  mutate(income_1000s = income/1000)
+```
+
+
+Now fit the model again using this new variable as the predictor.
+
+```{r}
+mod_income1000s <- lm(prestige ~ income_1000s, data = dat)
+summary(mod_income1000s)
+```
+
+Note how the *t* and *p* haven't changed; however, now the estimate for income is easier to interpret.
+
+
+
+
+
+## Residuals {.tabset}
+
+Residuals are important for understanding regression fits. They are calculated for each data point and a given model as the difference between the actual value of the outcome variable and the model prediction. There are pictures coming up which will illustrate.
+
+R gives us model predictions using the `predict` command and also automatically calculates residuals using `resid`.
+
+Let's first do it for the intercept-only model.
+
+The code below says:
+
+* select the variables prestige and education (this is to keep things neat and tidy)
+* add variables `predict0` and `resid0` which consist of the predictions and residuals, respectively, for `mod0`
+* save it all in `dat_for_resids`
+
+```{r}
+dat_for_resids <- dat %>%
+  select(prestige, education) %>%
+  mutate(predict0  = predict(mod0),
+         residual0 = resid(mod0))
+dat_for_resids
+```
+
+Since it's the intercept-only model, the prediction is always the mean; that's why `predict0` says 46.83333, 46.83333, 46.83333, 46.83333, 46.83333...
+
+Look at the first residual, 21.97. That is calculated as the actual value of prestige minus the model-predicted value: $68.8 - 46.83$.
+
+Here is a picture showing the residuals; hopefully this highlights that they just measure how far each data point is from the model prediction:
+
+```{r class.source = "fold-hide"}
+dat_for_resids %>%
+  ggplot(aes(x = education, y = prestige)) +
+  geom_segment(aes(xend = education, yend = predict0)) +
+  geom_point() +
+  geom_hline(yintercept = coef(mod0))
+```
+
+Now let's calculate predictions and residuals again for the more sensible model, `mod1`.
+
+```{r}
+dat_for_resids <- dat_for_resids  %>%
+  mutate(predict1  = predict(mod1),
+         residual1 = resid(mod1))
+dat_for_resids %>%
+  select(prestige, predict1, residual1, residual0) %>%
+  head(10)
+```
+
+
+
+Here is the plot:
+
+```{r class.source = "fold-hide"}
+dat_for_resids %>%
+  ggplot(aes(x = education, y = prestige)) +
+  geom_segment(aes(xend = education, yend = predict1)) +
+  geom_point() +
+  geom_abline(intercept = coef(mod1)[1],
+              slope     = coef(mod1)[2])
+```
+
+
+### Activity
+
+The second model clearly describes the data better than the intercept-only model, but can you explain why, solely in terms of the residuals?
+
+
+### Answer
+
+The residuals seem smaller. Intuitively, roughly, that's what is going on. 
+Are *all* the residuals smaller? We can work out the length of the residual (i.e., the distance between model prediction and actual data), ignoring the sign, by using "absolute" function, `abs`, and then take the difference:
+
+```{r}
+dat_for_resids <- dat_for_resids %>%
+  mutate(resid_diff = abs(residual1) - abs(residual0),
+         intercept_better = resid_diff >= 0)
+```
+
+I have also added a variable called `intercept_better` if the intercept-only model has a smaller residual for that observation than the more complex model.
+
+Have a look:
+
+```{r eval = F}
+View(dat_for_resids)
+```
+
+The answer is... no, not all residuals are smaller for the complex model.
+
+```{r}
+dat_for_resids %>%
+  group_by(intercept_better) %>%
+  count()
+```
+
+For 29 observations, the intercept-only model has smaller residuals than the model with a slope for education.
+
+This makes sense if we look again at the graph for the intercept-only model, this time with the lines coloured by whether the intercept-only model is better. I have also added a dashed line for the model with a slope for education.
+
+```{r class.source = "fold-hide"}
+dat_for_resids %>%
+  ggplot(aes(x = education, y = prestige, colour = intercept_better)) +
+  geom_segment(aes(xend = education, yend = predict0)) +
+  geom_point() +
+  geom_hline(yintercept = coef(mod0)) +
+  labs(colour = "Intercept-only better") +
+  geom_abline(intercept = coef(mod1)[1],
+              slope     = coef(mod1)[2],
+              linetype = "dashed")
+```
+
+So it's not quite true that all the residuals are smaller in the more complex model. Most are, though.
+
+One way to combine all the residuals is to square them first (to remove the sign, i.e., whether the residual is positive or negative),  and sum them together. This is called the **residual sum of squares** and, it turns out, is what the regression model minimises for any particular dataset.
+
+Here's the arithmetic for the intercept-only model:
+
+```{r}
+sum(dat_for_resids$residual0^2)
+```
+And here's the arithmetic for the model with a predictor for education:
+
+```{r}
+sum(dat_for_resids$residual1^2)
+```
+
+So the residual sum of squares are smaller for the latter model.
+
+
+## Comparing models
+
+Here is a reminder of two of the models we fitted:
+
+```{r}
+mod0 <- lm(prestige ~ 1,             data = dat)
+mod1 <- lm(prestige ~ 1 + education, data = dat)
+```
+
+To compare these, use `anova`, with the least complex model first:
+
+```{r}
+anova(mod0, mod1)
+```
+
+This only works for *nested* models, where the smaller model's predictors are also included in the larger model. This is true here, since the larger model is the same as the intercept-only model with the addition of a slope for education.
+
+The `anova` command has calculated the residual sum of squares (RSS) for us. There is also a p-value; since it is far smaller than 0.05,  we can conclude that the more complex model explains statistically significantly more variance.
+
+We would usually write this as (something like): the model with education as a predictor explains prestige better than the intercept-only model, $F(1,100) = 260.8$, $p < .001$. (Generally when the p-value is very small, we use the less-than in this fashion.)
+
+
+
+
+## Regression with two or more predictors {.tabset}
+
+Linear regression models can include arbitrary numbers of predictors -- in social science, often a dozen or more. They become increasingly challenging to visualise in higher dimensions, so let's start with two predictors, education and income.
+
+When you run the code below, a window will pop up with an interactive 3D plot. In this tutorial, you should able to click and drag the graph directly below.
+
+```{r message=FALSE, webgl=TRUE}
+library(car)
+library(rgl)
+scatter3d(prestige ~ education + income, data = dat, surface = FALSE)
+```
+
+
+Now, let's fit a model to those data.
+
+
+### Activity
+
+We have seen how to fit an intercept-only model and to add a predictor to that.
+
+(a) Can you work out how to model prestige as an outcome variable with predictors of education and income (using the version scaled to thousands)?
+
+Don't worry about interpreting the slopes just yet.
+
+(b) Is this model a better fit than the intercept-only model?
+
+
+### Answer
+
+(a) Hopefully that was straightforward; just use `+` again:
+
+```{r}
+mod_both <- lm(prestige ~ education + income_1000s, data = dat)
+summary(mod_both)
+```
+
+Both predictors were statistically significant. Interpretation coming below...
+
+
+
+(b) We already have the intercept-only model as `mod0` so comparing models is done by:
+
+```{r}
+anova(mod0, mod_both)
+```
+
+The model with two predictors explains more variation than the intercept-only model, $F(2,99) = 195.6, p < .001$
+
+
+
+
+## Interpreting regression models with two or more predictors
+
+Okay, so we have fitted a model now; I've called it `mod_both`. We can easily visualise this using:
+
+```{r webgl=TRUE}
+scatter3d(prestige ~ education + income, data = dat, surface = TRUE)
+```
+
+Again, try dragging the graph around. (By default `scatter3d` fits the same model we did.) The dataset was a cloud of data points and `lm` has fitted a plane to it, minimising the RSS.
+
+Here are the coefficients, rounded to one decimal place; how do we interpret them...?
+
+```{r}
+coef(mod_both) %>%
+  round(1)
+```
+
+Firstly, the intercept is useless again as it is outside the range of valid values for prestige. It represents the level of prestige for occupations with an average zero years of education and zero income. We will deal with it later, but it's not uncommon just to ignore intercepts when interpreting model fits.
+
+The coefficient for education is 4.1. The interpretation for this is: every year extra education is associated with 4.1 more prestige points, *whilst holding income constant*.
+
+Similarly for income: an increase in income by $1000 is associated with 1.4 more prestige points, whilst holding education constant.
+
+This demonstrates one of the advantages of a multiple regression model; the predictors now indicate the unique contribution of a predictor *whilst holding the other predictors constant*, assuming that the model is correct.
+
+We also now have a formula for predicting the mean level of prestige given education and income, which we could apply to other occupations not present in the data (from the same year and country...) to see how well the model works.
+
+The formula is:
+
+prestige = $-6.8$ + $4.1$$\times$education + $1.4$$\times$income in thousands.
+
+
+
+
+## Optional: that pesky negative intercept  {.tabset}
+
+I've complained a couple of times about the intercept. If you really want it to take on a meaningful value, one easy solution which provides the same slope estimates, is simply to shift the predictor variables so that zero represents a value actually present in the data. We can do that by mean-centring the predictors, that is, shifting them so that zero is now the mean.
+
+There's a command called `scale` that does this for us, but it is easy to do it "by hand" too. Simply subtract the mean from each value.
+
+I'm going to add two variables, `education_c` and `income_1000s_c`, which represent mean centred `education` and `income`, and then save the result in a new data frame called `dat_centred`.
+
+```{r}
+dat_centred <- dat %>%
+  mutate(education_c    = education - mean(education),
+         income_1000s_c = income_1000s - mean(income_1000s))
+```
+
+Let's compare the centred and uncentred variables:
+
+```{r}
+dat_centred %>%
+  select(education, education_c, income_1000s, income_1000s_c) %>%
+  CreateTableOne(data = .)
+```
+
+As you can see, they have the same SDs. The centred variables both have mean zero, as desired.
+
+Here's a picture of all pairwise scatterplots:
+
+```{r fig.height=8, fig.width=8, class.source = "fold-hide"}
+library(GGally)
+dat_centred %>%
+  select(prestige,
+         education, education_c,
+         income_1000s, income_1000s_c) %>%
+  ggpairs(upper = "blank", progress = FALSE)
+```
+
+Spend some time with a cup of tea or two to persuade yourself that centring hasn't affected relationships between key variables, it has just shifted the centred ones so they have a mean of zero.
+
+
+
+
+### Activity
+
+
+Now fit the model again, using prestige as the outcome variable before but now the centred versions of education and income. What does the intercept represent now?
+
+### Answer
+
+```{r}
+mod_centred <- lm(prestige ~ education_c + income_1000s_c,
+                  data = dat_centred)
+summary(mod_centred)
+```
+
+
+As the table below shows, the slope estimates are identical for the two models. However, now the intercept is interpretable and gives the mean prestige at mean education and mean income.
+
+
+```{r class.source = "fold-hide"}
+bind_cols(Variable                = names(coef(mod_both)),
+          `Original coefficients` = coef(mod_both),
+          `Centred coefs`         = coef(mod_centred))
+```
+
+
+
+## Finally: confidence intervals
+
+To obtain confidence intervals, just use the `confint` command on the model:
+
+
+```{r}
+confint(mod_centred)
+```
+
+There is a version in the `car` package ("car" is short for "Companion to Applied Regression" -- the textbook) which also includes the coefficient.
+
+```{r message=FALSE}
+library(car)
+Confint(mod_centred)
+```
+
+
+Another way to get the same, in case handy for other scenarios where the `car` package function is not available:
+
+```{r}
+cbind(Estimate = coef(mod_centred),
+      confint(mod_centred))
+```
+
+
+
+
+## Very optional extras
+
+### Making functions
+
+This is how to make a function in R:
+
+```{r}
+add_one <- function(x) {
+  x + 1
+}
+
+add_one(41)
+```
+
+It is not very useful.
+
+Here is an actually useful example that does the following:
+
+1. "Pivot" the data frame longer, so that there are multiple rows per occupation -- one for each variable -- and only two columns: `variable` and `value`
+2. Group by `variable`
+
+```{r}
+pivot_all_longer <- function(.data) {
+  .data %>%
+    pivot_longer(cols      = everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    group_by(variable)
+}
+```
+
+Here it is in action, applied only to numeric variables:
+
+```{r}
+dat %>%
+  select(where(is.numeric)) %>%
+  pivot_all_longer
+```
+
+So now there are four times as many rows and two columns.
+
+But why...?!
+
+You can pipe this into the `summarise` command and easily summarise all numeric variables as follows:
+
+```{r}
+dat %>%
+  select(where(is.numeric)) %>%
+  pivot_all_longer() %>%
+  summarise(M        = mean(value),
+            Mdn      = median(value),
+            SD       = sd(value),
+            valid_n  = sum(!is.na(value)),
+            n        = n())
+```
+
+So it's another way to create a Table 1.
+
+
+
+### Another way to make scatterplots: GGally
+
+Recall that `select` is part of tidyverse and selects variables. Here I am using the base R function `is.numeric` which returns `TRUE` if a variable is numeric, e.g., not a categorical variable.
+
+The first parameter of `ggpairs` is a data frame, which the `%>%` pipe gladly provides.
+
+```{r}
+library(GGally)
+dat %>%
+  select(where(is.numeric)) %>%
+  ggpairs(upper = "blank",
+          progress = FALSE)
+```
+
+The wiggly curves on the diagonals are smoothed histograms, also known as density plots.
+
+
+

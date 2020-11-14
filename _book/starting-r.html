@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Starting R | R notes</title>
+  <meta name="description" content="These are some notes on using R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Starting R | R notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are some notes on using R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Starting R | R notes" />
+  
+  <meta name="twitter:description" content="These are some notes on using R" />
+  
+
+<meta name="author" content="Andi Fugard" />
+
+
+<meta name="date" content="2020-11-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="visualising-data-in-the-tidyverse.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="starting-r.html"><a href="starting-r.html"><i class="fa fa-check"></i><b>2</b> Starting R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="starting-r.html"><a href="starting-r.html#arithmetic"><i class="fa fa-check"></i><b>2.1</b> Arithmetic</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="starting-r.html"><a href="starting-r.html#activities"><i class="fa fa-check"></i><b>2.1.1</b> Activities</a></li>
+<li class="chapter" data-level="2.1.2" data-path="starting-r.html"><a href="starting-r.html#answers"><i class="fa fa-check"></i><b>2.1.2</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="starting-r.html"><a href="starting-r.html#variables"><i class="fa fa-check"></i><b>2.2</b> Variables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="starting-r.html"><a href="starting-r.html#activity"><i class="fa fa-check"></i><b>2.2.1</b> Activity</a></li>
+<li class="chapter" data-level="2.2.2" data-path="starting-r.html"><a href="starting-r.html#answer"><i class="fa fa-check"></i><b>2.2.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="starting-r.html"><a href="starting-r.html#a-note-on-variable-names"><i class="fa fa-check"></i><b>2.3</b> A note on variable names</a></li>
+<li class="chapter" data-level="2.4" data-path="starting-r.html"><a href="starting-r.html#vectors"><i class="fa fa-check"></i><b>2.4</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="starting-r.html"><a href="starting-r.html#activity-1"><i class="fa fa-check"></i><b>2.4.1</b> Activity</a></li>
+<li class="chapter" data-level="2.4.2" data-path="starting-r.html"><a href="starting-r.html#answer-1"><i class="fa fa-check"></i><b>2.4.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="starting-r.html"><a href="starting-r.html#functions"><i class="fa fa-check"></i><b>2.5</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="starting-r.html"><a href="starting-r.html#activity-2"><i class="fa fa-check"></i><b>2.5.1</b> Activity</a></li>
+<li class="chapter" data-level="2.5.2" data-path="starting-r.html"><a href="starting-r.html#answer-2"><i class="fa fa-check"></i><b>2.5.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="starting-r.html"><a href="starting-r.html#more-functions"><i class="fa fa-check"></i><b>2.6</b> More functions</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="starting-r.html"><a href="starting-r.html#activity-3"><i class="fa fa-check"></i><b>2.6.1</b> Activity</a></li>
+<li class="chapter" data-level="2.6.2" data-path="starting-r.html"><a href="starting-r.html#answer-3"><i class="fa fa-check"></i><b>2.6.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="starting-r.html"><a href="starting-r.html#data-frames"><i class="fa fa-check"></i><b>2.7</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="starting-r.html"><a href="starting-r.html#activity-4"><i class="fa fa-check"></i><b>2.7.1</b> Activity</a></li>
+<li class="chapter" data-level="2.7.2" data-path="starting-r.html"><a href="starting-r.html#answer-4"><i class="fa fa-check"></i><b>2.7.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="starting-r.html"><a href="starting-r.html#loading-data-frames-from-a-file"><i class="fa fa-check"></i><b>2.8</b> Loading data frames from a file</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="starting-r.html"><a href="starting-r.html#activity-5"><i class="fa fa-check"></i><b>2.8.1</b> Activity</a></li>
+<li class="chapter" data-level="2.8.2" data-path="starting-r.html"><a href="starting-r.html#answer-5"><i class="fa fa-check"></i><b>2.8.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="starting-r.html"><a href="starting-r.html#packages"><i class="fa fa-check"></i><b>2.9</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="starting-r.html"><a href="starting-r.html#activity-6"><i class="fa fa-check"></i><b>2.9.1</b> Activity</a></li>
+<li class="chapter" data-level="2.9.2" data-path="starting-r.html"><a href="starting-r.html#answer-6"><i class="fa fa-check"></i><b>2.9.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="starting-r.html"><a href="starting-r.html#the-end"><i class="fa fa-check"></i><b>2.10</b> The end!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Visualising data in the tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#getting-setup"><i class="fa fa-check"></i><b>3.1</b> Getting setup</a></li>
+<li class="chapter" data-level="3.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#an-interlude-on-functions"><i class="fa fa-check"></i><b>3.2</b> An interlude on functions</a></li>
+<li class="chapter" data-level="3.3" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#a-scatterplot-in-ggplot"><i class="fa fa-check"></i><b>3.3</b> A scatterplot in ggplot</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#warm-up-activity"><i class="fa fa-check"></i><b>3.3.1</b> Warm-up activity</a></li>
+<li class="chapter" data-level="3.3.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-7"><i class="fa fa-check"></i><b>3.3.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#another-aesthetic-colour"><i class="fa fa-check"></i><b>3.4</b> Another aesthetic: colour</a></li>
+<li class="chapter" data-level="3.5" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#another-geom-jitter"><i class="fa fa-check"></i><b>3.5</b> Another geom: jitter</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-to-develop-your-help-searching-skill"><i class="fa fa-check"></i><b>3.5.1</b> Activity to develop your help-searching skill!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-8"><i class="fa fa-check"></i><b>3.5.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#aggregatingsummarising-data-by-group"><i class="fa fa-check"></i><b>3.6</b> Aggregating/summarising data by group</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-7"><i class="fa fa-check"></i><b>3.6.1</b> Activity</a></li>
+<li class="chapter" data-level="3.6.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-9"><i class="fa fa-check"></i><b>3.6.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#pipes"><i class="fa fa-check"></i><b>3.7</b> Pipes</a></li>
+<li class="chapter" data-level="3.8" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#plot-the-mean-life-expectancy-by-continent"><i class="fa fa-check"></i><b>3.8</b> Plot the mean life expectancy by continent</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#actvity"><i class="fa fa-check"></i><b>3.8.1</b> Actvity</a></li>
+<li class="chapter" data-level="3.8.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-10"><i class="fa fa-check"></i><b>3.8.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#yet-another-geom-line"><i class="fa fa-check"></i><b>3.9</b> Yet another geom: line</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-8"><i class="fa fa-check"></i><b>3.9.1</b> Activity</a></li>
+<li class="chapter" data-level="3.9.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-11"><i class="fa fa-check"></i><b>3.9.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#filtering-data-along-the-pipeline"><i class="fa fa-check"></i><b>3.10</b> Filtering data along the pipeline</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-9"><i class="fa fa-check"></i><b>3.10.1</b> Activity</a></li>
+<li class="chapter" data-level="3.10.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-12"><i class="fa fa-check"></i><b>3.10.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#other-handy-tools-select-slice-bind-and-arrange"><i class="fa fa-check"></i><b>3.11</b> Other handy tools: select, slice, bind, and arrange</a></li>
+<li class="chapter" data-level="3.12" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#filtering-for-members-of-a-vector"><i class="fa fa-check"></i><b>3.12</b> Filtering for members of a vector</a></li>
+<li class="chapter" data-level="3.13" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#final-challenge"><i class="fa fa-check"></i><b>3.13</b> Final challenge</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-10"><i class="fa fa-check"></i><b>3.13.1</b> Activity</a></li>
+<li class="chapter" data-level="3.13.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-13"><i class="fa fa-check"></i><b>3.13.2</b> Answer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#before-we-begin"><i class="fa fa-check"></i><b>4.1</b> Before we begin</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#the-dataset"><i class="fa fa-check"></i><b>4.2</b> The dataset</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#interlude-on-methodology"><i class="fa fa-check"></i><b>4.3</b> Interlude on methodology</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#descriptives"><i class="fa fa-check"></i><b>4.4</b> Descriptives</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-11"><i class="fa fa-check"></i><b>4.4.1</b> Activity</a></li>
+<li class="chapter" data-level="4.4.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-14"><i class="fa fa-check"></i><b>4.4.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#prep-to-understand-the-simplest-regression-model"><i class="fa fa-check"></i><b>4.5</b> Prep to understand the simplest regression model</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-12"><i class="fa fa-check"></i><b>4.5.1</b> Activity</a></li>
+<li class="chapter" data-level="4.5.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-15"><i class="fa fa-check"></i><b>4.5.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept only model</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-13"><i class="fa fa-check"></i><b>4.6.1</b> Activity</a></li>
+<li class="chapter" data-level="4.6.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-16"><i class="fa fa-check"></i><b>4.6.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#adding-a-slope-to-the-regression-model"><i class="fa fa-check"></i><b>4.7</b> Adding a slope to the regression model</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-14"><i class="fa fa-check"></i><b>4.7.1</b> Activity</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-17"><i class="fa fa-check"></i><b>4.7.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#residuals"><i class="fa fa-check"></i><b>4.8</b> Residuals</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-15"><i class="fa fa-check"></i><b>4.8.1</b> Activity</a></li>
+<li class="chapter" data-level="4.8.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-18"><i class="fa fa-check"></i><b>4.8.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#comparing-models"><i class="fa fa-check"></i><b>4.9</b> Comparing models</a></li>
+<li class="chapter" data-level="4.10" data-path="linear-regression.html"><a href="linear-regression.html#regression-with-two-or-more-predictors"><i class="fa fa-check"></i><b>4.10</b> Regression with two or more predictors</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-16"><i class="fa fa-check"></i><b>4.10.1</b> Activity</a></li>
+<li class="chapter" data-level="4.10.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-19"><i class="fa fa-check"></i><b>4.10.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="linear-regression.html"><a href="linear-regression.html#interpreting-regression-models-with-two-or-more-predictors"><i class="fa fa-check"></i><b>4.11</b> Interpreting regression models with two or more predictors</a></li>
+<li class="chapter" data-level="4.12" data-path="linear-regression.html"><a href="linear-regression.html#optional-that-pesky-negative-intercept"><i class="fa fa-check"></i><b>4.12</b> Optional: that pesky negative intercept</a>
+<ul>
+<li class="chapter" data-level="4.12.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-17"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
+<li class="chapter" data-level="4.12.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-20"><i class="fa fa-check"></i><b>4.12.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.13" data-path="linear-regression.html"><a href="linear-regression.html#finally-confidence-intervals"><i class="fa fa-check"></i><b>4.13</b> Finally: confidence intervals</a></li>
+<li class="chapter" data-level="4.14" data-path="linear-regression.html"><a href="linear-regression.html#very-optional-extras"><i class="fa fa-check"></i><b>4.14</b> Very optional extras</a>
+<ul>
+<li class="chapter" data-level="4.14.1" data-path="linear-regression.html"><a href="linear-regression.html#making-functions"><i class="fa fa-check"></i><b>4.14.1</b> Making functions</a></li>
+<li class="chapter" data-level="4.14.2" data-path="linear-regression.html"><a href="linear-regression.html#another-way-to-make-scatterplots-ggally"><i class="fa fa-check"></i><b>4.14.2</b> Another way to make scatterplots: GGally</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>5</b> Linear regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#before-we-begin-1"><i class="fa fa-check"></i><b>5.1</b> Before we begin</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#the-dataset-1"><i class="fa fa-check"></i><b>5.2</b> The dataset</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#fit-a-regression-model"><i class="fa fa-check"></i><b>5.3</b> Fit a regression model</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-18"><i class="fa fa-check"></i><b>5.3.1</b> Activity</a></li>
+<li class="chapter" data-level="5.3.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-21"><i class="fa fa-check"></i><b>5.3.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-normally-distributed-residuals"><i class="fa fa-check"></i><b>5.4</b> Checking for normally distributed residuals</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#base-r-histogram"><i class="fa fa-check"></i><b>5.4.1</b> Base R histogram</a></li>
+<li class="chapter" data-level="5.4.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#quantile-comparison-plot"><i class="fa fa-check"></i><b>5.4.2</b> Quantile-comparison plot</a></li>
+<li class="chapter" data-level="5.4.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#statistical-test-of-normality"><i class="fa fa-check"></i><b>5.4.3</b> Statistical test of normality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-constant-residual-variance"><i class="fa fa-check"></i><b>5.5</b> Checking constant residual variance</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-20"><i class="fa fa-check"></i><b>5.5.1</b> Activity</a></li>
+<li class="chapter" data-level="5.5.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-23"><i class="fa fa-check"></i><b>5.5.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-relationships-between-residuals-and-predicted-outcome-or-predictors"><i class="fa fa-check"></i><b>5.6</b> Checking for relationships between residuals and predicted outcome or predictors</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-linearity"><i class="fa fa-check"></i><b>5.7</b> Checking linearity</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#what-should-be-linear-in-a-linear-model"><i class="fa fa-check"></i><b>5.7.1</b> What should be linear in a linear model?</a></li>
+<li class="chapter" data-level="5.7.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-linearity"><i class="fa fa-check"></i><b>5.7.2</b> Checking for linearity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-influence-leave-one-out-analyses"><i class="fa fa-check"></i><b>5.8</b> Checking influence: leave-one-out analyses</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#residual-outliers"><i class="fa fa-check"></i><b>5.8.1</b> Residual outliers</a></li>
+<li class="chapter" data-level="5.8.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#cooks-distance"><i class="fa fa-check"></i><b>5.8.2</b> Cook’s distance</a></li>
+<li class="chapter" data-level="5.8.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#dfbeta-and-close-sibling-dfbetas"><i class="fa fa-check"></i><b>5.8.3</b> DFBETA and (close sibling) DFBETAS</a></li>
+<li class="chapter" data-level="5.8.4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#view-them-all"><i class="fa fa-check"></i><b>5.8.4</b> View them all</a></li>
+<li class="chapter" data-level="5.8.5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#so-er-what-should-we-do-with-potentially-influential-observations"><i class="fa fa-check"></i><b>5.8.5</b> So, er, what should we do with “potentially influential” observations…?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-the-variance-inflation-factors-vifs"><i class="fa fa-check"></i><b>5.9</b> Checking the variance inflation factors (VIFs)</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-22"><i class="fa fa-check"></i><b>5.9.1</b> Activity</a></li>
+<li class="chapter" data-level="5.9.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-25"><i class="fa fa-check"></i><b>5.9.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#the-challenge"><i class="fa fa-check"></i><b>5.10</b> The challenge</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-23"><i class="fa fa-check"></i><b>5.10.1</b> Activity</a></li>
+<li class="chapter" data-level="5.10.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-26"><i class="fa fa-check"></i><b>5.10.2</b> Answer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html"><i class="fa fa-check"></i><b>6</b> Categorical predictors and interactions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#before-we-begin-2"><i class="fa fa-check"></i><b>6.1</b> Before we begin</a></li>
+<li class="chapter" data-level="6.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-dataset-2"><i class="fa fa-check"></i><b>6.2</b> The dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#factors"><i class="fa fa-check"></i><b>6.3</b> Factors</a></li>
+<li class="chapter" data-level="6.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#visualising-the-data"><i class="fa fa-check"></i><b>6.4</b> Visualising the data</a></li>
+<li class="chapter" data-level="6.5" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-punchline-occupation-type-does-predict-prestige"><i class="fa fa-check"></i><b>6.5</b> The punchline: occupation type does predict prestige</a></li>
+<li class="chapter" data-level="6.6" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-factors-in-regression-models"><i class="fa fa-check"></i><b>6.6</b> Understanding factors in regression models</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-are-categorical-variables-encoded"><i class="fa fa-check"></i><b>6.6.1</b> How are categorical variables encoded?</a></li>
+<li class="chapter" data-level="6.6.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-are-binary-two-level-categorical-predictors-encoded"><i class="fa fa-check"></i><b>6.6.2</b> How are binary (two-level) categorical predictors encoded?</a></li>
+<li class="chapter" data-level="6.6.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#categorical-predictors-with-3-or-more-levels"><i class="fa fa-check"></i><b>6.6.3</b> Categorical predictors with 3 or more levels</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>6.7</b> Interpreting the coefficients</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#activity-25"><i class="fa fa-check"></i><b>6.7.1</b> Activity</a></li>
+<li class="chapter" data-level="6.7.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#answer-28"><i class="fa fa-check"></i><b>6.7.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#checking-all-combinations"><i class="fa fa-check"></i><b>6.8</b> Checking all combinations</a></li>
+<li class="chapter" data-level="6.9" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-intercept-is-not-always-the-mean-of-the-comparison-group"><i class="fa fa-check"></i><b>6.9</b> The intercept is not always the mean of the comparison group</a></li>
+<li class="chapter" data-level="6.10" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#recap"><i class="fa fa-check"></i><b>6.10</b> Recap</a></li>
+<li class="chapter" data-level="6.11" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#challenge"><i class="fa fa-check"></i><b>6.11</b> Challenge</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#activity-26"><i class="fa fa-check"></i><b>6.11.1</b> Activity</a></li>
+<li class="chapter" data-level="6.11.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#answers-1"><i class="fa fa-check"></i><b>6.11.2</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#brief-introduction-to-interactions"><i class="fa fa-check"></i><b>6.12</b> Brief introduction to interactions</a>
+<ul>
+<li class="chapter" data-level="6.12.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#what-is-an-interaction"><i class="fa fa-check"></i><b>6.12.1</b> What is an interaction?</a></li>
+<li class="chapter" data-level="6.12.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-to-test-for-interactions-in-r"><i class="fa fa-check"></i><b>6.12.2</b> How to test for interactions in R</a></li>
+<li class="chapter" data-level="6.12.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-interactions"><i class="fa fa-check"></i><b>6.12.3</b> Understanding interactions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>7</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#setup"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
+<li class="chapter" data-level="7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-dataset-3"><i class="fa fa-check"></i><b>7.2</b> The dataset</a></li>
+<li class="chapter" data-level="7.3" data-path="logistic-regression.html"><a href="logistic-regression.html#warmup-activity"><i class="fa fa-check"></i><b>7.3</b> Warmup activity</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#activity-27"><i class="fa fa-check"></i><b>7.3.1</b> Activity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#answer-29"><i class="fa fa-check"></i><b>7.3.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="logistic-regression.html"><a href="logistic-regression.html#the-punchline"><i class="fa fa-check"></i><b>7.4</b> The punchline</a></li>
+<li class="chapter" data-level="7.5" data-path="logistic-regression.html"><a href="logistic-regression.html#intermezzo-parametric-versus-nonparametric"><i class="fa fa-check"></i><b>7.5</b> Intermezzo: parametric versus nonparametric</a></li>
+<li class="chapter" data-level="7.6" data-path="logistic-regression.html"><a href="logistic-regression.html#glms"><i class="fa fa-check"></i><b>7.6</b> What is a generalised linear model?</a></li>
+<li class="chapter" data-level="7.7" data-path="logistic-regression.html"><a href="logistic-regression.html#what-is-the-log-function-again"><i class="fa fa-check"></i><b>7.7</b> What is the log function again…?</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-arithmetic"><i class="fa fa-check"></i><b>7.7.1</b> The arithmetic</a></li>
+<li class="chapter" data-level="7.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#why-log"><i class="fa fa-check"></i><b>7.7.2</b> Why log?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="logistic-regression.html"><a href="logistic-regression.html#intercept-only-models-again"><i class="fa fa-check"></i><b>7.8</b> Intercept-only models again</a></li>
+<li class="chapter" data-level="7.9" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-and-log-odds"><i class="fa fa-check"></i><b>7.9</b> Odds and log odds</a></li>
+<li class="chapter" data-level="7.10" data-path="logistic-regression.html"><a href="logistic-regression.html#back-to-that-intercept"><i class="fa fa-check"></i><b>7.10</b> Back to that intercept</a></li>
+<li class="chapter" data-level="7.11" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-slopes"><i class="fa fa-check"></i><b>7.11</b> Interpreting model slopes</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-on-the-log-odds-scale"><i class="fa fa-check"></i><b>7.11.1</b> Interpret on the log-odds scale</a></li>
+<li class="chapter" data-level="7.11.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-the-divide-by-4-approximation"><i class="fa fa-check"></i><b>7.11.2</b> Interpret using the “divide-by-4” approximation</a></li>
+<li class="chapter" data-level="7.11.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-odds"><i class="fa fa-check"></i><b>7.11.3</b> Interpret using odds</a></li>
+<li class="chapter" data-level="7.11.4" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-predicted-probabilities"><i class="fa fa-check"></i><b>7.11.4</b> Interpret using predicted probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="logistic-regression.html"><a href="logistic-regression.html#diagnostics"><i class="fa fa-check"></i><b>7.12</b> Diagnostics</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#check-the-residual-distribution"><i class="fa fa-check"></i><b>7.12.1</b> Check the residual distribution</a></li>
+<li class="chapter" data-level="7.12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#check-that-the-residual-mean-is-constant"><i class="fa fa-check"></i><b>7.12.2</b> Check that the residual mean is constant</a></li>
+<li class="chapter" data-level="7.12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#linearity-of-predictors"><i class="fa fa-check"></i><b>7.12.3</b> Linearity of predictors</a></li>
+<li class="chapter" data-level="7.12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#influence"><i class="fa fa-check"></i><b>7.12.4</b> Influence</a></li>
+<li class="chapter" data-level="7.12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multicolinearity"><i class="fa fa-check"></i><b>7.12.5</b> Multicolinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="logistic-regression.html"><a href="logistic-regression.html#a-challenge"><i class="fa fa-check"></i><b>7.13</b> A challenge</a>
+<ul>
+<li class="chapter" data-level="7.13.1" data-path="logistic-regression.html"><a href="logistic-regression.html#activity-31"><i class="fa fa-check"></i><b>7.13.1</b> Activity</a></li>
+<li class="chapter" data-level="7.13.2" data-path="logistic-regression.html"><a href="logistic-regression.html#an-answer"><i class="fa fa-check"></i><b>7.13.2</b> (An) Answer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="starting-r" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Starting R</h1>
+<p>This tutorial is a tour of some of the basics of the R language. Please follow along in RStudio as you read and try not to peek at the answers until you have given the activities a good go!</p>
+<p>By the end of this tutorial you will know how to:</p>
+<ul>
+<li>Do basic stuff in R like arithmetic</li>
+<li>Assign results of calculations to variables and refer to these</li>
+<li>Calculate descriptive statistics like mean and standard deviation (SD)</li>
+<li>Install add-on packages from the internet and include them</li>
+<li>Open a dataset in R</li>
+</ul>
+<p>This will prepare you for your first analysis of data.</p>
+<div id="arithmetic" class="section level2 tabset" number="2.1">
+<h2><span class="header-section-number">2.1</span> Arithmetic</h2>
+<p>You can use R as a calculator:</p>
+<p><code>+</code> is addition</p>
+<p><code>-</code> is subtraction</p>
+<p><code>*</code> is multiplication</p>
+<p><code>/</code> is division</p>
+<p><code>^</code> is exponentiation</p>
+<p>So, for instance to calculate <span class="math inline">\(\frac{1}{2}\)</span> you do</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="starting-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<p>To work out <span class="math inline">\(2^3\)</span> do:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="starting-r.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div>
+<p>The usual mathematical order of precedence rules apply, so</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="starting-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
+<p>gives different result to</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="starting-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
+<p>(Try it!)</p>
+<div id="activities" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Activities</h3>
+<p>Easing in tremendously gently…</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>What is the R code to calculate 2 + 2</p></li>
+<li><p>How do you multiply 6 and 7?</p></li>
+</ol>
+</div>
+<div id="answers" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Answers</h3>
+<ol style="list-style-type: lower-alpha">
+<li>What is the R code to calculate 2 + 2</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="starting-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>How do you multiply 6 and 7?</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="starting-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">7</span></span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+</div>
+</div>
+<div id="variables" class="section level2 tabset" number="2.2">
+<h2><span class="header-section-number">2.2</span> Variables</h2>
+<p>R has a flexible way of creating and naming “objects” of various kinds, so that you can refer to them later. These objects may be things like the answer to a sum, a whole dataset, or the result of a regression analysis.</p>
+<p>Let’s start with a sum – we will get to the more complex examples soon!</p>
+<p>Look at this R code:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="starting-r.html#cb9-1" aria-hidden="true" tabindex="-1"></a>first_bit  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb9-2"><a href="starting-r.html#cb9-2" aria-hidden="true" tabindex="-1"></a>second_bit <span class="ot">&lt;-</span> first_bit <span class="sc">/</span> <span class="dv">8</span></span></code></pre></div>
+<p>Read as</p>
+<ul>
+<li>“set <code>first_bit</code> to 2 plus 2”</li>
+<li>“set <code>second_bit</code> to <code>first_bit</code> divided by 8”</li>
+</ul>
+<p>The “&lt;-” symbol is called an “assignment statement” and <code>first_bit</code> and <code>second_bit</code> are variable names.</p>
+<div id="activity" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Activity</h3>
+<p>When you run the code above, you will see that nothing actually seems to happen. Can you guess what you need to do to get the answer to the <code>second_bit</code> sum?</p>
+</div>
+<div id="answer" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Answer</h3>
+<p>You just have to type and run the name of the variable.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="starting-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a>second_bit</span></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+</div>
+</div>
+<div id="a-note-on-variable-names" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> A note on variable names</h2>
+<p>There are limitations to the names you can use for variables (but ways to get around those – for another time). To keep life simple:</p>
+<ul>
+<li>make sure variable names always start with a character, “a” to “z.”</li>
+<li>they can have a number after the first character</li>
+<li>you can use an underscore, "_", as a sort of space</li>
+<li>remember that variables are cAsE sEnSiTiVe and consider always using lower case</li>
+<li>try to make variable names meaningful</li>
+</ul>
+</div>
+<div id="vectors" class="section level2 tabset" number="2.4">
+<h2><span class="header-section-number">2.4</span> Vectors</h2>
+<p>Vectors are a list of values of the same type of information. They usually come from a dataset, but you can also build them directly in R.</p>
+<p>Vectors can be of whole numbers…</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="starting-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span></code></pre></div>
+<p>… or (approximations of) real numbers…</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="starting-r.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="sc">-</span><span class="fl">2.3</span>)</span></code></pre></div>
+<p>… or character strings, which are often used to represent categorical information:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="starting-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;woman&quot;</span>, <span class="st">&quot;woman&quot;</span>, <span class="st">&quot;man&quot;</span>, <span class="st">&quot;woman&quot;</span>,</span>
+<span id="cb14-2"><a href="starting-r.html#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;genderqueer&quot;</span>, <span class="st">&quot;genderqueer&quot;</span>, <span class="st">&quot;gender fluid&quot;</span>)</span></code></pre></div>
+<p>In this last example, I have saved the vector in a variable called <code>gender</code>.</p>
+<div id="activity-1" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Activity</h3>
+<p>Try making a vector of the members of your favourite band (or other grouping of people that makes sense to you) and save the result in a variable with a meaningful name.</p>
+</div>
+<div id="answer-1" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Answer</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="starting-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a>stereo_total <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Françoise Cactus&quot;</span>, <span class="st">&quot;Brezel Göring&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="functions" class="section level2 tabset" number="2.5">
+<h2><span class="header-section-number">2.5</span> Functions</h2>
+<p>A function in R is a magical computational machine which takes an input and transforms it in some way, giving an output. (This is not a formal definition.)</p>
+<p>Here’s a vector:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="starting-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">12</span>)</span></code></pre></div>
+<p>One of R’s functions calculates the mean of a vector of numbers:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="starting-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">12</span>))</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>There is another for the median:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="starting-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">12</span>))</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Since these are built into R, there is also help. Try typing:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="starting-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div>
+<p>We can also apply functions to variables. Another useful function is <code>table</code> which creates a table of counts.</p>
+<p>So, in summary, to use a function you use its name and then tell it the inputs in parentheses.</p>
+<div id="activity-2" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Activity</h3>
+<p>Make a table of the <code>gender</code> variable we created earlier.</p>
+</div>
+<div id="answer-2" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Answer</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="starting-r.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(gender)</span></code></pre></div>
+<pre><code>## gender
+## gender fluid  genderqueer          man        woman 
+##            1            2            1            3</code></pre>
+<p>Note how this gives the same result as:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="starting-r.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="st">&quot;woman&quot;</span>, <span class="st">&quot;woman&quot;</span>, <span class="st">&quot;man&quot;</span>, <span class="st">&quot;woman&quot;</span>,</span>
+<span id="cb24-2"><a href="starting-r.html#cb24-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;genderqueer&quot;</span>, <span class="st">&quot;genderqueer&quot;</span>, <span class="st">&quot;gender fluid&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## gender fluid  genderqueer          man        woman 
+##            1            2            1            3</code></pre>
+<p>But without having to copy and paste the vector.</p>
+</div>
+</div>
+<div id="more-functions" class="section level2 tabset" number="2.6">
+<h2><span class="header-section-number">2.6</span> More functions</h2>
+<p>Functions can have zero inputs. Try <code>citation</code> which tells you how to cite R in write ups.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="starting-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()</span></code></pre></div>
+<p>(You could also try without the parentheses – not something you’d generally want to do on purpose – to see what happens.)</p>
+<p>Functions can have more than one input. Another handy function, called <code>rnorm</code>, generates random data from a normal distribution, with a given number of values, mean, and SD.</p>
+<p>Here is an example with 50 values with a mean of 20 and an SD of 5:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="starting-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">5</span>)</span>
+<span id="cb27-2"><a href="starting-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>random_values</span></code></pre></div>
+<pre><code>##  [1] 21.696840 30.153510 22.118032 21.701945 25.408412 13.765610 23.097503
+##  [8] 22.659398 21.161144 15.600780 22.364260 21.033959 21.211111 20.527634
+## [15] 17.024637 24.294356 16.581631 20.167823 21.846550  9.809019  8.407916
+## [22] 24.343808 16.626899 24.435547 22.698050 22.703724 15.152388 16.455461
+## [29] 19.266975 22.119594 29.824088 17.013412 30.426112 20.815468 20.011092
+## [36] 12.509614 18.159811 18.029018 26.326780 27.433691 25.301475 19.306203
+## [43] 13.122015  8.734469 22.184979 26.294056 16.860675 31.517696 18.803562
+## [50] 20.755090</code></pre>
+<p>When you run it you will probably get different numbers to me.</p>
+<p>Here is a histogram of values I got:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="starting-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(random_values)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div id="activity-3" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Activity</h3>
+<p>Try calculating the mean and standard deviation (the command is called <code>sd</code>) of the data you generated. What do you notice?</p>
+</div>
+<div id="answer-3" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Answer</h3>
+<p>Here’s what I got:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="starting-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(random_values)</span></code></pre></div>
+<pre><code>## [1] 20.55728</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="starting-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(random_values)</span></code></pre></div>
+<pre><code>## [1] 5.274404</code></pre>
+<p>Unless you were very lucky, you probably discovered like me that the mean was different to 20 and the SD was different to 5. This is something we will return to in another session, but can you guess now why this has happened?</p>
+</div>
+</div>
+<div id="data-frames" class="section level2 tabset" number="2.7">
+<h2><span class="header-section-number">2.7</span> Data frames</h2>
+<p>Data frames <a href="http://search.r-project.org/R/library/base/html/data.frame.html">are</a> “tightly coupled collections of variables… used as the fundamental data structure by most of R’s modeling software.”</p>
+<p>In practice, data frames are usually read in from files (next section); however, it can be helpful to see how to make them “by hand” within R.</p>
+<p>To make them, use the function <code>data.frame</code> with named vectors comprising the data.</p>
+<p>Here is an example, created with <a href="https://en.wikipedia.org/wiki/Stereo_Total">copy and paste from Wikipedia</a>. I have used newlines and space to make it readable.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="starting-r.html#cb34-1" aria-hidden="true" tabindex="-1"></a>stereo_total_albums <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">c</span>(<span class="dv">1995</span>,</span>
+<span id="cb34-2"><a href="starting-r.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">1997</span>,</span>
+<span id="cb34-3"><a href="starting-r.html#cb34-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">1998</span>,</span>
+<span id="cb34-4"><a href="starting-r.html#cb34-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">1999</span>,</span>
+<span id="cb34-5"><a href="starting-r.html#cb34-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2001</span>,</span>
+<span id="cb34-6"><a href="starting-r.html#cb34-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2002</span>,</span>
+<span id="cb34-7"><a href="starting-r.html#cb34-7" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2005</span>,</span>
+<span id="cb34-8"><a href="starting-r.html#cb34-8" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2007</span>,</span>
+<span id="cb34-9"><a href="starting-r.html#cb34-9" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2009</span>,</span>
+<span id="cb34-10"><a href="starting-r.html#cb34-10" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2010</span>,</span>
+<span id="cb34-11"><a href="starting-r.html#cb34-11" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2011</span>,</span>
+<span id="cb34-12"><a href="starting-r.html#cb34-12" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2012</span>,</span>
+<span id="cb34-13"><a href="starting-r.html#cb34-13" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2015</span>,</span>
+<span id="cb34-14"><a href="starting-r.html#cb34-14" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2016</span>,</span>
+<span id="cb34-15"><a href="starting-r.html#cb34-15" aria-hidden="true" tabindex="-1"></a>                                           <span class="dv">2019</span>),</span>
+<span id="cb34-16"><a href="starting-r.html#cb34-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">album =</span> <span class="fu">c</span>(<span class="st">&quot;Oh Ah!&quot;</span>,</span>
+<span id="cb34-17"><a href="starting-r.html#cb34-17" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Monokini&quot;</span>,</span>
+<span id="cb34-18"><a href="starting-r.html#cb34-18" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Juke-Box Alarm&quot;</span>,</span>
+<span id="cb34-19"><a href="starting-r.html#cb34-19" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;My Melody&quot;</span>,</span>
+<span id="cb34-20"><a href="starting-r.html#cb34-20" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Musique Automatique&quot;</span>,</span>
+<span id="cb34-21"><a href="starting-r.html#cb34-21" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Trésors cachés&quot;</span>,</span>
+<span id="cb34-22"><a href="starting-r.html#cb34-22" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Do the Bambi&quot;</span>,</span>
+<span id="cb34-23"><a href="starting-r.html#cb34-23" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Paris-Berlin&quot;</span>,</span>
+<span id="cb34-24"><a href="starting-r.html#cb34-24" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;No Controles&quot;</span>,</span>
+<span id="cb34-25"><a href="starting-r.html#cb34-25" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Baby ouh!&quot;</span>,</span>
+<span id="cb34-26"><a href="starting-r.html#cb34-26" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Underwater Love&quot;</span>,</span>
+<span id="cb34-27"><a href="starting-r.html#cb34-27" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Cactus versus Brezel&quot;</span>,</span>
+<span id="cb34-28"><a href="starting-r.html#cb34-28" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Yéyé Existentialiste&quot;</span>,</span>
+<span id="cb34-29"><a href="starting-r.html#cb34-29" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Les hormones&quot;</span>,</span>
+<span id="cb34-30"><a href="starting-r.html#cb34-30" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;Ah! Quel Cinéma!&quot;</span>))</span></code></pre></div>
+<p>Do not build data frames like this with real data as it is painfully dull. However, it did get the data into R. R will print this in a sensible way if you run the data frame’s name:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="starting-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a>stereo_total_albums</span></code></pre></div>
+<pre><code>##    year                album
+## 1  1995               Oh Ah!
+## 2  1997             Monokini
+## 3  1998       Juke-Box Alarm
+## 4  1999            My Melody
+## 5  2001  Musique Automatique
+## 6  2002       Trésors cachés
+## 7  2005         Do the Bambi
+## 8  2007         Paris-Berlin
+## 9  2009         No Controles
+## 10 2010            Baby ouh!
+## 11 2011      Underwater Love
+## 12 2012 Cactus versus Brezel
+## 13 2015 Yéyé Existentialiste
+## 14 2016         Les hormones
+## 15 2019     Ah! Quel Cinéma!</code></pre>
+<p>A few things you might want to do with data frames include:</p>
+<p>Listing the variables:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="starting-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stereo_total_albums)</span></code></pre></div>
+<pre><code>## [1] &quot;year&quot;  &quot;album&quot;</code></pre>
+<p>Finding out how many rows it has:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="starting-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(stereo_total_albums)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>You will often want to refer to a vector within the data frame, which you do with the $ operator:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="starting-r.html#cb41-1" aria-hidden="true" tabindex="-1"></a>stereo_total_albums<span class="sc">$</span>year</span></code></pre></div>
+<pre><code>##  [1] 1995 1997 1998 1999 2001 2002 2005 2007 2009 2010 2011 2012 2015 2016 2019</code></pre>
+<p>This is just like any other vector, so you could draw a histogram of the years of album releases:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="starting-r.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(stereo_total_albums<span class="sc">$</span>year,</span>
+<span id="cb43-2"><a href="starting-r.html#cb43-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb43-3"><a href="starting-r.html#cb43-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Stereo Total albums&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><code>hist</code> has automatically chosen to group years in fives based on how much data there was and how it’s distributed. Note also how I changed the default settings on x-axis label and title.</p>
+<div id="activity-4" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Activity</h3>
+<p>What’s the median of the years albums were released?</p>
+</div>
+<div id="answer-4" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Answer</h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="starting-r.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(stereo_total_albums<span class="sc">$</span>year)</span></code></pre></div>
+<pre><code>## [1] 2007</code></pre>
+</div>
+</div>
+<div id="loading-data-frames-from-a-file" class="section level2 tabset" number="2.8">
+<h2><span class="header-section-number">2.8</span> Loading data frames from a file</h2>
+<p>It is easy to read files into R. This command loads an excerpt from the <a href="https://github.com/jennybc/gapminder">Gapminder dataset</a> (extracted and tidied by Jennifer Bryan), which you can find <a href="./gapminder.csv">here</a>. Save the file in the same folder as your R or Rmd file and run:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="starting-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a>gap <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;gapminder.csv&quot;</span>)</span></code></pre></div>
+<p>Here “csv” stands for “comma separated values.” If you open the file in, say, Notepad, then you will see why.</p>
+<p>If it worked, then this command will show the top 5 rows:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="starting-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gap,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##       country continent year lifeExp      pop gdpPercap
+## 1 Afghanistan      Asia 1952  28.801  8425333  779.4453
+## 2 Afghanistan      Asia 1957  30.332  9240934  820.8530
+## 3 Afghanistan      Asia 1962  31.997 10267083  853.1007
+## 4 Afghanistan      Asia 1967  34.020 11537966  836.1971
+## 5 Afghanistan      Asia 1972  36.088 13079460  739.9811</code></pre>
+<p>If it <em>didn’t</em> work, then you’re probably not using R markdown. You can try changing the working directory to the same place as your R “source file.”</p>
+<p><img src="choose_folder.gif" /></p>
+<p>The variables in the dataset are as follows:</p>
+<ul>
+<li><p><strong>country:</strong> The country</p></li>
+<li><p><strong>continent:</strong> The continent</p></li>
+<li><p><strong>year:</strong> ranges from 1952 to 2007 in increments of 5 years</p></li>
+<li><p><strong>lifeExp:</strong> life expectancy at birth, in years</p></li>
+<li><p><strong>pop:</strong> population</p></li>
+<li><p><strong>gdpPercap:</strong> GDP per capita (US$, inflation-adjusted)</p></li>
+</ul>
+<p>We can plot life expectancy against the GDP per capita as follows:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="starting-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifeExp <span class="sc">~</span> gdpPercap, <span class="at">data =</span> gap)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>The “~” is read as “tilde” (or sometimes “twiddle”). The x-axis labels may not be readable at first but we shall return to this in a later session. (If you can’t wait, <a href="https://en.wikipedia.org/wiki/Scientific_notation#E_notation.">try this</a></p>
+<div id="activity-5" class="section level3" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Activity</h3>
+<p>Plot life expectancy at birth against year.</p>
+</div>
+<div id="answer-5" class="section level3" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Answer</h3>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="starting-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifeExp <span class="sc">~</span> year,</span>
+<span id="cb50-2"><a href="starting-r.html#cb50-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> gap,</span>
+<span id="cb50-3"><a href="starting-r.html#cb50-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb50-4"><a href="starting-r.html#cb50-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Life expectancy at birth&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Again I have changed the axis label defaults.</p>
+</div>
+</div>
+<div id="packages" class="section level2 tabset" number="2.9">
+<h2><span class="header-section-number">2.9</span> Packages</h2>
+<p>When you install R, it comes with a small collection of essential packages which consist of functions like <code>mean</code>, <code>sd</code>, and <code>hist</code> that we have used above. But a strength of R is that there are a HUGE number of packages written by people across the world who use R and these can easily be downloaded from the interweb and added using R. These add-ons do things like produce pretty data visualisations (e.g., used by the <a href="http://www.interhacktives.com/2020/03/09/how-to-create-bbc-style-graphics-with-r-a-bbplot-tutorial/">BBC Data and Visualisation Journalism team</a>) and statistical models required by social scientists. The core <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">recommended text</a> also has <a href="https://cran.r-project.org/web/packages/car/index.html">an R package</a>.</p>
+<p>Here is an example, using the <em>praise</em> package. To download and install the package, use this command:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="starting-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;praise&quot;</span>)</span></code></pre></div>
+<p>If this has worked, you will have seen text something like:</p>
+<pre><code>trying URL &#39;https://cran.rstudio.com/bin/windows/contrib/4.0/praise_1.0.0.zip&#39;
+Content type &#39;application/zip&#39; length 19729 bytes (19 KB)
+downloaded 19 KB
+
+package ‘praise’ successfully unpacked and MD5 sums checked</code></pre>
+<p>Now the package is on your local computer but it isn’t available to use yet. You also have to do:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="starting-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(praise)</span></code></pre></div>
+<p>(Note how there were no quotation marks here.)</p>
+<p>If <em>this</em> worked, then… well not much will have happened. But R won’t have complained.</p>
+<div id="activity-6" class="section level3" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> Activity</h3>
+<p>The <em>praise</em> packages provides a function also called <em>praise</em>, which requires no input to run. Give it a go – what happens?</p>
+</div>
+<div id="answer-6" class="section level3" number="2.9.2">
+<h3><span class="header-section-number">2.9.2</span> Answer</h3>
+<p>I’ll run it a few times…</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="starting-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;You are transcendent!&quot;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="starting-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;You are incredible!&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="starting-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;You are exquisite!&quot;</code></pre>
+<p>Not a big data science algorithm, but you may find it helpful as the course progresses :)</p>
+</div>
+</div>
+<div id="the-end" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> The end!</h2>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="starting-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;You are fine!&quot;</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualising-data-in-the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-notes.pdf", "R-notes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

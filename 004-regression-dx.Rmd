@@ -1,0 +1,866 @@
+# Linear regression diagnostics
+
+A cursory glance at Chapter 8 of Fox and Weisberg (2019) will reveal that there are many diagnostic checks for regression models. An oft-cited book on diagnostics by Belsey et al. (1980) runs to 300 pages.
+
+There is an element of subjectivity in deciding which checks to use and how to interpret them, and hence a chance that authors cherry pick diagnostics to make it appear that a model explains the data better than it actually does. So, as ever, it is important to create an analysis plan before seeing data, ideally registered in some way online.
+
+By the end of this tutorial you will know how to carry out common diagnostic checks of regression models using R. Many of the ideas transfer with little effort to other models we will encounter later too.
+
+I recommend that you follow along with the examples, fiddling with the code as your curiosity guides you (don't simply copy and paste code and run it -- play!). The tutorial ends with an activity, similar to the sorts of things that have been asked in exams.
+
+
+## Before we begin
+
+You could continue on the end of last week's Markdown file or make a new one. We will be using the same `prestige.csv` dataset, so whatever you do please ensure the data is saved in the same folder as your Markdown file.
+
+Ensure these handy packages are installed and included:
+
+```{r message=FALSE}
+library(car)
+library(tidyverse)
+```
+
+
+## The dataset
+
+So it's easy to find, here are the variable names again. Each row describes an occupation and aggregated data about that occupation.
+
+| Variable name | Description |
+|---------------|-------------|
+| occ       | Occupation |
+| education | Average years of education for people in the job |
+| income    | Average income in dollars |
+| women     | Percentage of women in occupation |
+| prestige  | A Pineo-Porter prestige score for the occupation with a possible range of 0-100 (higher = more prestigious)  |
+| type      | "bc" = blue collar <br> "wc" = white collar <br> "prof" = professional, managerial, or technical |
+
+Read it in:
+
+```{r}
+dat <- read.csv("prestige.csv")
+```
+
+I'm going to `mutate` this to add the income in $1000s again.
+
+```{r}
+dat <- dat %>%
+  mutate(income_1000s = income/1000)
+```
+
+
+## Fit a regression model {.tabset}
+
+We will spend some time exploring this simple two-predictor model, so ensure it exists in the environment:
+
+```{r}
+mod_both <- lm(prestige ~ education + income_1000s,
+               data = dat)
+summary(mod_both)
+```
+
+### Activity
+
+How should the coefficients be interpreted?
+
+### Answer
+
+Both education and income are statistically significant predictors of prestige (both *p*'s < .001). Each year of education is associated with 4.1 more prestige points and \$1000 more income is associated with 1.4 extra prestige points (whilst holding other predictors constant). The model explains 79% of the variance in prestige and, perhaps unsurprisingly with that high an $R^2$, is statistically significantly better than the intercept-only model, $F(2,99) = 195.6$, $p < .001$.
+
+Note how that model test is included in the last line of the model summary; we can also check it explicitly with:
+
+```{r}
+mod0 <- lm(prestige ~ 1, data = dat)
+anova(mod0, mod_both)
+```
+
+
+## Checking for normally distributed residuals
+
+To obtain the residuals for a model, use the command `resid` and save them somewhere. I will add them onto the `dat` data frame so that it is easy to cross reference each residual with the original data:
+
+```{r}
+dat$mod_both_resids <- resid(mod_both)
+```
+
+These should have a normal, also known as a Gaussian distribution, in linear regression models. How do we check...?
+
+### Base R histogram
+
+One way is to have a look at a histogram using the base R `hist` function:
+
+```{r}
+hist(dat$mod_both_resids)
+```
+
+Is that a normal distribution? Probably, yes; however, in general `¯\_(ツ)_/¯`, it is not always obvious. There are better ways to check -- read on!
+
+
+
+### Quantile-comparison plot
+
+An easier way to check the distribution is using a quantile-comparison plot, also known as a quantile-quantile or Q-Q plot. The `car` package, associated with the Fox and Weisberg (2019) textbook, has a lovely function for creating them called `qqPlot`:
+
+```{r}
+qqPlot(dat$mod_both_resids, id = list(labels = dat$occ, n = 2))
+```
+
+By default it always labels the two most extreme values and tells you what rows they are on. I have added the `n` parameter explicitly with the default value of 2 so that you can play around with it. I also used the `id` parameter to tell the function the names of the occupations. (Leave it out to see what happens.)
+
+The residuals are on the y-axis and the theoretically expected quantiles on a standard (mean = 0, SD = 1) normal distribution are on the x-axis. **If the data we provide are identical to the normal distribution, then the points should fall along the blue diagonal line.** By default, a 95% confidence envelope is drawn on (the dashed curves); around 95% of the points should be within this envelope if the data we provide has the same distribution as the comparison distribution. Too many outside this suggests deviation from the reference distribution.
+
+The residuals do indeed seem normally distributed. Read on to see what a Q-Q plot looks like when data are not normally distributed...
+
+
+#### Illustration using simulated data
+
+Let's try a Q-Q plot for a skewed distribution which is definitely not normally distributed:
+
+```{r}
+set.seed(42) # this line means you get the same (pseudo)random numbers as me
+skewed <- exp(rnorm(50))
+hist(skewed)
+```
+
+Here is the `qqPlot`:
+
+```{r}
+qqPlot(skewed)
+```
+
+The points do not all lie on the diagonal; indeed there is marked curvature.
+
+Now, a sample we know to be normally distributed and large (2500 "participants") so it will be easy to see its shape.
+
+```{r}
+set.seed(5)
+perfectly_normal <- rnorm(2500, 1000, 200)
+hist(perfectly_normal)
+```
+
+Here is the `qqPlot`:
+
+```{r}
+qqPlot(perfectly_normal)
+```
+
+Note how two extreme points are always labelled; this does not mean they are outliers.
+
+
+
+### Statistical test of normality {.tabset}
+
+You could also use a statistical test of whether the residuals have a normal distribution, but it would not be a good idea. If the sample size is relatively small, then the test has low power; in other words, it won't be very good at detecting non-normal data. If the sample size is large, then the test has high power to detect even minuscule deviations from a normal distribution -- deviations so small that they won't have any noticeable impact on results.
+
+For completeness here is one such test, the Shapiro-Wilk normality test.
+
+Let's try it first on `perfectly_normal`:
+
+```{r}
+shapiro.test(perfectly_normal)
+```
+The p-value is above 0.05 so this is "not statistically significant". The test checks for *deviation* from a normal distribution, so we did not find evidence that the data is non-normal. Note my judicious use of negatives there; I do not commit myself to belief that the data are normal!
+
+Now try again for the `skewed` data:
+
+```{r}
+shapiro.test(skewed)
+```
+
+As one might hope, given the shape of the histogram, the p-value is very small: $2.8 \times 10^{-8}$. We can be very confident from picture and this test that the data are *not* normally distributed.
+
+
+
+#### Activity
+
+Try the Shapiro-Wilk normality test on the residuals of `mod_both`.
+
+#### Answer
+
+```{r}
+shapiro.test(resid(mod_both))
+```
+
+Since the p-value is far above 0.05 at 0.93, we did not find any evidence that the residuals are non-normal.
+
+
+
+## Checking constant residual variance {.tabset}
+
+Linear regression assumes that residual variance is constant for all values of the predicted outcomes and predictors. If it is constant, then the residuals are said to be *homoscedastic*; otherwise if the variance varies then they are *heteroscedastic*.
+
+Here is a picture of made up data to illustrate, focussing initially on the predicted outcomes. We want the residuals to be homoscedastic as shown in graph *a* on the left.
+
+
+```{r fig.height=4, fig.width=8, class.source = "fold-hide"}
+set.seed(42)
+theN = 300
+sds = 5 + round(1:theN/10)*10
+x = scale(1:300) * 1.5
+
+old = par (mfrow = c(1,2))
+  plot(scale(rnorm(theN, 0, 1)) ~ x,
+       main = "(a) Homoscedastic",
+       ylab = "Residual",
+       xlab = "Predicted outcome",
+       ylim = c(-3,3))
+  plot(scale(rnorm(theN, 0, sds)) ~ x,
+       main = "(b) Heteroscedastic",
+       ylab = "Residual",
+       xlab = "Predicted outcome",
+       ylim = c(-3,3))
+par(old)
+```
+
+
+### Activity
+
+Above, we have fitted a model called `mod_both`. We already have the residuals saved in `dat$mod_both_resids`. You can get the predicted values of a model (i.e., ask the model to tell you a predicted prestige, based on rows of data for education and income) using the `predict` function; save them in `dat$mod_both_predicted`.
+
+Plot the residuals against predicted outcomes and assess by visual inspection whether the residuals have constant variance.
+
+
+
+### Answer
+
+First save the predicted values:
+
+```{r}
+dat$mod_both_predicted <- predict(mod_both)
+```
+
+Now plot them against the residuals:
+
+```{r}
+ggplot(dat, aes(x = mod_both_predicted, y = mod_both_resids)) +
+  geom_point() +
+  labs(x = "Predicted outcome", y = "Residual")
+```
+
+The variance looks fairly constant across levels of the prediction, maybe decreasing a little as the prediction increases.
+
+The next section provides an even faster way to check for constant variance for the predicted outcome and predictors.
+
+
+
+## Checking for relationships between residuals and predicted outcome or predictors
+
+There should be no relationship between
+
+1. the residuals and the predicted outcome (also known as fitted values)
+2. or  between the residuals and any of the predictors.
+
+This includes the *mean* of the residuals as well as the *variance* introduced in the previous section. We can check both in the same plots with `residualPlots`.
+
+The blue curves below show a quadratic function fitted by regression and can help spot any patterns in the mean of the residuals. In these graphs, the blue curve should ideally be a horizontal straight line (i.e., it should not be a curve!) and the points should be randomly scattered around it...
+
+```{r fig.height=6, fig.width=6, message=TRUE}
+residualPlots(mod_both, tests = FALSE)
+```
+
+(Look up the help for `residualPlots` to see what happens if you set `tests = TRUE`; but you probably don't need that distraction now.)
+
+The graph for income is a particular worry; we can zoom in and have a closer look:
+
+```{r}
+residualPlots(mod_both, terms = ~ income_1000s,
+              fitted = FALSE,
+              tests = FALSE)
+```
+
+(Look up the help for `residualPlots` to see what happens if you set `fitted = TRUE` -- or give it a go!)
+
+The curviness suggests that the mean of the residuals vary as a function of income, which suggets that we may wish to transform the income variable (more on this later). It's tricky to see what is going on with the *variance* of the residuals.
+
+Fox and Weisberg (2019, pp. 415-417) introduce a formal statistical test of non-constant variance called the *Breusch-Pagan test* or *non-constant variance score test*. For example, you can use it to check whether the residual variance varies along the magnitude of the predictions:
+
+```{r}
+ncvTest(mod_both)
+```
+
+This is not statistically significant, $\chi^2(1) = 0.17$, $p = .68$. So there is no evidence that the residual variance varies by predicted outcome.
+
+You can also check predictors. Here is a test of whether the residual variance varies as a function of income:
+
+```{r}
+ncvTest(mod_both, ~ income_1000s)
+```
+
+This is also not statistically significant, $\chi^2(1) = 2.02$, $p = .16$.
+
+See Fox and Weisberg (2019, pp. 244-252) for advice on what to do if you do find non-constant residual variance.
+
+
+## Checking linearity
+
+### What should be linear in a linear model?
+
+Linear regression models explain relationships between outcome and predictors that can be expressed in the form:
+
+$$
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots \beta_n x_n
+$$
+ 
+Confusingly (perhaps?), this does not mean that linear regression can only model linear relationships, since we can transform *y* and the *x*'s in arbitrary ways.
+
+Here is a made up dataset:
+
+```{r}
+set.seed(202)
+made_up <- tibble(x = rnorm(200, 0, 1),
+                  y = x^2 + rnorm(length(x), 0, .5))
+```
+
+And a picture thereof:
+
+```{r}
+made_up_scatter <- made_up %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
+made_up_scatter
+```
+
+
+If you try to model *x* and *y* as-is, then the coefficients will be incorrect.
+
+```{r}
+wrong_mod <- lm(y ~ x, data = made_up)
+summary(wrong_mod)
+```
+
+Adding the regression line to the data shows why:
+
+```{r}
+made_up_scatter +
+  geom_abline(intercept = coef(wrong_mod)[1],
+              slope = coef(wrong_mod)[2],
+              colour = "purple")
+```
+
+However, if you transform the *x* first, then the predictions will be fine. Below, to illustrate, I am squaring *x*, so we are trying to estimate $\beta_0$ and $\beta_1$ for the model:
+
+$$
+y = \beta_0 + \beta_1 x^2
+$$
+
+```{r}
+better_mod <- lm(y ~ I(x^2), data = made_up)
+summary(better_mod)
+```
+
+The `I` inhibits R from trying to interpret `x^2` as anything other than arithmetic: $x^2$.
+
+Now let's plot the model predictions:
+
+
+```{r}
+made_up$predicted <- predict(better_mod)
+
+made_up %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  geom_line(aes(x = x,
+                y = predicted),
+            color = "purple")
+```
+
+That looks a lot better!
+
+To see why "linear" regression is able to handle a decidedly non-linear relationship, look at $y$ plotted against $x^2$:
+
+```{r}
+ggplot(made_up, aes(x^2, y)) + 
+  geom_point()
+```
+
+This relationship *is* linear, so linear regression can describe it. Regression analysis doesn't care what you do with the predictors before asking it to fit a linear model.
+
+Chapter 3.4 of Fox and Weisberg (2019) introduces the art of data transformation. In social science, it is common to use log and polynomial transformations like squaring and cubing. In areas with developed theory, more complex relationships can be conjectured which mean something in the theory, rather than merely reacting to pattern in graphs.
+
+It is possible to do all kinds of things to data to squeeze them into particular models, also known as "analysing the data to within an inch of its life". Where possible, any transformations should be added to an analysis plan before the data are seen. Unanticipated transformations should be clearly noted in write-ups -- this is crucially important.
+
+
+### Checking for linearity {.tabset}
+
+One thing you can do is look at pairwise relationships between the predictors and outcome variables with scatterplots. We already saw in last week's tutorial a hint that there is a nonlinear relationship between income and prestige:
+
+```{r}
+ggplot(dat, aes(income, prestige)) +
+  geom_point()
+```
+
+Sometimes nonlinear relationships can only be spotted after a model has been fitted and variance explained by other predictors. A fab way to see is via a **component-plus-residual plot**, also known as a **partial-residual plot** (see Fox and Weisberg, 2019, pp. 410-412).
+
+It's a one-liner, showing the model prediction for that predictor as a straight dashed blue line and a local regression curve in magenta to help visualise the shape of the data. The magenta and blue ideally overlap.
+
+```{r}
+crPlots(mod_both)
+```
+
+This is equivalent to the following line, which explicitly names all the predictors:
+
+```{r eval = F}
+crPlots(mod_both, terms = ~ education + income_1000s)
+```
+
+So you can select specific predictors by naming them, which can be helpful when you are struggling to squeeze all predictors onto the screen.
+
+```{r}
+crPlots(mod_both, terms = ~ income_1000s)
+```
+
+Each plot shows the predictor on the x-axis and the partial residuals on the y-axis. Each partial residual in the plot above is calculated as
+
+$$\epsilon_i + \beta_{\mathtt{income\_1000s}} \mathtt{income\_1000s}_{i}$$
+
+In other words, the residual, $\epsilon_i$, plus the slope multiplied by income; i.e., it's the prediction from this part of the model. These are also known as *component + residual plots*.
+
+
+
+#### Activity
+
+What happens to the model if you use logged-income rather than income as a predictor?
+
+(a) Calculate a new variable, with a name of your choice, which is equal to the log of `income_1000s` and add it to the data frame. To log data, using the `log` function.
+(b) Fit the regression model again, using this logged variable and education as predictors.
+(c) What impact does this have on the linearity of the predictor?
+(d) How do you now interpret the relationship between (logged) income and prestige?
+
+
+
+#### Answer
+
+**(a) Calculate a new variable, with a name of your choice, which is equal to the log of `income_1000s` and add it to the data frame.**
+
+```{r}
+dat$income_1000s_logged <- log(dat$income_1000s)
+```
+
+**(b) Fit the regression model again, using this logged variable and education as predictors.**
+
+```{r}
+mod_both_again <- lm(prestige ~ education + income_1000s_logged, data = dat)
+summary(mod_both_again)
+```
+
+**(c) What impact does this have on the linearity of the predictor?**
+
+```{r}
+crPlots(mod_both_again)
+```
+
+This looks much better!
+
+
+**(d) How do you now interpret the relationship between (logged) income and prestige?**
+
+Both predictors were statistically significant (see the summary above) so we can focus on the coefficients:
+
+```{r}
+coef(mod_both_again) %>%
+  round(1)
+```
+
+Prestige increases by 11.4 points for every unit increase in logged income, whilst holding education constant. Prestige increases by 4 points for every year of education, whilst holding logged income constant.
+
+The logged predictor is challenging to interpret; when we get to logistic regression I will introduce another way to graph predictions which may make it easier to make sense of whether they have practical significance.
+
+
+
+
+
+
+## Checking influence: leave-one-out analyses
+
+Leave-one-out analyses check that results haven't been unduly influenced by a small number of unusual data points. They do what the name suggests:
+
+0. Fit a model.
+1. For every row of data:
+    (a) Remove the row.
+    (b) Refit the model.
+    (c) Calculate a statistic comparing the model on all data with the model which has this one row removed.
+    (d) Replace the row and go onto the next one.
+2. Summarise the effect for every observation in the dataset. The end result will be as many leave-one-out statistics as there are rows in the data frame.
+3. Then it is up to you, the analyst, to decide what to do with any data points identified.
+
+We will consider a range of leave-one-out statistics below, but first a picture which I hope is helpful.
+
+Here is small made up dataset with a naughty data point up at the top right.
+
+```{r, class.source = "fold-hide"}
+small_made_up <- data.frame(x = 0:5,
+                            y = c(0:4,15))
+
+small_made_up_mod <- lm(y ~ x,data = small_made_up)
+small_made_up %>%
+  ggplot(aes(x,y)) +
+  xlim(0,5) +
+  ylim(0,max(small_made_up$y)) +
+  geom_point() +
+  labs(title = "All data") +
+  geom_abline(intercept = coef(small_made_up_mod)[1],
+          slope     = coef(small_made_up_mod)[2],
+          colour = "blue",
+          size = 1) +
+  annotate(geom = "curve",
+           x = 4.5, y = 12.5, xend = 4.95, yend = 14.9, 
+           curvature = -.1, arrow = arrow(), colour = "purple") +
+  annotate("text", x = 4.45, y = 12.5,
+           label = "Hmmm, I wonder is this influencing the model fit...?",
+           colour = "purple",
+           hjust = "right")
+```
+
+Here is an animation showing what happens to the regression slope when each row of data is removed; note what happens to the regression line when the sixth is dropped out:
+
+```{r, animation.hook="gifski", class.source = "fold-hide"}
+library(gifski)
+for (r in 1:nrow(small_made_up)) {
+  subset_dat <- small_made_up[-r,]
+  subset_dat_mod <- lm(y ~ x,data = subset_dat)
+  
+  thePlot <- subset_dat %>%
+    ggplot(aes(x,y)) +
+    xlim(0,5) +
+    ylim(0,max(small_made_up$y)) +
+    labs(title = paste0("Observation ",r," removed")) +
+    geom_point() +
+    geom_abline(intercept = coef(subset_dat_mod)[1],
+                slope     = coef(subset_dat_mod)[2],
+                colour = "blue",
+                size = 1)
+  
+  print(thePlot)
+}
+```
+
+
+There are many (many) ways to assess the impact. I will cover three below:
+
+
+### Residual outliers
+
+You can test whether there are any outlier residuals with a Bonferroni Outlier Test. This is equivalent to dropping each observation in turn and seeing whether it leads to a mean shift in model estimates. The "Bonferroni" part refers to an p-values adjustment that accounts for the number of tests carried out, equal to the number of rows in the dataset.
+
+Here is how to use it -- simply provide the model to test:
+
+```{r}
+outlierTest(mod_both)
+```
+
+The *unadjusted* p-value is less than 0.05; however, that p-value is an underestimate, given the large number of tests carried out,  The Bonferroni-adjusted p-value is not provided since it is very high (it would be 1). So we have no evidence of any outliers.
+
+
+
+### Cook's distance
+
+Cook's distance measures the combined impact on all model coefficients (i.e., the intercept and slopes) of leaving out a row of data. 
+
+You can calculate it as follows (I will save the results onto `dat`):
+
+```{r}
+dat$mod_both_cooks <- cooks.distance(mod_both)
+
+dat$mod_both_cooks %>%
+  round(2)
+```
+
+Some statisticians suggest that a value over 1 indicates trouble (we see another threshold shortly), so we can look at the maximum value:
+
+```{r}
+max(dat$mod_both_cooks)
+```
+
+That is fine.
+
+Others suggest eyeing up the data and seeing if any values for Cook's distance looks visually large relative to the others:
+
+
+```{r}
+plot(dat$mod_both_cooks, ylab = "Cook's distance")
+```
+
+The "Index" ranges from 1 to the total number of values.
+
+Just one stands out -- which is also the maximum value we just identified. We can use `filter` to have a look:
+
+```{r}
+dat %>%
+  filter(mod_both_cooks > 0.25)
+```
+
+Note that I chose the 0.25 threshold by simply looking at the graph.
+
+
+
+### DFBETA and (close sibling) DFBETAS
+
+DFBETA values (my favourite) are calculated for the intercept and each slope. They simply denote the difference in the coefficients between models with versus without a particular row of data. If the coefficient without an observation is larger, then the DEBETA for that observation and predictor will be positive.
+
+
+Calculate them with:
+
+```{r}
+dfbeta(mod_both)  %>%
+  round(3) %>%
+  data.frame()
+```
+
+Visualise them with:
+
+```{r}
+dfbetaPlots(mod_both)
+```
+
+To work out whether a DFBETA matters, you must think what the units of the predictors are. So for example there is an observation which reduces the slope for income in $1000s by about 0.2. Is that big enough to cause concern for a measure of prestige which ranges from 0 to 100? Maybe it is worth a look to see which occupation is responsible.
+
+There is also a standardised version, DFBETAS (the S is for standardised, not a plural; pronounce it as "standardised D F beta"), which divides the DFBETA by the standard error of the slope in the model with the row of data removed.
+
+```{r}
+dfbetas(mod_both) %>%
+  round(2) %>%
+  data.frame()
+```
+
+Visualise DFBETAS with:
+
+```{r}
+dfbetasPlots(mod_both)
+```
+
+Note how the graphs look identical to those for DFBETA except that the y-axis scale has changed.
+
+Some statisticians argue that a DFBETAS (i.e., the standardised one) value over 1 or below -1 is potentially troublesome, so should be inspected.
+
+
+
+### View them all
+
+You can obtain a HUGE data frame of leave-one-out-analyses by using the `influence.measures` command. This gives the following measures.
+
+
+| Measure   | Thresholds used by R |
+|-----------|---------------------|
+| DFBETAS (for each model variable) | $|\mathtt{DFBETAS}| > 1$ |
+| DFFIT | $|\mathtt{DFFIT}| > 3 \sqrt{k/(n - k)}$ |
+| covariance ratios (COVRATIO) | $|1 - \mathtt{COVRATIO}| > 3k/(n - k)$ |
+| Cook's distance | Over the median of $F(k, n-k)$ |
+| Diagonal elements of the hat matrix | Over $3k/n$ |
+
+
+The R help for this command is spectacularly poor so I have added in the thresholds [as per the current R code](https://github.com/wch/r-source/blob/trunk/src/library/stats/R/lm.influence.R) (it's all open source), where $k$ is the number of predictors (including the intercept) and $n$ is the number of observations. The absolute value of $x$, written $|x|$, means remove any negative sign, so $|-42| = 42$. Any values over the relevant threshold are marked with an asterisk.
+
+Bollen and Jackman (1985) provide alternative recommendations, e.g., $2/\sqrt{n}$ for DFBETAS. Others refuse to name a threshold and instead emphasise looking at the pattern of values and using subjective judgement to determine whether any are outlying.
+
+Let's have a look at all the influence measures for our model, `mod_both`.
+
+```{r}
+mod_both_influence <- influence.measures(mod_both)
+mod_both_influence
+```
+
+That is Too Much Information.
+
+The first three are the DFBETAS values, with abbreviated variable names: 
+
+* `dfb.1_` (intercept)
+* `dfb.edct` (education)
+* `dfb.i_10` (income in 1000s)
+
+Cook's distance is over to the right as `cook.d`.
+
+One way to deal with this mess is to look only at those rows where any of the measures cross their threshold, which we get with a handy `summary` command (hurrah!):
+
+```{r}
+summary(mod_both_influence)
+```
+
+There are no problems for any DFBETAS or Cook's distance. Exercise to the interested reader to see if the values for DFFIT, covariance ratios, or diagonals of the hat matrix are a concern.
+
+### So, er, what should we do with "potentially influential" observations...?
+
+Now we are back to the art of analysis.
+
+You could try removing all the potentially influence observations by using `slice` with a `-` like so:
+
+```{r}
+sliced_dat <- dat %>%
+  slice(-c(2,17,24,46,53,67))
+```
+
+Then refit the model:
+
+```{r}
+mod_both_sliced <- lm(prestige ~ education + income_1000s, data = sliced_dat)
+summary(mod_both_sliced)
+```
+
+Both predictors are still statistically significant... Have the coefficients changed?
+
+```{r}
+cbind("Original"     = coef(mod_both),
+      "Outliers out" = coef(mod_both_sliced)) %>%
+  data.frame() %>%
+  round(2)
+```
+
+The coefficient for education is about the same; the coefficient for income has increased a little. At the moment, I don't have any substantive reason to exclude these six values. Maybe if you have a developed theory of occupations then looking in more detail at the potentially outlying ones will help...? Here's how to see them -- I'm using `slice` again, this time without the `-` which means to keep rather than exclude the listed rows. I have also used `select` to focus on variables which I thought might help work out what is going on.
+
+```{r}
+dat %>%
+  slice(c(2,17,24,46,53,67)) %>%
+  select(occ, education, income_1000s, prestige, mod_both_predicted)
+```
+
+Influential observations may indicate a more systemic problem with the model, e.g., non-linearity, especially if a large proportion of observations show up. They may also be qualitatively interesting and worthy of further research!
+
+
+## Checking the variance inflation factors (VIFs) {.tabset}
+
+Multicollinearity is a long word meaning that two or more predictors are highly linearly correlated with each other. This is a problem for interpreting coefficients since we interpret each one whilst holding the others constant. But if they are highly correlated, then holding other predictors constant is challenging!
+
+There is a command called `vif` in the `car` package which calculates variance inflation factors for us and can be used to check for multicolinearity:
+
+```{r}
+vif(mod_both)
+```
+
+We want the VIFs close to 1. If they are 4 then that is cause for mild worry and 9 probably signals that something has to be done, e.g., removing a predictor.
+
+We can interpret the meaning of VIFs by taking their square root: this says how many times wider the 95% confidence intervals are compared to what they would be with uncorrelated predictors:
+
+```{r}
+sqrt(vif(mod_both))
+```
+
+So the trouble thresholds I provided above lead to confidence intervals that are twice (VIF = 4; $\sqrt{4}=2$) or three times (VIF = 9; $\sqrt{9}=3$) the width of those for uncorrelated predictors.
+
+
+### Activity
+
+Try fitting a model predicting prestige which has education, income (in 1000s) *and* logged income in thousands. Before looking, what do you suspect might happen to the VIFs...? Check and interpret the answer.
+
+
+### Answer
+
+```{r}
+viffed_model <- lm(prestige ~ education +
+                     income_1000s +
+                     income_1000s_logged,
+                   data = dat)
+sqrt(vif(viffed_model))
+```
+
+The width of the confidence intervals for both income variables is double what they would be if all predictors were uncorrelated, which suggests something is up... The logging has meant that the predictors are not perfectly linearly correlated, but it is challenging to interpret income whilst holding logged income constant.
+
+
+## The challenge {.tabset}
+
+As promised, here is a modelling challenge for you:
+
+
+### Activity
+
+(a) Fit a model predicting prestige from education, income (in $1000s, logged), and the percentage of women in the occupation
+(b) Does this model fit better than the model without the percentage of women added?
+(c) Is there multicollinearity?
+(d) Are the relationships linear?
+(e) Try adding the percentage of women squared as an additional predictor and checking for linearity again.
+(f) Does the model you just fitted (in *e*) explain statistically significantly more variance than the model with only income and education as predictors?
+(g) Check the DFBETAS values (again for the model fitted in *e*) -- are any concerning?
+
+### Answer
+
+**(a) Fit a model predicting prestige from education, income (in $1000s, logged), and the percentage of women in the occupation**
+
+```{r}
+challenge_mod <- lm(prestige ~ education +
+                      income_1000s_logged +
+                      women,
+                    data = dat)
+```
+
+
+**(b) Does this model fit better than the model without the percentage of women added?**
+
+I've lost track of what models I have fitted above, so here is the relevant simpler model again:
+
+```{r}
+without_gender_mod <- lm(prestige ~ education + income_1000s_logged,
+                         data = dat)
+```
+
+Compare the two models with an F-test, simpler first:
+
+```{r}
+anova(without_gender_mod, challenge_mod)
+```
+
+There is no statistically significant improvement in model fit, $F(1,98) = 2.5$, $p = .12$.
+
+
+
+**(c) Is there multicollinearity?**
+
+```{r}
+vif(challenge_mod)
+```
+
+We can interpret the VIFs by taking their square root: this says how many times wider the 95% confidence intervals would be compared with uncorrelated predictors:
+
+```{r}
+sqrt(vif(challenge_mod))
+```
+
+So the largest VIF is for income, and the correlations in predictors mean its confidence interval is about 1.6 times wider.
+
+Based on finger-in-the-wind subjective judgement, I am going to conclude that this doesn't matter. Though it may do if I wanted a particularly precise estimate.
+
+```{r}
+Confint(challenge_mod) %>% round(2)
+```
+
+**(d) Are the relationships linear?**
+
+```{r fig.height=8, fig.width=6}
+crPlots(challenge_mod)
+```
+
+It looks like a bit of a curve for the predictor of percentage women in the occupation, which might suggest adding a squared term -- which coincidentally we try in the next question...
+
+
+**(e) Try adding the percentage of women squared as an additional predictor and checking for linearity again**
+
+```{r}
+challenge_mod2 <- lm(prestige ~ education +
+                       income_1000s_logged +
+                       women +
+                       I(women^2),
+                     data = dat)
+```
+
+```{r fig.height=8, fig.width=6}
+crPlots(challenge_mod2)
+```
+
+Now the relationships are much more linear.
+
+
+**(f) Does the model you just fitted (in *e*) explain statistically significantly more variance than the model with only income and education as predictors?**
+
+
+```{r}
+anova(without_gender_mod, challenge_mod2)
+```
+
+Yes it does, $F(2, 97) = 3.9$, $p = .024$.
+
+
+**(g) Check the DFBETAS values (again for the model fitted in *e*) -- are any concerning?**
+
+```{r}
+summary(influence.measures(challenge_mod2))
+```
+
+No |DFBETAS| values are over 1, if that is your definition of concerning.
+
+
