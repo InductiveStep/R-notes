@@ -398,14 +398,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="complex-surveys.html"><a href="complex-surveys.html"><i class="fa fa-check"></i><b>7</b> Complex surveys</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="complex-surveys.html"><a href="complex-surveys.html#the-dataset-4"><i class="fa fa-check"></i><b>7.1</b> The dataset</a></li>
-<li class="chapter" data-level="7.2" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-32"><i class="fa fa-check"></i><b>7.2</b> Activity</a></li>
-<li class="chapter" data-level="7.3" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-33"><i class="fa fa-check"></i><b>7.3</b> Answer</a></li>
-<li class="chapter" data-level="7.4" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-33"><i class="fa fa-check"></i><b>7.4</b> Activity</a></li>
-<li class="chapter" data-level="7.5" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-34"><i class="fa fa-check"></i><b>7.5</b> Answer</a></li>
-<li class="chapter" data-level="7.6" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-34"><i class="fa fa-check"></i><b>7.6</b> Activity</a></li>
-<li class="chapter" data-level="7.7" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-35"><i class="fa fa-check"></i><b>7.7</b> Answer</a></li>
-<li class="chapter" data-level="7.8" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-35"><i class="fa fa-check"></i><b>7.8</b> Activity</a></li>
-<li class="chapter" data-level="7.9" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-36"><i class="fa fa-check"></i><b>7.9</b> Answer</a></li>
+<li class="chapter" data-level="7.2" data-path="complex-surveys.html"><a href="complex-surveys.html#the-components-of-a-survey-design"><i class="fa fa-check"></i><b>7.2</b> The components of a survey design</a></li>
+<li class="chapter" data-level="7.3" data-path="complex-surveys.html"><a href="complex-surveys.html#describing-the-data"><i class="fa fa-check"></i><b>7.3</b> Describing the data</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-32"><i class="fa fa-check"></i><b>7.3.1</b> Activity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-33"><i class="fa fa-check"></i><b>7.3.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="complex-surveys.html"><a href="complex-surveys.html#fitting-a-glm"><i class="fa fa-check"></i><b>7.4</b> Fitting a GLM</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-33"><i class="fa fa-check"></i><b>7.4.1</b> Activity</a></li>
+<li class="chapter" data-level="7.4.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-34"><i class="fa fa-check"></i><b>7.4.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="complex-surveys.html"><a href="complex-surveys.html#slopes"><i class="fa fa-check"></i><b>7.5</b> Slopes</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-34"><i class="fa fa-check"></i><b>7.5.1</b> Activity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-35"><i class="fa fa-check"></i><b>7.5.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="complex-surveys.html"><a href="complex-surveys.html#diagnostics-1"><i class="fa fa-check"></i><b>7.6</b> Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="mediation-analysis.html"><a href="mediation-analysis.html"><i class="fa fa-check"></i><b>8</b> Mediation analysis</a></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
@@ -432,12 +441,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="complex-surveys" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Complex surveys</h1>
 <p><strong>(Work in progress!)</strong></p>
+<p>By the end of this chapter you will know how to:</p>
+<ul>
+<li>Setup a survey object using complex survey information such as sampling weight and stratification variables.</li>
+<li>Use a tidyverse-esq approach for descriptive statistics.</li>
+<li>Fit a GLM (logistic).</li>
+</ul>
 <p>We will use the <code>survey</code> package and a wonderful tidyverse-style wrapper called <code>srvyr</code>.</p>
 <div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="complex-surveys.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
 <span id="cb568-2"><a href="complex-surveys.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span></code></pre></div>
 <p>See <a href="https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html"><code>srvyr</code> compared to the <code>survey</code> package</a> and Fox and Weisberg’s online appendix, <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf">Fitting Regression Models to Data From Complex Surveys</a>. The main reference for <code>survey</code> is Lumley (2010).</p>
 <div id="the-dataset-4" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> The dataset</h2>
+<p>This chapter’s dataset is drawn from the 2011 Canadian National Election Study – taken from the <code>carData</code> package and described by the Fox and Weisberg appendix above. <a href="./ces11.csv">Download it here</a>.</p>
+<p>There are 2231 observations on the following 9 variables:</p>
+<table>
+<colgroup>
+<col width="53%" />
+<col width="46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Household ID number.</td>
+</tr>
+<tr class="even">
+<td>province</td>
+<td>a factor with (alphabetical) levels <code>AB</code>, <code>BC</code>, <code>MB</code>, <code>NB</code>, <code>NL</code>, <code>NS</code>, <code>ON</code>, <code>PE</code>, <code>QC</code>, <code>SK</code>; the sample was stratified by province.</td>
+</tr>
+<tr class="odd">
+<td>population</td>
+<td>population of the respondent’s province, number over age 17.</td>
+</tr>
+<tr class="even">
+<td>weight</td>
+<td>weight sample to size of population, taking into account unequal sampling probabilities by province and household size.</td>
+</tr>
+<tr class="odd">
+<td>gender</td>
+<td>a factor with levels <code>Female</code>, <code>Male</code>.</td>
+</tr>
+<tr class="even">
+<td>abortion</td>
+<td>attitude toward abortion, a factor with levels <code>No</code>, <code>Yes</code>; answer to the question “Should abortion be banned?”</td>
+</tr>
+<tr class="odd">
+<td>importance</td>
+<td>importance of religion, a factor with (alphabetical) levels <code>not</code>, <code>notvery</code>, <code>somewhat</code>, <code>very</code>; answer to the question, “In your life, would you say that religion is very important, somewhat important, not very important, or not important at all?”</td>
+</tr>
+<tr class="even">
+<td>education</td>
+<td>a factor with (alphabetical) levels <code>bachelors</code> (Bachelors degree), <code>college</code> (community college or technical school), <code>higher</code> (graduate degree), <code>HS</code> (high-school graduate), <code>lessHS</code> (less than high-school graduate), <code>somePS</code> (some post-secondary).</td>
+</tr>
+<tr class="odd">
+<td>urban</td>
+<td>place of residence, a factor with levels rural, urban.</td>
+</tr>
+</tbody>
+</table>
 <p>Read in the data.</p>
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="complex-surveys.html#cb569-1" aria-hidden="true" tabindex="-1"></a>ces <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ces11.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb569-2"><a href="complex-surveys.html#cb569-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ces)</span></code></pre></div>
@@ -450,65 +517,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 1103       ON    9439960 8977.61 Female       No        not    higher urban</code></pre>
 <p>I’m setting <code>stringsAsFactors</code> to <code>TRUE</code> so that the variables which are obviously factors are setup accordingly (R used to this by default; sometimes it had irritating side-effects).</p>
 </div>
-<div id="activity-32" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Activity</h2>
+<div id="the-components-of-a-survey-design" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> The components of a survey design</h2>
+<p>The key parts of the dataset which describe the survey design are as follows:</p>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="complex-surveys.html#cb571-1" aria-hidden="true" tabindex="-1"></a>ces <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, province, population, weight) <span class="sc">%&gt;%</span></span>
+<span id="cb571-2"><a href="complex-surveys.html#cb571-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<pre><code>##     id province population  weight
+## 1 2851       BC    3267345 4287.85
+## 2  521       QC    5996930 9230.78
+## 3 2118       QC    5996930 6153.85
+## 4 1815       NL     406455 3430.00
+## 5 1799       ON    9439960 8977.61
+## 6 1103       ON    9439960 8977.61</code></pre>
+<ul>
+<li><code>id</code> is a unique identifier for each individual, which is particularly important when there is more than one data point per person, e.g., for multilevel modelling (not in this dataset).</li>
+<li><code>province</code> the data were stratified by province – random sampling by landline numbers was done within province</li>
+<li><code>population</code> provides the population by province</li>
+<li><code>weight</code> is the sampling weight, in this dataset calculated based on differences in province population, the study sample size therein, and household size</li>
+</ul>
+<p>Here is how to setup a survey object using <code>srvyr</code>:</p>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="complex-surveys.html#cb573-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces <span class="sc">%&gt;%</span></span>
+<span id="cb573-2"><a href="complex-surveys.html#cb573-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey</span>(<span class="at">ids =</span> id,</span>
+<span id="cb573-3"><a href="complex-surveys.html#cb573-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">strata =</span> province,</span>
+<span id="cb573-4"><a href="complex-surveys.html#cb573-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">fpc =</span> population,</span>
+<span id="cb573-5"><a href="complex-surveys.html#cb573-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">weights =</span> weight)</span></code></pre></div>
 </div>
-<div id="answer-33" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Answer</h2>
-<p>Setup the survey object</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="complex-surveys.html#cb571-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>id,</span>
-<span id="cb571-2"><a href="complex-surveys.html#cb571-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> <span class="sc">~</span>province,</span>
-<span id="cb571-3"><a href="complex-surveys.html#cb571-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fpc =</span> <span class="sc">~</span>population,</span>
-<span id="cb571-4"><a href="complex-surveys.html#cb571-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> <span class="sc">~</span>weight,</span>
-<span id="cb571-5"><a href="complex-surveys.html#cb571-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data=</span>ces)</span></code></pre></div>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="complex-surveys.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svytable</span>(<span class="sc">~</span>abortion, <span class="at">design =</span> ces_s)</span></code></pre></div>
-<pre><code>## abortion
-##       No      Yes 
-## 13059520  2964018</code></pre>
-<p>Note how the counts are much bigger than the number of rows in the dataset due to the sampling weights.</p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="complex-surveys.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">svytable</span>(<span class="sc">~</span>abortion, <span class="at">design =</span> ces_s))</span></code></pre></div>
-<pre><code>## abortion
-##       No      Yes 
-## 0.815021 0.184979</code></pre>
+<div id="describing-the-data" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Describing the data</h2>
+<p>We will sometimes want to compare weighted and unweighted analyses. Here is a warmup activity to show how using the tidyverse.</p>
+<div id="activity-32" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Activity</h3>
+<ol style="list-style-type: lower-alpha">
+<li>use the <code>ces</code> data frame and <code>tidyverse</code> to calculate the number of people who think abortion should be banned</li>
+<li>do the same again, but this time use the <code>ces_s</code> survey object created above – what do you notice?</li>
+<li>compare the proportions saying <code>yes</code> by group</li>
+</ol>
+<p><strong>Hint:</strong> you will want to use <code>group_by</code>.</p>
+<p><strong>Another hint:</strong> to count, use the function <code>n</code>. The version for survey objects is called <code>survey_total</code>.</p>
 </div>
-<div id="activity-33" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Activity</h2>
+<div id="answer-33" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Answer</h3>
+<p><strong>a. use the <code>ces</code> data frame and <code>tidyverse</code> to calculate the number of people who think abortion should be banned</strong></p>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="complex-surveys.html#cb574-1" aria-hidden="true" tabindex="-1"></a>ces <span class="sc">%&gt;%</span></span>
+<span id="cb574-2"><a href="complex-surveys.html#cb574-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
+<span id="cb574-3"><a href="complex-surveys.html#cb574-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   abortion     n
+##   &lt;fct&gt;    &lt;int&gt;
+## 1 No        1818
+## 2 Yes        413</code></pre>
+<p><strong>b. do the same again, but this time use the <code>ces_s</code> survey object created above – what do you notice?</strong></p>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="complex-surveys.html#cb577-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="sc">%&gt;%</span></span>
+<span id="cb577-2"><a href="complex-surveys.html#cb577-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
+<span id="cb577-3"><a href="complex-surveys.html#cb577-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">survey_total</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   abortion         n    n_se
+##   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+## 1 No       13059520. 196984.
+## 2 Yes       2964018. 162360.</code></pre>
+<p>The counts are much bigger than the number of rows in the dataset due to the sampling weights.</p>
+<p><strong>c. compare the proportions saying <code>yes</code> by group</strong></p>
+<p>One way to do this is by copy and paste!</p>
+<p>Unweighted:</p>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="complex-surveys.html#cb579-1" aria-hidden="true" tabindex="-1"></a>prop_unweighted <span class="ot">&lt;-</span> <span class="dv">413</span> <span class="sc">/</span> (<span class="dv">413</span> <span class="sc">+</span> <span class="dv">1818</span>)</span>
+<span id="cb579-2"><a href="complex-surveys.html#cb579-2" aria-hidden="true" tabindex="-1"></a>prop_unweighted</span></code></pre></div>
+<pre><code>## [1] 0.1851188</code></pre>
+<p>Weighted:</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="complex-surveys.html#cb581-1" aria-hidden="true" tabindex="-1"></a>prop_weighted <span class="ot">&lt;-</span> <span class="dv">2964018</span> <span class="sc">/</span> (<span class="dv">2964018</span> <span class="sc">+</span>   <span class="dv">13059520</span>)</span>
+<span id="cb581-2"><a href="complex-surveys.html#cb581-2" aria-hidden="true" tabindex="-1"></a>prop_weighted</span></code></pre></div>
+<pre><code>## [1] 0.184979</code></pre>
+<p>The unweighted proportion of “yes” is only a little different in this case: 0.1851188 (unweighted) v 0.184979 (weighted), though that represents a population difference of over 2,000 people.</p>
+<p>Here’s how to answer the questions in one go:</p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="complex-surveys.html#cb583-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="sc">%&gt;%</span></span>
+<span id="cb583-2"><a href="complex-surveys.html#cb583-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
+<span id="cb583-3"><a href="complex-surveys.html#cb583-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_raw =</span> <span class="fu">unweighted</span>(<span class="fu">n</span>()),</span>
+<span id="cb583-4"><a href="complex-surveys.html#cb583-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_weighted =</span> <span class="fu">survey_total</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb583-5"><a href="complex-surveys.html#cb583-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_raw =</span> n_raw <span class="sc">/</span> <span class="fu">sum</span>(n_raw),</span>
+<span id="cb583-6"><a href="complex-surveys.html#cb583-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop_weighted =</span> n_weighted <span class="sc">/</span> <span class="fu">sum</span>(n_weighted)) <span class="sc">%&gt;%</span></span>
+<span id="cb583-7"><a href="complex-surveys.html#cb583-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n_weighted_se)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   abortion n_raw n_weighted prop_raw prop_weighted
+##   &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+## 1 No        1818  13059520.    0.815         0.815
+## 2 Yes        413   2964018.    0.185         0.185</code></pre>
 </div>
-<div id="answer-34" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Answer</h2>
-<p>This gives the unweighted counts, which do match the rows in the dataset.</p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="complex-surveys.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>abortion, <span class="at">data =</span> ces)</span></code></pre></div>
-<pre><code>## abortion
-##   No  Yes 
-## 1818  413</code></pre>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="complex-surveys.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">xtabs</span>(<span class="sc">~</span>abortion, <span class="at">data =</span> ces))</span></code></pre></div>
-<pre><code>## abortion
-##        No       Yes 
-## 0.8148812 0.1851188</code></pre>
-<p>The unweighted proportion of “yes” is only a little different in this case: # 0.1851188 (unweighted) v 0.184979 (weighted), though that represents a population difference of ~2,000 people (in whatever subset of the Canadian population this study is trying to generalise to:</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="complex-surveys.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1851188</span><span class="sc">*</span><span class="dv">16023538</span> <span class="sc">-</span> <span class="fl">0.184979</span><span class="sc">*</span><span class="dv">16023538</span></span></code></pre></div>
-<pre><code>## [1] 2240.091</code></pre>
 </div>
-<div id="activity-34" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Activity</h2>
+<div id="fitting-a-glm" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Fitting a GLM</h2>
+<p>The <code>survey</code> package makes this very easy. There is a command called <code>svyglm</code> which is identical to <code>glm</code> except it has parameter called <code>design</code> instead if <code>data</code>.</p>
+<p>See <code>?svyglm</code></p>
+<div id="activity-33" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Activity</h3>
+<ol style="list-style-type: lower-alpha">
+<li>mutate the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if they participant is against abortion and 0 if not.</li>
+<li>fit an intercept-only logistic regression model without using weights (you can use <code>as_tibble</code> to get the “raw” data frame hidden within the survey object).</li>
+<li>Do the same again, this time using the survey structure.</li>
+<li>compare the predicted proportions with the “raw” proportions we calculated earlier</li>
+</ol>
 </div>
-<div id="answer-35" class="section level2" number="7.7">
-<h2><span class="header-section-number">7.7</span> Answer</h2>
-<p>Make a binary variable</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="complex-surveys.html#cb582-1" aria-hidden="true" tabindex="-1"></a>ces<span class="sc">$</span>againstAbortion <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ces<span class="sc">$</span>abortion <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)</span></code></pre></div>
-<p>And fix the survey object again:</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="complex-surveys.html#cb583-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>id,</span>
-<span id="cb583-2"><a href="complex-surveys.html#cb583-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> <span class="sc">~</span>province,</span>
-<span id="cb583-3"><a href="complex-surveys.html#cb583-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fpc =</span> <span class="sc">~</span>population,</span>
-<span id="cb583-4"><a href="complex-surveys.html#cb583-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> <span class="sc">~</span>weight,</span>
-<span id="cb583-5"><a href="complex-surveys.html#cb583-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> ces)</span></code></pre></div>
-<p>See also <code>?update.survey.design</code> for another way to do this</p>
-<p>Intercept-only model without using weights:</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="complex-surveys.html#cb584-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> ces, <span class="at">family =</span> binomial)</span>
-<span id="cb584-2"><a href="complex-surveys.html#cb584-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code></pre></div>
+<div id="answer-34" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Answer</h3>
+<p><strong>a. mutate the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if they participant is against abortion and 0 if not.</strong></p>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="complex-surveys.html#cb585-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces_s <span class="sc">%&gt;%</span></span>
+<span id="cb585-2"><a href="complex-surveys.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">againstAbortion =</span> <span class="fu">as.numeric</span>(ces<span class="sc">$</span>abortion <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
+<p><strong>b. fit an intercept-only logistic regression model without using weights (you can use <code>as_tibble</code> to get the “raw” data frame hidden within the survey object).</strong></p>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="complex-surveys.html#cb586-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb586-2"><a href="complex-surveys.html#cb586-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">as_tibble</span>(ces_s),</span>
+<span id="cb586-3"><a href="complex-surveys.html#cb586-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> binomial)</span>
+<span id="cb586-4"><a href="complex-surveys.html#cb586-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## glm(formula = againstAbortion ~ 1, family = binomial, data = ces)
+## glm(formula = againstAbortion ~ 1, family = binomial, data = as_tibble(ces_s))
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
@@ -527,17 +647,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 2139.6
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<p>Using the survey structure:</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="complex-surveys.html#cb586-1" aria-hidden="true" tabindex="-1"></a>sm0 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>, <span class="at">design =</span> ces_s, <span class="at">family =</span> binomial)</span></code></pre></div>
+<p><strong>c. Do the same again, this time using the survey structure.</strong></p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="complex-surveys.html#cb588-1" aria-hidden="true" tabindex="-1"></a>sm0 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>, <span class="at">design =</span> ces_s,</span>
+<span id="cb588-2"><a href="complex-surveys.html#cb588-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
 <pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="complex-surveys.html#cb588-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm0)</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="complex-surveys.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm0)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## svyglm(formula = againstAbortion ~ 1, design = ces_s, family = binomial)
 ## 
 ## Survey design:
-## svydesign(ids = ~id, strata = ~province, fpc = ~population, weights = ~weight, 
-##     data = ces)
+## Called via srvyr
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
@@ -548,33 +668,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Dispersion parameter for binomial family taken to be 1.000448)
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
+<p><strong>d. compare the predicted proportions with the “raw” proportions we calculated earlier</strong></p>
 <p>This undoes the log-odds (logit) transform:</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="complex-surveys.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(m0)))</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="complex-surveys.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(m0)))</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##   0.1851188</code></pre>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="complex-surveys.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)))</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="complex-surveys.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)))</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    0.184979</code></pre>
 <p>The answer is the same as for the simple unweighted and weighted proportions, respectively.</p>
 </div>
-<div id="activity-35" class="section level2" number="7.8">
-<h2><span class="header-section-number">7.8</span> Activity</h2>
 </div>
-<div id="answer-36" class="section level2" number="7.9">
-<h2><span class="header-section-number">7.9</span> Answer</h2>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="complex-surveys.html#cb594-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> importance <span class="sc">+</span> education <span class="sc">+</span> gender,</span>
-<span id="cb594-2"><a href="complex-surveys.html#cb594-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">design =</span> ces_s,</span>
-<span id="cb594-3"><a href="complex-surveys.html#cb594-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
+<div id="slopes" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Slopes</h2>
+<p>Now, having completed the traditional step of fitting an intercept-only model, we can give the slopes a go.</p>
+<p>The <code>Anova</code> command in the <code>car</code> package works for <code>svyglm</code> models as before.</p>
+<div id="activity-34" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Activity</h3>
+<p>Regress <code>againstAbortion</code> on <code>importance</code>, <code>education</code>, and <code>gender</code>, and interpret what you find.</p>
+</div>
+<div id="answer-35" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Answer</h3>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="complex-surveys.html#cb596-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> importance <span class="sc">+</span> education <span class="sc">+</span> gender,</span>
+<span id="cb596-2"><a href="complex-surveys.html#cb596-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">design =</span> ces_s,</span>
+<span id="cb596-3"><a href="complex-surveys.html#cb596-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
 <pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="complex-surveys.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="complex-surveys.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## svyglm(formula = againstAbortion ~ importance + education + gender, 
 ##     design = ces_s, family = binomial)
 ## 
 ## Survey design:
-## svydesign(ids = ~id, strata = ~province, fpc = ~population, weights = ~weight, 
-##     data = ces)
+## Called via srvyr
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)    
@@ -595,20 +721,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>To interpret those categorical predictors, it will help to check what the levels are:</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="complex-surveys.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>importance)</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="complex-surveys.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>importance)</span></code></pre></div>
 <pre><code>## [1] &quot;not&quot;      &quot;notvery&quot;  &quot;somewhat&quot; &quot;very&quot;</code></pre>
 <p>So “not” is the comparison level.</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="complex-surveys.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>education) </span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="complex-surveys.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>education) </span></code></pre></div>
 <pre><code>## [1] &quot;bachelors&quot; &quot;college&quot;   &quot;higher&quot;    &quot;HS&quot;        &quot;lessHS&quot;    &quot;somePS&quot;</code></pre>
-<p>“bachelors” is the comparison.</p>
-<p>Gender is just a binary Male vs Female</p>
+<p>“bachelors” is the comparison level.</p>
+<p>Gender is just a binary.</p>
 <p>Example interpretations:</p>
 <ul>
-<li><p>Male participants were more likely to be against abortion (log-odds 0.33 more)</p></li>
-<li><p>People for whom religion was very important were more likely than those who said "not important at all to be against abortion (log-odds 3.14)</p></li>
+<li><p>Men were more likely to be against abortion (log-odds 0.33 more)</p></li>
+<li><p>People for whom religion was very important were more likely than those who said “not important at all” to be against abortion (log-odds 3.14)</p></li>
 </ul>
 <p>You could get the odds ratios like so:</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="complex-surveys.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm1)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="complex-surveys.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm1)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##        (Intercept)  importancenotvery importancesomewhat     importancevery 
 ##               0.02               1.59               3.78              23.12 
 ##   educationcollege    educationhigher        educationHS    educationlessHS 
@@ -616,62 +742,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    educationsomePS         genderMale 
 ##               1.15               1.39</code></pre>
 <p>So the odds ratio of “very” v “not” important is 23.1.</p>
-<p>Exercise to reader: try the predict command to get probabilities…</p>
-<p>You could also try changing the religion variable so that
-it is a scale from 0 (unimportant) to 3 (very)</p>
-<p>The levels are already in the correct order, so you just need to use as.numeric:</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="complex-surveys.html#cb604-1" aria-hidden="true" tabindex="-1"></a>ces<span class="sc">$</span>importance.scale <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ces<span class="sc">$</span>importance) <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="complex-surveys.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(importance.scale <span class="sc">~</span> importance, <span class="at">data =</span> ces) </span></code></pre></div>
-<pre><code>##            importance.scale   0   1   2   3
-## importance                                 
-## not                         607   0   0   0
-## notvery                       0 315   0   0
-## somewhat                      0   0 714   0
-## very                          0   0   0 595</code></pre>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="complex-surveys.html#cb607-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>id,</span>
-<span id="cb607-2"><a href="complex-surveys.html#cb607-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> <span class="sc">~</span>province,</span>
-<span id="cb607-3"><a href="complex-surveys.html#cb607-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fpc =</span> <span class="sc">~</span>population,</span>
-<span id="cb607-4"><a href="complex-surveys.html#cb607-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> <span class="sc">~</span>weight,</span>
-<span id="cb607-5"><a href="complex-surveys.html#cb607-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data=</span>ces)</span></code></pre></div>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="complex-surveys.html#cb608-1" aria-hidden="true" tabindex="-1"></a>sm2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> importance.scale <span class="sc">+</span> education <span class="sc">+</span> gender,</span>
-<span id="cb608-2"><a href="complex-surveys.html#cb608-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">design =</span> ces_s,</span>
-<span id="cb608-3"><a href="complex-surveys.html#cb608-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
-<pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="complex-surveys.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm2)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## svyglm(formula = againstAbortion ~ importance.scale + education + 
-##     gender, design = ces_s, family = binomial)
-## 
-## Survey design:
-## svydesign(ids = ~id, strata = ~province, fpc = ~population, weights = ~weight, 
-##     data = ces)
-## 
-## Coefficients:
-##                  Estimate Std. Error t value  Pr(&gt;|t|)    
-## (Intercept)       -4.5239     0.3119 -14.505   &lt; 2e-16 ***
-## importance.scale   1.2446     0.1058  11.761   &lt; 2e-16 ***
-## educationcollege   0.3854     0.2237   1.723    0.0851 .  
-## educationhigher    0.3356     0.3042   1.103    0.2702    
-## educationHS        0.4900     0.2213   2.214    0.0270 *  
-## educationlessHS    0.9657     0.2373   4.070 0.0000486 ***
-## educationsomePS    0.1196     0.2714   0.441    0.6596    
-## genderMale         0.3020     0.1423   2.122    0.0340 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1.199542)
-## 
-## Number of Fisher Scoring iterations: 6</code></pre>
-<p>Now there is only one coefficient for importance
-which makes sense if you believe there’s a linear effect…</p>
-<p>Odds ratio as before; now it says what to multiply the odds
-by for every unit increase in the importance of religion.</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="complex-surveys.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm2))</span></code></pre></div>
-<pre><code>##      (Intercept) importance.scale educationcollege  educationhigher 
-##       0.01084692       3.47150201       1.47020842       1.39871145 
-##      educationHS  educationlessHS  educationsomePS       genderMale 
-##       1.63226097       2.62670800       1.12699463       1.35250046</code></pre>
+<p>The <code>ggeffects</code> package also works with <code>survey</code> models:</p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="complex-surveys.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb606-2"><a href="complex-surveys.html#cb606-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(sm1, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;importance&quot;</span>))  <span class="sc">%&gt;%</span></span>
+<span id="cb606-3"><a href="complex-surveys.html#cb606-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
+<span id="cb606-4"><a href="complex-surveys.html#cb606-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## Registered S3 methods overwritten by &#39;lme4&#39;:
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car</code></pre>
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
+## replace the existing scale.</code></pre>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-384-1.png" width="672" /></p>
+</div>
+</div>
+<div id="diagnostics-1" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Diagnostics</h2>
+<p>Many of the diagnostic check we previously encountered work here too.</p>
+<p>Here are the VIFs:</p>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="complex-surveys.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(sm1)</span></code></pre></div>
+<pre><code>##                GVIF Df GVIF^(1/(2*Df))
+## importance 1.052799  3        1.008612
+## education  1.066741  5        1.006482
+## gender     1.039299  1        1.019460</code></pre>
+<p>My favorite, the DFBETA plots:</p>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="complex-surveys.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(sm1)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-386-1.png" width="576" /></p>
+<p>Try also:</p>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="complex-surveys.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(sm1)</span></code></pre></div>
 
 </div>
 </div>
