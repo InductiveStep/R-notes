@@ -1,22 +1,22 @@
 # Linear regression
 
-By the end of this tutorial you will:
+By the end of this chapter you will:
 
-* Know how fit and compare regression models using R (three commands: `lm`, `summary`, `anova`)
-* Understand how to interpret the output from these commands
-* Have explored some more examples of tidyverse analyses
+* Know how fit and compare regression models using R (three commands: `lm`, `summary`, `anova`).
+* Understand how to interpret the output from these commands.
+* Have explored some more examples of tidyverse analyses.
 
-**Note:** Next week we will explore how to check model assumptions, which may or may not hold for the models we fit.
+Next chapter, we will explore how to check model assumptions, which may or may not hold for the models we fit here.
 
 
 ## Before we begin
 
-Download the [prestige dataset](./prestige.csv), create an R Markdown file, and ensure they are both saved in a folder you will find again. I recommend writing down any questions you have as you go, perhaps in your Markdown file, so that we can discuss them in the live session or on Moodle.
+Download the [prestige dataset](./prestige.csv), create an R Markdown file, and ensure they are both saved in a folder you will find again. I recommend writing down any questions you have as you go, perhaps in your Markdown file, so that you can discuss them with whoever else you have roped into learning R.
 
 
 ## The dataset
 
-This week we will use a dataset on occupational prestige from Canada, 1971, which is used by Fox and Weisberg (2019). Each row in the dataset describes an occupation, and aggregated data about that occupation.
+We will use a dataset on occupational prestige from Canada, 1971, which is used by Fox and Weisberg (2019). Each row in the dataset describes an occupation, and aggregated data about that occupation.
 
 | Variable name | Description |
 |---------------|-------------|
@@ -90,14 +90,14 @@ You will also usually want to create scatterplots of relationships between conti
 
 Create the following scatterplots:
 
-(a) prestige against education
-(b) prestige against income
+a. prestige against education
+b. prestige against income
 
 Describe the relationship you see.
 
 ### Answer
 
-**(a) prestige against education**
+**a. prestige against education**
 
 ```{r}
 dat %>%
@@ -110,7 +110,7 @@ dat %>%
 There appears to be a linear association between education and prestige; more education is associated with higher prestige.
 
 
-**(b) prestige against income**
+**b. prestige against income**
 
 ```{r}
 dat %>%
@@ -120,7 +120,7 @@ dat %>%
        y = "Pineo-Porter prestige")
 ```
 
-From up to around $10000, there seems to be a linear correlation between income and prestige, after which the relationship flattens out, i.e., more income does not lead to higher prestige. (At least, that's what I see!)
+Up to around $10000, there seems to be a linear correlation between income and prestige, after which the relationship flattens out, i.e., more income does not lead to higher prestige. (At least, that's what I see!)
 
 
 
@@ -146,7 +146,7 @@ sd(dat$prestige)
 
 
 
-## The simplest regression model: intercept only model {.tabset}
+## The simplest regression model: intercept-only model {.tabset}
 
 The command for fitting a regression model is called `lm`, which is short for *linear model*. It wants a formula, describing the model to be fitted, and the name of a data frame containing your data.
 
@@ -196,7 +196,8 @@ There is other information:
 sd(dat$prestige)
 ```
 
-Okay, so you have calculated the mean and SD of a variable in an absurdly convolved way, alongside a statistical test that probably isn't any use. 
+Okay, so you have calculated the mean and SD of a variable in an absurdly convolved way, alongside a statistical test that probably isn't any use.
+
 Why have I done this to you?
 
 Two reasons:
@@ -302,7 +303,7 @@ The **intercept** is -10.732. This is clearly no longer the mean of prestige (sc
 
 Here's another picture, stretched to show where the intercept is:
 
-```{r class.source = "fold-hide"}
+```{r echo=FALSE}
 plot_ed_prestige +
   geom_abline(intercept = coef(mod1)[1],
               slope     = coef(mod1)[2]) +
@@ -324,7 +325,7 @@ The **slope for education** is 5.361. This means that for every unit increase in
 
 As before, the *t*'s and *p*'s are present. Now the p-value for education is actually useful. The value is `< 2e-16`, i.e., less than $2 \times 10^{-16}$. This means the sample-estimate of the slope we got would be very unlikely if the population slope were zero. Or, in the usual applied stats vernacular: there is a statistically significant relationship between education and prestige. (Keep a look out for how results are summarised in the literature you are exploring -- again I urge you to look at journal articles in your field to get ideas for write-up aesthetics.)
 
-The $R^2$ is also useful. The `summary` command presents $R^2$ as a proportion; it represent the proportion of the variance in the outcome variable explained by the predictors. Generally we use the adjusted $R^2$ because this adjusts for the number of predictors in the model and reduces bias in the estimate. If $R^2$ were 0 then that would mean that the predictors don't explain any variance in the outcome. If it were 1, that would mean that the predictors explain all the variance -- statistically, knowing the outcome variable does not add any further information.
+The $R^2$ is also useful. The `summary` command presents $R^2$ as a proportion; it represents the proportion of the variance in the outcome variable explained by the predictors. Generally we use the adjusted $R^2$ because this adjusts for the number of predictors in the model and reduces bias in the estimate. If $R^2$ were 0 then that would mean that the predictors don't explain any variance in the outcome. If it were 1, that would mean that the predictors explain all the variance -- statistically, knowing the outcome variable does not add any further information.
 
 
 
@@ -401,7 +402,7 @@ dat_for_resids <- dat %>%
   select(prestige, education) %>%
   mutate(predict0  = predict(mod0),
          residual0 = resid(mod0))
-dat_for_resids
+head(dat_for_resids, 10)
 ```
 
 Since it's the intercept-only model, the prediction is always the mean; that's why `predict0` says 46.83333, 46.83333, 46.83333, 46.83333, 46.83333...
@@ -537,7 +538,7 @@ We would usually write this as (something like): the model with education as a p
 
 Linear regression models can include arbitrary numbers of predictors -- in social science, often a dozen or more. They become increasingly challenging to visualise in higher dimensions, so let's start with two predictors, education and income.
 
-When you run the code below, a window will pop up with an interactive 3D plot. In this tutorial, you should able to click and drag the graph directly below.
+When you run the code below, a window will pop up with an interactive 3D plot.
 
 ```{r message=FALSE, webgl=TRUE}
 library(car)
@@ -553,16 +554,18 @@ Now, let's fit a model to those data.
 
 We have seen how to fit an intercept-only model and to add a predictor to that.
 
-(a) Can you work out how to model prestige as an outcome variable with predictors of education and income (using the version scaled to thousands)?
+a. Can you work out how to model prestige as an outcome variable with predictors of education and income (using the version scaled to thousands)?
 
 Don't worry about interpreting the slopes just yet.
 
-(b) Is this model a better fit than the intercept-only model?
+b. Is this model a better fit than the intercept-only model?
 
 
 ### Answer
 
-(a) Hopefully that was straightforward; just use `+` again:
+**a. Can you work out how to model prestige as an outcome variable with predictors of education and income (using the version scaled to thousands)?**
+
+Hopefully that was straightforward; just use `+` again:
 
 ```{r}
 mod_both <- lm(prestige ~ education + income_1000s, data = dat)
@@ -572,8 +575,9 @@ summary(mod_both)
 Both predictors were statistically significant. Interpretation coming below...
 
 
+**b. Is this model a better fit than the intercept-only model?**
 
-(b) We already have the intercept-only model as `mod0` so comparing models is done by:
+We already have the intercept-only model as `mod0` so comparing models is done by:
 
 ```{r}
 anova(mod0, mod_both)
@@ -613,8 +617,9 @@ We also now have a formula for predicting the mean level of prestige given educa
 
 The formula is:
 
-prestige = $-6.8$ + $4.1$$\times$education + $1.4$$\times$income in thousands.
-
+$$
+\mathtt{prestige} = -6.8 + 4.1 \times \mathtt{education} + 1.4 \times \mathtt{income\_1000s}
+$$
 
 
 

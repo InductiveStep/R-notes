@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Starting R | R notes</title>
+  <title>Chapter 2 Starting R | Using R for social research (v0.1)</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Starting R | R notes" />
+  <meta property="og:title" content="Chapter 2 Starting R | Using R for social research (v0.1)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Starting R | R notes" />
+  <meta name="twitter:title" content="Chapter 2 Starting R | Using R for social research (v0.1)" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
 
-<meta name="author" content="Andi Fugard" />
+<meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.13.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-10"><i class="fa fa-check"></i><b>3.13.1</b> Activity</a></li>
 <li class="chapter" data-level="3.13.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-13"><i class="fa fa-check"></i><b>3.13.2</b> Answer</a></li>
 </ul></li>
+<li class="chapter" data-level="3.14" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#more-ideas-for-visualisations"><i class="fa fa-check"></i><b>3.14</b> More ideas for visualisations</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear regression</a>
 <ul>
@@ -241,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-12"><i class="fa fa-check"></i><b>4.5.1</b> Activity</a></li>
 <li class="chapter" data-level="4.5.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-15"><i class="fa fa-check"></i><b>4.5.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept only model</a>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept-only model</a>
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-13"><i class="fa fa-check"></i><b>4.6.1</b> Activity</a></li>
 <li class="chapter" data-level="4.6.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-16"><i class="fa fa-check"></i><b>4.6.2</b> Answer</a></li>
@@ -408,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R notes</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.1)</a>
           </h1>
         </div>
 
@@ -418,14 +419,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="starting-r" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Starting R</h1>
-<p>This tutorial is a tour of some of the basics of the R language. Please follow along in RStudio as you read and try not to peek at the answers until you have given the activities a good go!</p>
+<p>This chapter is a tour of some of the basics of the R language. Please follow along in RStudio as you read and try not to peek at the answers until you have given the activities a good go!</p>
 <p>By the end of this tutorial you will know how to:</p>
 <ul>
-<li>Do basic stuff in R like arithmetic</li>
-<li>Assign results of calculations to variables and refer to these</li>
-<li>Calculate descriptive statistics like mean and standard deviation (SD)</li>
-<li>Install add-on packages from the internet and include them</li>
-<li>Open a dataset in R</li>
+<li>Do basic stuff in R like arithmetic.</li>
+<li>Assign results of calculations to variables and refer to these.</li>
+<li>Calculate descriptive statistics like mean and standard deviation (SD).</li>
+<li>Install add-on packages from the internet and include them.</li>
+<li>Open a dataset in R.</li>
 </ul>
 <p>This will prepare you for your first analysis of data.</p>
 <div id="arithmetic" class="section level2 tabset" number="2.1">
@@ -455,14 +456,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answers" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Answers</h3>
-<ol style="list-style-type: lower-alpha">
-<li>What is the R code to calculate 2 + 2</li>
-</ol>
+<p><strong>a. What is the R code to calculate 2 + 2</strong></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="starting-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>How do you multiply 6 and 7?</li>
-</ol>
+<p><strong>b. How do you multiply 6 and 7?</strong></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="starting-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">7</span></span></code></pre></div>
 <pre><code>## [1] 42</code></pre>
 </div>
@@ -479,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>“set <code>first_bit</code> to 2 plus 2”</li>
 <li>“set <code>second_bit</code> to <code>first_bit</code> divided by 8”</li>
 </ul>
-<p>The “&lt;-” symbol is called an “assignment statement” and <code>first_bit</code> and <code>second_bit</code> are variable names.</p>
+<p>The <code>&lt;-</code> symbol is called an “assignment statement” and <code>first_bit</code> and <code>second_bit</code> are variable names.</p>
 <div id="activity" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Activity</h3>
 <p>When you run the code above, you will see that nothing actually seems to happen. Can you guess what you need to do to get the answer to the <code>second_bit</code> sum?</p>
@@ -558,21 +555,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="more-functions" class="section level2 tabset" number="2.6">
 <h2><span class="header-section-number">2.6</span> More functions</h2>
-<p>Functions can have zero inputs. Try <code>citation</code> which tells you how to cite R in write ups.</p>
+<p>Functions can have zero inputs. Try <code>citation</code> which tells you how to cite R in write-ups.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="starting-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()</span></code></pre></div>
 <p>(You could also try without the parentheses – not something you’d generally want to do on purpose – to see what happens.)</p>
 <p>Functions can have more than one input. Another handy function, called <code>rnorm</code>, generates random data from a normal distribution, with a given number of values, mean, and SD.</p>
 <p>Here is an example with 50 values with a mean of 20 and an SD of 5:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="starting-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb27-2"><a href="starting-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>random_values</span></code></pre></div>
-<pre><code>##  [1] 26.406427 21.276902 11.100502 14.676429 25.517894 25.264473 16.758749
-##  [8] 22.713255 24.034018 19.777035 13.827635 24.472102 15.044577 22.357162
-## [15] 29.473714 11.754165 28.153476 28.300279 19.307188 20.662631 19.336635
-## [22] 20.879076 15.449581 19.012793 22.364033 19.473038  9.567864 20.566643
-## [29] 18.009667 17.930232 24.914750 19.841490 19.368798 17.708179 26.919294
-## [36] 16.986461 15.879933 10.891905 20.639485 15.887728 14.076252 26.937441
-## [43] 17.405660 18.545876 25.990043 20.746940 22.864682 18.523070 33.998604
-## [50] 21.267895</code></pre>
+<pre><code>##  [1] 25.70732 16.89854 17.99072 19.84585 15.28804 18.81054 15.73301 19.76921
+##  [9] 18.34357 19.94388 15.44068 17.82177 13.47518 22.49598 15.68063 21.00705
+## [17] 16.61861 21.42033 11.88724 31.88228 22.74561 23.51257 21.75604 22.57912
+## [25] 27.01890 15.80210 14.07378 10.69219 21.06095 16.76563 28.98273 24.23263
+## [33] 24.32549 25.38733 23.61018 17.62918 16.56311 24.57072 13.51529 18.58256
+## [41] 29.67241 23.83896 20.54595 19.33129 13.98754 21.26358 21.23828 18.78581
+## [49] 22.86459 21.52008</code></pre>
 <p>When you run it you will probably get different numbers to me.</p>
 <p>Here is a histogram of values I got:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="starting-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(random_values)</span></code></pre></div>
@@ -585,9 +581,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.6.2</span> Answer</h3>
 <p>Here’s what I got:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="starting-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 20.25725</code></pre>
+<pre><code>## [1] 20.0503</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="starting-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 5.16693</code></pre>
+<pre><code>## [1] 4.600624</code></pre>
 <p>Unless you were very lucky, you probably discovered like me that the mean was different to 20 and the SD was different to 5. This is something we will return to in another session, but can you guess now why this has happened?</p>
 </div>
 </div>
@@ -652,7 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Finding out how many rows it has:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="starting-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(stereo_total_albums)</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<p>You will often want to refer to a vector within the data frame, which you do with the $ operator:</p>
+<p>You will often want to refer to a vector within the data frame, which you do with the <code>$</code> operator:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="starting-r.html#cb41-1" aria-hidden="true" tabindex="-1"></a>stereo_total_albums<span class="sc">$</span>year</span></code></pre></div>
 <pre><code>##  [1] 1995 1997 1998 1999 2001 2002 2005 2007 2009 2010 2011 2012 2015 2016 2019</code></pre>
 <p>This is just like any other vector, so you could draw a histogram of the years of album releases:</p>
@@ -673,11 +669,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="loading-data-frames-from-a-file" class="section level2 tabset" number="2.8">
 <h2><span class="header-section-number">2.8</span> Loading data frames from a file</h2>
-<p>It is easy to read files into R. This command loads an excerpt from the <a href="https://github.com/jennybc/gapminder">Gapminder dataset</a> (extracted and tidied by Jennifer Bryan), which you can find <a href="./gapminder.csv">here</a>. Save the file in the same folder as your R or Rmd file and run:</p>
+<p>It is easy to read files into R. This command loads an excerpt from the <a href="https://github.com/jennybc/gapminder">Gapminder dataset</a> (extracted and tidied by <a href="https://jennybryan.org/">Jennifer Bryan</a>), which you can find <a href="./gapminder.csv">here</a>. Save the file in the same folder as your R or Rmd file and run:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="starting-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a>gap <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;gapminder.csv&quot;</span>)</span></code></pre></div>
 <p>Here “csv” stands for “comma separated values.” If you open the file in, say, Notepad, then you will see why.</p>
-<p>If it worked, then this command will show the top 5 rows:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="starting-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gap,<span class="dv">5</span>)</span></code></pre></div>
+<p>If it worked, then the following command will show the top 5 rows:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="starting-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gap, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##       country continent year lifeExp      pop gdpPercap
 ## 1 Afghanistan      Asia 1952  28.801  8425333  779.4453
 ## 2 Afghanistan      Asia 1957  30.332  9240934  820.8530
@@ -698,10 +694,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can plot life expectancy against the GDP per capita as follows:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="starting-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifeExp <span class="sc">~</span> gdpPercap, <span class="at">data =</span> gap)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<p>The “~” is read as “tilde” (or sometimes “twiddle”). The x-axis labels may not be readable at first but we shall return to this in a later session. (If you can’t wait, <a href="https://en.wikipedia.org/wiki/Scientific_notation#E_notation.">try this</a></p>
+<p>The “~” is read as “tilde” (or sometimes “twiddle”). The x-axis labels may not be readable at first but we shall return to this in a later session. (If you can’t wait, <a href="https://en.wikipedia.org/wiki/Scientific_notation#E_notation">try this</a>.)</p>
 <div id="activity-5" class="section level3" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Activity</h3>
-<p>Plot life expectancy at birth against year.</p>
+<p>Plot life expectancy at birth (on the y-axis) against year (on the x-axis).</p>
 </div>
 <div id="answer-5" class="section level3" number="2.8.2">
 <h3><span class="header-section-number">2.8.2</span> Answer</h3>
@@ -710,13 +706,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb50-3"><a href="starting-r.html#cb50-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Year&quot;</span>,</span>
 <span id="cb50-4"><a href="starting-r.html#cb50-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Life expectancy at birth&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
-<p>Again I have changed the axis label defaults.</p>
+<p>Again I have changed the axis label defaults. We will dramatically improve upon this in the next chapter.</p>
 </div>
 </div>
 <div id="packages" class="section level2 tabset" number="2.9">
 <h2><span class="header-section-number">2.9</span> Packages</h2>
-<p>When you install R, it comes with a small collection of essential packages which consist of functions like <code>mean</code>, <code>sd</code>, and <code>hist</code> that we have used above. But a strength of R is that there are a HUGE number of packages written by people across the world who use R and these can easily be downloaded from the interweb and added using R. These add-ons do things like produce pretty data visualisations (e.g., used by the <a href="http://www.interhacktives.com/2020/03/09/how-to-create-bbc-style-graphics-with-r-a-bbplot-tutorial/">BBC Data and Visualisation Journalism team</a>) and statistical models required by social scientists. The core <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">recommended text</a> also has <a href="https://cran.r-project.org/web/packages/car/index.html">an R package</a>.</p>
-<p>Here is an example, using the <em>praise</em> package. To download and install the package, use this command:</p>
+<p>When you install R, it comes with a small collection of essential packages which consist of functions like <code>mean</code>, <code>sd</code>, and <code>hist</code> that we have used above. But a strength of R is that there are a HUGE number of packages written by people across the world who use R and these can easily be downloaded from the interweb and added using R. These add-ons do things like produce pretty data visualisations (e.g., used by the <a href="http://www.interhacktives.com/2020/03/09/how-to-create-bbc-style-graphics-with-r-a-bbplot-tutorial/">BBC Data and Visualisation Journalism team</a>) and statistical models required by social scientists. The core recommended text by Fox and Weisberg (2019) also has <a href="https://cran.r-project.org/web/packages/car/index.html">an R package</a>.</p>
+<p>Here is an example, using the <code>praise</code> package. To download and install the package, use this command:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="starting-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;praise&quot;</span>)</span></code></pre></div>
 <p>If this has worked, you will have seen text something like:</p>
 <pre><code>trying URL &#39;https://cran.rstudio.com/bin/windows/contrib/4.0/praise_1.0.0.zip&#39;
@@ -730,24 +726,24 @@ package ‘praise’ successfully unpacked and MD5 sums checked</code></pre>
 <p>If <em>this</em> worked, then… well not much will have happened. But R won’t have complained.</p>
 <div id="activity-6" class="section level3" number="2.9.1">
 <h3><span class="header-section-number">2.9.1</span> Activity</h3>
-<p>The <em>praise</em> packages provides a function also called <em>praise</em>, which requires no input to run. Give it a go – what happens?</p>
+<p>The <code>praise</code> packages provides a function also called <code>praise</code>, which requires no input to run. Give it a go – what happens?</p>
 </div>
 <div id="answer-6" class="section level3" number="2.9.2">
 <h3><span class="header-section-number">2.9.2</span> Answer</h3>
 <p>I’ll run it a few times…</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="starting-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are riveting!&quot;</code></pre>
+<pre><code>## [1] &quot;You are terrific!&quot;</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="starting-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are cat&#39;s meow!&quot;</code></pre>
+<pre><code>## [1] &quot;You are kryptonian!&quot;</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="starting-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are breathtaking!&quot;</code></pre>
+<pre><code>## [1] &quot;You are well-made!&quot;</code></pre>
 <p>Not a big data science algorithm, but you may find it helpful as the course progresses :)</p>
 </div>
 </div>
 <div id="the-end" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> The end!</h2>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="starting-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are slick!&quot;</code></pre>
+<pre><code>## [1] &quot;You are doozie!&quot;</code></pre>
 
 </div>
 </div>

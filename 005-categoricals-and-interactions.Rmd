@@ -1,17 +1,17 @@
 # Categorical predictors and interactions
 
-By the end of this tutorial you will:
+By the end of this chapter you will:
 
-* Understand how to use R *factors*, which automatically deal with fiddly aspects of using categorical predictors.
+* Understand how to use R *factors*, which automatically deal with fiddly aspects of using categorical predictors in statistical models.
 * Be able to relate R output to what is going on behind the scenes, i.e., coding of a category with $n$-levels in terms of $n-1$ binary 0/1 predictors.
 * See how R does interactions effects (the `*` and `:` operators).
 
-The lovely thing about the topics covered this week is that they all transfer to every other model, e.g., logistic regression and other generalised linear models, multilevel models, and a huge number of models which you may encounter in future.
+The lovely thing about the topics covered in this chapter is that they all transfer to every other model, e.g., logistic regression and other generalised linear models, multilevel models, and a huge number of models which you may encounter in future.
 
 
 ## Before we begin
 
-We are going to persist with the prestige dataset for another week. (Last week, promise.) You could continue on the end of last week's Markdown file or make a new one. 
+We are going to persist with the prestige dataset another time. (Last chapter, promise.) You could continue on the end of last week's Markdown file or make a new one. 
 
 Ensure these handy packages are installed (you will only have to do that once) and included:
 
@@ -218,7 +218,7 @@ dat_means %>%
 
 
 
-These are the chunk options I used to change the dimensions of the figure, which might be handy to know about too:
+These are the chunk options I used to change the dimensions of the figure, which might be handy to know about too (they go at the top of the chunk):
 
 ```
 {r fig.height=3, fig.width=3}
@@ -518,7 +518,7 @@ das_Model <- lm(prestige ~ type, data = dat_no_NAs)
 
 We will use the `emmeans` package.
 
-```{r}
+```{r warning=FALSE}
 library(emmeans)
 ```
 
@@ -527,6 +527,8 @@ The main function therein is `emmeans`. Fox and Weisberg (2019, p. 203) comment 
 ```{r}
 emmeans(das_Model, pairwise ~ type)
 ```
+
+The first parameter is the name of the model, the second is a formula specifying which comparisons are required. The idiosyncracy in the model specification is that "pairwise" is not a variable in the data -- it's a type of comparison.
 
 Compare and contrast with the results obtained by using `relevel` above.
 
@@ -607,22 +609,22 @@ Don't forget to check model diagnostics...
 
 ### Activity
 
-(a) Fit a regression model with income as the outcome variable and occupation type as a predictor. Does type explain variance in outcome?
+a. Fit a regression model with income as the outcome variable and occupation type as a predictor. Does type explain variance in outcome?
 
-(b) Is there a statistically significant difference between blue collar and white collar salaries?
+b. Is there a statistically significant difference between blue collar and white collar salaries?
 
-(c) Is there a statistically significant difference between white collar and professional salaries?
+c. Is there a statistically significant difference between white collar and professional salaries?
 
-(d) Are the residuals normally distributed?
+d. Are the residuals normally distributed?
 
-(e) Try logging income to see what impact it has on the residual distribution
+e. Try logging income to see what impact it has on the residual distribution
 
-(f) Now compare all differences between groups
+f. Now compare all differences between groups
 
 
 ### Answers
 
-**(a) Fit a regression model with income as the outcome variable and occupation type as a predictor. Does type explain variance in outcome?**
+**a. Fit a regression model with income as the outcome variable and occupation type as a predictor. Does type explain variance in outcome?**
 
 
 ```{r}
@@ -633,7 +635,7 @@ Anova(income_mod)
 Yes: $F(2,95) = 24.87$, $p < .001$
 
 
-**(b) Is there a statistically significant difference between blue collar and white collar salaries?**
+**b. Is there a statistically significant difference between blue collar and white collar salaries?**
 
 First, let's have a look at the means, to help aid interpretation:
 
@@ -652,7 +654,7 @@ summary(income_mod)
 There is no statistically significant difference, $t = 0.361$, $p = .71$.
 
 
-**(c) Is there a statistically significant difference between white collar and professional salaries?**
+**c. Is there a statistically significant difference between white collar and professional salaries?**
 
 We can refit the model using `relevel` like so:
 
@@ -664,7 +666,7 @@ summary(income_mod_wc)
 Yes, professional salaries are a mean \$5507 more than white collar salaries ($t = 5.78$, $p < .001$).
 
 
-**(d) Are the residuals normally distributed?**
+**d. Are the residuals normally distributed?**
 
 The order of levels does not affect the residuals, so either model would do:
 
@@ -683,7 +685,7 @@ Looks like they are no normally distributed, though maybe driven by outliers?
 
 
 
-**(e) Try logging income to see what impact it has on the residual distribution**
+**e. Try logging income to see what impact it has on the residual distribution**
 
 
 ```{r}
@@ -697,7 +699,7 @@ Now the residuals look much better:
 qqPlot(resid(log_income_mod))
 ```
 
-**(f) Now compare all differences between groups**
+**f. Now compare all differences between groups**
 
 
 Let's use `emmeans`:

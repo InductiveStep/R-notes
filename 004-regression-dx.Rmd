@@ -4,7 +4,7 @@ A cursory glance at Chapter 8 of Fox and Weisberg (2019) will reveal that there 
 
 There is an element of subjectivity in deciding which checks to use and how to interpret them, and hence a chance that authors cherry pick diagnostics to make it appear that a model explains the data better than it actually does. So, as ever, it is important to create an analysis plan before seeing data, ideally registered in some way online.
 
-By the end of this tutorial you will know how to carry out common diagnostic checks of regression models using R. Many of the ideas transfer with little effort to other models we will encounter later too.
+By the end of this chapter you will know how to carry out common diagnostic checks of regression models using R. Many of the ideas transfer with little effort to other models we will encounter later too.
 
 I recommend that you follow along with the examples, fiddling with the code as your curiosity guides you (don't simply copy and paste code and run it -- play!). The tutorial ends with an activity, similar to the sorts of things that have been asked in exams.
 
@@ -191,7 +191,7 @@ Linear regression assumes that residual variance is constant for all values of t
 Here is a picture of made up data to illustrate, focussing initially on the predicted outcomes. We want the residuals to be homoscedastic as shown in graph *a* on the left.
 
 
-```{r fig.height=4, fig.width=8, class.source = "fold-hide"}
+```{r fig.height=4, fig.width=8, echo=FALSE}
 set.seed(42)
 theN = 300
 sds = 5 + round(1:theN/10)*10
@@ -420,29 +420,29 @@ In other words, the residual, $\epsilon_i$, plus the slope multiplied by income;
 
 What happens to the model if you use logged-income rather than income as a predictor?
 
-(a) Calculate a new variable, with a name of your choice, which is equal to the log of `income_1000s` and add it to the data frame. To log data, using the `log` function.
-(b) Fit the regression model again, using this logged variable and education as predictors.
-(c) What impact does this have on the linearity of the predictor?
-(d) How do you now interpret the relationship between (logged) income and prestige?
+a. Calculate a new variable, with a name of your choice, which is equal to the log of `income_1000s` and add it to the data frame. To log data, using the `log` function.
+b. Fit the regression model again, using this logged variable and education as predictors.
+c. What impact does this have on the linearity of the predictor?
+d. How do you now interpret the relationship between (logged) income and prestige?
 
 
 
 #### Answer
 
-**(a) Calculate a new variable, with a name of your choice, which is equal to the log of `income_1000s` and add it to the data frame.**
+**a. Calculate a new variable, with a name of your choice, which is equal to the log of `income_1000s` and add it to the data frame.**
 
 ```{r}
 dat$income_1000s_logged <- log(dat$income_1000s)
 ```
 
-**(b) Fit the regression model again, using this logged variable and education as predictors.**
+**b. Fit the regression model again, using this logged variable and education as predictors.**
 
 ```{r}
 mod_both_again <- lm(prestige ~ education + income_1000s_logged, data = dat)
 summary(mod_both_again)
 ```
 
-**(c) What impact does this have on the linearity of the predictor?**
+**c. What impact does this have on the linearity of the predictor?**
 
 ```{r}
 crPlots(mod_both_again)
@@ -451,7 +451,7 @@ crPlots(mod_both_again)
 This looks much better!
 
 
-**(d) How do you now interpret the relationship between (logged) income and prestige?**
+**d. How do you now interpret the relationship between (logged) income and prestige?**
 
 Both predictors were statistically significant (see the summary above) so we can focus on the coefficients:
 
@@ -486,7 +486,7 @@ We will consider a range of leave-one-out statistics below, but first a picture 
 
 Here is small made up dataset with a naughty data point up at the top right.
 
-```{r, class.source = "fold-hide"}
+```{r, echo=FALSE}
 small_made_up <- data.frame(x = 0:5,
                             y = c(0:4,15))
 
@@ -512,7 +512,7 @@ small_made_up %>%
 
 Here is an animation showing what happens to the regression slope when each row of data is removed; note what happens to the regression line when the sixth is dropped out:
 
-```{r, animation.hook="gifski", class.source = "fold-hide"}
+```{r, animation.hook="gifski", echo=FALSE}
 library(gifski)
 for (r in 1:nrow(small_made_up)) {
   subset_dat <- small_made_up[-r,]
@@ -539,7 +539,7 @@ There are many (many) ways to assess the impact. I will cover three below:
 
 ### Residual outliers
 
-You can test whether there are any outlier residuals with a Bonferroni Outlier Test. This is equivalent to dropping each observation in turn and seeing whether it leads to a mean shift in model estimates. The "Bonferroni" part refers to an p-values adjustment that accounts for the number of tests carried out, equal to the number of rows in the dataset.
+You can test whether there are any outlier residuals with a Bonferroni Outlier Test. This is equivalent to dropping each observation in turn and seeing whether it leads to a mean shift in model estimates. The "Bonferroni" part refers to an p-value adjustment that accounts for the number of tests carried out, equal to the number of rows in the dataset.
 
 Here is how to use it -- simply provide the model to test:
 
@@ -629,7 +629,7 @@ dfbetasPlots(mod_both)
 
 Note how the graphs look identical to those for DFBETA except that the y-axis scale has changed.
 
-Some statisticians argue that a DFBETAS (i.e., the standardised one) value over 1 or below -1 is potentially troublesome, so should be inspected.
+Some statisticians argue that a DFBETAS (i.e., the standardised one) value over $1$ or below $-1$ is potentially troublesome, so should be inspected.
 
 
 
@@ -699,7 +699,6 @@ Both predictors are still statistically significant... Have the coefficients cha
 ```{r}
 cbind("Original"     = coef(mod_both),
       "Outliers out" = coef(mod_both_sliced)) %>%
-  data.frame() %>%
   round(2)
 ```
 
@@ -770,7 +769,7 @@ As promised, here is a modelling challenge for you:
 
 ### Answer
 
-**(a) Fit a model predicting prestige from education, income (in $1000s, logged), and the percentage of women in the occupation**
+**a. Fit a model predicting prestige from education, income (in $1000s, logged), and the percentage of women in the occupation**
 
 ```{r}
 challenge_mod <- lm(prestige ~ education +
@@ -780,7 +779,7 @@ challenge_mod <- lm(prestige ~ education +
 ```
 
 
-**(b) Does this model fit better than the model without the percentage of women added?**
+**b. Does this model fit better than the model without the percentage of women added?**
 
 I've lost track of what models I have fitted above, so here is the relevant simpler model again:
 
@@ -799,7 +798,7 @@ There is no statistically significant improvement in model fit, $F(1,98) = 2.5$,
 
 
 
-**(c) Is there multicollinearity?**
+**c. Is there multicollinearity?**
 
 ```{r}
 vif(challenge_mod)
@@ -819,7 +818,7 @@ Based on finger-in-the-wind subjective judgement, I am going to conclude that th
 Confint(challenge_mod) %>% round(2)
 ```
 
-**(d) Are the relationships linear?**
+**d. Are the relationships linear?**
 
 ```{r fig.height=8, fig.width=6}
 crPlots(challenge_mod)
@@ -828,7 +827,7 @@ crPlots(challenge_mod)
 It looks like a bit of a curve for the predictor of percentage women in the occupation, which might suggest adding a squared term -- which coincidentally we try in the next question...
 
 
-**(e) Try adding the percentage of women squared as an additional predictor and checking for linearity again**
+**e. Try adding the percentage of women squared as an additional predictor and checking for linearity again**
 
 ```{r}
 challenge_mod2 <- lm(prestige ~ education +
@@ -845,7 +844,7 @@ crPlots(challenge_mod2)
 Now the relationships are much more linear.
 
 
-**(f) Does the model you just fitted (in *e*) explain statistically significantly more variance than the model with only income and education as predictors?**
+**f. Does the model you just fitted (in *e*) explain statistically significantly more variance than the model with only income and education as predictors?**
 
 
 ```{r}
@@ -855,7 +854,7 @@ anova(without_gender_mod, challenge_mod2)
 Yes it does, $F(2, 97) = 3.9$, $p = .024$.
 
 
-**(g) Check the DFBETAS values (again for the model fitted in *e*) -- are any concerning?**
+**g. Check the DFBETAS values (again for the model fitted in *e*) -- are any concerning?**
 
 ```{r}
 summary(influence.measures(challenge_mod2))

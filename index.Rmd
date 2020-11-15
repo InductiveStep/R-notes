@@ -1,6 +1,6 @@
 --- 
-title: "R notes"
-author: "Andi Fugard"
+title: "Using R for social research (v0.1)"
+author: "Andi Fugard <BR> ([almost@gmail.com](mailto:almost@gmail.com), @[InductiveStep](https://twitter.com/InductiveStep))"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -23,7 +23,14 @@ knitr::knit_hooks$set(webgl = hook_webgl)
 
 # Introduction
 
-These notes are under development...
+These notes are based on standalone tutorials I developed for a postgraduate social science course in 2020 which covered the basics of data manipulation and visualisation using `tidyverse` and fitting linear regression and logistic regression models using `lm` and `glm`.
 
-Click around and enjoy!
+The core texts used were Fox and Weisberg (2019), [An R Companion to Applied Regression (Third Edition)](https://socialsciences.mcmaster.ca/jfox/Books/Companion/) and Healy (2019) [Data Visualization: A Practical Introduction](https://socviz.co/) -- both excellent for learning applied analysis.
 
+All the datasets used are available in CRAN packages, e.g., `car`; however, I think it helps to learn how to download and read in csv files so that is what I ask readers to do.
+
+I have included some activities (an alternative word for "exercise" that I picked up somewhere), which seem  to help. They all come with solutions; to hide these, simply use the scrollbar so that they are off the edge of the visible part of the screen... (For those who know R Markdown, originally I used the `.tabset` attribute to hide answers; however, it doesn't work for `bookdown` and I don't want to rely on custom Javascript that may later break.)
+
+I assume you already have [RStudio](https://rstudio.com/) and [R](https://cran.r-project.org/) installed and know how to type and run R or R Markdown.
+
+Feedback welcome!

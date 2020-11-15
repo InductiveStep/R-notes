@@ -1,14 +1,14 @@
 # Starting R
 
-This tutorial is a tour of some of the basics of the R language. Please follow along in RStudio as you read and try not to peek at the answers until you have given the activities a good go!
+This chapter is a tour of some of the basics of the R language. Please follow along in RStudio as you read and try not to peek at the answers until you have given the activities a good go!
 
 By the end of this tutorial you will know how to:
 
-* Do basic stuff in R like arithmetic
-* Assign results of calculations to variables and refer to these
-* Calculate descriptive statistics like mean and standard deviation (SD)
-* Install add-on packages from the internet and include them
-* Open a dataset in R
+* Do basic stuff in R like arithmetic.
+* Assign results of calculations to variables and refer to these.
+* Calculate descriptive statistics like mean and standard deviation (SD).
+* Install add-on packages from the internet and include them.
+* Open a dataset in R.
 
 This will prepare you for your first analysis of data.
 
@@ -58,20 +58,20 @@ gives different result to
 
 Easing in tremendously gently...
 
-(a) What is the R code to calculate 2 + 2
+a. What is the R code to calculate 2 + 2
 
-(b) How do you multiply 6 and 7?
+b. How do you multiply 6 and 7?
 
 
 ### Answers
 
-(a) What is the R code to calculate 2 + 2
+**a. What is the R code to calculate 2 + 2**
 
 ```{r}
 2 + 2
 ```
 
-(b) How do you multiply 6 and 7?
+**b. How do you multiply 6 and 7?**
 
 ```{r}
 6 * 7
@@ -96,7 +96,7 @@ Read as
 * "set `first_bit` to 2 plus 2"
 * "set `second_bit` to `first_bit` divided by 8"
 
-The "<-" symbol is called an "assignment statement" and `first_bit` and `second_bit` are variable names.
+The `<-` symbol is called an "assignment statement" and `first_bit` and `second_bit` are variable names.
 
 
 ### Activity
@@ -215,7 +215,7 @@ But without having to copy and paste the vector.
 
 ## More functions {.tabset}
 
-Functions can have zero inputs. Try `citation` which tells you how to cite R in write ups.
+Functions can have zero inputs. Try `citation` which tells you how to cite R in write-ups.
 
 ```{r eval = F}
 citation()
@@ -321,7 +321,7 @@ Finding out how many rows it has:
 nrow(stereo_total_albums)
 ```
 
-You will often want to refer to a vector within the data frame, which you do with the $ operator:
+You will often want to refer to a vector within the data frame, which you do with the `$` operator:
 
 ```{r}
 stereo_total_albums$year
@@ -351,7 +351,7 @@ median(stereo_total_albums$year)
 
 ## Loading data frames from a file {.tabset}
 
-It is easy to read files into R. This command loads an excerpt from the [Gapminder dataset](https://github.com/jennybc/gapminder) (extracted and tidied by Jennifer Bryan), which you can find [here](./gapminder.csv). Save the file in the same folder as your R or Rmd file and run:
+It is easy to read files into R. This command loads an excerpt from the [Gapminder dataset](https://github.com/jennybc/gapminder) (extracted and tidied by [Jennifer Bryan](https://jennybryan.org/)), which you can find [here](./gapminder.csv). Save the file in the same folder as your R or Rmd file and run:
 
 ```{r}
 gap <- read.csv("gapminder.csv")
@@ -359,10 +359,10 @@ gap <- read.csv("gapminder.csv")
 
 Here "csv" stands for "comma separated values". If you open the file in, say, Notepad, then you will see why.
 
-If it worked, then this command will show the top 5 rows:
+If it worked, then the following command will show the top 5 rows:
 
 ```{r}
-head(gap,5)
+head(gap, 5)
 ```
 
 If it *didn't* work, then you're probably not using R markdown. You can try changing the working directory to the same place as your R "source file".
@@ -391,12 +391,12 @@ We can plot life expectancy against the GDP per capita as follows:
 plot(lifeExp ~ gdpPercap, data = gap)
 ```
 
-The "~" is read as "tilde" (or sometimes "twiddle"). The x-axis labels may not be readable at first but we shall return to this in a later session. (If you can't wait, [try this](https://en.wikipedia.org/wiki/Scientific_notation#E_notation.)
+The "~" is read as "tilde" (or sometimes "twiddle"). The x-axis labels may not be readable at first but we shall return to this in a later session. (If you can't wait, [try this](https://en.wikipedia.org/wiki/Scientific_notation#E_notation).)
 
 
 ### Activity
 
-Plot life expectancy at birth against year.
+Plot life expectancy at birth (on the y-axis) against year (on the x-axis).
 
 ### Answer
 
@@ -407,14 +407,14 @@ plot(lifeExp ~ year,
      ylab = "Life expectancy at birth")
 ```
 
-Again I have changed the axis label defaults.
+Again I have changed the axis label defaults. We will dramatically improve upon this in the next chapter.
 
 
 ## Packages  {.tabset}
 
-When you install R, it comes with a small collection of essential packages which consist of functions like `mean`, `sd`, and `hist` that we have used above. But a strength of R is that there are a HUGE number of packages written by people across the world who use R and these can easily be downloaded from the interweb and added using R. These add-ons do things like produce pretty data visualisations (e.g., used by the [BBC Data and Visualisation Journalism team](http://www.interhacktives.com/2020/03/09/how-to-create-bbc-style-graphics-with-r-a-bbplot-tutorial/)) and statistical models required by social scientists. The core [recommended text](https://socialsciences.mcmaster.ca/jfox/Books/Companion/) also has [an R package](https://cran.r-project.org/web/packages/car/index.html).
+When you install R, it comes with a small collection of essential packages which consist of functions like `mean`, `sd`, and `hist` that we have used above. But a strength of R is that there are a HUGE number of packages written by people across the world who use R and these can easily be downloaded from the interweb and added using R. These add-ons do things like produce pretty data visualisations (e.g., used by the [BBC Data and Visualisation Journalism team](http://www.interhacktives.com/2020/03/09/how-to-create-bbc-style-graphics-with-r-a-bbplot-tutorial/)) and statistical models required by social scientists. The core recommended text by Fox and Weisberg (2019) also has [an R package](https://cran.r-project.org/web/packages/car/index.html).
 
-Here is an example, using the *praise* package. To download and install the package, use this command:
+Here is an example, using the `praise` package. To download and install the package, use this command:
 
 ```{r eval = F}
 install.packages("praise")
@@ -443,7 +443,7 @@ If *this* worked, then... well not much will have happened. But R won't have com
 
 ### Activity
 
-The *praise* packages provides a function also called *praise*, which requires no input to run. Give it a go -- what happens?
+The `praise` packages provides a function also called `praise`, which requires no input to run. Give it a go -- what happens?
 
 ### Answer
 

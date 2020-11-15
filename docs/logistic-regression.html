@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Logistic regression | R notes</title>
+  <title>Chapter 7 Logistic regression | Using R for social research (v0.1)</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Logistic regression | R notes" />
+  <meta property="og:title" content="Chapter 7 Logistic regression | Using R for social research (v0.1)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Logistic regression | R notes" />
+  <meta name="twitter:title" content="Chapter 7 Logistic regression | Using R for social research (v0.1)" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
 
-<meta name="author" content="Andi Fugard" />
+<meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.13.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-10"><i class="fa fa-check"></i><b>3.13.1</b> Activity</a></li>
 <li class="chapter" data-level="3.13.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-13"><i class="fa fa-check"></i><b>3.13.2</b> Answer</a></li>
 </ul></li>
+<li class="chapter" data-level="3.14" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#more-ideas-for-visualisations"><i class="fa fa-check"></i><b>3.14</b> More ideas for visualisations</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear regression</a>
 <ul>
@@ -241,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-12"><i class="fa fa-check"></i><b>4.5.1</b> Activity</a></li>
 <li class="chapter" data-level="4.5.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-15"><i class="fa fa-check"></i><b>4.5.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept only model</a>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept-only model</a>
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-13"><i class="fa fa-check"></i><b>4.6.1</b> Activity</a></li>
 <li class="chapter" data-level="4.6.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-16"><i class="fa fa-check"></i><b>4.6.2</b> Answer</a></li>
@@ -408,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R notes</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.1)</a>
           </h1>
         </div>
 
@@ -418,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="logistic-regression" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Logistic regression</h1>
-<p>By the end of this week you will understand:</p>
+<p>By the end of this chapter you will understand:</p>
 <ul>
 <li>How generalised linear models (GLMs) generalise regression to deal with a wider variety of distributions of data.</li>
 <li>How to fit a GLM to binary data (also known as logistic regression).</li>
@@ -430,15 +431,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setup" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Setup</h2>
 <p>Let’s load the <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="logistic-regression.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="logistic-regression.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>I’m also going to use <code>knitr</code> to make tables look prettier:</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="logistic-regression.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="logistic-regression.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
 </div>
 <div id="the-dataset-3" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> The dataset</h2>
-<p>We will look at a different dataset this week (<a href="psid1975.csv">download here</a>), as analysed by Mroz (1987), spotted in Fox and Weisberg (2019). The data are from the US Panel Study of Income Dynamics (PSID) in 1975: 753 married white women aged between 30 and 60.</p>
+<p>We will look at a different dataset in this chapter (HURRAH; <a href="psid1975.csv">download it here</a>), as analysed by Mroz (1987) and spotted in Fox and Weisberg (2019). The data are from the US Panel Study of Income Dynamics (PSID) in 1975: 753 married white women aged between 30 and 60.</p>
 <p>The outcome variable we will examine is whether participants participated in the labour force. So it will be worth thinking through your (implicit or otherwise) theories of what processes might be operating in 1975.</p>
-<p>We would expect a more diverse sample in 2020. You might also ponder what extra information you would want to know and why. For what it’s worth, I’m curious what both wife and husband thought about gender roles and what sort of childcare was available. I’m not sure if it’s relevant, but I am also curious to know how many participants were bisexual (we can’t tell, but it is often wrongly assumed that people in a heterosexual marriage are both heterosexual).</p>
+<p>We would expect a more diverse sample these days. You might also ponder what extra information you would want to know and why. For what it’s worth, I’m curious what both wife and husband thought about gender roles and what sort of childcare was available. I’m not sure if it’s relevant, but I am also curious to know how many participants were bisexual (we can’t tell, but it is often wrongly assumed that people in a heterosexual marriage are both heterosexual).</p>
 <table>
 <colgroup>
 <col width="53%" />
@@ -490,11 +491,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Read in the data:</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="logistic-regression.html#cb452-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;psid1975.csv&quot;</span>)</span></code></pre></div>
-<p>Here is how to view a random sample of rows. (The <code>set.seed</code> command is optional – I am just using it so that I keep getting the same random sample. If you’re curious, <a href="https://en.wikipedia.org/w/index.php?title=Random_seed&amp;oldid=933429432">Wikipedia’s article</a> is currently okay on the topic.)</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="logistic-regression.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
-<span id="cb453-2"><a href="logistic-regression.html#cb453-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb453-3"><a href="logistic-regression.html#cb453-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="logistic-regression.html#cb447-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;psid1975.csv&quot;</span>)</span></code></pre></div>
+<p>Here is how to view a random sample of rows. (The <code>set.seed</code> command is optional – I am just using it so that I keep getting the same random sample. If you’re curious, <a href="https://en.wikipedia.org/w/index.php?title=Random_seed&amp;oldid=933429432">Wikipedia’s article</a> is currently fine.)</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="logistic-regression.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb448-2"><a href="logistic-regression.html#cb448-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb448-3"><a href="logistic-regression.html#cb448-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    lfp lfp_yes k5 k618 age  wc  hc       lwg    inc
 ## 1   no       0  0    2  43  no  no 1.2282799 14.550
 ## 2   no       0  1    1  30  no yes 0.9791328 22.000
@@ -506,8 +507,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8   no       0  0    0  50 yes yes 1.7312460 63.200
 ## 9   no       0  1    0  30  no yes 1.0167637 19.392
 ## 10 yes       1  0    1  48 yes yes 1.6549002 70.750</code></pre>
-<p>The <code>lfp_yes</code> variable was calculated using the line below. This might come in handy for your projects should you wish to dichotomise a variable.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="logistic-regression.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(dat<span class="sc">$</span>lfp <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>)</span></code></pre></div>
+<p>The <code>lfp_yes</code> variable was calculated using the line below. This might come in handy for your analyses should you wish to dichotomise a variable.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="logistic-regression.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(dat<span class="sc">$</span>lfp <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>)</span></code></pre></div>
 </div>
 <div id="warmup-activity" class="section level2 tabset" number="7.3">
 <h2><span class="header-section-number">7.3</span> Warmup activity</h2>
@@ -521,17 +522,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answer-29" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Answer</h3>
-<p><strong>(a) What do you think might predict participation in the labour force? Have a think before looking at the descriptives.</strong></p>
-<p>Post your answer on Moodle if you want. It was too late for me since I had already peeked and can only report my hindsight bias!</p>
-<p><strong>(b) Set <code>wc</code> and <code>hc</code> to factors.</strong></p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="logistic-regression.html#cb456-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>wc <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>wc)</span>
-<span id="cb456-2"><a href="logistic-regression.html#cb456-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>hc <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>hc)</span></code></pre></div>
-<p><strong>(c) Generate a table of descriptive statistics (“Table 1”) using a method of your choosing.</strong></p>
+<p><strong>a. What do you think might predict participation in the labour force? Have a think before looking at the descriptives.</strong></p>
+<p>It was too late for me since I had already peeked and can only report my hindsight bias!</p>
+<p><strong>b. Set <code>wc</code> and <code>hc</code> to factors.</strong></p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="logistic-regression.html#cb451-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>wc <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>wc)</span>
+<span id="cb451-2"><a href="logistic-regression.html#cb451-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>hc <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>hc)</span></code></pre></div>
+<p><strong>c. Generate a table of descriptive statistics (“Table 1”) using a method of your choosing.</strong></p>
 <p>Here is one we haven’t used yet, in the <code>table1</code> package. Here is how to use it with a pipe; recall that the dot in <code>data = .</code> is how to refer to the data frame that flowed in via the pipe from the <code>select</code> line above:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="logistic-regression.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table1)</span>
-<span id="cb457-2"><a href="logistic-regression.html#cb457-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb457-3"><a href="logistic-regression.html#cb457-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>lfp_yes) <span class="sc">%&gt;%</span></span>
-<span id="cb457-4"><a href="logistic-regression.html#cb457-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table1</span>(<span class="sc">~</span> ., <span class="at">data =</span> .)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="logistic-regression.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table1)</span>
+<span id="cb452-2"><a href="logistic-regression.html#cb452-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb452-3"><a href="logistic-regression.html#cb452-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>lfp_yes) <span class="sc">%&gt;%</span></span>
+<span id="cb452-4"><a href="logistic-regression.html#cb452-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table1</span>(<span class="sc">~</span> ., <span class="at">data =</span> .)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -640,7 +641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>It is straightforward to generate descriptives by group. Since we will be exploring predictors of labour-force participation, it makes sense to group the analyses by whether the participant has worked or not during the past year:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="logistic-regression.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> k5 <span class="sc">+</span> k618 <span class="sc">+</span> age <span class="sc">+</span> inc <span class="sc">|</span> lfp, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="logistic-regression.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> k5 <span class="sc">+</span> k618 <span class="sc">+</span> age <span class="sc">+</span> inc <span class="sc">|</span> lfp, <span class="at">data =</span> dat)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -730,31 +731,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here’s a picture that took too long, but shows what’s possible. It was built up part-by-part, so to understand it you probably need to devote some time to disassembling it.</p>
 <p>The labels on each data point are the <em>n</em>’s, so you can see that the pattern beyond 6 children is due to individual households.</p>
 <p>I also explicitly named the package <code>dplyr</code> for the <code>select</code> and <code>recode</code> commands because the same names are used for functions in the <code>car</code> package.</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="logistic-regression.html#cb459-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb459-2"><a href="logistic-regression.html#cb459-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(k5, k618, lfp_yes) <span class="sc">%&gt;%</span></span>
-<span id="cb459-3"><a href="logistic-regression.html#cb459-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&quot;children_age&quot;</span>,</span>
-<span id="cb459-4"><a href="logistic-regression.html#cb459-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;children_num&quot;</span>,</span>
-<span id="cb459-5"><a href="logistic-regression.html#cb459-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">cols =</span> <span class="sc">!</span>lfp_yes) <span class="sc">%&gt;%</span></span>
-<span id="cb459-6"><a href="logistic-regression.html#cb459-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">children_age =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(children_age,</span>
-<span id="cb459-7"><a href="logistic-regression.html#cb459-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">k5 =</span> <span class="st">&quot;0 to 5&quot;</span>,</span>
-<span id="cb459-8"><a href="logistic-regression.html#cb459-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">k618 =</span> <span class="st">&quot;6 to 18&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb459-9"><a href="logistic-regression.html#cb459-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(children_age, children_num) <span class="sc">%&gt;%</span></span>
-<span id="cb459-10"><a href="logistic-regression.html#cb459-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">perc_lfp =</span> <span class="fu">mean</span>(lfp_yes)<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb459-11"><a href="logistic-regression.html#cb459-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb459-12"><a href="logistic-regression.html#cb459-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> children_num,</span>
-<span id="cb459-13"><a href="logistic-regression.html#cb459-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> perc_lfp,</span>
-<span id="cb459-14"><a href="logistic-regression.html#cb459-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> children_age,</span>
-<span id="cb459-15"><a href="logistic-regression.html#cb459-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">label =</span> n)) <span class="sc">+</span></span>
-<span id="cb459-16"><a href="logistic-regression.html#cb459-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb459-17"><a href="logistic-regression.html#cb459-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb459-18"><a href="logistic-regression.html#cb459-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb459-19"><a href="logistic-regression.html#cb459-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="dv">1</span>,</span>
-<span id="cb459-20"><a href="logistic-regression.html#cb459-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_x =</span> <span class="fl">0.1</span>,</span>
-<span id="cb459-21"><a href="logistic-regression.html#cb459-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">hjust =</span> <span class="dv">0</span>,</span>
-<span id="cb459-22"><a href="logistic-regression.html#cb459-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb459-23"><a href="logistic-regression.html#cb459-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Number of children&quot;</span>) <span class="sc">+</span></span>
-<span id="cb459-24"><a href="logistic-regression.html#cb459-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;% women in paid employment&quot;</span>) <span class="sc">+</span></span>
-<span id="cb459-25"><a href="logistic-regression.html#cb459-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Children age&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="logistic-regression.html#cb454-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb454-2"><a href="logistic-regression.html#cb454-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(k5, k618, lfp_yes) <span class="sc">%&gt;%</span></span>
+<span id="cb454-3"><a href="logistic-regression.html#cb454-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&quot;children_age&quot;</span>,</span>
+<span id="cb454-4"><a href="logistic-regression.html#cb454-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;children_num&quot;</span>,</span>
+<span id="cb454-5"><a href="logistic-regression.html#cb454-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">cols =</span> <span class="sc">!</span>lfp_yes) <span class="sc">%&gt;%</span></span>
+<span id="cb454-6"><a href="logistic-regression.html#cb454-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">children_age =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(children_age,</span>
+<span id="cb454-7"><a href="logistic-regression.html#cb454-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">k5 =</span> <span class="st">&quot;0 to 5&quot;</span>,</span>
+<span id="cb454-8"><a href="logistic-regression.html#cb454-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">k618 =</span> <span class="st">&quot;6 to 18&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb454-9"><a href="logistic-regression.html#cb454-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(children_age, children_num) <span class="sc">%&gt;%</span></span>
+<span id="cb454-10"><a href="logistic-regression.html#cb454-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">perc_lfp =</span> <span class="fu">mean</span>(lfp_yes)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb454-11"><a href="logistic-regression.html#cb454-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb454-12"><a href="logistic-regression.html#cb454-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> children_num,</span>
+<span id="cb454-13"><a href="logistic-regression.html#cb454-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> perc_lfp,</span>
+<span id="cb454-14"><a href="logistic-regression.html#cb454-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> children_age,</span>
+<span id="cb454-15"><a href="logistic-regression.html#cb454-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">label =</span> n)) <span class="sc">+</span></span>
+<span id="cb454-16"><a href="logistic-regression.html#cb454-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb454-17"><a href="logistic-regression.html#cb454-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb454-18"><a href="logistic-regression.html#cb454-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb454-19"><a href="logistic-regression.html#cb454-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="dv">1</span>,</span>
+<span id="cb454-20"><a href="logistic-regression.html#cb454-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_x =</span> <span class="fl">0.1</span>,</span>
+<span id="cb454-21"><a href="logistic-regression.html#cb454-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb454-22"><a href="logistic-regression.html#cb454-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb454-23"><a href="logistic-regression.html#cb454-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Number of children&quot;</span>) <span class="sc">+</span></span>
+<span id="cb454-24"><a href="logistic-regression.html#cb454-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;% women in paid employment&quot;</span>) <span class="sc">+</span></span>
+<span id="cb454-25"><a href="logistic-regression.html#cb454-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Children age&quot;</span>)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;children_age&#39; (override with `.groups` argument)</code></pre>
 <p><img src="R-notes_files/figure-html/age-work-graph-1.png" width="672" /></p>
 </div>
@@ -763,23 +764,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.4</span> The punchline</h2>
 <p>We will spend some time going into the arithmetic of logistic regression model coefficients since it helps interpret what the models mean.</p>
 <p>So that you have a sense of where this is heading, here is how to fit a model predicting whether women were in paid employment from the number of children in the family aged 5 or younger (<code>k5</code>) and 6 to 18 (<code>k618</code>):</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="logistic-regression.html#cb461-1" aria-hidden="true" tabindex="-1"></a>mod_kids <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="logistic-regression.html#cb456-1" aria-hidden="true" tabindex="-1"></a>mod_kids <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
 <p>This is the intercept-only model:</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="logistic-regression.html#cb462-1" aria-hidden="true" tabindex="-1"></a>mod_0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="logistic-regression.html#cb457-1" aria-hidden="true" tabindex="-1"></a>mod_0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
 <p>And this command compares the two:</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="logistic-regression.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_0, mod_kids, <span class="at">test =</span> <span class="st">&quot;Chi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="logistic-regression.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_0, mod_kids, <span class="at">test =</span> <span class="st">&quot;Chi&quot;</span>)</span></code></pre></div>
 <p>To get a summary use:</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="logistic-regression.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_kids)</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="logistic-regression.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_kids)</span></code></pre></div>
 <p>Here are confidence intervals:</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="logistic-regression.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Confint</span>(mod_kids)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="logistic-regression.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Confint</span>(mod_kids)</span></code></pre></div>
 <p>The R code involved is almost identical to what we used for linear regression. The main challenge will be interpreting the slopes, but I will share some tips to make this relatively painless.</p>
 </div>
 <div id="intermezzo-parametric-versus-nonparametric" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Intermezzo: parametric versus nonparametric</h2>
 <blockquote>
 <p>“The term nonparametric may have some historical significance and meaning for theoretical statisticians, but it only serves to confuse applied statisticians.”</p>
-<p>—G. E. Noether (1984)</p>
 </blockquote>
+<p>—G. E. Noether (1984)</p>
 <p>Many introductory social science statistics courses explain that if your data are normally distributed, then you use parametric statistics, otherwise you use nonparametric statistics. Or that the <em>data</em> can be parametric or nonparametric.</p>
 <p><em>Both claims are false.</em></p>
 <p>The parametric versus nonparametric distinction refers to statistical <em>models</em>, not the data. It simply refers to whether the distributions involved are assumed to have a known mathematical form. If a model assumes a particular distribution, then it is parametric (Wolfowitz, 1942). We have already seen that you can check (to some extent) whether model assumptions are satisfied.</p>
@@ -787,7 +788,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="radio.png" width="300" /></p>
 <p>The normal distribution has two parameters, mean and standard deviation:</p>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-296-.gif" width="672" /></p>
-<p>We will be exploring a parametric approach to modelling binary data (whether or not someone was in paid employment) in this tutorial, using a special case of the binomial distribution with size = 1. There is one parameter: the probability, and values are either 0 or 1.</p>
+<p>We will be exploring a parametric approach to modelling binary data (whether or not someone was in paid employment) in this chapter, using a special case of the binomial distribution with size = 1. There is one parameter: the probability, and values are either 0 or 1.</p>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-297-.gif" width="288" /></p>
 <p>This distribution is somewhat easier to grasp than the curve of a normal distribution, though we will encounter a logistic-al irritation in using it in practice.</p>
 </div>
@@ -829,11 +830,11 @@ where <span class="math inline">\(p\)</span> is the probability of an event happ
 \log_{10}(100)
 \]</span>
 In R:</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="logistic-regression.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="logistic-regression.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>So <span class="math inline">\({\color{magenta} {10}}^{\color{blue} 2} = 100\)</span> and <span class="math inline">\(\log_{\color{magenta} {10}}(100) = \color{blue} 2\)</span>.</p>
 <p>Let’s try another base, 2. Two to the power of five is…</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="logistic-regression.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="logistic-regression.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
 <p>… 32.</p>
 <div id="activity-28" class="section level4" number="7.7.1.1">
@@ -842,10 +843,10 @@ In R:</p>
 </div>
 <div id="answer-30" class="section level4" number="7.7.1.2">
 <h4><span class="header-section-number">7.7.1.2</span> Answer</h4>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="logistic-regression.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1024</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="logistic-regression.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1024</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>It’s 10. Let’s check.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="logistic-regression.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="logistic-regression.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">10</span></span></code></pre></div>
 <pre><code>## [1] 1024</code></pre>
 <p>So much for the arithmetic; onto some intutions for why it is used…</p>
 </div>
@@ -855,10 +856,10 @@ In R:</p>
 <p>Sadly, these days we are <a href="https://www.weforum.org/agenda/2020/04/covid-19-spread-logarithmic-graph/">very aware</a> of exponential and log functions since they are used when communicating data on the Covid-19 pandemic.</p>
 <p>Suppose some quantity doubles over time; let’s take as an example the number of cat GIFs in my saved images over time:</p>
 <p><img src="spot.gif" /></p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="logistic-regression.html#cb474-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">month    =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb474-2"><a href="logistic-regression.html#cb474-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cat_GIFs =</span> <span class="dv">2</span><span class="sc">^</span>month)</span>
-<span id="cb474-3"><a href="logistic-regression.html#cb474-3" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
-<span id="cb474-4"><a href="logistic-regression.html#cb474-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Month&quot;</span>, <span class="st">&quot;Number of cat GIFs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="logistic-regression.html#cb469-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">month    =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb469-2"><a href="logistic-regression.html#cb469-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cat_GIFs =</span> <span class="dv">2</span><span class="sc">^</span>month)</span>
+<span id="cb469-3"><a href="logistic-regression.html#cb469-3" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
+<span id="cb469-4"><a href="logistic-regression.html#cb469-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Month&quot;</span>, <span class="st">&quot;Number of cat GIFs&quot;</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -910,35 +911,35 @@ In R:</p>
 </tbody>
 </table>
 <p>I started off with one GIF. As each month passes, the number of GIFs doubles. To find the number of GIFs at a particular time, use <span class="math inline">\(2^{\mathit{month}}\)</span>. Here is 5 months into my stash:</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="logistic-regression.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="logistic-regression.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
 <p>Here is a picture of GIF growth:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="logistic-regression.html#cb477-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
-<span id="cb477-2"><a href="logistic-regression.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, cat_GIFs)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb477-3"><a href="logistic-regression.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
-<span id="cb477-4"><a href="logistic-regression.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb477-5"><a href="logistic-regression.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="logistic-regression.html#cb472-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
+<span id="cb472-2"><a href="logistic-regression.html#cb472-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, cat_GIFs)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb472-3"><a href="logistic-regression.html#cb472-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
+<span id="cb472-4"><a href="logistic-regression.html#cb472-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb472-5"><a href="logistic-regression.html#cb472-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
 <p>As we saw <a href="logistic-regression.html#log-arithmetic">above</a>, we can also run <span class="math inline">\(2^\mathit{month}\)</span> in reverse. Given a particular number of cat GIFs, say 32, how many times did the original number double to get there? Simply calculate <span class="math inline">\(\log_2(32)\)</span>:</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="logistic-regression.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">32</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="logistic-regression.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">32</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Often it is easier to see exponential relationships and any changes in relationships over time if they are plotted on a straight line. A way to straighten out exponential growth is to log the y-axis whilst keeping the original values at each tick point on the axis:</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="logistic-regression.html#cb480-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
-<span id="cb480-2"><a href="logistic-regression.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, cat_GIFs)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb480-3"><a href="logistic-regression.html#cb480-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_trans</span>(<span class="at">y =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span> <span class="co"># this line transforms the axis</span></span>
-<span id="cb480-4"><a href="logistic-regression.html#cb480-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
-<span id="cb480-5"><a href="logistic-regression.html#cb480-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb480-6"><a href="logistic-regression.html#cb480-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">2</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb480-7"><a href="logistic-regression.html#cb480-7" aria-hidden="true" tabindex="-1"></a>     <span class="co"># this scale_y line says where to place the labels</span></span>
-<span id="cb480-8"><a href="logistic-regression.html#cb480-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="logistic-regression.html#cb475-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
+<span id="cb475-2"><a href="logistic-regression.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, cat_GIFs)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb475-3"><a href="logistic-regression.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_trans</span>(<span class="at">y =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span> <span class="co"># this line transforms the axis</span></span>
+<span id="cb475-4"><a href="logistic-regression.html#cb475-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
+<span id="cb475-5"><a href="logistic-regression.html#cb475-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb475-6"><a href="logistic-regression.html#cb475-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">2</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb475-7"><a href="logistic-regression.html#cb475-7" aria-hidden="true" tabindex="-1"></a>     <span class="co"># this scale_y line says where to place the labels</span></span>
+<span id="cb475-8"><a href="logistic-regression.html#cb475-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 <p>We can also log the values, so that the y-axis now says how many times the number of GIFs has doubled.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="logistic-regression.html#cb481-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
-<span id="cb481-2"><a href="logistic-regression.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, <span class="fu">log</span>(cat_GIFs,<span class="dv">2</span>))) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb481-3"><a href="logistic-regression.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Logged number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
-<span id="cb481-4"><a href="logistic-regression.html#cb481-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb481-5"><a href="logistic-regression.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb481-6"><a href="logistic-regression.html#cb481-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="logistic-regression.html#cb476-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
+<span id="cb476-2"><a href="logistic-regression.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, <span class="fu">log</span>(cat_GIFs,<span class="dv">2</span>))) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb476-3"><a href="logistic-regression.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Logged number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
+<span id="cb476-4"><a href="logistic-regression.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb476-5"><a href="logistic-regression.html#cb476-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb476-6"><a href="logistic-regression.html#cb476-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
 <p>I hope that provides some intuitions for what the log function does. Roughly, it transforms a process that multiplies, and can be hard to understand on the original scale, into a process that is additive.</p>
 </div>
@@ -947,16 +948,16 @@ In R:</p>
 <h2><span class="header-section-number">7.8</span> Intercept-only models again</h2>
 <p>For linear regression, the intercept in an intercept-only model was the mean of the the outcome variable. Intercepts in GLMs work the same; however, now we have the mild complication of the link function which are part of the arithmetic that make GLMs work.</p>
 <p>The mean of the binary variable, <code>lfp_yes</code>, is:</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="logistic-regression.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes)</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="logistic-regression.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes)</span></code></pre></div>
 <pre><code>## [1] 0.5683931</code></pre>
 <p>This is the proportion of women who were in paid employment (do you see why the mean is a proportion here?).</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="logistic-regression.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>lfp)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="logistic-regression.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>lfp)</span></code></pre></div>
 <pre><code>## 
 ##  no yes 
 ## 325 428</code></pre>
 <p>Now let’s see what logistic regression gives us:</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="logistic-regression.html#cb486-1" aria-hidden="true" tabindex="-1"></a>mod_intercept <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span>
-<span id="cb486-2"><a href="logistic-regression.html#cb486-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_intercept)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="logistic-regression.html#cb481-1" aria-hidden="true" tabindex="-1"></a>mod_intercept <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span>
+<span id="cb481-2"><a href="logistic-regression.html#cb481-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_intercept)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = lfp_yes ~ 1, family = binomial, data = dat)
@@ -979,7 +980,7 @@ In R:</p>
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Most of that will look very familiar – the coefficients, standard error, p-values (though now of a <span class="math inline">\(z\)</span>-value rather than <span class="math inline">\(t\)</span>) – however, the intercept is <em>not</em> the mean of <code>lfp_yes</code>.</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="logistic-regression.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_intercept)</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="logistic-regression.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_intercept)</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    0.275298</code></pre>
 <p>This is actually the <em>log-odds</em> of being in paid work, which is arithmetically related to the probability. So onto the next bit of arithmetic…</p>
@@ -998,7 +999,7 @@ In R:</p>
 p = \frac{\mathit{odds}}{1+\mathit{odds}}
 \]</span></p>
 <p>The log odds are the log of the odds, usually the <a href="https://en.wikipedia.org/wiki/Natural_logarithm">natural log</a>, i.e., log base <span class="math inline">\(e = 2.718282\ldots\)</span>, which is what R provides by default. This can be written <span class="math inline">\(\log_e\)</span> or <span class="math inline">\(\ln\)</span>. So the log odds of getting a 20 on one throw of a 20-sided die are:</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="logistic-regression.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="logistic-regression.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">19</span>)</span></code></pre></div>
 <pre><code>## [1] -2.944439</code></pre>
 <p>Personally, I don’t find <span class="math inline">\(-2.94\)</span> a particularly meaningful number! And actually, later I will share some tricks so that you don’t have to even think about what it means. However, I think it is important to get a sense of some example landmark odds and log odds along a range of probabilities. Fifteen minutes spent staring at this table will come in handy (<code>Inf</code> is “infinity”).</p>
 <table>
@@ -1083,12 +1084,12 @@ The odds of a 0.8 probability are
 So the fraction just turns upside down.</li>
 </ul>
 <p>Finally, here is a picture showing the relationship between log-odds and probability:</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="logistic-regression.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb492-2"><a href="logistic-regression.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb492-3"><a href="logistic-regression.html#cb492-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb492-4"><a href="logistic-regression.html#cb492-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> plogis, <span class="at">n =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
-<span id="cb492-5"><a href="logistic-regression.html#cb492-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
-<span id="cb492-6"><a href="logistic-regression.html#cb492-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Log-odds (logit)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="logistic-regression.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb487-2"><a href="logistic-regression.html#cb487-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb487-3"><a href="logistic-regression.html#cb487-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb487-4"><a href="logistic-regression.html#cb487-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> plogis, <span class="at">n =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
+<span id="cb487-5"><a href="logistic-regression.html#cb487-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb487-6"><a href="logistic-regression.html#cb487-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Log-odds (logit)&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
 <p>Note how the relationship is mostly non-linear, except for a patch in the middle where it is linear. The log-odds stretch out to negative and plus infinity, whereas probabilities are bound between 0 and 1. The probability for a log-odds of 6 is 0.9975274. The probability for a log-odds of 15, far off the scale on this graph, is 0.9999939. It never quite reaches 1 or, in the opposite direction, 0.</p>
 <p>To summarise then, probability, odds, and log-odds are different and interchangeable ways to quantify how sure you are that something is going to happen.</p>
@@ -1096,27 +1097,27 @@ So the fraction just turns upside down.</li>
 <div id="back-to-that-intercept" class="section level2" number="7.10">
 <h2><span class="header-section-number">7.10</span> Back to that intercept</h2>
 <p>We know the proportion of women in paid work:</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="logistic-regression.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="logistic-regression.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes)</span></code></pre></div>
 <pre><code>## [1] 0.5683931</code></pre>
 <p>Assuming a random sample, this is also an estimate of the probability that someone chosen at random from the larger population will be in paid work. Let’s then calculate the odds:</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="logistic-regression.html#cb495-1" aria-hidden="true" tabindex="-1"></a>the_odds <span class="ot">&lt;-</span> <span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">-</span><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes))</span>
-<span id="cb495-2"><a href="logistic-regression.html#cb495-2" aria-hidden="true" tabindex="-1"></a>the_odds</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="logistic-regression.html#cb490-1" aria-hidden="true" tabindex="-1"></a>the_odds <span class="ot">&lt;-</span> <span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">-</span><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes))</span>
+<span id="cb490-2"><a href="logistic-regression.html#cb490-2" aria-hidden="true" tabindex="-1"></a>the_odds</span></code></pre></div>
 <pre><code>## [1] 1.316923</code></pre>
 <p>Now the log-odds:</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="logistic-regression.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(the_odds)</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="logistic-regression.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(the_odds)</span></code></pre></div>
 <pre><code>## [1] 0.275298</code></pre>
 <p>Back to the model coefficient:</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="logistic-regression.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_intercept)</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="logistic-regression.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_intercept)</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    0.275298</code></pre>
 <p>HURRAH!</p>
 <p>We could also go in reverse from the intercept. The function <code>exp(x)</code> calculates <span class="math inline">\(e^x\)</span> which is the inverse of <span class="math inline">\(\log_e\)</span>. This gives us the odds again:</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="logistic-regression.html#cb501-1" aria-hidden="true" tabindex="-1"></a>the_odds_again <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(mod_intercept))</span>
-<span id="cb501-2"><a href="logistic-regression.html#cb501-2" aria-hidden="true" tabindex="-1"></a>the_odds_again</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="logistic-regression.html#cb496-1" aria-hidden="true" tabindex="-1"></a>the_odds_again <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(mod_intercept))</span>
+<span id="cb496-2"><a href="logistic-regression.html#cb496-2" aria-hidden="true" tabindex="-1"></a>the_odds_again</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    1.316923</code></pre>
 <p>Now to get the probability:</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="logistic-regression.html#cb503-1" aria-hidden="true" tabindex="-1"></a>the_odds_again <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span>the_odds_again)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="logistic-regression.html#cb498-1" aria-hidden="true" tabindex="-1"></a>the_odds_again <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span>the_odds_again)</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##   0.5683931</code></pre>
 <p><span class="math display">\[
@@ -1129,10 +1130,10 @@ So the fraction just turns upside down.</li>
 <p>Look again at the graph:</p>
 <p><img src="R-notes_files/figure-html/age-work-graph-1.png" width="672" /></p>
 <p>Our hindsight hypothesis (having looked at the picture) – not a good way to do science, but fine for pedagogy – is that the number of children aged 5 or under will predict labour-force participation, but the number aged 6 or over will be irrelevant.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="logistic-regression.html#cb505-1" aria-hidden="true" tabindex="-1"></a>mod_children <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618,</span>
-<span id="cb505-2"><a href="logistic-regression.html#cb505-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dat,</span>
-<span id="cb505-3"><a href="logistic-regression.html#cb505-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> binomial)</span>
-<span id="cb505-4"><a href="logistic-regression.html#cb505-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="logistic-regression.html#cb500-1" aria-hidden="true" tabindex="-1"></a>mod_children <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618,</span>
+<span id="cb500-2"><a href="logistic-regression.html#cb500-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dat,</span>
+<span id="cb500-3"><a href="logistic-regression.html#cb500-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> binomial)</span>
+<span id="cb500-4"><a href="logistic-regression.html#cb500-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_children)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = lfp_yes ~ k5 + k618, family = binomial, data = dat)
@@ -1184,23 +1185,23 @@ So the fraction just turns upside down.</li>
 <div id="activity-30" class="section level4" number="7.11.2.1">
 <h4><span class="header-section-number">7.11.2.1</span> Activity</h4>
 <p>Can you decode that paragraph from Gelman and Hill and use it to interpret the coefficients?</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="logistic-regression.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="logistic-regression.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
 ##  0.44478849 -0.87925889  0.02729833</code></pre>
 </div>
 <div id="answer-32" class="section level4" number="7.11.2.2">
 <h4><span class="header-section-number">7.11.2.2</span> Answer</h4>
 <p>We can use the coefficients:</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="logistic-regression.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="logistic-regression.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
 ##  0.44478849 -0.87925889  0.02729833</code></pre>
 <p>Drop the intercept (or you could just do so by not looking at it!):</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="logistic-regression.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)[<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="logistic-regression.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)[<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##          k5        k618 
 ## -0.87925889  0.02729833</code></pre>
 <p>Divide by 4 and round (again, you could do this in other ways):</p>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="logistic-regression.html#cb513-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">coef</span>(mod_children)[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb513-2"><a href="logistic-regression.html#cb513-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="logistic-regression.html#cb508-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">coef</span>(mod_children)[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb508-2"><a href="logistic-regression.html#cb508-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##    k5  k618 
 ## -0.22  0.01</code></pre>
 <p>For every extra child aged 5 or under, the probability of being work in decreases by (at most) 0.22.</p>
@@ -1238,11 +1239,11 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <div id="exp-meaning" class="section level4" number="7.11.3.2">
 <h4><span class="header-section-number">7.11.3.2</span> What does this mean? (Or: so what?)</h4>
 <p>Here are the coefficients from our model predicting being in paid work from number of children:</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="logistic-regression.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="logistic-regression.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
 ##  0.44478849 -0.87925889  0.02729833</code></pre>
 <p>We can exponentiate (and round) them to:</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="logistic-regression.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(mod_children)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="logistic-regression.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(mod_children)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
 ##        1.56        0.42        1.03</code></pre>
 <p>The coefficients for the slopes are called <strong>odds ratios</strong>.</p>
@@ -1287,9 +1288,9 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <h4><span class="header-section-number">7.11.4.1</span> Using a customs predictions table</h4>
 <p>The recipe is as follows. First, generate a table with the values for predictors you would like to predict. This is a data frame with one column for all variables in the model.</p>
 <p>The <code>expand.grid</code> command is handy for this as it generates all combinations of the values you provide.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="logistic-regression.html#cb519-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k5   =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb519-2"><a href="logistic-regression.html#cb519-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">k618 =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))</span>
-<span id="cb519-3"><a href="logistic-regression.html#cb519-3" aria-hidden="true" tabindex="-1"></a>predictions</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="logistic-regression.html#cb514-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k5   =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb514-2"><a href="logistic-regression.html#cb514-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">k618 =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))</span>
+<span id="cb514-3"><a href="logistic-regression.html#cb514-3" aria-hidden="true" tabindex="-1"></a>predictions</span></code></pre></div>
 <pre><code>##    k5 k618
 ## 1   0    0
 ## 2   1    0
@@ -1303,17 +1304,17 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 10  4    4</code></pre>
 <p>Now use R’s <code>predict</code> command. We can get the predictions on the log-odds scale or (more useful) as probabilities. For the latter, use the option <code>type = "response"</code>.</p>
 <p>I generally save the result onto the predictions data frame:</p>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="logistic-regression.html#cb521-1" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_logodds <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_children, <span class="co"># the model</span></span>
-<span id="cb521-2"><a href="logistic-regression.html#cb521-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">newdata =</span> predictions)</span>
-<span id="cb521-3"><a href="logistic-regression.html#cb521-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb521-4"><a href="logistic-regression.html#cb521-4" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_children,</span>
-<span id="cb521-5"><a href="logistic-regression.html#cb521-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">newdata =</span> predictions,</span>
-<span id="cb521-6"><a href="logistic-regression.html#cb521-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="logistic-regression.html#cb516-1" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_logodds <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_children, <span class="co"># the model</span></span>
+<span id="cb516-2"><a href="logistic-regression.html#cb516-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">newdata =</span> predictions)</span>
+<span id="cb516-3"><a href="logistic-regression.html#cb516-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-4"><a href="logistic-regression.html#cb516-4" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_children,</span>
+<span id="cb516-5"><a href="logistic-regression.html#cb516-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">newdata =</span> predictions,</span>
+<span id="cb516-6"><a href="logistic-regression.html#cb516-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <p>I will also add on the odds ratios, for completeness:</p>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="logistic-regression.html#cb522-1" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_odds <span class="ot">&lt;-</span> <span class="fu">exp</span>(predictions<span class="sc">$</span>lfp_logodds)</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="logistic-regression.html#cb517-1" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_odds <span class="ot">&lt;-</span> <span class="fu">exp</span>(predictions<span class="sc">$</span>lfp_logodds)</span></code></pre></div>
 <p>Have a look (I’m piping them through <code>kabel</code> from the <code>knitr</code> package to change the number of decimal places):</p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="logistic-regression.html#cb523-1" aria-hidden="true" tabindex="-1"></a>predictions  <span class="sc">%&gt;%</span></span>
-<span id="cb523-2"><a href="logistic-regression.html#cb523-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="logistic-regression.html#cb518-1" aria-hidden="true" tabindex="-1"></a>predictions  <span class="sc">%&gt;%</span></span>
+<span id="cb518-2"><a href="logistic-regression.html#cb518-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1398,26 +1399,26 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 </tbody>
 </table>
 <p>The challenge is to pick values for the predictors which illustrate (to you and readers) how the model works. You could then plot these using <code>ggplot</code>.</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="logistic-regression.html#cb524-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="sc">%&gt;%</span></span>
-<span id="cb524-2"><a href="logistic-regression.html#cb524-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k5,</span>
-<span id="cb524-3"><a href="logistic-regression.html#cb524-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> lfp_prob, </span>
-<span id="cb524-4"><a href="logistic-regression.html#cb524-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="fu">factor</span>(k618))) <span class="sc">+</span></span>
-<span id="cb524-5"><a href="logistic-regression.html#cb524-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb524-6"><a href="logistic-regression.html#cb524-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb524-7"><a href="logistic-regression.html#cb524-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of children aged 0 to 5&quot;</span>,</span>
-<span id="cb524-8"><a href="logistic-regression.html#cb524-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Probability of being in work&quot;</span>,</span>
-<span id="cb524-9"><a href="logistic-regression.html#cb524-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Children 6-18&quot;</span>) <span class="sc">+</span></span>
-<span id="cb524-10"><a href="logistic-regression.html#cb524-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="logistic-regression.html#cb519-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="sc">%&gt;%</span></span>
+<span id="cb519-2"><a href="logistic-regression.html#cb519-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k5,</span>
+<span id="cb519-3"><a href="logistic-regression.html#cb519-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> lfp_prob, </span>
+<span id="cb519-4"><a href="logistic-regression.html#cb519-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="fu">factor</span>(k618))) <span class="sc">+</span></span>
+<span id="cb519-5"><a href="logistic-regression.html#cb519-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb519-6"><a href="logistic-regression.html#cb519-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb519-7"><a href="logistic-regression.html#cb519-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of children aged 0 to 5&quot;</span>,</span>
+<span id="cb519-8"><a href="logistic-regression.html#cb519-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Probability of being in work&quot;</span>,</span>
+<span id="cb519-9"><a href="logistic-regression.html#cb519-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Children 6-18&quot;</span>) <span class="sc">+</span></span>
+<span id="cb519-10"><a href="logistic-regression.html#cb519-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-333-1.png" width="672" /></p>
 <p>By the way, predictions work for linear models fitted using <code>lm</code> too and can be particularly handy for making sense of interactions or other non-linear effects.</p>
 </div>
 <div id="easierpredictions" class="section level4" number="7.11.4.2">
 <h4><span class="header-section-number">7.11.4.2</span> Use ggeffects</h4>
 <p>Every few months someone creates a helpful R package for creating or understanding models. The <code>ggeffects</code> package is tear-jerkingly beautiful. See Lüdecke (2018) for more information. There are also helpful examples on the <a href="https://strengejacke.github.io/ggeffects/">package webpage</a>.</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="logistic-regression.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="logistic-regression.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span></code></pre></div>
 <p>The command for making predictions is called <code>ggpredict</code> and wants a model and at least one variable name. It can generate predictions for up to four variables whilst holding the others at some constant.</p>
 <p>Let’s start with one, <code>k5</code>.</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="logistic-regression.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="st">&quot;k5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="logistic-regression.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="st">&quot;k5&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## # Predicted probabilities of lfp_yes
 ## # x = k5
@@ -1434,18 +1435,18 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <pre><code>## Standard errors are on the link-scale (untransformed).</code></pre>
 <p>It tries to guess sensible values to hold other predictions at. Here it has held <code>k618</code> at 1.</p>
 <p>The package also comes with a <code>plot</code> function which automatically gives you a <code>ggplot</code> object.</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="logistic-regression.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb529-2"><a href="logistic-regression.html#cb529-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="logistic-regression.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb524-2"><a href="logistic-regression.html#cb524-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-336-1.png" width="672" /></p>
 <p>The grey area is a 95% confidence band.</p>
 <p>You can then modify this plot as you would any other <code>ggplot</code> object:</p>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="logistic-regression.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb530-2"><a href="logistic-regression.html#cb530-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
-<span id="cb530-3"><a href="logistic-regression.html#cb530-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb530-4"><a href="logistic-regression.html#cb530-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of children aged 0 to 5&quot;</span>) <span class="sc">+</span></span>
-<span id="cb530-5"><a href="logistic-regression.html#cb530-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in the labour force&quot;</span>) <span class="sc">+</span></span>
-<span id="cb530-6"><a href="logistic-regression.html#cb530-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb530-7"><a href="logistic-regression.html#cb530-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="logistic-regression.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb525-2"><a href="logistic-regression.html#cb525-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
+<span id="cb525-3"><a href="logistic-regression.html#cb525-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb525-4"><a href="logistic-regression.html#cb525-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of children aged 0 to 5&quot;</span>) <span class="sc">+</span></span>
+<span id="cb525-5"><a href="logistic-regression.html#cb525-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in the labour force&quot;</span>) <span class="sc">+</span></span>
+<span id="cb525-6"><a href="logistic-regression.html#cb525-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb525-7"><a href="logistic-regression.html#cb525-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-337-1.png" width="672" /></p>
 <p>Before publication (or module assignment), be sure to explain in your Figure captions what exactly a graph shows, i.e., in this case that the number of children ages 6 to 18 has been held at 1.</p>
 </div>
@@ -1455,11 +1456,11 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <h2><span class="header-section-number">7.12</span> Diagnostics</h2>
 <p>Good news: we will use the same diagnostic tools as for linear regression. Actually (slightly) fewer will now apply.</p>
 <p>Load the <code>car</code> package:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="logistic-regression.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="logistic-regression.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
 <div id="check-the-residual-distribution" class="section level3" number="7.12.1">
 <h3><span class="header-section-number">7.12.1</span> Check the residual distribution</h3>
 <p>You can check for outlying residuals as before:</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="logistic-regression.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="logistic-regression.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(mod_children)</span></code></pre></div>
 <pre><code>## No Studentized residuals with Bonferroni p &lt; 0.05
 ## Largest |rstudent|:
 ##    rstudent unadjusted p-value Bonferroni p
@@ -1469,27 +1470,28 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <div id="check-that-the-residual-mean-is-constant" class="section level3" number="7.12.2">
 <h3><span class="header-section-number">7.12.2</span> Check that the residual mean is constant</h3>
 <p>The <code>residualPlots</code> works as before, except when you run it with default setting on this model and data it will complain that “all data are on boundary of neighbourhood, make span bigger.” The “span” refers to how much smoothing the smoother does!</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="logistic-regression.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_children,</span>
-<span id="cb534-2"><a href="logistic-regression.html#cb534-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="logistic-regression.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_children,</span>
+<span id="cb529-2"><a href="logistic-regression.html#cb529-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>By default the span of the smoother is <code>2/3</code>. For this model and data, setting it to 1 works fine:</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="logistic-regression.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_children,</span>
-<span id="cb535-2"><a href="logistic-regression.html#cb535-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb535-3"><a href="logistic-regression.html#cb535-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="logistic-regression.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_children,</span>
+<span id="cb530-2"><a href="logistic-regression.html#cb530-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb530-3"><a href="logistic-regression.html#cb530-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-341-1.png" width="576" /></p>
 <p>The patterns in the data points you see here are due to the outcome variable only taking on a 0 or a 1. This is to be expected. Focus on the magenta curves and ensure that they aren’t curves (if you see what I mean…?): they should be straight lines along zero. And indeed here they are.</p>
+<p>The variance does <em>not</em> need to be constant for GLMs other than the normal/Gaussian model.</p>
 </div>
 <div id="linearity-of-predictors" class="section level3" number="7.12.3">
 <h3><span class="header-section-number">7.12.3</span> Linearity of predictors</h3>
 <p>We can use <code>crPlots</code> again to obtain component-plus-residual plots.</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="logistic-regression.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_children, <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="logistic-regression.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_children, <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-342-1.png" width="672" /></p>
 <p>These too are fine – no obvious curves, though potentially something worth exploring towards the upper end of <code>k618</code> where there isn’t much data (i.e., few families over 6 children). Again I had to fiddle with the <code>span</code> parameter to stop the smoother complaining.</p>
 </div>
 <div id="influence" class="section level3" number="7.12.4">
 <h3><span class="header-section-number">7.12.4</span> Influence</h3>
 <p>Again everything we covered in the previous session applies here. Here’s a quick way to look at potentially influential points:</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="logistic-regression.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(mod_children) <span class="sc">%&gt;%</span></span>
-<span id="cb537-2"><a href="logistic-regression.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="logistic-regression.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(mod_children) <span class="sc">%&gt;%</span></span>
+<span id="cb532-2"><a href="logistic-regression.html#cb532-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## Potentially influential observations of
 ##   glm(formula = lfp_yes ~ k5 + k618, family = binomial, data = dat) :
 ## 
@@ -1538,17 +1540,17 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 746  0.05  -0.07  -0.07    -0.11    1.03_*  0.00   0.03_*
 ## 750  0.02  -0.07  -0.02    -0.08    1.02_*  0.00   0.02_*</code></pre>
 <p>We could also look at (my favourite) the DFBETA plots:</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="logistic-regression.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="logistic-regression.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_children)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-344-1.png" width="672" /></p>
 <p>The numbers are minuscule, relative to the model slopes, so nothing to worry about. I am curious about the largest DFBETA for <code>k618</code>, though. The raw descriptives showed one person with eight children aged 6 to 18 who was in work. Is the slope being ever so slightly dragged up by her data?</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="logistic-regression.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_children) <span class="sc">%&gt;%</span></span>
-<span id="cb540-2"><a href="logistic-regression.html#cb540-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb540-3"><a href="logistic-regression.html#cb540-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k618 <span class="sc">&gt;</span> .<span class="dv">009</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="logistic-regression.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_children) <span class="sc">%&gt;%</span></span>
+<span id="cb535-2"><a href="logistic-regression.html#cb535-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb535-3"><a href="logistic-regression.html#cb535-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k618 <span class="sc">&gt;</span> .<span class="dv">009</span>)</span></code></pre></div>
 <pre><code>##     (Intercept)           k5        k618
 ## 53 -0.009795223 -0.005237558 0.009994706</code></pre>
 <p>That’s row 53, so let’s <code>slice</code> the data to look:</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="logistic-regression.html#cb542-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb542-2"><a href="logistic-regression.html#cb542-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">53</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="logistic-regression.html#cb537-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb537-2"><a href="logistic-regression.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">53</span>)</span></code></pre></div>
 <pre><code>##   lfp lfp_yes k5 k618 age wc hc       lwg    inc
 ## 1 yes       1  0    8  37 no no 0.1625193 16.258</code></pre>
 <p>Yes, this is the one person with 8 children! But it doesn’t matter since the dataset is so large and the DFBETA minuscule.</p>
@@ -1556,17 +1558,18 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <div id="multicolinearity" class="section level3" number="7.12.5">
 <h3><span class="header-section-number">7.12.5</span> Multicolinearity</h3>
 <p>Yep, you can still check the variance inflation factors (VIFs) and interpret as before!</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="logistic-regression.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_children)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="logistic-regression.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_children)</span></code></pre></div>
 <pre><code>##       k5     k618 
 ## 1.010858 1.010858</code></pre>
 <p>These are both close to 1 so all is good.</p>
 <p>We could try adding multicollinearity, just to be sure that the VIFs work… Here I’m adding a new variable called <code>kids</code> which is the sum of <code>k5</code> and <code>k618</code>:</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="logistic-regression.html#cb546-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb546-2"><a href="logistic-regression.html#cb546-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kids =</span> k5 <span class="sc">+</span> k618)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="logistic-regression.html#cb541-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb541-2"><a href="logistic-regression.html#cb541-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kids =</span> k5 <span class="sc">+</span> k618)</span></code></pre></div>
 <p>Here’s a model with both <code>k618</code> and <code>kids</code> as predictors:</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="logistic-regression.html#cb547-1" aria-hidden="true" tabindex="-1"></a>high_vif_maybe <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k618 <span class="sc">+</span> kids, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="logistic-regression.html#cb542-1" aria-hidden="true" tabindex="-1"></a>high_vif_maybe <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k618 <span class="sc">+</span> kids, </span>
+<span id="cb542-2"><a href="logistic-regression.html#cb542-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
 <p>And here are the VIFs:</p>
-<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="logistic-regression.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(high_vif_maybe)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="logistic-regression.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(high_vif_maybe)</span></code></pre></div>
 <pre><code>##     k618     kids 
 ## 9.189766 9.189766</code></pre>
 <p>They are high as you might expect, given how the <code>kids</code> variable was created.</p>
@@ -1613,12 +1616,12 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 </div>
 <div id="an-answer" class="section level3" number="7.13.2">
 <h3><span class="header-section-number">7.13.2</span> (An) Answer</h3>
-<p><strong>(a) Does a model with the following predictors [list of predictors] added predict better than one with only the number of children?</strong></p>
+<p><strong>a. Does a model with the following predictors [list of predictors] added predict better than one with only the number of children?</strong></p>
 <p>Here’s another way to add predictors to a previously fitted model; however, copy and paste works fine too!</p>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="logistic-regression.html#cb550-1" aria-hidden="true" tabindex="-1"></a>mod_more <span class="ot">&lt;-</span> <span class="fu">update</span>(mod_children,</span>
-<span id="cb550-2"><a href="logistic-regression.html#cb550-2" aria-hidden="true" tabindex="-1"></a>                   . <span class="sc">~</span> . <span class="sc">+</span> age <span class="sc">+</span> wc <span class="sc">+</span> hc <span class="sc">+</span> inc)</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="logistic-regression.html#cb545-1" aria-hidden="true" tabindex="-1"></a>mod_more <span class="ot">&lt;-</span> <span class="fu">update</span>(mod_children,</span>
+<span id="cb545-2"><a href="logistic-regression.html#cb545-2" aria-hidden="true" tabindex="-1"></a>                   . <span class="sc">~</span> . <span class="sc">+</span> age <span class="sc">+</span> wc <span class="sc">+</span> hc <span class="sc">+</span> inc)</span></code></pre></div>
 <p>Does this more complex model explain the data better?</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="logistic-regression.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_children, mod_more, <span class="at">test =</span> <span class="st">&quot;Chi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="logistic-regression.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_children, mod_more, <span class="at">test =</span> <span class="st">&quot;Chi&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model 1: lfp_yes ~ k5 + k618
@@ -1629,9 +1632,9 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>For what it’s worth (we haven’t checked any model diagnostics yet, so this could be nonsense), yes, the model fits better, <span class="math inline">\(\chi^2(4) = 72.3\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</p>
-<p><strong>(b) Interpret the coefficients, using a method of your choice</strong></p>
+<p><strong>b. Interpret the coefficients, using a method of your choice</strong></p>
 <p>I’m going to use two approaches. First the divide-by-four approach, using the original model summary to work out the direction of effects and whether they are statistically significant:</p>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="logistic-regression.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_more)</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="logistic-regression.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_more)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = lfp_yes ~ k5 + k618 + age + wc + hc + inc, family = binomial, 
@@ -1661,7 +1664,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
 <p>Here are the coefficients, for ease of reading:</p>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="logistic-regression.html#cb555-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">coef</span>(mod_more)[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="logistic-regression.html#cb550-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">coef</span>(mod_more)[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##    k5  k618   age wcyes hcyes   inc 
 ## -0.37 -0.02 -0.02  0.25  0.03 -0.01</code></pre>
 <p>All statistically significant effects have p’s far below .05.</p>
@@ -1670,49 +1673,49 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <p>Whether the woman had a college education was a statistically significant predictor and increased the probability of being in work by at most 0.25. There was no statistically significant effect for the husband’s college education.</p>
 <p>Finally, family income, excluding the woman’s income, had a significant effect too. Each extra $1000 reduces the probability of her being in work by 0.01.</p>
 <p>Here is a picture.</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="logistic-regression.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_more, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>, <span class="st">&quot;wc&quot;</span>, <span class="st">&quot;age [30,45,60]&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb557-2"><a href="logistic-regression.html#cb557-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
-<span id="cb557-3"><a href="logistic-regression.html#cb557-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of children aged 0 to 5&quot;</span>) <span class="sc">+</span></span>
-<span id="cb557-4"><a href="logistic-regression.html#cb557-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in work&quot;</span>) <span class="sc">+</span></span>
-<span id="cb557-5"><a href="logistic-regression.html#cb557-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">colour =</span> <span class="st">&quot;Woman attended college&quot;</span>) <span class="sc">+</span></span>
-<span id="cb557-6"><a href="logistic-regression.html#cb557-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb557-7"><a href="logistic-regression.html#cb557-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
-<span id="cb557-8"><a href="logistic-regression.html#cb557-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="logistic-regression.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_more, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>, <span class="st">&quot;wc&quot;</span>, <span class="st">&quot;age [30,45,60]&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb552-2"><a href="logistic-regression.html#cb552-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
+<span id="cb552-3"><a href="logistic-regression.html#cb552-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of children aged 0 to 5&quot;</span>) <span class="sc">+</span></span>
+<span id="cb552-4"><a href="logistic-regression.html#cb552-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in work&quot;</span>) <span class="sc">+</span></span>
+<span id="cb552-5"><a href="logistic-regression.html#cb552-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">colour =</span> <span class="st">&quot;Woman attended college&quot;</span>) <span class="sc">+</span></span>
+<span id="cb552-6"><a href="logistic-regression.html#cb552-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb552-7"><a href="logistic-regression.html#cb552-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
+<span id="cb552-8"><a href="logistic-regression.html#cb552-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-355-1.png" width="576" /></p>
 <p>Adjusted for: number of children aged 6 to 18 was fixed at 1, husband fixed at no college education, and income at the mean, $2013.</p>
 <p>(Wasn’t that fantastically easy? Most of the code was just fiddling with the layout.)</p>
 <p>How about income?</p>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="logistic-regression.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_more, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;inc&quot;</span>, <span class="st">&quot;wc&quot;</span>, <span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb558-2"><a href="logistic-regression.html#cb558-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
-<span id="cb558-3"><a href="logistic-regression.html#cb558-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Family income exc. wife (in $1000s)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb558-4"><a href="logistic-regression.html#cb558-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in work&quot;</span>) <span class="sc">+</span></span>
-<span id="cb558-5"><a href="logistic-regression.html#cb558-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">colour =</span> <span class="st">&quot;Attended college&quot;</span>) <span class="sc">+</span></span>
-<span id="cb558-6"><a href="logistic-regression.html#cb558-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb558-7"><a href="logistic-regression.html#cb558-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
-<span id="cb558-8"><a href="logistic-regression.html#cb558-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="logistic-regression.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_more, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;inc&quot;</span>, <span class="st">&quot;wc&quot;</span>, <span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb553-2"><a href="logistic-regression.html#cb553-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
+<span id="cb553-3"><a href="logistic-regression.html#cb553-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Family income exc. wife (in $1000s)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb553-4"><a href="logistic-regression.html#cb553-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in work&quot;</span>) <span class="sc">+</span></span>
+<span id="cb553-5"><a href="logistic-regression.html#cb553-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">colour =</span> <span class="st">&quot;Attended college&quot;</span>) <span class="sc">+</span></span>
+<span id="cb553-6"><a href="logistic-regression.html#cb553-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb553-7"><a href="logistic-regression.html#cb553-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
+<span id="cb553-8"><a href="logistic-regression.html#cb553-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-356-1.png" width="576" /></p>
 <p>The effect of family income was sensitive to the number of children – more marked for lower numbers of children – highlighting why it is worth plotting model predictions.</p>
-<p><strong>(c) Try some diagnostics (this week you have some more creative freedom) – do you want to do anything as a result of what you find?</strong></p>
+<p><strong>c. Try some diagnostics (this week you have some more creative freedom) – do you want to do anything as a result of what you find?</strong></p>
 <p>I’m going to start with the VIFs.</p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="logistic-regression.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_more)</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="logistic-regression.html#cb554-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_more)</span></code></pre></div>
 <pre><code>##       k5     k618      age       wc       hc      inc 
 ## 1.396006 1.249884 1.650316 1.446317 1.552617 1.232176</code></pre>
 <p>No obvious problems.</p>
 <p>Residual plots show no obvious problems either:</p>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="logistic-regression.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_more,</span>
-<span id="cb561-2"><a href="logistic-regression.html#cb561-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> F,</span>
-<span id="cb561-3"><a href="logistic-regression.html#cb561-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="logistic-regression.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_more,</span>
+<span id="cb556-2"><a href="logistic-regression.html#cb556-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> F,</span>
+<span id="cb556-3"><a href="logistic-regression.html#cb556-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-358-1.png" width="768" /></p>
 <p>The component + residual plots look beautifully linear:</p>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="logistic-regression.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_more,<span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> .<span class="dv">977</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="logistic-regression.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_more,<span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> .<span class="dv">977</span>))</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-359-1.png" width="768" /></p>
 <p>How about the DFBETA values?</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="logistic-regression.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_more)</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="logistic-regression.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_more)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-360-1.png" width="576" /></p>
 <p>Maybe worth looking at the largest DFBETA values for <code>inc</code>?</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="logistic-regression.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_more) <span class="sc">%&gt;%</span></span>
-<span id="cb564-2"><a href="logistic-regression.html#cb564-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb564-3"><a href="logistic-regression.html#cb564-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(inc <span class="sc">&gt;</span> <span class="fl">0.0015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="logistic-regression.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_more) <span class="sc">%&gt;%</span></span>
+<span id="cb559-2"><a href="logistic-regression.html#cb559-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb559-3"><a href="logistic-regression.html#cb559-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(inc <span class="sc">&gt;</span> <span class="fl">0.0015</span>)</span></code></pre></div>
 <pre><code>##     (Intercept)           k5          k618           age        wcyes
 ## 104 -0.03229246 -0.002015986 -0.0005965456  2.067386e-05  0.007515251
 ## 119 -0.06117716  0.019764440  0.0039864127  1.382225e-04  0.002447020
@@ -1723,25 +1726,25 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 119 -0.017951258 0.002801355
 ## 386 -0.011739797 0.002298775
 ## 402 -0.020029836 0.002007410</code></pre>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="logistic-regression.html#cb566-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb566-2"><a href="logistic-regression.html#cb566-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">104</span>,<span class="dv">119</span>,<span class="dv">386</span>,<span class="dv">402</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="logistic-regression.html#cb561-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb561-2"><a href="logistic-regression.html#cb561-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">104</span>,<span class="dv">119</span>,<span class="dv">386</span>,<span class="dv">402</span>))</span></code></pre></div>
 <pre><code>##   lfp lfp_yes k5 k618 age  wc  hc      lwg   inc kids
 ## 1 yes       1  0    1  48 yes yes 1.654900 70.75    1
 ## 2 yes       1  1    3  38 yes yes 1.299283 91.00    4
 ## 3 yes       1  0    0  41 yes yes 1.948094 79.80    0
 ## 4 yes       1  0    1  48  no  no 1.341559 59.00    1</code></pre>
 <p>They all have high family incomes, compared to the distribution…</p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="logistic-regression.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>inc)</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="logistic-regression.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>inc)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-363-1.png" width="672" /></p>
 <p>Also all these participants are in work, so they are dragging the coefficient for income slightly upwards. We could try removing them and fitting the model again.</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="logistic-regression.html#cb569-1" aria-hidden="true" tabindex="-1"></a>sliced_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb569-2"><a href="logistic-regression.html#cb569-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">104</span>,<span class="dv">119</span>,<span class="dv">386</span>,<span class="dv">402</span>))</span>
-<span id="cb569-3"><a href="logistic-regression.html#cb569-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb569-4"><a href="logistic-regression.html#cb569-4" aria-hidden="true" tabindex="-1"></a>mod_more_sliced <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618 <span class="sc">+</span></span>
-<span id="cb569-5"><a href="logistic-regression.html#cb569-5" aria-hidden="true" tabindex="-1"></a>                         age <span class="sc">+</span> wc <span class="sc">+</span> hc <span class="sc">+</span> inc,</span>
-<span id="cb569-6"><a href="logistic-regression.html#cb569-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">family =</span> binomial,</span>
-<span id="cb569-7"><a href="logistic-regression.html#cb569-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> sliced_dat)</span>
-<span id="cb569-8"><a href="logistic-regression.html#cb569-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_more_sliced)</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="logistic-regression.html#cb564-1" aria-hidden="true" tabindex="-1"></a>sliced_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb564-2"><a href="logistic-regression.html#cb564-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">104</span>,<span class="dv">119</span>,<span class="dv">386</span>,<span class="dv">402</span>))</span>
+<span id="cb564-3"><a href="logistic-regression.html#cb564-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb564-4"><a href="logistic-regression.html#cb564-4" aria-hidden="true" tabindex="-1"></a>mod_more_sliced <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618 <span class="sc">+</span></span>
+<span id="cb564-5"><a href="logistic-regression.html#cb564-5" aria-hidden="true" tabindex="-1"></a>                         age <span class="sc">+</span> wc <span class="sc">+</span> hc <span class="sc">+</span> inc,</span>
+<span id="cb564-6"><a href="logistic-regression.html#cb564-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">family =</span> binomial,</span>
+<span id="cb564-7"><a href="logistic-regression.html#cb564-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> sliced_dat)</span>
+<span id="cb564-8"><a href="logistic-regression.html#cb564-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_more_sliced)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = lfp_yes ~ k5 + k618 + age + wc + hc + inc, family = binomial, 
@@ -1771,7 +1774,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>The qualitative patterns are the same in terms of direction of effects and which are statistically significant. We could peek at the coefficients in more detail.</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="logistic-regression.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">coef</span>(mod_more), <span class="fu">coef</span>(mod_more_sliced)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="logistic-regression.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">coef</span>(mod_more), <span class="fu">coef</span>(mod_more_sliced)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##              [,1]  [,2]
 ## (Intercept)  3.76  3.91
 ## k5          -1.47 -1.50

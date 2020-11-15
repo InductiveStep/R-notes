@@ -1,10 +1,10 @@
 
 # Visualising data in the tidyverse
 
-By the end of this tutorial you will:
+By the end of this chapter you will:
 
 * Have explored a key example visualisation in depth, using packages in the tidyverse.
-* Understand what happens when you tweak this in various ways.
+* Understand what happens when you tweak this example in various ways.
 * Know where to look for ideas and code for other visualisations.
 
 
@@ -12,7 +12,7 @@ By the end of this tutorial you will:
 
 You will need to create a new *R* or Markdown (*Rmd*) file (depending on your preference -- I recommend Markdown) and save it somewhere sensible where you can find it again in a few months time.
 
-We will be using the [Gapminder dataset](https://github.com/jennybc/gapminder) dataset from last time.
+We will be using the [Gapminder dataset](./gapminder.csv) dataset from last time.
 
 ```{r}
 gap <- read.csv("gapminder.csv")
@@ -39,7 +39,7 @@ library(tidyverse)
 
 If that didn't work, there are two things you can do. You could try saving your R/Rmd file. This may prompt RStudio to notice that the package isn't installed and ask you if you want to install it.
 
-Alternatively, just use the `install.packages` command as per last week:
+Alternatively, just use the `install.packages` command as per last chapter:
 
 ```{r eval = F}
 install.packages("tidyverse")
@@ -88,13 +88,13 @@ ggplot(data = gap,
   geom_point()
 ```
 
-Note how the "+" symbol is used here to mean adding elements to a plot. The meaning of "+" depends on context.
+Note how the `+` symbol is used here to mean adding elements to a plot. The meaning of `+` depends on context.
 
 I could also have made this plot by giving a name to the first part:
 
 ```{r}
 the_basic_plot <- ggplot(data = gap,
-                  mapping = aes(x = year, y = lifeExp))
+                         mapping = aes(x = year, y = lifeExp))
 ```
 
 Then added this to the geom:
@@ -108,20 +108,20 @@ The plot hasn't displayed yet, though.
 
 ### Warm-up activity
 
-(a) What do you need to do to get the `plot_with_stuff_on` plot to display?
+a. What do you need to do to get the `plot_with_stuff_on` plot to display?
 
-(b) How could you change the axis labels on `plot_with_stuff_on`? (Look up for a clue!)
+b. How could you change the axis labels on `plot_with_stuff_on`? (Look up for a clue!)
 
 
 ### Answer
 
-(a) What do you need to do to get the plot to display?
+**a. What do you need to do to get the `plot_with_stuff_on` plot to display?**
 
 ```{r}
 plot_with_stuff_on
 ```
 
-(b) How could you change the axis labels on `plot_with_stuff_on`?
+**b. How could you change the axis labels on `plot_with_stuff_on`?**
 
 Either:
 
@@ -173,6 +173,7 @@ ggplot(data = gap,
        colour = "Continent")
 ```
 
+Now the legend has an uppercase "C".
 
 ## Another geom: jitter {.tabset}
 
@@ -239,9 +240,7 @@ Last time, we saw how to calculate the mean of a variable. Here's the mean of li
 mean(gap$lifeExp)
 ```
 
-I don't know what to make of that!
-
-Typically we want to calculate means by group rather than for a whole variable. This is known as *aggregating* or *summarising* by group. For instance, looking at the plots above it seems that there will be a mean difference in life expectancy between continents, and it would be interesting to see that.
+I don't know what to make of that! Typically we want to calculate means by group rather than for a whole variable. This is known as *aggregating* or *summarising* by group. For instance, looking at the plots above it seems that there will be a mean difference in life expectancy between continents, and it would be interesting to see that.
 
 For this, we will use `dplyr` (pronounced "DEE-ply-er"). It's part of `tidyverse` so already included, but it's useful to know the name of this specific part for when you are searching for help.
 
@@ -395,8 +394,8 @@ ggplot(mean_life_exp_gap, aes(x = year,
                               colour = continent)) +
   geom_line() +
   labs(x = "Year",
-     y = "Life expectancy at birth",
-     colour = "Continent")
+       y = "Life expectancy at birth",
+       colour = "Continent")
 ```
 
 
@@ -406,7 +405,7 @@ How could you add points back to the lines?
 
 ### Answer
 
-Simply use "+" again:
+Simply use `+` again:
 
 ```{r}
 ggplot(mean_life_exp_gap, aes(x = year,
@@ -435,7 +434,7 @@ gap %>%
   head(10)
 ```
 
-Note the double equals, `==`, not to be confused with `=` which is used to set inputs (also known as arguments). To see how it works, compare:
+Note the double equals, `==`, not to be confused with `=` which is used to set inputs (also known as arguments). To see how `==` works, compare:
 
 ```{r}
 11 + 3 == 14
@@ -515,7 +514,7 @@ gap %>%
 
 This filters `gap` to data from 2007 *and* Africa, sorts it by life expectancy, and then selects the country and life expectancy variables.
 
-The `slice` family of functions can be used to zoom into to the top or bottom slices of rows, or a random sample.
+The `slice` family of functions can be used to zoom into the top or bottom slices of rows, particular rows, or a random sample.
 
 Here's an example. First save the previous chunk results above in `africa2007`:
 
@@ -535,7 +534,7 @@ africa2007min <- africa2007 %>%
 africa2007min
 ```
 
-Do this again for the tail, i.e., the bottom of the dataset, which is actually the highest values for life expectancy.
+Do this again for the tail, i.e., the bottom of the dataset, which has the highest values for life expectancy.
 
 ```{r}
 africa2007max <- africa2007 %>%
@@ -560,7 +559,7 @@ The `top_and_bottom` data frame has the names of countries with the top and bott
 ```{r}
 top_and_bottom$country
 ```
-Next we are going to filter the data set to only these countries, using the `%in%` operator which returns true if a value is in the vector you provide and false otherwise.
+Next we are going to filter the data set to only these countries, using the `%in%` operator which returns `TRUE` if a value is in the vector you provide and `FALSE` otherwise.
 
 Here are two examples:
 
@@ -580,7 +579,7 @@ gap %>%
   geom_line()
 ```
 
-We can add `Rwanda` back in by using the `c` operator. Here's an example to show how it works:
+We can add `Rwanda` back in by using the `c` operator ("c" for "combine"). Here's an example to show how `c` works:
 
 ```{r}
 some_numbers <- c(1,2,3)
@@ -601,7 +600,7 @@ gap %>%
        colour = "Country")
 ```
 
-You might now consider a qualitative analysis of these countries (or lookup Wikipedia, for the purposes of a weekly R ехеrcise) to conjecture why there are these differences.
+You might now consider a qualitative analysis of these countries (or lookup Wikipedia, for the purposes of a weekly R exercise) to conjecture why there are these differences.
 
 
 ## Final challenge {.tabset}
@@ -643,3 +642,12 @@ gap %>%
        colour = "Continent",
        title = "Life expectancy and GDP per capita in 2007")
 ```
+
+## More ideas for visualisations
+
+Check out the references, all available for free online:
+
+* Chang, W. (2020). [R Graphics Cookbook](https://r-graphics.org/) (2nd ed.) -- huge selection of examples to adapt and use.
+* Healy, K. (2019). [Data Visualization: A Practical Introduction](https://socviz.co/) -- more explanations of creating effect visualisation, using social science examples (including Gapminder).
+* Wickham, H., & Grolemund, G. (2017). [R for Data Science: Import, Tidy, Transform, Visualize, and Model Data](http://r4ds.had.co.nz/) -- a systematic introduction to the tidyverse.
+

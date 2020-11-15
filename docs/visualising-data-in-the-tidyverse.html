@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Visualising data in the tidyverse | R notes</title>
+  <title>Chapter 3 Visualising data in the tidyverse | Using R for social research (v0.1)</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Visualising data in the tidyverse | R notes" />
+  <meta property="og:title" content="Chapter 3 Visualising data in the tidyverse | Using R for social research (v0.1)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Visualising data in the tidyverse | R notes" />
+  <meta name="twitter:title" content="Chapter 3 Visualising data in the tidyverse | Using R for social research (v0.1)" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
 
-<meta name="author" content="Andi Fugard" />
+<meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.13.1" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#activity-10"><i class="fa fa-check"></i><b>3.13.1</b> Activity</a></li>
 <li class="chapter" data-level="3.13.2" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#answer-13"><i class="fa fa-check"></i><b>3.13.2</b> Answer</a></li>
 </ul></li>
+<li class="chapter" data-level="3.14" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#more-ideas-for-visualisations"><i class="fa fa-check"></i><b>3.14</b> More ideas for visualisations</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear regression</a>
 <ul>
@@ -241,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-12"><i class="fa fa-check"></i><b>4.5.1</b> Activity</a></li>
 <li class="chapter" data-level="4.5.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-15"><i class="fa fa-check"></i><b>4.5.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept only model</a>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept-only model</a>
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-13"><i class="fa fa-check"></i><b>4.6.1</b> Activity</a></li>
 <li class="chapter" data-level="4.6.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-16"><i class="fa fa-check"></i><b>4.6.2</b> Answer</a></li>
@@ -408,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R notes</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.1)</a>
           </h1>
         </div>
 
@@ -418,16 +419,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="visualising-data-in-the-tidyverse" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Visualising data in the tidyverse</h1>
-<p>By the end of this tutorial you will:</p>
+<p>By the end of this chapter you will:</p>
 <ul>
 <li>Have explored a key example visualisation in depth, using packages in the tidyverse.</li>
-<li>Understand what happens when you tweak this in various ways.</li>
+<li>Understand what happens when you tweak this example in various ways.</li>
 <li>Know where to look for ideas and code for other visualisations.</li>
 </ul>
 <div id="getting-setup" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Getting setup</h2>
 <p>You will need to create a new <em>R</em> or Markdown (<em>Rmd</em>) file (depending on your preference – I recommend Markdown) and save it somewhere sensible where you can find it again in a few months time.</p>
-<p>We will be using the <a href="https://github.com/jennybc/gapminder">Gapminder dataset</a> dataset from last time.</p>
+<p>We will be using the <a href="./gapminder.csv">Gapminder dataset</a> dataset from last time.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="visualising-data-in-the-tidyverse.html#cb62-1" aria-hidden="true" tabindex="-1"></a>gap <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;gapminder.csv&quot;</span>)</span></code></pre></div>
 <p>Previously we used the “base” plot function:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="visualising-data-in-the-tidyverse.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lifeExp <span class="sc">~</span> year,</span>
@@ -440,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This command will include tidyverse and make a bit of noise as it arrives…</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="visualising-data-in-the-tidyverse.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>If that didn’t work, there are two things you can do. You could try saving your R/Rmd file. This may prompt RStudio to notice that the package isn’t installed and ask you if you want to install it.</p>
-<p>Alternatively, just use the <code>install.packages</code> command as per last week:</p>
+<p>Alternatively, just use the <code>install.packages</code> command as per last chapter:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="visualising-data-in-the-tidyverse.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>To see if that worked, run this:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="visualising-data-in-the-tidyverse.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gap,</span>
@@ -470,10 +471,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb68-2"><a href="visualising-data-in-the-tidyverse.html#cb68-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
 <span id="cb68-3"><a href="visualising-data-in-the-tidyverse.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
-<p>Note how the “+” symbol is used here to mean adding elements to a plot. The meaning of “+” depends on context.</p>
+<p>Note how the <code>+</code> symbol is used here to mean adding elements to a plot. The meaning of <code>+</code> depends on context.</p>
 <p>I could also have made this plot by giving a name to the first part:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="visualising-data-in-the-tidyverse.html#cb69-1" aria-hidden="true" tabindex="-1"></a>the_basic_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gap,</span>
-<span id="cb69-2"><a href="visualising-data-in-the-tidyverse.html#cb69-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp))</span></code></pre></div>
+<span id="cb69-2"><a href="visualising-data-in-the-tidyverse.html#cb69-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp))</span></code></pre></div>
 <p>Then added this to the geom:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="visualising-data-in-the-tidyverse.html#cb70-1" aria-hidden="true" tabindex="-1"></a>plot_with_stuff_on <span class="ot">&lt;-</span> the_basic_plot <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p>The plot hasn’t displayed yet, though.</p>
@@ -486,14 +487,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answer-7" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Answer</h3>
-<ol style="list-style-type: lower-alpha">
-<li>What do you need to do to get the plot to display?</li>
-</ol>
+<p><strong>a. What do you need to do to get the <code>plot_with_stuff_on</code> plot to display?</strong></p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="visualising-data-in-the-tidyverse.html#cb71-1" aria-hidden="true" tabindex="-1"></a>plot_with_stuff_on</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>How could you change the axis labels on <code>plot_with_stuff_on</code>?</li>
-</ol>
+<p><strong>b. How could you change the axis labels on <code>plot_with_stuff_on</code>?</strong></p>
 <p>Either:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="visualising-data-in-the-tidyverse.html#cb72-1" aria-hidden="true" tabindex="-1"></a>plot_with_stuff_on <span class="sc">+</span> </span>
 <span id="cb72-2"><a href="visualising-data-in-the-tidyverse.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
@@ -530,6 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb75-7"><a href="visualising-data-in-the-tidyverse.html#cb75-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Life expectancy at birth&quot;</span>,</span>
 <span id="cb75-8"><a href="visualising-data-in-the-tidyverse.html#cb75-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>Now the legend has an uppercase “C.”</p>
 </div>
 <div id="another-geom-jitter" class="section level2 tabset" number="3.5">
 <h2><span class="header-section-number">3.5</span> Another geom: jitter</h2>
@@ -578,8 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Last time, we saw how to calculate the mean of a variable. Here’s the mean of life expectancy, across all countries and years:</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="visualising-data-in-the-tidyverse.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gap<span class="sc">$</span>lifeExp)</span></code></pre></div>
 <pre><code>## [1] 59.47444</code></pre>
-<p>I don’t know what to make of that!</p>
-<p>Typically we want to calculate means by group rather than for a whole variable. This is known as <em>aggregating</em> or <em>summarising</em> by group. For instance, looking at the plots above it seems that there will be a mean difference in life expectancy between continents, and it would be interesting to see that.</p>
+<p>I don’t know what to make of that! Typically we want to calculate means by group rather than for a whole variable. This is known as <em>aggregating</em> or <em>summarising</em> by group. For instance, looking at the plots above it seems that there will be a mean difference in life expectancy between continents, and it would be interesting to see that.</p>
 <p>For this, we will use <code>dplyr</code> (pronounced “DEE-ply-er”). It’s part of <code>tidyverse</code> so already included, but it’s useful to know the name of this specific part for when you are searching for help.</p>
 <p>I’m going to work through an example in excruciating detail, but it will be worth it I promise.</p>
 <p>The punchline is that to calculate mean life expectancy by year and continent, you do this:</p>
@@ -700,8 +697,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb105-3"><a href="visualising-data-in-the-tidyverse.html#cb105-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
 <span id="cb105-4"><a href="visualising-data-in-the-tidyverse.html#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb105-5"><a href="visualising-data-in-the-tidyverse.html#cb105-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb105-6"><a href="visualising-data-in-the-tidyverse.html#cb105-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">&quot;Life expectancy at birth&quot;</span>,</span>
-<span id="cb105-7"><a href="visualising-data-in-the-tidyverse.html#cb105-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>)</span></code></pre></div>
+<span id="cb105-6"><a href="visualising-data-in-the-tidyverse.html#cb105-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Life expectancy at birth&quot;</span>,</span>
+<span id="cb105-7"><a href="visualising-data-in-the-tidyverse.html#cb105-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <div id="activity-8" class="section level3" number="3.9.1">
 <h3><span class="header-section-number">3.9.1</span> Activity</h3>
@@ -709,7 +706,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answer-11" class="section level3" number="3.9.2">
 <h3><span class="header-section-number">3.9.2</span> Answer</h3>
-<p>Simply use “+” again:</p>
+<p>Simply use <code>+</code> again:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="visualising-data-in-the-tidyverse.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mean_life_exp_gap, <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
 <span id="cb106-2"><a href="visualising-data-in-the-tidyverse.html#cb106-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> mean_life_exp,</span>
 <span id="cb106-3"><a href="visualising-data-in-the-tidyverse.html#cb106-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
@@ -739,7 +736,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8  Algeria    Africa 1987  65.799 23254956  5681.359
 ## 9  Algeria    Africa 1992  67.744 26298373  5023.217
 ## 10 Algeria    Africa 1997  69.152 29072015  4797.295</code></pre>
-<p>Note the double equals, <code>==</code>, not to be confused with <code>=</code> which is used to set inputs (also known as arguments). To see how it works, compare:</p>
+<p>Note the double equals, <code>==</code>, not to be confused with <code>=</code> which is used to set inputs (also known as arguments). To see how <code>==</code> works, compare:</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="visualising-data-in-the-tidyverse.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">14</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>And:</p>
@@ -844,7 +841,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 51                    Libya  73.952
 ## 52                  Reunion  76.442</code></pre>
 <p>This filters <code>gap</code> to data from 2007 <em>and</em> Africa, sorts it by life expectancy, and then selects the country and life expectancy variables.</p>
-<p>The <code>slice</code> family of functions can be used to zoom into to the top or bottom slices of rows, or a random sample.</p>
+<p>The <code>slice</code> family of functions can be used to zoom into the top or bottom slices of rows, particular rows, or a random sample.</p>
 <p>Here’s an example. First save the previous chunk results above in <code>africa2007</code>:</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="visualising-data-in-the-tidyverse.html#cb121-1" aria-hidden="true" tabindex="-1"></a>africa2007 <span class="ot">&lt;-</span> gap <span class="sc">%&gt;%</span></span>
 <span id="cb121-2"><a href="visualising-data-in-the-tidyverse.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span></span>
@@ -859,7 +856,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1  Swaziland  39.613
 ## 2 Mozambique  42.082
 ## 3     Zambia  42.384</code></pre>
-<p>Do this again for the tail, i.e., the bottom of the dataset, which is actually the highest values for life expectancy.</p>
+<p>Do this again for the tail, i.e., the bottom of the dataset, which has the highest values for life expectancy.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="visualising-data-in-the-tidyverse.html#cb124-1" aria-hidden="true" tabindex="-1"></a>africa2007max <span class="ot">&lt;-</span> africa2007 <span class="sc">%&gt;%</span></span>
 <span id="cb124-2"><a href="visualising-data-in-the-tidyverse.html#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">3</span>)</span>
 <span id="cb124-3"><a href="visualising-data-in-the-tidyverse.html#cb124-3" aria-hidden="true" tabindex="-1"></a>africa2007max</span></code></pre></div>
@@ -884,7 +881,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="visualising-data-in-the-tidyverse.html#cb128-1" aria-hidden="true" tabindex="-1"></a>top_and_bottom<span class="sc">$</span>country</span></code></pre></div>
 <pre><code>## [1] &quot;Swaziland&quot;  &quot;Mozambique&quot; &quot;Zambia&quot;     &quot;Tunisia&quot;    &quot;Libya&quot;     
 ## [6] &quot;Reunion&quot;</code></pre>
-<p>Next we are going to filter the data set to only these countries, using the <code>%in%</code> operator which returns true if a value is in the vector you provide and false otherwise.</p>
+<p>Next we are going to filter the data set to only these countries, using the <code>%in%</code> operator which returns <code>TRUE</code> if a value is in the vector you provide and <code>FALSE</code> otherwise.</p>
 <p>Here are two examples:</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="visualising-data-in-the-tidyverse.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Libya&quot;</span> <span class="sc">%in%</span> top_and_bottom<span class="sc">$</span>country</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
@@ -897,7 +894,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb134-5"><a href="visualising-data-in-the-tidyverse.html#cb134-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> country)) <span class="sc">+</span></span>
 <span id="cb134-6"><a href="visualising-data-in-the-tidyverse.html#cb134-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
-<p>We can add <code>Rwanda</code> back in by using the <code>c</code> operator. Here’s an example to show how it works:</p>
+<p>We can add <code>Rwanda</code> back in by using the <code>c</code> operator (“c” for “combine”). Here’s an example to show how <code>c</code> works:</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="visualising-data-in-the-tidyverse.html#cb135-1" aria-hidden="true" tabindex="-1"></a>some_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb135-2"><a href="visualising-data-in-the-tidyverse.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(some_numbers,<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4</code></pre>
@@ -912,7 +909,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb137-8"><a href="visualising-data-in-the-tidyverse.html#cb137-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean life expectancy (years)&quot;</span>,</span>
 <span id="cb137-9"><a href="visualising-data-in-the-tidyverse.html#cb137-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Country&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
-<p>You might now consider a qualitative analysis of these countries (or lookup Wikipedia, for the purposes of a weekly R ехеrcise) to conjecture why there are these differences.</p>
+<p>You might now consider a qualitative analysis of these countries (or lookup Wikipedia, for the purposes of a weekly R exercise) to conjecture why there are these differences.</p>
 </div>
 <div id="final-challenge" class="section level2 tabset" number="3.13">
 <h2><span class="header-section-number">3.13</span> Final challenge</h2>
@@ -941,8 +938,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb142-7"><a href="visualising-data-in-the-tidyverse.html#cb142-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>,</span>
 <span id="cb142-8"><a href="visualising-data-in-the-tidyverse.html#cb142-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Life expectancy and GDP per capita in 2007&quot;</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
-
 </div>
+</div>
+<div id="more-ideas-for-visualisations" class="section level2" number="3.14">
+<h2><span class="header-section-number">3.14</span> More ideas for visualisations</h2>
+<p>Check out the references, all available for free online:</p>
+<ul>
+<li>Chang, W. (2020). <a href="https://r-graphics.org/">R Graphics Cookbook</a> (2nd ed.) – huge selection of examples to adapt and use.</li>
+<li>Healy, K. (2019). <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a> – more explanations of creating effect visualisation, using social science examples (including Gapminder).</li>
+<li>Wickham, H., &amp; Grolemund, G. (2017). <a href="http://r4ds.had.co.nz/">R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</a> – a systematic introduction to the tidyverse.</li>
+</ul>
+
 </div>
 </div>
             </section>

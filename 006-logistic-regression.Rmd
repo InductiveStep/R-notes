@@ -1,6 +1,6 @@
 # Logistic regression
 
-By the end of this week you will understand:
+By the end of this chapter you will understand:
 
 * How generalised linear models (GLMs) generalise regression to deal with a wider variety of distributions of data.
 * How to fit a GLM to binary data (also known as logistic regression).
@@ -31,11 +31,11 @@ library(knitr)
 
 ## The dataset
 
-We will look at a different dataset this week ([download here](psid1975.csv)), as analysed by Mroz (1987), spotted in Fox and Weisberg (2019). The data are from the US Panel Study of Income Dynamics (PSID) in 1975: 753 married white women aged between 30 and 60.
+We will look at a different dataset in this chapter (HURRAH; [download it here](psid1975.csv)), as analysed by Mroz (1987) and spotted in Fox and Weisberg (2019). The data are from the US Panel Study of Income Dynamics (PSID) in 1975: 753 married white women aged between 30 and 60.
 
 The outcome variable we will examine is whether participants participated in the labour force. So it will be worth thinking through your (implicit or otherwise) theories of what processes might be operating in 1975.
 
-We would expect a more diverse sample in 2020. You might also ponder what extra information you would want to know and why. For what it's worth, I'm curious what both wife and husband thought about gender roles and what sort of childcare was available. I'm not sure if it's relevant, but I am also curious to know how many participants were bisexual (we can't tell, but it is often wrongly assumed that people in a heterosexual marriage are both heterosexual).
+We would expect a more diverse sample these days. You might also ponder what extra information you would want to know and why. For what it's worth, I'm curious what both wife and husband thought about gender roles and what sort of childcare was available. I'm not sure if it's relevant, but I am also curious to know how many participants were bisexual (we can't tell, but it is often wrongly assumed that people in a heterosexual marriage are both heterosexual).
 
 
 | Variable name | Description |
@@ -57,7 +57,7 @@ Read in the data:
 dat <- read.csv("psid1975.csv")
 ```
 
-Here is how to view a random sample of rows. (The `set.seed` command is optional -- I am just using it so that I keep getting the same random sample. If you're curious, [Wikipedia's article](https://en.wikipedia.org/w/index.php?title=Random_seed&oldid=933429432) is currently okay on the topic.)
+Here is how to view a random sample of rows. (The `set.seed` command is optional -- I am just using it so that I keep getting the same random sample. If you're curious, [Wikipedia's article](https://en.wikipedia.org/w/index.php?title=Random_seed&oldid=933429432) is currently fine.)
 
 ```{r}
 set.seed(3)
@@ -65,7 +65,7 @@ dat %>%
   slice_sample(n = 10)
 ```
 
-The `lfp_yes` variable was calculated using the line below. This might come in handy for your projects should you wish to dichotomise a variable.
+The `lfp_yes` variable was calculated using the line below. This might come in handy for your analyses should you wish to dichotomise a variable.
 
 ```{r eval = FALSE}
 as.numeric(dat$lfp == "yes")
@@ -80,18 +80,18 @@ as.numeric(dat$lfp == "yes")
 
 ### Activity
 
-(a) What do you think might predict participation in the labour force? Have a think *before looking at the descriptives* and write down your thoughts.
-(b) Set `wc` and `hc` to factors.
-(c) Generate a table of descriptive statistics ("Table 1") using a method of your choosing.
+a. What do you think might predict participation in the labour force? Have a think *before looking at the descriptives* and write down your thoughts.
+b. Set `wc` and `hc` to factors.
+c. Generate a table of descriptive statistics ("Table 1") using a method of your choosing.
 
 ### Answer
 
 
-**(a) What do you think might predict participation in the labour force? Have a think before looking at the descriptives.**
+**a. What do you think might predict participation in the labour force? Have a think before looking at the descriptives.**
 
-Post your answer on Moodle if you want. It was too late for me since I had already peeked and can only report my hindsight bias!
+It was too late for me since I had already peeked and can only report my hindsight bias!
 
-**(b) Set `wc` and `hc` to factors.**
+**b. Set `wc` and `hc` to factors.**
 
 ```{r}
 dat$wc <- factor(dat$wc)
@@ -99,7 +99,7 @@ dat$hc <- factor(dat$hc)
 ```
 
 
-**(c) Generate a table of descriptive statistics ("Table 1") using a method of your choosing.**
+**c. Generate a table of descriptive statistics ("Table 1") using a method of your choosing.**
 
 Here is one we haven't used yet, in the `table1` package. Here is how to use it with a pipe; recall that the dot in `data = .` is how to refer to the data frame that flowed in via the pipe from the `select` line above:
 
@@ -193,9 +193,10 @@ The R code involved is almost identical to what we used for linear regression. T
 
 ## Intermezzo: parametric versus nonparametric
 
+
 >"The term nonparametric may have some historical significance and meaning for theoretical statisticians, but it only serves to confuse applied statisticians."
->
->---G. E. Noether (1984)
+
+---G. E. Noether (1984)
 
 Many introductory social science statistics courses explain that if your data are normally distributed, then you use parametric statistics, otherwise you use nonparametric statistics. Or that the *data* can be parametric or nonparametric.
 
@@ -226,7 +227,7 @@ for (the_sd in c(5,50))
 ```
 
 
-We will be exploring a parametric approach to modelling binary data (whether or not someone was in paid employment) in this tutorial, using a special case of the binomial distribution with size = 1. There is one parameter: the probability, and values are either 0 or 1.
+We will be exploring a parametric approach to modelling binary data (whether or not someone was in paid employment) in this chapter, using a special case of the binomial distribution with size = 1. There is one parameter: the probability, and values are either 0 or 1.
 
 ```{r echo=FALSE, fig.width=3, fig.height = 3, animation.hook="gifski"}
 for (the_p in seq(0,1,.1)) {
@@ -892,6 +893,8 @@ residualPlots(mod_children,
 
 The patterns in the data points you see here are due to the outcome variable only taking on a 0 or a 1. This is to be expected. Focus on the magenta curves and ensure that they aren't curves (if you see what I mean...?): they should be straight lines along zero. And indeed here they are.
 
+The variance does *not* need to be constant for GLMs other than the normal/Gaussian model.
+
 
 ### Linearity of predictors
 
@@ -959,7 +962,8 @@ dat <- dat %>%
 Here's a model with both `k618` and `kids` as predictors:
 
 ```{r}
-high_vif_maybe <- glm(lfp_yes ~ k618 + kids, data = dat, family = binomial)
+high_vif_maybe <- glm(lfp_yes ~ k618 + kids, 
+                      data = dat, family = binomial)
 ```
 
 And here are the VIFs:
@@ -992,7 +996,7 @@ There are several other variables in the dataset which you can now explore.
 
 ### (An) Answer
 
-**(a) Does a model with the following predictors [list of predictors] added predict better than one with only the number of children?**
+**a. Does a model with the following predictors [list of predictors] added predict better than one with only the number of children?**
 
 Here's another way to add predictors to a previously fitted model; however, copy and paste works fine too!
 
@@ -1010,7 +1014,7 @@ anova(mod_children, mod_more, test = "Chi")
 For what it's worth (we haven't checked any model diagnostics yet, so this could be nonsense), yes, the model fits better, $\chi^2(4) = 72.3$, $p < .001$.
 
 
-**(b) Interpret the coefficients, using a method of your choice**
+**b. Interpret the coefficients, using a method of your choice**
 
 I'm going to use two approaches. First the divide-by-four approach, using the original model summary to work out the direction of effects and whether they are statistically significant:
 
@@ -1066,7 +1070,7 @@ ggpredict(mod_more, terms = c("inc", "wc", "k5")) %>%
 The effect of family income was sensitive to the number of children -- more marked for lower numbers of children -- highlighting why it is worth plotting model predictions.
 
 
-**(c)  Try some diagnostics (this week you have some more creative freedom) -- do you want to do anything as a result of what you find?**
+**c.  Try some diagnostics (this week you have some more creative freedom) -- do you want to do anything as a result of what you find?**
 
 I'm going to start with the VIFs.
 
