@@ -1,7 +1,7 @@
 --- 
 title: "Using R for social research (v0.1)"
 author: "Andi Fugard <BR> ([almost@gmail.com](mailto:almost@gmail.com), @[InductiveStep](https://twitter.com/InductiveStep))"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%d %B %Y')`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:
