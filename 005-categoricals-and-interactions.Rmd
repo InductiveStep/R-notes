@@ -237,7 +237,7 @@ dat_no_NAs <- dat %>%
   na.omit()
 ```
 
-We could just have removed missing variables from the whole dataset -- it would have worked for the prestige dataset since there are only four missing values and they are all in one variable. However, for larger datasets doing so might easily wipe out everything!
+We could just have removed missing variables from the whole dataset -- it would have worked for the prestige dataset since there are only four missing values and they are all in one variable. However, for larger datasets doing so might easily wipe out everything! For more on handling missing data correctly, try the book by van Buuren (2018).
 
 Now, fit an intercept-only model and compare it with a model which has `type` as a predictor. R will automatically do something sensible with `type` since it knows that it is a factor.
 

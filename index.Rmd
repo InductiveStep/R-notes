@@ -21,7 +21,7 @@ knitr::knit_hooks$set(webgl = hook_webgl)
 
 
 
-# Introduction
+# Preface {-}
 
 These notes are based on standalone tutorials I developed for a postgraduate social science course in 2020 which covered the basics of data manipulation and visualisation using `tidyverse` and fitting linear regression and logistic regression models using `lm` and `glm`.
 

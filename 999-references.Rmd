@@ -12,11 +12,15 @@ Gelman, A., & Hill, J. (2007). *Data Analysis Using Regression and Multilevel/Hi
 
 Healy, K. (2019). [Data Visualization: A Practical Introduction](https://socviz.co/). Princeton University Press.
 
+Lumley, T. (2010). *Complex Surveys: A Guide to Analysis Using R.* Hoboken, NJ: John Wiley & Sons, Inc.
+
 Lüdecke D (2018). [ggeffects: Tidy Data Frames of Marginal Effects from Regression Models](https://joss.theoj.org/papers/10.21105/joss.00772). Journal of Open Source Software, 3(26), 772. doi: 10.21105/joss.00772
 
 Mroz, T. A. (1987). The sensitivity of an empirical model of married women's hours of work to economic and statistical assumptions. *Econometrica*, *55*, 765–799.
 
 Noether, G. E. (1984). Nonparametrics: The Early Years-Impressions and Recollections. *American Statistician*, *38*, 173-178]
+
+Van Buuren, S. (2018). [Flexible Imputation of Missing Data (2nd Edition)](https://stefvanbuuren.name/fimd/). Chapman & Hall/CRC. Boca Raton, FL.
 
 Wickham, H., & Grolemund, G. (2017). [R for Data Science: Import, Tidy, Transform, Visualize, and Model Data](http://r4ds.had.co.nz/). Sebastopol, CA: O’Reilly.
 

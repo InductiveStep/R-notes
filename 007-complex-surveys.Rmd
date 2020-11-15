@@ -1,0 +1,227 @@
+```{r include=FALSE}
+library(tidyverse)
+library(car)
+options(scipen=1)
+```
+
+# Complex surveys
+
+**(Work in progress!)**
+
+
+We will use the `survey` package and a wonderful tidyverse-style wrapper called `srvyr`.
+
+
+```{r message=FALSE}
+library(survey)
+library(srvyr)
+```
+
+
+See [`srvyr` compared to the `survey` package](https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html) and Fox and Weisberg's online appendix, [Fitting Regression Models to Data From Complex Surveys](https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf). The main reference for `survey` is Lumley (2010).
+
+
+
+## The dataset
+
+
+
+Read in the data.
+
+```{r}
+ces <- read.csv("ces11.csv", stringsAsFactors = TRUE)
+head(ces)
+```
+
+I'm setting `stringsAsFactors` to `TRUE` so that the variables which are obviously factors are setup accordingly (R used to this by default; sometimes it had irritating side-effects).
+
+
+## Activity
+
+
+
+## Answer
+
+Setup the survey object
+
+```{r}
+ces_s <- svydesign(ids = ~id,
+                   strata = ~province,
+                   fpc = ~population,
+                   weights = ~weight,
+                   data=ces)
+```
+
+```{r}
+svytable(~abortion, design = ces_s)
+```
+
+Note how the counts are much bigger than the number of rows in the dataset due to the sampling weights.
+
+```{r}
+prop.table(svytable(~abortion, design = ces_s))
+```
+
+
+
+## Activity
+
+
+## Answer
+
+This gives the unweighted counts, which do match the rows in the dataset.
+
+```{r}
+xtabs(~abortion, data = ces)
+```
+
+```{r}
+prop.table(xtabs(~abortion, data = ces))
+```
+
+The unweighted proportion of "yes" is only a little different in this case: # 0.1851188 (unweighted) v 0.184979 (weighted), though that represents a population difference of ~2,000 people (in whatever subset of the Canadian population this study is trying to generalise to:
+
+```{r}
+0.1851188*16023538 - 0.184979*16023538
+```
+
+
+## Activity
+
+
+## Answer
+
+Make a binary variable
+
+```{r}
+ces$againstAbortion <- as.numeric(ces$abortion == "Yes")
+```
+
+And fix the survey object again:
+
+```{r}
+ces_s <- svydesign(ids = ~id,
+                   strata = ~province,
+                   fpc = ~population,
+                   weights = ~weight,
+                   data = ces)
+```
+
+
+See also `?update.survey.design` for another way to do this
+
+
+Intercept-only model without using weights:
+
+```{r}
+m0 <- glm(againstAbortion ~ 1, data = ces, family = binomial)
+summary(m0)
+```
+
+
+Using the survey structure:
+
+```{r}
+sm0 <- svyglm(againstAbortion ~ 1, design = ces_s, family = binomial)
+summary(sm0)
+```
+
+
+This undoes the log-odds (logit) transform:
+
+```{r}
+exp(coef(m0)) / (1+exp(coef(m0)))
+exp(coef(sm0)) / (1+exp(coef(sm0)))
+```
+
+The answer is the same as for the simple unweighted and weighted proportions, respectively.
+
+
+## Activity
+
+
+## Answer
+
+
+```{r}
+sm1 <- svyglm(againstAbortion ~ importance + education + gender,
+              design = ces_s,
+              family = binomial)
+summary(sm1)
+```
+
+
+To interpret those categorical predictors, it will help to check what the levels are:
+
+```{r}
+levels(ces$importance)
+```
+
+So "not" is the comparison level.
+
+```{r}
+levels(ces$education) 
+```
+
+"bachelors" is the comparison.
+
+Gender is just a binary Male vs Female
+
+
+Example interpretations:
+
+* Male participants were more likely to be against abortion (log-odds 0.33 more)
+
+* People for whom religion was very important were more likely than those who said "not important at all to be against abortion (log-odds 3.14)
+
+You could get the odds ratios like so:
+
+```{r}
+exp(coef(sm1)) %>% round(2)
+```
+
+So the odds ratio of "very" v "not" important is 23.1.
+
+Exercise to reader: try the predict command to get probabilities...
+
+You could also try changing the religion variable so that 
+it is a scale from 0 (unimportant) to 3 (very)
+
+The levels are already in the correct order, so you just need to use as.numeric:
+
+```{r}
+ces$importance.scale <- as.numeric(ces$importance) - 1
+```
+
+```{r}
+ftable(importance.scale ~ importance, data = ces) 
+```
+
+
+```{r}
+ces_s <- svydesign(ids = ~id,
+                   strata = ~province,
+                   fpc = ~population,
+                   weights = ~weight,
+                   data=ces)
+```
+
+
+```{r}
+sm2 <- svyglm(againstAbortion ~ importance.scale + education + gender,
+              design = ces_s,
+              family = binomial)
+summary(sm2)
+```
+
+
+Now there is only one coefficient for importance
+which makes sense if you believe there's a linear effect...
+
+Odds ratio as before; now it says what to multiply the odds
+by for every unit increase in the importance of religion.
+
+```{r}
+exp(coef(sm2))
+```
+

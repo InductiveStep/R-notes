@@ -6,7 +6,7 @@ options(scipen=1)
 
 # Mediation analysis
 
-**(Very much work in progress!)**
+**(Work in progress!)**
 
 In this example, let's make up some data for an experiment where people are randomised to one of two groups. The intervention group receives £2000 and the control group receives £500. The hypothesis is that one month later, the intervention group will have more savings than the control group; i.e., they won't just spend all of the money they have received.
 
@@ -75,6 +75,8 @@ Check out the VIF:
 ```{r}
 vif(mod_out)
 ```
+
+HUGE, as expected.
 
 Test the mediation:
 

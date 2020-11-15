@@ -1,4 +1,3 @@
-introduction
 starting-r
 arithmetic
 activities
@@ -184,5 +183,15 @@ multicolinearity
 a-challenge
 activity-31
 an-answer
+complex-surveys
+the-dataset-4
+activity-32
+answer-33
+activity-33
+answer-34
+activity-34
+answer-35
+activity-35
+answer-36
 mediation-analysis
 references
