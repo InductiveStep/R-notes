@@ -601,8 +601,7 @@ Calculate them with:
 
 ```{r}
 dfbeta(mod_both)  %>%
-  round(3) %>%
-  data.frame()
+  round(3)
 ```
 
 Visualise them with:
@@ -617,8 +616,7 @@ There is also a standardised version, DFBETAS (the S is for standardised, not a 
 
 ```{r}
 dfbetas(mod_both) %>%
-  round(2) %>%
-  data.frame()
+  round(2)
 ```
 
 Visualise DFBETAS with:

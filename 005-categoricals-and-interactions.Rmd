@@ -562,6 +562,7 @@ emmeans(type_and_income, pairwise ~ type)
 ```
 
 
+
 ## Recap
 
 Okay, we have covered rather a lot of ground there so let me summarise a swift method for testing whether a categorical predictor explains variance in some outcome. I'll use an  example where we also statistically adjust for another predictor (known as a covariate).
@@ -787,5 +788,10 @@ ggpredict(interaction_mod, terms = c("income_1000s", "type")) %>%
 ```
 
 Hopefully this graph illustrates what it means that the relationship between income and prestige depends on occupation type -- the slopes are different for each type.
+
+
+### Further reading
+
+You might be interested in Johnson-Neyman intervals. See the [interactions](https://github.com/jacob-long/interactions/) package.
 
 

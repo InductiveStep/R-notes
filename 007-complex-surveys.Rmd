@@ -161,7 +161,7 @@ See `?svyglm`
 
 ### Activity
 
-a. mutate the survey object to add a binary variable called `againstAbortion` which is 1 if they participant is against abortion and 0 if not.
+a. mutate the survey object to add a binary variable called `againstAbortion` which is 1 if the participant is against abortion and 0 if not.
 b. fit an intercept-only logistic regression model without using weights (you can use `as_tibble` to get the "raw" data frame hidden within the survey object).
 c. Do the same again, this time using the survey structure.
 d. compare the predicted proportions with the "raw" proportions we calculated earlier
@@ -169,7 +169,7 @@ d. compare the predicted proportions with the "raw" proportions we calculated ea
 ### Answer
 
 
-**a. mutate the survey object to add a binary variable called `againstAbortion` which is 1 if they participant is against abortion and 0 if not.**
+**a. mutate the survey object to add a binary variable called `againstAbortion` which is 1 if the participant is against abortion and 0 if not.**
 
 ```{r}
 ces_s <- ces_s %>%

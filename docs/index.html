@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Using R for social research (v0.1)</title>
+  <title>Using R for social research (v0.11)</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Using R for social research (v0.1)" />
+  <meta property="og:title" content="Using R for social research (v0.11)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using R for social research (v0.1)" />
+  <meta name="twitter:title" content="Using R for social research (v0.11)" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
@@ -352,6 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.12.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#what-is-an-interaction"><i class="fa fa-check"></i><b>5.12.1</b> What is an interaction?</a></li>
 <li class="chapter" data-level="5.12.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-to-test-for-interactions-in-r"><i class="fa fa-check"></i><b>5.12.2</b> How to test for interactions in R</a></li>
 <li class="chapter" data-level="5.12.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-interactions"><i class="fa fa-check"></i><b>5.12.3</b> Understanding interactions</a></li>
+<li class="chapter" data-level="5.12.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#further-reading"><i class="fa fa-check"></i><b>5.12.4</b> Further reading</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Logistic regression</a>
@@ -430,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.1)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.11)</a>
           </h1>
         </div>
 
@@ -439,17 +440,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Using R for social research (v0.1)</h1>
+<h1 class="title">Using R for social research (v0.11)</h1>
 <p class="author"><em>Andi Fugard <BR> (<a href="mailto:almost@gmail.com">almost@gmail.com</a>, @<a href="https://twitter.com/InductiveStep">InductiveStep</a>)</em></p>
 <p class="date"><em>15 November 2020</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
-<p>These notes are based on standalone tutorials I developed for a postgraduate social science course in 2020 which covered the basics of data manipulation and visualisation using <code>tidyverse</code> and fitting linear regression and logistic regression models using <code>lm</code> and <code>glm</code>.</p>
-<p>The core texts used were Fox and Weisberg (2019), <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An R Companion to Applied Regression (Third Edition)</a> and Healy (2019) <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a> – both excellent for learning applied analysis.</p>
+<p>These notes are based on standalone tutorials I developed for a postgraduate social science course in 2020. The core texts used were Fox and Weisberg (2019), <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An R Companion to Applied Regression (Third Edition)</a> and Healy (2019) <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a> – both excellent for learning applied analysis.</p>
 <p>All the datasets used are available in CRAN packages, e.g., <code>car</code>; however, I think it helps to learn how to download and read in csv files so that is what I ask readers to do.</p>
-<p>I have included some activities (an alternative word for “exercise” that I picked up somewhere), which seem to help. They all come with solutions; to hide these, simply use the scrollbar so that they are off the edge of the visible part of the screen… (For those who know R Markdown, originally I used the <code>.tabset</code> attribute to hide answers; however, it doesn’t work for <code>bookdown</code> and I don’t want to rely on custom Javascript that may later break.)</p>
-<p>I assume you already have <a href="https://rstudio.com/">RStudio</a> and <a href="https://cran.r-project.org/">R</a> installed and know how to type and run R or R Markdown.</p>
+<p>I have included some activities (an word for “exercise” that I picked up somewhere), which seem to be helpful. They all come with solutions; to hide these, simply use the scrollbar so that they are off the edge of the visible part of the screen… (For those who know R Markdown, originally I used the <code>.tabset</code> attribute to hide answers; however, it doesn’t work for <code>bookdown</code> and I don’t want to rely on custom Javascript that may later break.)</p>
+<p>I assume you already have <a href="https://rstudio.com/">RStudio</a> and <a href="https://cran.r-project.org/">R</a> installed and know how to type and run R or R Markdown chunks.</p>
 <p>Feedback welcome!</p>
 
 </div>

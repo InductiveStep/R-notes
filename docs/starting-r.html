@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Starting R | Using R for social research (v0.1)</title>
+  <title>Chapter 1 Starting R | Using R for social research (v0.11)</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Starting R | Using R for social research (v0.1)" />
+  <meta property="og:title" content="Chapter 1 Starting R | Using R for social research (v0.11)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Starting R | Using R for social research (v0.1)" />
+  <meta name="twitter:title" content="Chapter 1 Starting R | Using R for social research (v0.11)" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
@@ -352,6 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.12.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#what-is-an-interaction"><i class="fa fa-check"></i><b>5.12.1</b> What is an interaction?</a></li>
 <li class="chapter" data-level="5.12.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-to-test-for-interactions-in-r"><i class="fa fa-check"></i><b>5.12.2</b> How to test for interactions in R</a></li>
 <li class="chapter" data-level="5.12.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-interactions"><i class="fa fa-check"></i><b>5.12.3</b> Understanding interactions</a></li>
+<li class="chapter" data-level="5.12.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#further-reading"><i class="fa fa-check"></i><b>5.12.4</b> Further reading</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Logistic regression</a>
@@ -430,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.1)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.11)</a>
           </h1>
         </div>
 
@@ -583,14 +584,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here is an example with 50 values with a mean of 20 and an SD of 5:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="starting-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb27-2"><a href="starting-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>random_values</span></code></pre></div>
-<pre><code>##  [1] 19.155076 22.390342 10.368816 28.938299 23.983106 20.876316 16.289642
-##  [8] 29.400687 27.992833  7.099045 20.868937 17.885644 21.051584 16.434015
-## [15] 17.906955 16.706748 17.104044 24.726411 18.886771 17.458165 20.441142
-## [22] 31.116753 14.907343 10.653239 20.682273 20.844551 17.317065 21.177120
-## [29] 22.225110 20.489332 14.909866 26.117561 25.440018 12.776296 20.080243
-## [36] 22.360043 28.198435 16.934323 17.528639 20.563243 23.729583 25.818049
-## [43] 21.627088 17.818238 25.827087 27.142093 16.663098 20.413129 22.803416
-## [50] 21.778888</code></pre>
+<pre><code>##  [1] 17.19565 14.43333 19.51764 21.91939 20.11862 18.73255 25.25815 19.96215
+##  [9] 22.43247 16.78172 21.12163 16.06709 23.49331 19.33701 17.49087 22.31071
+## [17] 29.60691 18.88060 18.23038 18.23164 18.53455 24.22490 19.99827 26.38075
+## [25] 19.91743 25.58960 15.77933 28.18704 16.67928 17.71320 22.42875 24.94421
+## [33] 20.21714 38.79660 30.18446 21.44172 21.03454 13.91216 17.52316 21.42959
+## [41] 16.06776 26.78971 14.61861 16.49048 20.32026 20.43609 25.10713 10.86620
+## [49] 23.10246 15.99093</code></pre>
 <p>When you run it you will probably get different numbers to me.</p>
 <p>Here is a histogram of values I got:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="starting-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(random_values)</span></code></pre></div>
@@ -603,9 +603,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.6.2</span> Answer</h3>
 <p>Here’s what I got:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="starting-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 20.47813</code></pre>
+<pre><code>## [1] 20.71656</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="starting-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 5.025757</code></pre>
+<pre><code>## [1] 4.887849</code></pre>
 <p>Unless you were very lucky, you probably discovered like me that the mean was different to 20 and the SD was different to 5. This is something we will return to in another session, but can you guess now why this has happened?</p>
 </div>
 </div>
@@ -754,18 +754,18 @@ package ‘praise’ successfully unpacked and MD5 sums checked</code></pre>
 <h3><span class="header-section-number">1.9.2</span> Answer</h3>
 <p>I’ll run it a few times…</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="starting-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are wonderful!&quot;</code></pre>
+<pre><code>## [1] &quot;You are epic!&quot;</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="starting-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are amazing!&quot;</code></pre>
+<pre><code>## [1] &quot;You are funkadelic!&quot;</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="starting-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are stylish!&quot;</code></pre>
+<pre><code>## [1] &quot;You are best!&quot;</code></pre>
 <p>Not a big data science algorithm, but you may find it helpful as the course progresses :)</p>
 </div>
 </div>
 <div id="the-end" class="section level2" number="1.10">
 <h2><span class="header-section-number">1.10</span> The end!</h2>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="starting-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are cool!&quot;</code></pre>
+<pre><code>## [1] &quot;You are stupendous!&quot;</code></pre>
 
 </div>
 </div>

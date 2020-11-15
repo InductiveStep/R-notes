@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Complex surveys | Using R for social research (v0.1)</title>
+  <title>Chapter 7 Complex surveys | Using R for social research (v0.11)</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Complex surveys | Using R for social research (v0.1)" />
+  <meta property="og:title" content="Chapter 7 Complex surveys | Using R for social research (v0.11)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Complex surveys | Using R for social research (v0.1)" />
+  <meta name="twitter:title" content="Chapter 7 Complex surveys | Using R for social research (v0.11)" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
@@ -352,6 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.12.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#what-is-an-interaction"><i class="fa fa-check"></i><b>5.12.1</b> What is an interaction?</a></li>
 <li class="chapter" data-level="5.12.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-to-test-for-interactions-in-r"><i class="fa fa-check"></i><b>5.12.2</b> How to test for interactions in R</a></li>
 <li class="chapter" data-level="5.12.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-interactions"><i class="fa fa-check"></i><b>5.12.3</b> Understanding interactions</a></li>
+<li class="chapter" data-level="5.12.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#further-reading"><i class="fa fa-check"></i><b>5.12.4</b> Further reading</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Logistic regression</a>
@@ -430,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.1)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R for social research (v0.11)</a>
           </h1>
         </div>
 
@@ -610,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="activity-33" class="section level3" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> Activity</h3>
 <ol style="list-style-type: lower-alpha">
-<li>mutate the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if they participant is against abortion and 0 if not.</li>
+<li>mutate the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if the participant is against abortion and 0 if not.</li>
 <li>fit an intercept-only logistic regression model without using weights (you can use <code>as_tibble</code> to get the “raw” data frame hidden within the survey object).</li>
 <li>Do the same again, this time using the survey structure.</li>
 <li>compare the predicted proportions with the “raw” proportions we calculated earlier</li>
@@ -618,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answer-34" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> Answer</h3>
-<p><strong>a. mutate the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if they participant is against abortion and 0 if not.</strong></p>
+<p><strong>a. mutate the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if the participant is against abortion and 0 if not.</strong></p>
 <div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="complex-surveys.html#cb585-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces_s <span class="sc">%&gt;%</span></span>
 <span id="cb585-2"><a href="complex-surveys.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">againstAbortion =</span> <span class="fu">as.numeric</span>(ces<span class="sc">$</span>abortion <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
 <p><strong>b. fit an intercept-only logistic regression model without using weights (you can use <code>as_tibble</code> to get the “raw” data frame hidden within the survey object).</strong></p>

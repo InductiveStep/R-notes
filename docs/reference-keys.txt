@@ -144,6 +144,7 @@ brief-introduction-to-interactions
 what-is-an-interaction
 how-to-test-for-interactions-in-r
 understanding-interactions
+further-reading
 logistic-regression
 setup
 the-dataset-3
