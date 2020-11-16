@@ -1,5 +1,5 @@
 --- 
-title: "Using R for social research (v0.11)"
+title: "Using R for social research"
 author: "Andi Fugard <BR> ([almost@gmail.com](mailto:almost@gmail.com), @[InductiveStep](https://twitter.com/InductiveStep))"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 site: bookdown::bookdown_site
