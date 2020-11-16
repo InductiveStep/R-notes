@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-15" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -584,13 +584,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here is an example with 50 values with a mean of 20 and an SD of 5:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="starting-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb27-2"><a href="starting-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>random_values</span></code></pre></div>
-<pre><code>##  [1] 17.19565 14.43333 19.51764 21.91939 20.11862 18.73255 25.25815 19.96215
-##  [9] 22.43247 16.78172 21.12163 16.06709 23.49331 19.33701 17.49087 22.31071
-## [17] 29.60691 18.88060 18.23038 18.23164 18.53455 24.22490 19.99827 26.38075
-## [25] 19.91743 25.58960 15.77933 28.18704 16.67928 17.71320 22.42875 24.94421
-## [33] 20.21714 38.79660 30.18446 21.44172 21.03454 13.91216 17.52316 21.42959
-## [41] 16.06776 26.78971 14.61861 16.49048 20.32026 20.43609 25.10713 10.86620
-## [49] 23.10246 15.99093</code></pre>
+<pre><code>##  [1] 16.578656 16.765526 23.352441 17.033406 21.932580 30.579659 22.494344
+##  [8] 20.757778 22.029296 23.853010 18.437008 14.542971 19.888808 24.073520
+## [15] 25.841260 20.399499 24.964728 26.730351 24.069036 31.061007 19.516702
+## [22]  7.323148 17.839262 11.838486 19.341899 15.858347 18.183380 25.918372
+## [29] 17.508961 14.776842 19.446732 15.465350 21.389318 25.934587 20.154377
+## [36] 19.344508 20.593635 17.352885 31.969264 15.622028 23.571157 23.143351
+## [43] 17.380215 25.699033 12.373973 16.016250 13.068557 27.985250 17.848923
+## [50] 19.010038</code></pre>
 <p>When you run it you will probably get different numbers to me.</p>
 <p>Here is a histogram of values I got:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="starting-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(random_values)</span></code></pre></div>
@@ -603,9 +604,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.6.2</span> Answer</h3>
 <p>Here’s what I got:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="starting-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 20.71656</code></pre>
+<pre><code>## [1] 20.33719</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="starting-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 4.887849</code></pre>
+<pre><code>## [1] 5.097416</code></pre>
 <p>Unless you were very lucky, you probably discovered like me that the mean was different to 20 and the SD was different to 5. This is something we will return to in another session, but can you guess now why this has happened?</p>
 </div>
 </div>
@@ -754,18 +755,18 @@ package ‘praise’ successfully unpacked and MD5 sums checked</code></pre>
 <h3><span class="header-section-number">1.9.2</span> Answer</h3>
 <p>I’ll run it a few times…</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="starting-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are epic!&quot;</code></pre>
+<pre><code>## [1] &quot;You are cat&#39;s pajamas!&quot;</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="starting-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are funkadelic!&quot;</code></pre>
+<pre><code>## [1] &quot;You are kickass!&quot;</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="starting-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are best!&quot;</code></pre>
+<pre><code>## [1] &quot;You are super!&quot;</code></pre>
 <p>Not a big data science algorithm, but you may find it helpful as the course progresses :)</p>
 </div>
 </div>
 <div id="the-end" class="section level2" number="1.10">
 <h2><span class="header-section-number">1.10</span> The end!</h2>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="starting-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are stupendous!&quot;</code></pre>
+<pre><code>## [1] &quot;You are spectacular!&quot;</code></pre>
 
 </div>
 </div>

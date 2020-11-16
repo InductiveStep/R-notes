@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-15" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1198,9 +1198,9 @@ So the fraction just turns upside down.</li>
 <h3><span class="header-section-number">6.11.2</span> Interpret using the “divide-by-4” approximation</h3>
 <p>Two of my favourite statisticians, Andrew Gelman and Jennifer Hill (2007, p. 82), provide a handy approximation for transforming slopes on the log-odds scale to changes in probability:</p>
 <blockquote>
-<p>“As a rule of convenience, we can <strong>take logistic regression coefficients (other than the constant term) and divide them by 4 to get an upper bound of the predictive difference corresponding to a unit difference in x</strong>. This upper bound is a reasonable approximation near the midpoint of the logistic curve, where probabilities are close to 0.5.”</p>
+<p>“As a rule of convenience, we can take logistic regression coefficients (other than the constant term) and divide them by 4 to get an upper bound of the predictive difference corresponding to a unit difference in x. This upper bound is a reasonable approximation near the midpoint of the logistic curve, where probabilities are close to 0.5.”</p>
 </blockquote>
-<p>(Bold emphasis added.)</p>
+<p>(The constant term is another word for the intercept.)</p>
 <p>Here is the rule in a picture:</p>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-322-1.png" width="672" /></p>
 <p>Where the the dashed purple line overlaps the curve, the probability <span class="math inline">\(p = 0.5 + \frac{\mathit{logit}}{4}\)</span>.</p>
@@ -1304,27 +1304,26 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 </div>
 <div id="interpret-using-predicted-probabilities" class="section level3" number="6.11.4">
 <h3><span class="header-section-number">6.11.4</span> Interpret using predicted probabilities</h3>
-<p>This probably my favorite way to actually get to grips with how a model works and R does all the hard work for us.</p>
+<p>This is probably my favourite way to get to grips with how a model works and R does all the hard work for us. The idea is simply to ask the model for predicted probabilities for a range of inputs, chosen to help you and readers see how the outcome variable is related to the predictors.</p>
 <p>There are two ways to do it in R. The second is easier (and you would be forgiven for <a href="logistic-regression.html#easierpredictions">trying it first</a>) but the first explains what’s going on.</p>
 <div id="using-a-customs-predictions-table" class="section level4" number="6.11.4.1">
 <h4><span class="header-section-number">6.11.4.1</span> Using a customs predictions table</h4>
-<p>The recipe is as follows. First, generate a table with the values for predictors you would like to predict. This is a data frame with one column for all variables in the model.</p>
+<p>The recipe is as follows. First, generate a data frame with values for predictors for which you would like predictions. This is a data frame with one column for each variable in the model.</p>
 <p>The <code>expand.grid</code> command is handy for this as it generates all combinations of the values you provide.</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="logistic-regression.html#cb514-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k5   =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb514-2"><a href="logistic-regression.html#cb514-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">k618 =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))</span>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="logistic-regression.html#cb514-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k5   =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb514-2"><a href="logistic-regression.html#cb514-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">k618 =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span>
 <span id="cb514-3"><a href="logistic-regression.html#cb514-3" aria-hidden="true" tabindex="-1"></a>predictions</span></code></pre></div>
-<pre><code>##    k5 k618
-## 1   0    0
-## 2   1    0
-## 3   2    0
-## 4   3    0
-## 5   4    0
-## 6   0    4
-## 7   1    4
-## 8   2    4
-## 9   3    4
-## 10  4    4</code></pre>
-<p>Now use R’s <code>predict</code> command. We can get the predictions on the log-odds scale or (more useful) as probabilities. For the latter, use the option <code>type = "response"</code>.</p>
+<pre><code>##   k5 k618
+## 1  0    0
+## 2  1    0
+## 3  2    0
+## 4  3    0
+## 5  0    5
+## 6  1    5
+## 7  2    5
+## 8  3    5</code></pre>
+<p>Recall that <code>k5</code> was “statistically significant” but <code>k618</code> not, so I have chosen a range of values for <code>k5</code> which show the association and also two extremes for <code>k618</code>.</p>
+<p>Now use R’s <code>predict</code> command, passing this predictions table into its <code>newdat</code> parameter. We can get the predictions on the log-odds scale or (more useful) as probabilities. For the latter, use the option <code>type = "response"</code>.</p>
 <p>I generally save the result onto the predictions data frame:</p>
 <div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="logistic-regression.html#cb516-1" aria-hidden="true" tabindex="-1"></a>predictions<span class="sc">$</span>lfp_logodds <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_children, <span class="co"># the model</span></span>
 <span id="cb516-2"><a href="logistic-regression.html#cb516-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">newdata =</span> predictions)</span>
@@ -1377,50 +1376,36 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <td align="right">0.11</td>
 </tr>
 <tr class="odd">
-<td align="right">4</td>
 <td align="right">0</td>
-<td align="right">-3.07</td>
-<td align="right">0.04</td>
-<td align="right">0.05</td>
-</tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">0.55</td>
+<td align="right">5</td>
+<td align="right">0.58</td>
 <td align="right">0.64</td>
-<td align="right">1.74</td>
+<td align="right">1.79</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">1</td>
-<td align="right">4</td>
-<td align="right">-0.33</td>
-<td align="right">0.42</td>
-<td align="right">0.72</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">4</td>
-<td align="right">-1.20</td>
-<td align="right">0.23</td>
-<td align="right">0.30</td>
+<td align="right">5</td>
+<td align="right">-0.30</td>
+<td align="right">0.43</td>
+<td align="right">0.74</td>
 </tr>
 <tr class="odd">
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">-2.08</td>
-<td align="right">0.11</td>
-<td align="right">0.12</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">-1.18</td>
+<td align="right">0.24</td>
+<td align="right">0.31</td>
 </tr>
 <tr class="even">
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">-2.96</td>
-<td align="right">0.05</td>
-<td align="right">0.05</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">-2.06</td>
+<td align="right">0.11</td>
+<td align="right">0.13</td>
 </tr>
 </tbody>
 </table>
-<p>The challenge is to pick values for the predictors which illustrate (to you and readers) how the model works. You could then plot these using <code>ggplot</code>.</p>
+<p>The challenge is to pick values for the predictors which illustrate how the model works. You could then plot these using <code>ggplot</code>.</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="logistic-regression.html#cb519-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="sc">%&gt;%</span></span>
 <span id="cb519-2"><a href="logistic-regression.html#cb519-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k5,</span>
 <span id="cb519-3"><a href="logistic-regression.html#cb519-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> lfp_prob, </span>

@@ -585,9 +585,9 @@ There is no statistically significant effect for children aged 6 or over; slope 
 
 Two of my favourite statisticians, Andrew Gelman and Jennifer Hill (2007, p. 82), provide a handy approximation for transforming slopes on the log-odds scale to changes in probability:
 
-> "As a rule of convenience, we can **take logistic regression coefficients (other than the constant term) and divide them by 4 to get an upper bound of the predictive difference corresponding to a unit difference in x**. This upper bound is a reasonable approximation near the midpoint of the logistic curve, where probabilities are close to 0.5."
+> "As a rule of convenience, we can take logistic regression coefficients (other than the constant term) and divide them by 4 to get an upper bound of the predictive difference corresponding to a unit difference in x. This upper bound is a reasonable approximation near the midpoint of the logistic curve, where probabilities are close to 0.5."
 
-(Bold emphasis added.)
+(The constant term is another word for the intercept.)
 
 Here is the rule in a picture:
 
@@ -744,25 +744,26 @@ $$
 
 ### Interpret using predicted probabilities
 
-This probably my favorite way to actually get to grips with how a model works and R does all the hard work for us.
+This is probably my favourite way to get to grips with how a model works and R does all the hard work for us. The idea is simply to ask the model for predicted probabilities for a range of inputs, chosen to help you and readers see how the outcome variable is related to the predictors.
 
 There are two ways to do it in R. The second is easier (and you would be forgiven for [trying it first](#easierpredictions)) but the first explains what's going on.
 
 
 #### Using a customs predictions table
 
-The recipe is as follows. First, generate a table with the values for predictors you would like to predict. This is a data frame with one column for all variables in the model.
+The recipe is as follows. First, generate a data frame with values for predictors for which you would like predictions. This is a data frame with one column for each variable in the model.
 
 The `expand.grid` command is handy for this as it generates all combinations of the values you provide.
 
 ```{r}
-predictions <- expand.grid(k5   = 0:4,
-                           k618 = c(0,4))
+predictions <- expand.grid(k5   = 0:3,
+                           k618 = c(0,5))
 predictions
 ```
 
+Recall that `k5` was "statistically significant" but `k618` not, so I have chosen a range of values for `k5` which show the association and also two extremes for `k618`.
 
-Now use R's `predict` command. We can get the predictions on the log-odds scale or (more useful) as probabilities. For the latter, use the option `type = "response"`.
+Now use R's `predict` command, passing this predictions table into its `newdat` parameter. We can get the predictions on the log-odds scale or (more useful) as probabilities. For the latter, use the option `type = "response"`.
 
 I generally save the result onto the predictions data frame:
 
@@ -789,7 +790,7 @@ predictions  %>%
   kable(digits = c(0,0,2,2,2))
 ```
 
-The challenge is to pick values for the predictors which illustrate (to you and readers) how the model works. You could then plot these using `ggplot`.
+The challenge is to pick values for the predictors which illustrate how the model works. You could then plot these using `ggplot`.
 
 
 ```{r}
