@@ -22,7 +22,9 @@ library(srvyr)
 ```
 
 
-See [`srvyr` compared to the `survey` package](https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html) and Fox and Weisberg's online appendix, [Fitting Regression Models to Data From Complex Surveys](https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf). The main reference for `survey` is Lumley (2010).
+## Readings
+
+See [`srvyr` compared to the `survey` package](https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html) and Fox and Weisberg's online appendix, [Fitting Regression Models to Data From Complex Surveys](https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf). The main reference for the model implemented by `survey` is by Lumley (2010). UCLA has a [fab site](https://stats.idre.ucla.edu/r/seminars/survey-data-analysis-with-r/) with info too.
 
 
 
