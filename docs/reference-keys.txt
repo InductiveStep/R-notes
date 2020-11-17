@@ -185,6 +185,7 @@ a-challenge
 activity-31
 an-answer
 complex-surveys
+readings
 the-dataset-4
 the-components-of-a-survey-design
 describing-the-data
@@ -199,4 +200,3 @@ answer-35
 diagnostics-1
 mediation-analysis
 references
-readings

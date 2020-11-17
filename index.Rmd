@@ -23,15 +23,15 @@ knitr::knit_hooks$set(webgl = hook_webgl)
 
 # Preface {-}
 
-These notes are based on weekly tutorial sheets I developed for a postgraduate social science course in 2020. The core texts used were Fox and Weisberg (2019), [An R Companion to Applied Regression (Third Edition)](https://socialsciences.mcmaster.ca/jfox/Books/Companion/) and Healy (2019) [Data Visualization: A Practical Introduction](https://socviz.co/) -- both excellent for learning applied analysis.
+These notes are based on weekly tutorial sheets I developed for a postgraduate social science course in 2020 to complement weekly lectures and online tutorials. The core texts used were Fox and Weisberg (2019), [An R Companion to Applied Regression (Third Edition)](https://socialsciences.mcmaster.ca/jfox/Books/Companion/) and Healy (2019) [Data Visualization: A Practical Introduction](https://socviz.co/) -- both fabulous for learning applied statistics using R.
 
-All the datasets used are available in CRAN packages, e.g., `car`; however, I think it helps to learn how to download and read in csv files so that is what I ask readers to do.
+All the datasets used are available in [CRAN](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f) packages, e.g., `car`; however, I think it helps to learn how to download and read in csv files, so that is what I ask readers to do. All the necessary files are linked in each chapter.
 
-I have included some activities (an word for "exercise" that I picked up somewhere), which seem to be helpful. They all come with solutions; to hide these, simply use the scrollbar so that they are off the edge of the visible part of the screen... (For those who know R Markdown, originally I used the `.tabset` attribute to hide answers; however, it doesn't work for `bookdown` and I don't want to rely on custom Javascript that may later break.) The GitHub repository is [over here](https://github.com/InductiveStep/R-notes).
+I have included some activities (a word for "exercise" that I picked up somewhere). They all come with solutions; to hide these, simply use the scrollbar to ensure that they are off the edge of the visible part of the screen... (I originally used the `.tabset` attribute to hide answers; however, it doesn't work for `bookdown`.) The GitHub repository is [over here](https://github.com/InductiveStep/R-notes).
 
-I assume you already have [RStudio](https://rstudio.com/) and [R](https://cran.r-project.org/) installed and know how to type and run R or R Markdown chunks.
+I assume you already have [RStudio](https://rstudio.com/) and [R](https://cran.r-project.org/) installed and know how to type and run R or R Markdown chunks. If not, try Healy's intro [over here](https://socviz.co/gettingstarted.html). Better still, ask someone who knows what "Markdown" and "running a chunk" mean to give you a 5 minute intro!
 
-Feedback [welcome](mailto:almost@gmail.com)!
+Feedback [welcome](mailto:almost@gmail.com).
 
 
 
