@@ -645,7 +645,7 @@ gap %>%
 
 ## More ideas for visualisations
 
-Check out the references, all available for free online:
+Check out these references, all available for free online:
 
 * Chang, W. (2020). [R Graphics Cookbook](https://r-graphics.org/) (2nd ed.) -- huge selection of examples to adapt and use.
 * Healy, K. (2019). [Data Visualization: A Practical Introduction](https://socviz.co/) -- more explanations of creating effect visualisation, using social science examples (including Gapminder).
