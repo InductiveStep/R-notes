@@ -399,7 +399,7 @@ I hope that provides some intuitions for what the log function does. Roughly, it
 
 ## Intercept-only models again
 
-For linear regression, the intercept in an intercept-only model was the mean of the the outcome variable. Intercepts in GLMs work the same; however, now we have the mild complication of the link function which are part of the arithmetic that make GLMs work.
+For linear regression, the intercept in an intercept-only model was the mean of the the outcome variable. Intercepts in GLMs work the same; however, now we have the mild complication of the link function which is part of the arithmetic that makes GLMs work.
 
 The mean of the binary variable, `lfp_yes`, is:
 
