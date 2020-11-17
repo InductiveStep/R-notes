@@ -418,7 +418,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="complex-surveys.html"><a href="complex-surveys.html#diagnostics-1"><i class="fa fa-check"></i><b>7.7</b> Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="mediation-analysis.html"><a href="mediation-analysis.html"><i class="fa fa-check"></i><b>8</b> Mediation analysis</a></li>
+<li class="chapter" data-level="8" data-path="mediation-analysis.html"><a href="mediation-analysis.html"><i class="fa fa-check"></i><b>8</b> Mediation analysis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="mediation-analysis.html"><a href="mediation-analysis.html#simulated-example"><i class="fa fa-check"></i><b>8.1</b> Simulated Example</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="mediation-analysis.html"><a href="mediation-analysis.html#make-up-some-data"><i class="fa fa-check"></i><b>8.1.1</b> Make up some data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="mediation-analysis.html"><a href="mediation-analysis.html#analyse-it"><i class="fa fa-check"></i><b>8.1.2</b> Analyse it</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -585,13 +592,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here is an example with 50 values with a mean of 20 and an SD of 5:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="starting-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb27-2"><a href="starting-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>random_values</span></code></pre></div>
-<pre><code>##  [1] 16.98734 15.20250 21.89397 19.55744 19.23031 15.16626 21.43313 16.37670
-##  [9] 14.87597 23.54076 26.00562 18.51161 17.63773 16.33600 16.27406 21.47775
-## [17] 28.88206 14.83598 20.30074 25.22281 16.27513 10.93080 17.26785 18.03677
-## [25] 15.13305 29.26362 22.96204 23.70054 21.44779 20.71536 29.53613 31.06282
-## [33] 13.66300 25.65229 17.67034 31.56730 23.44464 21.48918 10.00362 24.98921
-## [41] 17.34248 22.60044 16.85454 16.07121 16.29872 15.74877 19.56386 20.08669
-## [49] 12.77584 15.11031</code></pre>
+<pre><code>##  [1] 17.46150 19.72377 10.08202 27.05111 26.02625 16.04750 10.20616 14.92064
+##  [9] 19.09783 15.25224 14.08600 22.39901 26.67057 22.59699 13.05968 11.69569
+## [17] 35.33734 16.19361 20.86409 19.28832 17.23243 18.15891 27.26371 18.52980
+## [25] 19.97344 14.58562 20.14584 21.46737 23.83959 19.59225 18.90180 28.60883
+## [33] 13.04321 21.62261 15.48595 26.16281 15.81512 14.09000 14.72626 19.89225
+## [41] 25.29688 19.80805 22.66158 16.93029 11.28885 25.74378 15.29583 19.99094
+## [49] 10.22375 16.06859</code></pre>
 <p>When you run it you will probably get different numbers to me.</p>
 <p>Here is a histogram of values I got:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="starting-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(random_values)</span></code></pre></div>
@@ -604,9 +611,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.6.2</span> Answer</h3>
 <p>Here’s what I got:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="starting-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 19.74026</code></pre>
+<pre><code>## [1] 19.01013</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="starting-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(random_values)</span></code></pre></div>
-<pre><code>## [1] 5.090047</code></pre>
+<pre><code>## [1] 5.395916</code></pre>
 <p>Unless you were very lucky, you probably discovered like me that the mean was different to 20 and the SD was different to 5. This is something we will return to in another session, but can you guess now why this has happened?</p>
 </div>
 </div>
@@ -764,18 +771,18 @@ package ‘praise’ successfully unpacked and MD5 sums checked</code></pre>
 <h3><span class="header-section-number">1.9.2</span> Answer</h3>
 <p>I’ll run it a few times…</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="starting-r.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are premium!&quot;</code></pre>
+<pre><code>## [1] &quot;You are majestic!&quot;</code></pre>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="starting-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are fine!&quot;</code></pre>
+<pre><code>## [1] &quot;You are fantabulous!&quot;</code></pre>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="starting-r.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are slick!&quot;</code></pre>
+<pre><code>## [1] &quot;You are groovy!&quot;</code></pre>
 <p>Not a big data science algorithm, but you may find it helpful as the course progresses :)</p>
 </div>
 </div>
 <div id="the-end" class="section level2" number="1.10">
 <h2><span class="header-section-number">1.10</span> The end!</h2>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="starting-r.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">praise</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;You are divine!&quot;</code></pre>
+<pre><code>## [1] &quot;You are stunning!&quot;</code></pre>
 
 </div>
 </div>
