@@ -1,4 +1,4 @@
-# R notes
+# Using R for Social Research
  
 Venture [over here](https://inductivestep.github.io/R-notes/) for the html.
 
