@@ -29,7 +29,7 @@ All the datasets used are available in [CRAN](https://cran.r-project.org/doc/FAQ
 
 I have included some activities (a word for "exercise" that I picked up somewhere). They all come with solutions; to hide these, simply use the scrollbar to ensure that they are off the edge of the visible part of the screen... (I originally used the `.tabset` attribute to hide answers; however, it doesn't work for `bookdown`.) The GitHub repository is [over here](https://github.com/InductiveStep/R-notes).
 
-I assume you already have [RStudio](https://rstudio.com/) and [R](https://cran.r-project.org/) installed and know how to type and run R or R Markdown chunks. If not, try Healy's intro [over here](https://socviz.co/gettingstarted.html). Better still, ask someone who knows what "Markdown" and "running a chunk" mean to give you a 5 minute intro!
+I assume you already have [RStudio](https://rstudio.com/) and [R](https://cran.r-project.org/) installed and know how to type and run R or R Markdown chunks. If not, try Healy's intro [over here](https://socviz.co/gettingstarted.html). Better still, ask someone who knows what "Markdown" and "running a chunk" mean to give you a 5 minute demo!
 
 Feedback [welcome](mailto:almost@gmail.com).
 
