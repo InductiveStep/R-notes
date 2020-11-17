@@ -200,3 +200,6 @@ answer-35
 diagnostics-1
 mediation-analysis
 references
+simulated-example
+make-up-some-data
+analyse-it

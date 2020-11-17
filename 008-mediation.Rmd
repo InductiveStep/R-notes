@@ -1,12 +1,18 @@
 ```{r include=FALSE}
 library(tidyverse)
 library(car)
-options(scipen=1)
 ```
 
 # Mediation analysis
 
 **(Work in progress!)**
+
+See Tingley et at. (2014).
+
+
+## Simulated Example
+
+### Make up some data
 
 In this example, let's make up some data for an experiment where people are randomised to one of two groups. The intervention group receives £2000 and the control group receives £500. The hypothesis is that one month later, the intervention group will have more savings than the control group; i.e., they won't just spend all of the money they have received.
 
@@ -51,6 +57,9 @@ dat %>%
          fill = "Group")
 ```
 
+
+### Analyse it
+
 Fit the two models:
 
 ```{r}
@@ -61,6 +70,7 @@ mod_out <- lm(savings_end ~ savings_start + treat_group + money_received, data =
 Have a look:
 
 ```{r}
+options(scipen = 3) # bias away from scientific notation (default 0)
 summary(mod_med)
 ```
 
@@ -70,18 +80,21 @@ The coefficients for the model regressing savings on treatment group and money r
 summary(mod_out)
 ```
 
-Check out the VIF:
+Check out the VIFs:
 
 ```{r}
 vif(mod_out)
 ```
 
-HUGE, as expected.
+HUGE and fine ("Multicollinearity is to be expected in a mediational analysis and it cannot be avoided", [explains](http://davidakenny.net/cm/mediate.htm) David A. Kenny).
 
 Test the mediation:
 
-```{r}
+```{r message=FALSE}
 library(mediation)
+```
+
+```{r}
 test_med <- mediate(model.m = mod_med,
                     model.y = mod_out,
                     treat = "treat_group",

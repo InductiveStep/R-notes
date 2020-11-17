@@ -20,6 +20,8 @@ Mroz, T. A. (1987). The sensitivity of an empirical model of married women's hou
 
 Noether, G. E. (1984). Nonparametrics: The Early Years-Impressions and Recollections. *American Statistician*, *38*, 173-178]
 
+Tingley, D., Yamamoto, T., Hirose, K., Keele, L., & Imai, K. (2014). [mediation: R Package for Causal Mediation Analysis](https://www.jstatsoft.org/article/view/v059i05). *Journal of Statistical Software*, *59*(5), 1–38. doi: 10.18637/jss.v059.i05
+
 Van Buuren, S. (2018). [Flexible Imputation of Missing Data (2nd Edition)](https://stefvanbuuren.name/fimd/). Chapman & Hall/CRC. Boca Raton, FL.
 
 Wickham, H., & Grolemund, G. (2017). [R for Data Science: Import, Tidy, Transform, Visualize, and Model Data](http://r4ds.had.co.nz/). Sebastopol, CA: O’Reilly.
