@@ -682,7 +682,7 @@ Hmmmm something fishy for residuals above 5000. Let's look at the histogram in c
 hist(resid(income_mod_wc))
 ```
 
-Looks like they are no normally distributed, though maybe driven by outliers?
+Looks like they are not normally distributed, though maybe driven by outliers?
 
 
 

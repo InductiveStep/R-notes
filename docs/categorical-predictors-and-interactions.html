@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-17" />
+<meta name="date" content="2020-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1361,7 +1361,7 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 <p>Hmmmm something fishy for residuals above 5000. Let’s look at the histogram in case it is more obvious:</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="categorical-predictors-and-interactions.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(income_mod_wc))</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
-<p>Looks like they are no normally distributed, though maybe driven by outliers?</p>
+<p>Looks like they are not normally distributed, though maybe driven by outliers?</p>
 <p><strong>e. Try logging income to see what impact it has on the residual distribution</strong></p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="categorical-predictors-and-interactions.html#cb431-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>log_income <span class="ot">&lt;-</span> <span class="fu">log</span>(dat<span class="sc">$</span>income)</span>
 <span id="cb431-2"><a href="categorical-predictors-and-interactions.html#cb431-2" aria-hidden="true" tabindex="-1"></a>log_income_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_income <span class="sc">~</span> type, <span class="at">data =</span> dat)</span></code></pre></div>
