@@ -456,24 +456,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="make-up-some-data" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Make up some data</h3>
 <p>In this example, let’s make up some data for an experiment where people are randomised to one of two groups. The intervention group receives £2000 and the control group receives £500. The hypothesis is that one month later, the intervention group will have more savings than the control group; i.e., they won’t just spend all of the money they have received.</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="mediation-analysis.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb614-2"><a href="mediation-analysis.html#cb614-2" aria-hidden="true" tabindex="-1"></a>study_n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb614-3"><a href="mediation-analysis.html#cb614-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">savings_start =</span> <span class="fu">rnorm</span>(study_n, <span class="dv">5000</span>, <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb614-4"><a href="mediation-analysis.html#cb614-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, .),</span>
-<span id="cb614-5"><a href="mediation-analysis.html#cb614-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">treat_group    =</span> <span class="fu">rbinom</span>(study_n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">p =</span> .<span class="dv">5</span>),</span>
-<span id="cb614-6"><a href="mediation-analysis.html#cb614-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">money_received =</span> <span class="fu">ifelse</span>(treat_group <span class="sc">==</span> <span class="dv">1</span>,</span>
-<span id="cb614-7"><a href="mediation-analysis.html#cb614-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="dv">2000</span>,</span>
-<span id="cb614-8"><a href="mediation-analysis.html#cb614-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="dv">500</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(study_n, <span class="dv">0</span>, <span class="dv">5</span>),</span>
-<span id="cb614-9"><a href="mediation-analysis.html#cb614-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">savings_end    =</span> <span class="sc">-</span><span class="dv">500</span> <span class="sc">+</span> savings_start <span class="sc">+</span> money_received <span class="sc">+</span></span>
-<span id="cb614-10"><a href="mediation-analysis.html#cb614-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">rnorm</span>(study_n, <span class="dv">0</span>, <span class="dv">600</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb614-11"><a href="mediation-analysis.html#cb614-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, .))</span>
-<span id="cb614-12"><a href="mediation-analysis.html#cb614-12" aria-hidden="true" tabindex="-1"></a>                            </span>
-<span id="cb614-13"><a href="mediation-analysis.html#cb614-13" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb614-14"><a href="mediation-analysis.html#cb614-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treat_group =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(treat_group,</span>
-<span id="cb614-15"><a href="mediation-analysis.html#cb614-15" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Intervention&quot;</span>,</span>
-<span id="cb614-16"><a href="mediation-analysis.html#cb614-16" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">`</span><span class="at">0</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Control&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb614-17"><a href="mediation-analysis.html#cb614-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treat_group =</span> <span class="fu">as.factor</span>(treat_group))</span>
-<span id="cb614-18"><a href="mediation-analysis.html#cb614-18" aria-hidden="true" tabindex="-1"></a>dat</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="mediation-analysis.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb612-2"><a href="mediation-analysis.html#cb612-2" aria-hidden="true" tabindex="-1"></a>study_n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb612-3"><a href="mediation-analysis.html#cb612-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">savings_start =</span> <span class="fu">rnorm</span>(study_n, <span class="dv">5000</span>, <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb612-4"><a href="mediation-analysis.html#cb612-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, .),</span>
+<span id="cb612-5"><a href="mediation-analysis.html#cb612-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">treat_group    =</span> <span class="fu">rbinom</span>(study_n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">p =</span> .<span class="dv">5</span>),</span>
+<span id="cb612-6"><a href="mediation-analysis.html#cb612-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">money_received =</span> <span class="fu">ifelse</span>(treat_group <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb612-7"><a href="mediation-analysis.html#cb612-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="dv">2000</span>,</span>
+<span id="cb612-8"><a href="mediation-analysis.html#cb612-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="dv">500</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(study_n, <span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb612-9"><a href="mediation-analysis.html#cb612-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">savings_end    =</span> <span class="sc">-</span><span class="dv">500</span> <span class="sc">+</span> savings_start <span class="sc">+</span> money_received <span class="sc">+</span></span>
+<span id="cb612-10"><a href="mediation-analysis.html#cb612-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">rnorm</span>(study_n, <span class="dv">0</span>, <span class="dv">600</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb612-11"><a href="mediation-analysis.html#cb612-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, .))</span>
+<span id="cb612-12"><a href="mediation-analysis.html#cb612-12" aria-hidden="true" tabindex="-1"></a>                            </span>
+<span id="cb612-13"><a href="mediation-analysis.html#cb612-13" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb612-14"><a href="mediation-analysis.html#cb612-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treat_group =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(treat_group,</span>
+<span id="cb612-15"><a href="mediation-analysis.html#cb612-15" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Intervention&quot;</span>,</span>
+<span id="cb612-16"><a href="mediation-analysis.html#cb612-16" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">`</span><span class="at">0</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Control&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb612-17"><a href="mediation-analysis.html#cb612-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treat_group =</span> <span class="fu">as.factor</span>(treat_group))</span>
+<span id="cb612-18"><a href="mediation-analysis.html#cb612-18" aria-hidden="true" tabindex="-1"></a>dat</span></code></pre></div>
 <pre><code>## # A tibble: 200 x 4
 ##    savings_start treat_group  money_received savings_end
 ##            &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt;       &lt;dbl&gt;
@@ -489,32 +489,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10         4875. Control                500.       5376.
 ## # ... with 190 more rows</code></pre>
 <p>Here’s a graph:</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="mediation-analysis.html#cb616-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb616-2"><a href="mediation-analysis.html#cb616-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treat_group) <span class="sc">%&gt;%</span></span>
-<span id="cb616-3"><a href="mediation-analysis.html#cb616-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">savings_Pre  =</span> <span class="fu">mean</span>(savings_start),</span>
-<span id="cb616-4"><a href="mediation-analysis.html#cb616-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">savings_Post =</span> <span class="fu">mean</span>(savings_end)) <span class="sc">%&gt;%</span></span>
-<span id="cb616-5"><a href="mediation-analysis.html#cb616-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;savings&quot;</span>),</span>
-<span id="cb616-6"><a href="mediation-analysis.html#cb616-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;time&quot;</span>,</span>
-<span id="cb616-7"><a href="mediation-analysis.html#cb616-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;savings&quot;</span>,</span>
-<span id="cb616-8"><a href="mediation-analysis.html#cb616-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;savings_&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb616-9"><a href="mediation-analysis.html#cb616-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">factor</span>(time)) <span class="sc">%&gt;%</span></span>
-<span id="cb616-10"><a href="mediation-analysis.html#cb616-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">relevel</span>(time, <span class="st">&quot;Pre&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb616-11"><a href="mediation-analysis.html#cb616-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> savings, <span class="at">fill =</span> treat_group)) <span class="sc">+</span></span>
-<span id="cb616-12"><a href="mediation-analysis.html#cb616-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb616-13"><a href="mediation-analysis.html#cb616-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time&quot;</span>,</span>
-<span id="cb616-14"><a href="mediation-analysis.html#cb616-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Savings&quot;</span>,</span>
-<span id="cb616-15"><a href="mediation-analysis.html#cb616-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="mediation-analysis.html#cb614-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb614-2"><a href="mediation-analysis.html#cb614-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treat_group) <span class="sc">%&gt;%</span></span>
+<span id="cb614-3"><a href="mediation-analysis.html#cb614-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">savings_Pre  =</span> <span class="fu">mean</span>(savings_start),</span>
+<span id="cb614-4"><a href="mediation-analysis.html#cb614-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">savings_Post =</span> <span class="fu">mean</span>(savings_end)) <span class="sc">%&gt;%</span></span>
+<span id="cb614-5"><a href="mediation-analysis.html#cb614-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;savings&quot;</span>),</span>
+<span id="cb614-6"><a href="mediation-analysis.html#cb614-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb614-7"><a href="mediation-analysis.html#cb614-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;savings&quot;</span>,</span>
+<span id="cb614-8"><a href="mediation-analysis.html#cb614-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;savings_&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb614-9"><a href="mediation-analysis.html#cb614-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">factor</span>(time)) <span class="sc">%&gt;%</span></span>
+<span id="cb614-10"><a href="mediation-analysis.html#cb614-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">relevel</span>(time, <span class="st">&quot;Pre&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb614-11"><a href="mediation-analysis.html#cb614-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> savings, <span class="at">fill =</span> treat_group)) <span class="sc">+</span></span>
+<span id="cb614-12"><a href="mediation-analysis.html#cb614-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb614-13"><a href="mediation-analysis.html#cb614-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb614-14"><a href="mediation-analysis.html#cb614-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Savings&quot;</span>,</span>
+<span id="cb614-15"><a href="mediation-analysis.html#cb614-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-391-1.png" width="384" /></p>
 </div>
 <div id="analyse-it" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Analyse it</h3>
 <p>Fit the two models:</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="mediation-analysis.html#cb618-1" aria-hidden="true" tabindex="-1"></a>mod_med <span class="ot">&lt;-</span> <span class="fu">lm</span>(money_received <span class="sc">~</span> savings_start <span class="sc">+</span> treat_group, <span class="at">data =</span> dat)</span>
-<span id="cb618-2"><a href="mediation-analysis.html#cb618-2" aria-hidden="true" tabindex="-1"></a>mod_out <span class="ot">&lt;-</span> <span class="fu">lm</span>(savings_end <span class="sc">~</span> savings_start <span class="sc">+</span> treat_group <span class="sc">+</span> money_received, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="mediation-analysis.html#cb616-1" aria-hidden="true" tabindex="-1"></a>mod_med <span class="ot">&lt;-</span> <span class="fu">lm</span>(money_received <span class="sc">~</span> savings_start <span class="sc">+</span> treat_group, <span class="at">data =</span> dat)</span>
+<span id="cb616-2"><a href="mediation-analysis.html#cb616-2" aria-hidden="true" tabindex="-1"></a>mod_out <span class="ot">&lt;-</span> <span class="fu">lm</span>(savings_end <span class="sc">~</span> savings_start <span class="sc">+</span> treat_group <span class="sc">+</span> money_received, <span class="at">data =</span> dat)</span></code></pre></div>
 <p>Have a look:</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="mediation-analysis.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">3</span>) <span class="co"># bias away from scientific notation (default 0)</span></span>
-<span id="cb619-2"><a href="mediation-analysis.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_med)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="mediation-analysis.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">3</span>) <span class="co"># bias away from scientific notation (default 0)</span></span>
+<span id="cb617-2"><a href="mediation-analysis.html#cb617-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_med)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = money_received ~ savings_start + treat_group, data = dat)
@@ -535,7 +535,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:      1,  Adjusted R-squared:      1 
 ## F-statistic: 2.442e+06 on 2 and 197 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The coefficients for the model regressing savings on treatment group and money received wipe each other out…</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="mediation-analysis.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_out)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="mediation-analysis.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_out)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = savings_end ~ savings_start + treat_group + money_received, 
@@ -558,21 +558,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.9745, Adjusted R-squared:  0.9741 
 ## F-statistic:  2500 on 3 and 196 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Check out the VIFs:</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="mediation-analysis.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_out)</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="mediation-analysis.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_out)</span></code></pre></div>
 <pre><code>##  savings_start    treat_group money_received 
 ##       1.001488   24792.453868   24792.238825</code></pre>
 <p>HUGE and fine (“Multicollinearity is to be expected in a mediational analysis and it cannot be avoided,” <a href="http://davidakenny.net/cm/mediate.htm">explains</a> David A. Kenny).</p>
 <p>Test the mediation:</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="mediation-analysis.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span></code></pre></div>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="mediation-analysis.html#cb626-1" aria-hidden="true" tabindex="-1"></a>test_med <span class="ot">&lt;-</span> <span class="fu">mediate</span>(<span class="at">model.m =</span> mod_med,</span>
-<span id="cb626-2"><a href="mediation-analysis.html#cb626-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model.y =</span> mod_out,</span>
-<span id="cb626-3"><a href="mediation-analysis.html#cb626-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">treat =</span> <span class="st">&quot;treat_group&quot;</span>,</span>
-<span id="cb626-4"><a href="mediation-analysis.html#cb626-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mediator =</span> <span class="st">&quot;money_received&quot;</span>,</span>
-<span id="cb626-5"><a href="mediation-analysis.html#cb626-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">robustSE =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb626-6"><a href="mediation-analysis.html#cb626-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sims =</span> <span class="dv">100</span>,</span>
-<span id="cb626-7"><a href="mediation-analysis.html#cb626-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">control.value =</span> <span class="st">&quot;Control&quot;</span>,</span>
-<span id="cb626-8"><a href="mediation-analysis.html#cb626-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">treat.value =</span> <span class="st">&quot;Intervention&quot;</span>)</span>
-<span id="cb626-9"><a href="mediation-analysis.html#cb626-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test_med)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="mediation-analysis.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="mediation-analysis.html#cb624-1" aria-hidden="true" tabindex="-1"></a>test_med <span class="ot">&lt;-</span> <span class="fu">mediate</span>(<span class="at">model.m =</span> mod_med,</span>
+<span id="cb624-2"><a href="mediation-analysis.html#cb624-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model.y =</span> mod_out,</span>
+<span id="cb624-3"><a href="mediation-analysis.html#cb624-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">treat =</span> <span class="st">&quot;treat_group&quot;</span>,</span>
+<span id="cb624-4"><a href="mediation-analysis.html#cb624-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mediator =</span> <span class="st">&quot;money_received&quot;</span>,</span>
+<span id="cb624-5"><a href="mediation-analysis.html#cb624-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">robustSE =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb624-6"><a href="mediation-analysis.html#cb624-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sims =</span> <span class="dv">100</span>,</span>
+<span id="cb624-7"><a href="mediation-analysis.html#cb624-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">control.value =</span> <span class="st">&quot;Control&quot;</span>,</span>
+<span id="cb624-8"><a href="mediation-analysis.html#cb624-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">treat.value =</span> <span class="st">&quot;Intervention&quot;</span>)</span>
+<span id="cb624-9"><a href="mediation-analysis.html#cb624-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test_med)</span></code></pre></div>
 <pre><code>## 
 ## Causal Mediation Analysis 
 ## 

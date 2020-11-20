@@ -461,7 +461,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb569-2"><a href="complex-surveys.html#cb569-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span></code></pre></div>
 <div id="readings" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Readings</h2>
-<p>See <a href="https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html"><code>srvyr</code> compared to the <code>survey</code> package</a> and Fox and Weisberg’s online appendix, <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf">Fitting Regression Models to Data From Complex Surveys</a>. The main reference for the model implemented by <code>survey</code> is by Lumley (2010). UCLA has a <a href="https://stats.idre.ucla.edu/r/seminars/survey-data-analysis-with-r/">fab site</a> with info too.</p>
+<p>These are handy:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html"><code>srvyr</code> compared to the <code>survey</code> package</a> explains a way to use survey data in the tidyverse.</li>
+<li>Fox and Weisberg’s online appendix, <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf">Fitting Regression Models to Data From Complex Surveys</a>.</li>
+<li>The main reference for the models implemented by <code>survey</code> is the (expensive) book by Lumley (2010).</li>
+<li>UCLA has <a href="https://stats.idre.ucla.edu/r/seminars/survey-data-analysis-with-r/">extensive notes</a> from a 2020 seminar on survey analysis.</li>
+<li><a href="https://medium.com/pew-research-center-decoded/analyzing-international-survey-data-with-the-pewmethods-r-package-3b0b21cba607">Analyzing international survey data with the pewmethods R package</a>, by Kat Devlin, explains an alternative way to use weights for descriptive stats.</li>
+</ul>
 </div>
 <div id="the-dataset-4" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> The dataset</h2>
@@ -543,9 +550,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 1103       ON    9439960 8977.61</code></pre>
 <ul>
 <li><code>id</code> is a unique identifier for each individual, which is particularly important when there is more than one data point per person, e.g., for multilevel modelling (not in this dataset).</li>
-<li><code>province</code> the data were stratified by province – random sampling by landline numbers was done within province</li>
-<li><code>population</code> provides the population by province</li>
-<li><code>weight</code> is the sampling weight, in this dataset calculated based on differences in province population, the study sample size therein, and household size</li>
+<li><code>province</code> the data were stratified by province – random sampling by landline numbers was done within province.</li>
+<li><code>population</code> provides the population by province.</li>
+<li><code>weight</code> is the sampling weight, in this dataset calculated based on differences in province population, the study sample size therein, and household size.</li>
 </ul>
 <p>Here is how to setup a survey object using <code>srvyr</code>:</p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="complex-surveys.html#cb574-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces <span class="sc">%&gt;%</span></span>
@@ -617,7 +624,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="fitting-a-glm" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Fitting a GLM</h2>
-<p>The <code>survey</code> package makes this very easy. There is a command called <code>svyglm</code> which is identical to <code>glm</code> except it has parameter called <code>design</code> instead if <code>data</code>.</p>
+<p>The <code>survey</code> package makes this very easy. There is a command called <code>svyglm</code> which is identical to <code>glm</code> except it has parameter called <code>design</code> instead of <code>data</code>.</p>
 <p>See <code>?svyglm</code></p>
 <div id="activity-33" class="section level3" number="7.5.1">
 <h3><span class="header-section-number">7.5.1</span> Activity</h3>
@@ -753,20 +760,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##               1.56               1.39               1.77               2.80 
 ##    educationsomePS         genderMale 
 ##               1.15               1.39</code></pre>
-<p>So the odds ratio of “very” v “not” important is 23.1.</p>
+<p>So the odds ratio of “very” versus “not” important is 23.1.</p>
 <p>The <code>ggeffects</code> package also works with <code>survey</code> models:</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="complex-surveys.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
 <span id="cb607-2"><a href="complex-surveys.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(sm1, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;importance&quot;</span>))  <span class="sc">%&gt;%</span></span>
 <span id="cb607-3"><a href="complex-surveys.html#cb607-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
 <span id="cb607-4"><a href="complex-surveys.html#cb607-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## Registered S3 methods overwritten by &#39;lme4&#39;:
-##   method                          from
-##   cooks.distance.influence.merMod car 
-##   influence.merMod                car 
-##   dfbeta.influence.merMod         car 
-##   dfbetas.influence.merMod        car</code></pre>
-<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
-## replace the existing scale.</code></pre>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-385-1.png" width="672" /></p>
 </div>
 </div>
@@ -774,16 +773,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.7</span> Diagnostics</h2>
 <p>Many of the diagnostic check we previously encountered work here too.</p>
 <p>Here are the VIFs:</p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="complex-surveys.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="complex-surveys.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(sm1)</span></code></pre></div>
 <pre><code>##                GVIF Df GVIF^(1/(2*Df))
 ## importance 1.052799  3        1.008612
 ## education  1.066741  5        1.006482
 ## gender     1.039299  1        1.019460</code></pre>
 <p>My favorite, the DFBETA plots:</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="complex-surveys.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="complex-surveys.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(sm1)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-387-1.png" width="576" /></p>
 <p>Try also:</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="complex-surveys.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="complex-surveys.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(sm1)</span></code></pre></div>
 
 </div>
 </div>

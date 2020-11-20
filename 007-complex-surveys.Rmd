@@ -24,7 +24,13 @@ library(srvyr)
 
 ## Readings
 
-See [`srvyr` compared to the `survey` package](https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html) and Fox and Weisberg's online appendix, [Fitting Regression Models to Data From Complex Surveys](https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf). The main reference for the model implemented by `survey` is by Lumley (2010). UCLA has a [fab site](https://stats.idre.ucla.edu/r/seminars/survey-data-analysis-with-r/) with info too.
+These are handy:
+
+* [`srvyr` compared to the `survey` package](https://cran.r-project.org/web/packages/srvyr/vignettes/srvyr-vs-survey.html) explains a way to use survey data in the tidyverse.
+* Fox and Weisberg's online appendix, [Fitting Regression Models to Data From Complex Surveys](https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendices/Appendix-Surveys.pdf).
+* The main reference for the models implemented by `survey` is the (expensive) book by Lumley (2010).
+* UCLA has [extensive notes](https://stats.idre.ucla.edu/r/seminars/survey-data-analysis-with-r/) from a 2020 seminar on survey analysis.
+* [Analyzing international survey data with the pewmethods R package](https://medium.com/pew-research-center-decoded/analyzing-international-survey-data-with-the-pewmethods-r-package-3b0b21cba607), by Kat Devlin, explains an alternative way to use weights for descriptive stats.
 
 
 
@@ -67,9 +73,9 @@ ces %>% select(id, province, population, weight) %>%
 ```
 
 * `id` is a unique identifier for each individual, which is particularly important when there is more than one data point per person, e.g., for multilevel modelling (not in this dataset).
-* `province` the data were stratified by province -- random sampling by landline numbers was done within province
-* `population` provides the population by province
-* `weight` is the sampling weight, in this dataset calculated based on differences in province population, the study sample size therein, and household size
+* `province` the data were stratified by province -- random sampling by landline numbers was done within province.
+* `population` provides the population by province.
+* `weight` is the sampling weight, in this dataset calculated based on differences in province population, the study sample size therein, and household size.
 
 Here is how to setup a survey object using `srvyr`:
 
@@ -156,7 +162,7 @@ ces_s %>%
 
 ## Fitting a GLM
 
-The `survey` package makes this very easy. There is a command called `svyglm` which is identical to `glm` except it has parameter called `design` instead if `data`.
+The `survey` package makes this very easy. There is a command called `svyglm` which is identical to `glm` except it has parameter called `design` instead of `data`.
 
 See `?svyglm`
 
@@ -256,11 +262,11 @@ You could get the odds ratios like so:
 exp(coef(sm1)) %>% round(2)
 ```
 
-So the odds ratio of "very" v "not" important is 23.1.
+So the odds ratio of "very" versus "not" important is 23.1.
 
 The `ggeffects` package also works with `survey` models:
 
-```{r}
+```{r message=FALSE}
 library(ggeffects)
 ggeffect(sm1, terms = c("education", "importance"))  %>%
   plot() +
