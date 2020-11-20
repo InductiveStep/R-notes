@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-18" />
+<meta name="date" content="2020-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -848,13 +848,26 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
                   &amp; = &amp;  35.5
 \end{array}
 \]</span></p>
+<p>By the way, this is equivalent to a two-sample t-test assuming equal variance:</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="categorical-predictors-and-interactions.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> just_two, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  prestige by type
+## t = -2.6487, df = 65, p-value = 0.01013
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.780279  -1.652132
+## sample estimates:
+## mean in group bc mean in group wc 
+##         35.52727         42.24348</code></pre>
 </div>
 <div id="categorical-predictors-with-3-or-more-levels" class="section level3" number="5.6.3">
 <h3><span class="header-section-number">5.6.3</span> Categorical predictors with 3 or more levels</h3>
 <p>In general, if a categorical variable has <span class="math inline">\(n\)</span> levels, then there will be <span class="math inline">\(n-1\)</span> binary predictors added to the regression model. One level must be chosen as the comparison level. Slopes for the predictors represent <em>differences</em> from that comparison level.</p>
 <p>Here is a model, fitted using R’s automatic coding (and summarised with the aid of a pipe, just to add a little variation):</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="categorical-predictors-and-interactions.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
-<span id="cb387-2"><a href="categorical-predictors-and-interactions.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="categorical-predictors-and-interactions.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
+<span id="cb389-2"><a href="categorical-predictors-and-interactions.html#cb389-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ type, data = dat_no_NAs)
@@ -875,11 +888,11 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 ## Multiple R-squared:  0.6976, Adjusted R-squared:  0.6913 
 ## F-statistic: 109.6 on 2 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Now let’s do the same again “by hand,” to show the coding:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="categorical-predictors-and-interactions.html#cb389-1" aria-hidden="true" tabindex="-1"></a>dat_no_NAs<span class="sc">$</span>type_prof <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dat_no_NAs<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;prof&quot;</span>)</span>
-<span id="cb389-2"><a href="categorical-predictors-and-interactions.html#cb389-2" aria-hidden="true" tabindex="-1"></a>dat_no_NAs<span class="sc">$</span>type_wc   <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dat_no_NAs<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;wc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="categorical-predictors-and-interactions.html#cb391-1" aria-hidden="true" tabindex="-1"></a>dat_no_NAs<span class="sc">$</span>type_prof <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dat_no_NAs<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;prof&quot;</span>)</span>
+<span id="cb391-2"><a href="categorical-predictors-and-interactions.html#cb391-2" aria-hidden="true" tabindex="-1"></a>dat_no_NAs<span class="sc">$</span>type_wc   <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dat_no_NAs<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;wc&quot;</span>)</span></code></pre></div>
 <p>There are now two predictors: <code>type_prof</code> is 1 when the occupation type is <code>prof</code> and 0 otherwise; <code>type_wc</code> is 1 when the occupation type is <code>wc</code> and 0 otherwise. Whenever the occupation type is <code>bc</code>, both of these predictors are zero.</p>
 <p>Have a look to see what this has done, comparing the <code>type</code> column with <code>type_prof</code> and <code>type_wc</code>:</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="categorical-predictors-and-interactions.html#cb390-1" aria-hidden="true" tabindex="-1"></a>dat_no_NAs</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="categorical-predictors-and-interactions.html#cb392-1" aria-hidden="true" tabindex="-1"></a>dat_no_NAs</span></code></pre></div>
 <pre><code>##                           occ prestige type type_prof type_wc
 ## 1          gov administrators     68.8 prof         1       0
 ## 2            general managers     69.1 prof         1       0
@@ -980,8 +993,8 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 ## 101               typesetters     42.2   bc         0       0
 ## 102               bookbinders     35.2   bc         0       0</code></pre>
 <p>If we fit a model with these two “hand coded” predictors, the results are identical to what R did automatically:</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="categorical-predictors-and-interactions.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> type_prof <span class="sc">+</span> type_wc, <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
-<span id="cb392-2"><a href="categorical-predictors-and-interactions.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="categorical-predictors-and-interactions.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> type_prof <span class="sc">+</span> type_wc, <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
+<span id="cb394-2"><a href="categorical-predictors-and-interactions.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ type_prof + type_wc, data = dat_no_NAs)
@@ -1042,8 +1055,8 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 <div id="interpreting-the-coefficients" class="section level2 tabset" number="5.7">
 <h2><span class="header-section-number">5.7</span> Interpreting the coefficients</h2>
 <p>Here’s the model again:</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="categorical-predictors-and-interactions.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
-<span id="cb394-2"><a href="categorical-predictors-and-interactions.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="categorical-predictors-and-interactions.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
+<span id="cb396-2"><a href="categorical-predictors-and-interactions.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ type, data = dat_no_NAs)
@@ -1067,8 +1080,8 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 <p>We have a variable with three levels and this has ended up the regression model as two predictors, (1) <code>typewc</code> and (2) <code>typeprof</code>, the slopes of which represent the <em>difference</em> between (1) <code>wc</code> and <code>bc</code> and (2) <code>prof</code> and <code>bc</code>, respectively.</p>
 <p>But this does not currently show us all combinations. What is the difference between <code>wc</code> and <code>prof</code>?</p>
 <p>Here is <code>relevel</code> to the rescue. It relevels a factor so that whichever level you name comes first. You can add the command directly to a model specification like this:</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="categorical-predictors-and-interactions.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> <span class="fu">relevel</span>(type, <span class="st">&quot;prof&quot;</span>), <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
-<span id="cb396-2"><a href="categorical-predictors-and-interactions.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="categorical-predictors-and-interactions.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(prestige <span class="sc">~</span> <span class="fu">relevel</span>(type, <span class="st">&quot;prof&quot;</span>), <span class="at">data =</span> dat_no_NAs) <span class="sc">%&gt;%</span></span>
+<span id="cb398-2"><a href="categorical-predictors-and-interactions.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ relevel(type, &quot;prof&quot;), data = dat_no_NAs)
@@ -1089,9 +1102,9 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 ## Multiple R-squared:  0.6976, Adjusted R-squared:  0.6913 
 ## F-statistic: 109.6 on 2 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Or, do it a longer but clearer way, e.g.,</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="categorical-predictors-and-interactions.html#cb398-1" aria-hidden="true" tabindex="-1"></a>dat_no_NAs<span class="sc">$</span>type_vs_prof <span class="ot">&lt;-</span> <span class="fu">relevel</span>(dat_no_NAs<span class="sc">$</span>type, <span class="st">&quot;prof&quot;</span>)</span>
-<span id="cb398-2"><a href="categorical-predictors-and-interactions.html#cb398-2" aria-hidden="true" tabindex="-1"></a>myMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> type_vs_prof, <span class="at">data =</span> dat_no_NAs)</span>
-<span id="cb398-3"><a href="categorical-predictors-and-interactions.html#cb398-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myMod)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="categorical-predictors-and-interactions.html#cb400-1" aria-hidden="true" tabindex="-1"></a>dat_no_NAs<span class="sc">$</span>type_vs_prof <span class="ot">&lt;-</span> <span class="fu">relevel</span>(dat_no_NAs<span class="sc">$</span>type, <span class="st">&quot;prof&quot;</span>)</span>
+<span id="cb400-2"><a href="categorical-predictors-and-interactions.html#cb400-2" aria-hidden="true" tabindex="-1"></a>myMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> type_vs_prof, <span class="at">data =</span> dat_no_NAs)</span>
+<span id="cb400-3"><a href="categorical-predictors-and-interactions.html#cb400-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myMod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ type_vs_prof, data = dat_no_NAs)
@@ -1112,7 +1125,7 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 ## Multiple R-squared:  0.6976, Adjusted R-squared:  0.6913 
 ## F-statistic: 109.6 on 2 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The advantage of this is that we can have a look at the levels and check that <code>prof</code> comes first:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="categorical-predictors-and-interactions.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dat_no_NAs<span class="sc">$</span>type_vs_prof)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="categorical-predictors-and-interactions.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dat_no_NAs<span class="sc">$</span>type_vs_prof)</span></code></pre></div>
 <pre><code>## [1] &quot;prof&quot; &quot;bc&quot;   &quot;wc&quot;</code></pre>
 <div id="activity-25" class="section level3" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Activity</h3>
@@ -1127,14 +1140,9 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 <h2><span class="header-section-number">5.8</span> Checking all combinations</h2>
 <p>It can quickly become a pain to use <code>relevel</code> like this and there are various alternatives.</p>
 <p>At this point, I wish I hadn’t been so clever using a pipe and instead just saved the model. I shall do so now.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="categorical-predictors-and-interactions.html#cb402-1" aria-hidden="true" tabindex="-1"></a>das_Model <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> dat_no_NAs)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="categorical-predictors-and-interactions.html#cb404-1" aria-hidden="true" tabindex="-1"></a>das_Model <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> type, <span class="at">data =</span> dat_no_NAs)</span></code></pre></div>
 <p>We will use the <code>emmeans</code> package.</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="categorical-predictors-and-interactions.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;emmeans&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:GGally&#39;:
-## 
-##     pigs</code></pre>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="categorical-predictors-and-interactions.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div>
 <p>The main function therein is <code>emmeans</code>. Fox and Weisberg (2019, p. 203) comment that the formula argument is “idiosyncratic.” Anyway, here is how to use it:</p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="categorical-predictors-and-interactions.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(das_Model, pairwise <span class="sc">~</span> type)</span></code></pre></div>
 <pre><code>## $emmeans
@@ -1356,18 +1364,18 @@ where <span class="math inline">\(N\)</span> is the number of observations. R ha
 <p><strong>d. Are the residuals normally distributed?</strong></p>
 <p>The order of levels does not affect the residuals, so either model would do:</p>
 <div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="categorical-predictors-and-interactions.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(<span class="fu">resid</span>(income_mod_wc))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <pre><code>## [1]  2 24</code></pre>
 <p>Hmmmm something fishy for residuals above 5000. Let’s look at the histogram in case it is more obvious:</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="categorical-predictors-and-interactions.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(income_mod_wc))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
 <p>Looks like they are not normally distributed, though maybe driven by outliers?</p>
 <p><strong>e. Try logging income to see what impact it has on the residual distribution</strong></p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="categorical-predictors-and-interactions.html#cb431-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>log_income <span class="ot">&lt;-</span> <span class="fu">log</span>(dat<span class="sc">$</span>income)</span>
 <span id="cb431-2"><a href="categorical-predictors-and-interactions.html#cb431-2" aria-hidden="true" tabindex="-1"></a>log_income_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_income <span class="sc">~</span> type, <span class="at">data =</span> dat)</span></code></pre></div>
 <p>Now the residuals look much better:</p>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="categorical-predictors-and-interactions.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(<span class="fu">resid</span>(log_income_mod))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
 <pre><code>## 68  2 
 ## 64  2</code></pre>
 <p><strong>f. Now compare all differences between groups</strong></p>
@@ -1481,7 +1489,7 @@ For example, we found that occupation type explains variation in prestige. It is
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="categorical-predictors-and-interactions.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
 <span id="cb445-2"><a href="categorical-predictors-and-interactions.html#cb445-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(interaction_mod, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;income_1000s&quot;</span>, <span class="st">&quot;type&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb445-3"><a href="categorical-predictors-and-interactions.html#cb445-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">add.data =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
 <p>Hopefully this graph illustrates what it means that the relationship between income and prestige depends on occupation type – the slopes are different for each type.</p>
 </div>
 <div id="further-reading" class="section level3" number="5.12.4">

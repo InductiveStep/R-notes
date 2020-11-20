@@ -379,6 +379,13 @@ $$
 \end{array}
 $$
 
+By the way, this is equivalent to a two-sample t-test assuming equal variance:
+
+```{r}
+t.test(prestige ~ type, data = just_two, var.equal = TRUE)
+```
+
+
 
 ### Categorical predictors with 3 or more levels
 
@@ -518,7 +525,7 @@ das_Model <- lm(prestige ~ type, data = dat_no_NAs)
 
 We will use the `emmeans` package.
 
-```{r warning=FALSE}
+```{r message=FALSE}
 library(emmeans)
 ```
 
@@ -535,7 +542,6 @@ Compare and contrast with the results obtained by using `relevel` above.
 The estimates are identical. One difference you will observe is that the p-values are adjusted for the number of comparisons. There has been an enormous quantity of ink spilled on the problem of multiple comparisons. You may recall a variety of corrections, often named after their creators, e.g., Bonferroni, Bonferroni-Holm (my favourite), and Šidák.
 
 Here, the p-values are adjusted by "tukey method" which is Tukey's Honest Significant Differences (HSD) adjustment. (Tukey is another statistician.)
-
 
 
 ## The intercept is not always the mean of the comparison group
