@@ -1,3 +1,10 @@
+starting-rstudio
+download-install-and-run
+make-a-new-r-notebook-file
+save-the-file
+run-the-example-r-command
+clear-it-and-try-a-sum
+did-that-help
 starting-r
 arithmetic
 activities

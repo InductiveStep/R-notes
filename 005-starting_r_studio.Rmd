@@ -1,0 +1,35 @@
+# Starting RStudio
+
+This is an attempt to explain how to get going super fast, mostly by using animated GIFs. For something more substantial, try Healy's intro [over here](https://socviz.co/gettingstarted.html).
+
+
+## Download, install, and run
+
+First ensure that you have installed both [RStudio](https://rstudio.com/) and [R](https://cran.r-project.org/). RStudio is a friendly user interface which makes it easier to run analyses. R is the software which does the number crunching.
+
+Once both are installed, run RStudio.
+
+
+
+## Make a new R Notebook file
+
+![](start_rstudio.gif)
+
+
+## Save the file
+
+![](save_script.gif)
+
+
+## Run the example R command
+
+![](run_script.gif)
+
+
+## Clear it and try a sum
+
+![](clear_script.gif)
+
+## Did that help?
+
+If so, try the next chapter! Otherwise, I can again recommend [Healy's intro](https://socviz.co/gettingstarted.html).
