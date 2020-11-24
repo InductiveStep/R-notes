@@ -1,0 +1,386 @@
+# P-values and confidence intervals
+
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(patchwork)
+```
+
+
+
+P-values are notoriously difficult to comprehend and controversial. Occasionally journals even try to ban them. But they are pervasive in the literature and statistical software often presents them so it is important to understand what they mean. Confidence intervals, slightly less controversial but similarly often misunderstood, are important too.
+
+By the end of this chapter you will:
+
+* Have an intuitive grasp of how sample data can look, given particular assumptions about true population values.
+* Understand p-values in relation to this intuitive grasp.
+* Have an intuitive grasp of how confidence intervals look across a range of studies.
+* Understand confidence intervals in relation to this intuitive grasp.
+* Know where to look for formal definitions.
+
+
+
+## Correlation recap
+
+We will focus on correlations in this chapter, so here is a refresher of what they are.
+
+Pearson's correlation coefficient, $r$, is an indicator of how linearly correlated two variables are. It is bounded between $-1$ and $1$, where $-1$ denotes a perfect negative correlation (one variable goes up, the other down), $1$ denotes a perfect positive correlation (one variable goes up, so does the other), and $0$ denotes a perfect absence of correlation. The picture below shows some examples.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+the_n = 500
+set.seed(42)
+base_x = rnorm(the_n, 100, 15)
+
+plot_one <- function(the_x, slope, resid_sd) {
+  y = slope*the_x + rnorm(the_n, 0, resid_sd)
+  
+  the_dat <- data.frame(x = scale(the_x),
+                        y = scale(y))
+  the_dat %>%
+    ggplot(aes(x, y)) +
+    geom_point() +
+    labs(title = paste("r =", round(cor(the_dat$x,
+                                        the_dat$y),1)),
+         x = "x",
+         y = "y") +
+    xlim(-3,3) + 
+    ylim(-3,3)
+}
+
+wrap_plots(plot_one(base_x,  1, 50),
+           plot_one(base_x,  1, 20),
+           plot_one(base_x,  1, 7),
+           plot_one(base_x, -1, 55),
+           plot_one(base_x, -1, 20),
+           plot_one(base_x, -1, 7))
+```
+
+The quantitative interpretation of a correlation, $r$, is as follows: if one variable is increased by 1 standard deviation (SD), then the other changes by a mean of $r$ SDs. So, for instance, a correlation of $-0.42$ indicates if one variable goes up by 1 SD, then the other decreases by a mean of $0.42$ SDs.
+
+Correlations are a special case of linear regression (see next chapter) but you can also estimate them directly using the R command `cor.test` or `cor`.
+
+
+
+## Testing null-hypotheses
+
+The basic idea is simple, though feels back-to-front. It's popular because it is easier to work with than alternatives.
+
+Here's the gist for testing a correlation.
+
+1. Build a model of what the world could look like *if* there were no true correlation between your variables of interest.
+2. Calculate the actual correlation in the sample you have.
+3. Work out how probable the correlation you got, or greater, in either direction would be if there were no true correlation.
+
+The argument is similar to the structure of *modus tollens* from classical propositional logic.
+
+1. If *A*, then *B*.
+2. Not-*B*.
+3. Therefore, not-*A*.
+
+For example:
+
+1. If Rex were a duck, then Rex would quack.
+2. Rex doesn't quack.
+3. Therefore, Rex isn't a duck.
+
+![](a_dog.png)
+
+Or:
+
+1. If there were no true correlation, then the sample correlation would *probably* be close to zero.
+2. The correlation isn't close to zero.
+3. Therefore, there *probably* is a correlation.
+
+Except it's not quite this, because I have slipped the word "probably" in a couple of times and the two probabilities aren't the same. Also I haven't defined "close to zero".
+
+Onwards, to define "close to zero".
+
+
+### What can samples look like when the true correlation is 0?
+
+
+```{r echo = F}
+n <- 20
+total_sims <- 100
+```
+
+We can explore this by simulation. Here is an animation of `r total_sims` simulated studies, each with `r n` simulated participants. By design, there is no true correlation between the variables. But let's see what happens...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, animation.hook="gifski", cache=TRUE}
+set.seed(45)
+
+for (i in 1:total_sims) {
+  the_dat <- tibble(x = scale(rnorm(n)),
+                    y = scale(rnorm(n)))
+  
+  the_cor <- cor.test(~ x + y, data = the_dat)
+  
+  the_r <- round(the_cor$estimate,2)
+  the_p <- ifelse(the_cor$p.value < .001, "< 0.001",
+                  round(the_cor$p.value,3))
+  
+  the_plot <- the_dat %>%
+    ggplot(aes(x = x, y = y)) +
+      geom_point() +
+      geom_smooth(method = "lm",
+                  se = FALSE,
+                  fullrange = TRUE) +
+      xlim(-2.5,2.5) +
+      ylim(-2.5,2.5) +
+      labs(title = paste0("r = ", the_r, ", p = ", the_p),
+           subtitle = paste0("Simulation ",i," out of ",total_sims))
+  
+  print(the_plot)
+}
+```
+
+As you will have seen, sometimes the correlation is positive, other times, negative, and occasionally it is quite big.
+
+We can run this simulation 10,000 times and draw histograms of the correlation coefficient (r) and the p-value (as calculated by `cor.test`) for each simulated study. Here is how they look:
+
+**10,000 studies (true *r* = 0, each sample size 20)**
+
+```{r echo=FALSE, warning=FALSE, cache=TRUE}
+set.seed(1337)
+
+the_n = 20
+the_r = rep(NA, 10000)
+the_p = the_r
+
+for (i in 1:length(the_r)) {
+  the_dat <- tibble(x = scale(rnorm(the_n)),
+                    y = scale(rnorm(the_n)))
+  
+  the_cor <- cor.test(~ x + y, data = the_dat)
+  
+  the_r[i] <- the_cor$estimate
+  the_p[i] <- the_cor$p.value
+}
+
+sim_results_20 <- tibble(r = the_r, p = the_p)
+
+wrap_plots(
+  sim_results_20 %>%
+    ggplot(aes(x = r)) +
+    geom_histogram(bins = 40) +
+    labs(title = "(a) Correlations (r)") +
+    xlim(-1,1),
+  sim_results_20 %>%
+    ggplot(aes(x = p)) +
+    geom_histogram(bins = 10) +
+    labs(title = "(b) p-values") +
+    xlim(0,1),
+  ncol = 2
+)
+```
+
+Some observations:
+
+* Most values of *r* are close to zero but some are quite far on either side of it.
+* The p-values are uniformly spread from 0 to 1.
+
+Let's try again, this time with each study sample size set to 200.
+
+**10,000 studies (true *r* = 0, each sample size 200)**
+
+```{r echo=FALSE, warning=FALSE, cache=TRUE}
+set.seed(1338)
+
+the_n = 200
+the_r = rep(NA, 10000)
+the_p = the_r
+
+for (i in 1:length(the_r)) {
+  the_dat <- tibble(x = scale(rnorm(the_n)),
+                    y = scale(rnorm(the_n)))
+  
+  the_cor <- cor.test(~ x + y, data = the_dat)
+  
+  the_r[i] <- the_cor$estimate
+  the_p[i] <- the_cor$p.value
+}
+
+sim_results_200 <- tibble(r = the_r, p = the_p)
+
+wrap_plots(
+  sim_results_200 %>%
+    ggplot(aes(x = r)) +
+    geom_histogram(bins = 40) +
+    labs(title = "(a) Correlations (r)") +
+    xlim(-1,1),
+  sim_results_200 %>%
+    ggplot(aes(x = p)) +
+    geom_histogram(bins = 10) +
+    labs(title = "(b) p-values") +
+    xlim(0,1),
+  ncol = 2
+)
+```
+
+
+* Most values of *r* are close to zero and now the spread of values is much smaller.
+* The p-values are still uniformly spread from 0 to 1.
+
+
+
+### Understanding actual data in relation to these simulations
+
+Above we explored what correlations can look like in a sample when the true correlation is 0.
+
+We can use this knowledge to understand the p-value of correlations for actual data.
+
+```{r echo = FALSE}
+dat <- read.csv("prestige.csv")
+```
+
+Here is actual data: the subjective prestige of "white collar" occupations is apparently positively correlated with the mean number of years' education of people with that occupation. (We explore the dataset further in the next chapter.)
+
+```{r echo=FALSE, message=FALSE}
+dat_sub <- dat %>%
+  filter(type %in% c("wc"))
+
+dat_sub %>%
+  ggplot(aes(x = education,
+             y = prestige)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+
+```{r echo = FALSE}
+prestige_cor <- cor.test(~ education + prestige, data = dat_sub)
+```
+
+There are `r nrow(dat_sub)` observations in (this subset of) the data and the correlation is `r prestige_cor$estimate %>% round(2)`.
+
+To work out the p-value for this correlation, I'm first going to simulate 100,000 studies in which there is no correlation between the two variables and where each simulated study has `r nrow(dat_sub)` observations.
+
+```{r echo = FALSE, cache = TRUE}
+set.seed(1338)
+
+the_n = nrow(dat_sub)
+the_r = rep(NA, 100000)
+
+for (i in 1:length(the_r)) {
+  the_dat <- tibble(x = scale(rnorm(the_n)),
+                    y = scale(rnorm(the_n)))
+  
+  the_cor <- cor.test(~ x + y, data = the_dat)
+  
+  the_r[i] <- the_cor$estimate
+}
+```
+
+
+```{r echo = FALSE}
+tibble(r = the_r, abs_above = abs(the_r) >= prestige_cor$estimate) %>%
+  ggplot(aes(x = r, fill = abs_above)) +
+  geom_histogram(bins = 150) +
+  scale_fill_manual(values=c("#999999", "#FF0000")) +
+  theme(legend.position = "none") 
+```
+
+If you look *very* closely at the histogram, you will see I have shaded the edges (also known as the "tails") in red. That's where the simulated $r$ is above $0.62$ or below $-0.62$, i.e., at least as big in magnitude as the sample correlation we got for the prestige data above.
+
+
+```{r echo = FALSE}
+above_r       <- sum(the_r >= prestige_cor$estimate)
+below_minus_r <- sum(the_r <= -prestige_cor$estimate)
+```
+
+Of these simulations, `r above_r` had a correlation greater than or equal to $0.62$ and `r below_minus_r` were less than or equal to $-0.62$. As a proportion of the total number of simulations, that is `r (above_r + below_minus_r) / length(the_r)`.
+
+The p-value worked out by `cor.test` command without simulation is `r prestige_cor$p.value`.
+
+
+### So, what is a p-value?
+
+The p-value is the probability of getting a statistic in the sample at least as big as the one you got, *if* the null hypothesis and assumptions about how the data were created were true.
+
+In the example above, we are testing for the absolute value of the correlation (i.e., ignoring its sign) under the null hypothesis that the true correlation is zero and making assumptions such as the data being a simple random sample.
+
+Note how p-value is not probability of the null hypothesis. We have assumed, for the sake of argument, that the null hypothesis is true. Under this assumption, the probability of the null hypothesis is 1. And herein lies everyone's beef with p-values -- they tell you the probability of your data given the null but not the probability of the null given the data.
+
+
+## Confidence intervals
+
+We can also calculate confidence intervals for correlations and a range of other statistics we will encounter.
+
+
+### Simulating confidence
+
+```{r echo=FALSE}
+sim_n <- 100
+x_var <- 1
+resid_var <- 3
+study_n <- 20
+true_cor <- sqrt(x_var/(x_var + resid_var))
+```
+
+Suppose the true correlation between two variables were `r true_cor` and you ran `r sim_n` studies, each with `r study_n` participants, sampling randomly from the population. Let's do it by simulation...
+
+Below shows the results for each study. The true value is shown as the vertical dashed line. Each horizontal line gives the confidence interval for a particular study and the blob gives the correlation coefficient. The colour depends on whether the interval includes the true value.
+
+```{r echo=FALSE, cache=TRUE}
+one_lot <- function(the_n, x_var, resid_var) {
+  x <- rnorm(the_n, 0, sqrt(x_var))
+  y <- x + rnorm(the_n, 0, sqrt(resid_var))
+
+  data.frame(x, y)  
+}
+
+sim_results <- data.frame(r = rep(NA, sim_n))
+sim_results$ci_lower <- NA
+sim_results$ci_upper <- NA
+
+set.seed(42)
+
+for (i in 1:sim_n) {
+  the_dat <- one_lot(study_n, x_var, resid_var)
+  the_cor <- cor.test(~ x + y, data = the_dat)
+  
+  sim_results$r[i] <- the_cor$estimate
+  sim_results$ci_lower[i] <- the_cor$conf.int[1]
+  sim_results$ci_upper[i] <- the_cor$conf.int[2]
+}
+
+sim_results$i <- 1:nrow(sim_results)
+sim_results$crosses <- ifelse(sim_results$ci_lower < true_cor &
+                                sim_results$ci_upper > true_cor,
+                              "Included",
+                              "Excluded")
+```
+
+```{r echo = FALSE, fig.height=10, fig.width=6}
+sim_results %>%
+  ggplot(aes(x = i, y = r, colour = crosses)) +
+  geom_hline(yintercept = true_cor, linetype = "dashed", colour = "darkgrey") +
+  geom_point() +
+  ylim(-1, 1) +
+  geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper), width = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(colour = "black"),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  coord_flip() +
+  labs(x = "")
+```
+
+If you count them, you will see that 95 included the true value, i.e., 95% of the studies had an interval including the true value. I should add that it doesn't always work out as exactly 95% for a given collection of studies, simulated or real, but it will approach this percentage if the model is correct as the number of studies increases.
+
+
+
+### What is a confidence interval, then?
+
+If you run loads of studies with random samples from the same population, then the $c\%$ confidence interval will include the true value for the statistic in around $c\%$ of studies, assuming that you are using the correct model.
+
+This is *not* the same as saying that, for a particular study, there is a 95% probability that it includes the true value.
+
+
+## Further reading
+
+Try [Greenland et al. (2016)](https://link.springer.com/article/10.1007/s10654-016-0149-3) who have a long list of misconceptions to try to avoid. I also liked [Colquhoun's (2014)](https://doi.org/10.1098/rsos.140216) explanation of p-values by analogy with the properties of diagnostic tests.

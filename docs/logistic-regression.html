@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Logistic regression | Using R for social research</title>
+  <title>Chapter 7 Logistic regression | Using R for social research</title>
   <meta name="description" content="These are some notes on using R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Logistic regression | Using R for social research" />
+  <meta property="og:title" content="Chapter 7 Logistic regression | Using R for social research" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Logistic regression | Using R for social research" />
+  <meta name="twitter:title" content="Chapter 7 Logistic regression | Using R for social research" />
   
   <meta name="twitter:description" content="These are some notes on using R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-11-20" />
+<meta name="date" content="2020-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,206 +227,222 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.14" data-path="visualising-data-in-the-tidyverse.html"><a href="visualising-data-in-the-tidyverse.html#more-ideas-for-visualisations"><i class="fa fa-check"></i><b>2.14</b> More ideas for visualisations</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear regression</a>
+<li class="chapter" data-level="3" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html"><i class="fa fa-check"></i><b>3</b> P-values and confidence intervals</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#before-we-begin"><i class="fa fa-check"></i><b>3.1</b> Before we begin</a></li>
-<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#the-dataset"><i class="fa fa-check"></i><b>3.2</b> The dataset</a></li>
-<li class="chapter" data-level="3.3" data-path="linear-regression.html"><a href="linear-regression.html#interlude-on-methodology"><i class="fa fa-check"></i><b>3.3</b> Interlude on methodology</a></li>
-<li class="chapter" data-level="3.4" data-path="linear-regression.html"><a href="linear-regression.html#descriptives"><i class="fa fa-check"></i><b>3.4</b> Descriptives</a>
+<li class="chapter" data-level="3.1" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#correlation-recap"><i class="fa fa-check"></i><b>3.1</b> Correlation recap</a></li>
+<li class="chapter" data-level="3.2" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#testing-null-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Testing null-hypotheses</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-11"><i class="fa fa-check"></i><b>3.4.1</b> Activity</a></li>
-<li class="chapter" data-level="3.4.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-14"><i class="fa fa-check"></i><b>3.4.2</b> Answer</a></li>
+<li class="chapter" data-level="3.2.1" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#what-can-samples-look-like-when-the-true-correlation-is-0"><i class="fa fa-check"></i><b>3.2.1</b> What can samples look like when the true correlation is 0?</a></li>
+<li class="chapter" data-level="3.2.2" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#understanding-actual-data-in-relation-to-these-simulations"><i class="fa fa-check"></i><b>3.2.2</b> Understanding actual data in relation to these simulations</a></li>
+<li class="chapter" data-level="3.2.3" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#so-what-is-a-p-value"><i class="fa fa-check"></i><b>3.2.3</b> So, what is a p-value?</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="linear-regression.html"><a href="linear-regression.html#prep-to-understand-the-simplest-regression-model"><i class="fa fa-check"></i><b>3.5</b> Prep to understand the simplest regression model</a>
+<li class="chapter" data-level="3.3" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Confidence intervals</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-12"><i class="fa fa-check"></i><b>3.5.1</b> Activity</a></li>
-<li class="chapter" data-level="3.5.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-15"><i class="fa fa-check"></i><b>3.5.2</b> Answer</a></li>
+<li class="chapter" data-level="3.3.1" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#simulating-confidence"><i class="fa fa-check"></i><b>3.3.1</b> Simulating confidence</a></li>
+<li class="chapter" data-level="3.3.2" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#what-is-a-confidence-interval-then"><i class="fa fa-check"></i><b>3.3.2</b> What is a confidence interval, then?</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>3.6</b> The simplest regression model: intercept-only model</a>
-<ul>
-<li class="chapter" data-level="3.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-13"><i class="fa fa-check"></i><b>3.6.1</b> Activity</a></li>
-<li class="chapter" data-level="3.6.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-16"><i class="fa fa-check"></i><b>3.6.2</b> Answer</a></li>
+<li class="chapter" data-level="3.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>3.4</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="linear-regression.html"><a href="linear-regression.html#adding-a-slope-to-the-regression-model"><i class="fa fa-check"></i><b>3.7</b> Adding a slope to the regression model</a>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear regression</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-14"><i class="fa fa-check"></i><b>3.7.1</b> Activity</a></li>
-<li class="chapter" data-level="3.7.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-17"><i class="fa fa-check"></i><b>3.7.2</b> Answer</a></li>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#before-we-begin"><i class="fa fa-check"></i><b>4.1</b> Before we begin</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#the-dataset"><i class="fa fa-check"></i><b>4.2</b> The dataset</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#interlude-on-methodology"><i class="fa fa-check"></i><b>4.3</b> Interlude on methodology</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#descriptives"><i class="fa fa-check"></i><b>4.4</b> Descriptives</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-11"><i class="fa fa-check"></i><b>4.4.1</b> Activity</a></li>
+<li class="chapter" data-level="4.4.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-14"><i class="fa fa-check"></i><b>4.4.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="linear-regression.html"><a href="linear-regression.html#residuals"><i class="fa fa-check"></i><b>3.8</b> Residuals</a>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#prep-to-understand-the-simplest-regression-model"><i class="fa fa-check"></i><b>4.5</b> Prep to understand the simplest regression model</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-15"><i class="fa fa-check"></i><b>3.8.1</b> Activity</a></li>
-<li class="chapter" data-level="3.8.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-18"><i class="fa fa-check"></i><b>3.8.2</b> Answer</a></li>
+<li class="chapter" data-level="4.5.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-12"><i class="fa fa-check"></i><b>4.5.1</b> Activity</a></li>
+<li class="chapter" data-level="4.5.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-15"><i class="fa fa-check"></i><b>4.5.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="linear-regression.html"><a href="linear-regression.html#comparing-models"><i class="fa fa-check"></i><b>3.9</b> Comparing models</a></li>
-<li class="chapter" data-level="3.10" data-path="linear-regression.html"><a href="linear-regression.html#regression-with-two-or-more-predictors"><i class="fa fa-check"></i><b>3.10</b> Regression with two or more predictors</a>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#the-simplest-regression-model-intercept-only-model"><i class="fa fa-check"></i><b>4.6</b> The simplest regression model: intercept-only model</a>
 <ul>
-<li class="chapter" data-level="3.10.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-16"><i class="fa fa-check"></i><b>3.10.1</b> Activity</a></li>
-<li class="chapter" data-level="3.10.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-19"><i class="fa fa-check"></i><b>3.10.2</b> Answer</a></li>
+<li class="chapter" data-level="4.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-13"><i class="fa fa-check"></i><b>4.6.1</b> Activity</a></li>
+<li class="chapter" data-level="4.6.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-16"><i class="fa fa-check"></i><b>4.6.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="3.11" data-path="linear-regression.html"><a href="linear-regression.html#interpreting-regression-models-with-two-or-more-predictors"><i class="fa fa-check"></i><b>3.11</b> Interpreting regression models with two or more predictors</a></li>
-<li class="chapter" data-level="3.12" data-path="linear-regression.html"><a href="linear-regression.html#optional-that-pesky-negative-intercept"><i class="fa fa-check"></i><b>3.12</b> Optional: that pesky negative intercept</a>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#adding-a-slope-to-the-regression-model"><i class="fa fa-check"></i><b>4.7</b> Adding a slope to the regression model</a>
 <ul>
-<li class="chapter" data-level="3.12.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-17"><i class="fa fa-check"></i><b>3.12.1</b> Activity</a></li>
-<li class="chapter" data-level="3.12.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-20"><i class="fa fa-check"></i><b>3.12.2</b> Answer</a></li>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-14"><i class="fa fa-check"></i><b>4.7.1</b> Activity</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-17"><i class="fa fa-check"></i><b>4.7.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="3.13" data-path="linear-regression.html"><a href="linear-regression.html#finally-confidence-intervals"><i class="fa fa-check"></i><b>3.13</b> Finally: confidence intervals</a></li>
-<li class="chapter" data-level="3.14" data-path="linear-regression.html"><a href="linear-regression.html#very-optional-extras"><i class="fa fa-check"></i><b>3.14</b> Very optional extras</a>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#residuals"><i class="fa fa-check"></i><b>4.8</b> Residuals</a>
 <ul>
-<li class="chapter" data-level="3.14.1" data-path="linear-regression.html"><a href="linear-regression.html#making-functions"><i class="fa fa-check"></i><b>3.14.1</b> Making functions</a></li>
-<li class="chapter" data-level="3.14.2" data-path="linear-regression.html"><a href="linear-regression.html#another-way-to-make-scatterplots-ggally"><i class="fa fa-check"></i><b>3.14.2</b> Another way to make scatterplots: GGally</a></li>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-15"><i class="fa fa-check"></i><b>4.8.1</b> Activity</a></li>
+<li class="chapter" data-level="4.8.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-18"><i class="fa fa-check"></i><b>4.8.2</b> Answer</a></li>
 </ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#comparing-models"><i class="fa fa-check"></i><b>4.9</b> Comparing models</a></li>
+<li class="chapter" data-level="4.10" data-path="linear-regression.html"><a href="linear-regression.html#regression-with-two-or-more-predictors"><i class="fa fa-check"></i><b>4.10</b> Regression with two or more predictors</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-16"><i class="fa fa-check"></i><b>4.10.1</b> Activity</a></li>
+<li class="chapter" data-level="4.10.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-19"><i class="fa fa-check"></i><b>4.10.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>4</b> Linear regression diagnostics</a>
+<li class="chapter" data-level="4.11" data-path="linear-regression.html"><a href="linear-regression.html#interpreting-regression-models-with-two-or-more-predictors"><i class="fa fa-check"></i><b>4.11</b> Interpreting regression models with two or more predictors</a></li>
+<li class="chapter" data-level="4.12" data-path="linear-regression.html"><a href="linear-regression.html#optional-that-pesky-negative-intercept"><i class="fa fa-check"></i><b>4.12</b> Optional: that pesky negative intercept</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#before-we-begin-1"><i class="fa fa-check"></i><b>4.1</b> Before we begin</a></li>
-<li class="chapter" data-level="4.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#the-dataset-1"><i class="fa fa-check"></i><b>4.2</b> The dataset</a></li>
-<li class="chapter" data-level="4.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#fit-a-regression-model"><i class="fa fa-check"></i><b>4.3</b> Fit a regression model</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-18"><i class="fa fa-check"></i><b>4.3.1</b> Activity</a></li>
-<li class="chapter" data-level="4.3.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-21"><i class="fa fa-check"></i><b>4.3.2</b> Answer</a></li>
+<li class="chapter" data-level="4.12.1" data-path="linear-regression.html"><a href="linear-regression.html#activity-17"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
+<li class="chapter" data-level="4.12.2" data-path="linear-regression.html"><a href="linear-regression.html#answer-20"><i class="fa fa-check"></i><b>4.12.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-normally-distributed-residuals"><i class="fa fa-check"></i><b>4.4</b> Checking for normally distributed residuals</a>
+<li class="chapter" data-level="4.13" data-path="linear-regression.html"><a href="linear-regression.html#finally-confidence-intervals"><i class="fa fa-check"></i><b>4.13</b> Finally: confidence intervals</a></li>
+<li class="chapter" data-level="4.14" data-path="linear-regression.html"><a href="linear-regression.html#very-optional-extras"><i class="fa fa-check"></i><b>4.14</b> Very optional extras</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#base-r-histogram"><i class="fa fa-check"></i><b>4.4.1</b> Base R histogram</a></li>
-<li class="chapter" data-level="4.4.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#quantile-comparison-plot"><i class="fa fa-check"></i><b>4.4.2</b> Quantile-comparison plot</a></li>
-<li class="chapter" data-level="4.4.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#statistical-test-of-normality"><i class="fa fa-check"></i><b>4.4.3</b> Statistical test of normality</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-constant-residual-variance"><i class="fa fa-check"></i><b>4.5</b> Checking constant residual variance</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-20"><i class="fa fa-check"></i><b>4.5.1</b> Activity</a></li>
-<li class="chapter" data-level="4.5.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-23"><i class="fa fa-check"></i><b>4.5.2</b> Answer</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-relationships-between-residuals-and-predicted-outcome-or-predictors"><i class="fa fa-check"></i><b>4.6</b> Checking for relationships between residuals and predicted outcome or predictors</a></li>
-<li class="chapter" data-level="4.7" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-linearity"><i class="fa fa-check"></i><b>4.7</b> Checking linearity</a>
-<ul>
-<li class="chapter" data-level="4.7.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#what-should-be-linear-in-a-linear-model"><i class="fa fa-check"></i><b>4.7.1</b> What should be linear in a linear model?</a></li>
-<li class="chapter" data-level="4.7.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-linearity"><i class="fa fa-check"></i><b>4.7.2</b> Checking for linearity</a></li>
-</ul></li>
-<li class="chapter" data-level="4.8" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-influence-leave-one-out-analyses"><i class="fa fa-check"></i><b>4.8</b> Checking influence: leave-one-out analyses</a>
-<ul>
-<li class="chapter" data-level="4.8.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#residual-outliers"><i class="fa fa-check"></i><b>4.8.1</b> Residual outliers</a></li>
-<li class="chapter" data-level="4.8.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#cooks-distance"><i class="fa fa-check"></i><b>4.8.2</b> Cook’s distance</a></li>
-<li class="chapter" data-level="4.8.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#dfbeta-and-close-sibling-dfbetas"><i class="fa fa-check"></i><b>4.8.3</b> DFBETA and (close sibling) DFBETAS</a></li>
-<li class="chapter" data-level="4.8.4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#view-them-all"><i class="fa fa-check"></i><b>4.8.4</b> View them all</a></li>
-<li class="chapter" data-level="4.8.5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#so-er-what-should-we-do-with-potentially-influential-observations"><i class="fa fa-check"></i><b>4.8.5</b> So, er, what should we do with “potentially influential” observations…?</a></li>
-</ul></li>
-<li class="chapter" data-level="4.9" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-the-variance-inflation-factors-vifs"><i class="fa fa-check"></i><b>4.9</b> Checking the variance inflation factors (VIFs)</a>
-<ul>
-<li class="chapter" data-level="4.9.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-22"><i class="fa fa-check"></i><b>4.9.1</b> Activity</a></li>
-<li class="chapter" data-level="4.9.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-25"><i class="fa fa-check"></i><b>4.9.2</b> Answer</a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#the-challenge"><i class="fa fa-check"></i><b>4.10</b> The challenge</a>
-<ul>
-<li class="chapter" data-level="4.10.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-23"><i class="fa fa-check"></i><b>4.10.1</b> Activity</a></li>
-<li class="chapter" data-level="4.10.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-26"><i class="fa fa-check"></i><b>4.10.2</b> Answer</a></li>
+<li class="chapter" data-level="4.14.1" data-path="linear-regression.html"><a href="linear-regression.html#making-functions"><i class="fa fa-check"></i><b>4.14.1</b> Making functions</a></li>
+<li class="chapter" data-level="4.14.2" data-path="linear-regression.html"><a href="linear-regression.html#another-way-to-make-scatterplots-ggally"><i class="fa fa-check"></i><b>4.14.2</b> Another way to make scatterplots: GGally</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html"><i class="fa fa-check"></i><b>5</b> Categorical predictors and interactions</a>
+<li class="chapter" data-level="5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>5</b> Linear regression diagnostics</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#before-we-begin-2"><i class="fa fa-check"></i><b>5.1</b> Before we begin</a></li>
-<li class="chapter" data-level="5.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-dataset-2"><i class="fa fa-check"></i><b>5.2</b> The dataset</a></li>
-<li class="chapter" data-level="5.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#factors"><i class="fa fa-check"></i><b>5.3</b> Factors</a></li>
-<li class="chapter" data-level="5.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#visualising-the-data"><i class="fa fa-check"></i><b>5.4</b> Visualising the data</a></li>
-<li class="chapter" data-level="5.5" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-punchline-occupation-type-does-predict-prestige"><i class="fa fa-check"></i><b>5.5</b> The punchline: occupation type does predict prestige</a></li>
-<li class="chapter" data-level="5.6" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-factors-in-regression-models"><i class="fa fa-check"></i><b>5.6</b> Understanding factors in regression models</a>
+<li class="chapter" data-level="5.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#before-we-begin-1"><i class="fa fa-check"></i><b>5.1</b> Before we begin</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#the-dataset-1"><i class="fa fa-check"></i><b>5.2</b> The dataset</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#fit-a-regression-model"><i class="fa fa-check"></i><b>5.3</b> Fit a regression model</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-are-categorical-variables-encoded"><i class="fa fa-check"></i><b>5.6.1</b> How are categorical variables encoded?</a></li>
-<li class="chapter" data-level="5.6.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-are-binary-two-level-categorical-predictors-encoded"><i class="fa fa-check"></i><b>5.6.2</b> How are binary (two-level) categorical predictors encoded?</a></li>
-<li class="chapter" data-level="5.6.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#categorical-predictors-with-3-or-more-levels"><i class="fa fa-check"></i><b>5.6.3</b> Categorical predictors with 3 or more levels</a></li>
+<li class="chapter" data-level="5.3.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-18"><i class="fa fa-check"></i><b>5.3.1</b> Activity</a></li>
+<li class="chapter" data-level="5.3.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-21"><i class="fa fa-check"></i><b>5.3.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>5.7</b> Interpreting the coefficients</a>
+<li class="chapter" data-level="5.4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-normally-distributed-residuals"><i class="fa fa-check"></i><b>5.4</b> Checking for normally distributed residuals</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#activity-25"><i class="fa fa-check"></i><b>5.7.1</b> Activity</a></li>
-<li class="chapter" data-level="5.7.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#answer-28"><i class="fa fa-check"></i><b>5.7.2</b> Answer</a></li>
+<li class="chapter" data-level="5.4.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#base-r-histogram"><i class="fa fa-check"></i><b>5.4.1</b> Base R histogram</a></li>
+<li class="chapter" data-level="5.4.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#quantile-comparison-plot"><i class="fa fa-check"></i><b>5.4.2</b> Quantile-comparison plot</a></li>
+<li class="chapter" data-level="5.4.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#statistical-test-of-normality"><i class="fa fa-check"></i><b>5.4.3</b> Statistical test of normality</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#checking-all-combinations"><i class="fa fa-check"></i><b>5.8</b> Checking all combinations</a></li>
-<li class="chapter" data-level="5.9" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-intercept-is-not-always-the-mean-of-the-comparison-group"><i class="fa fa-check"></i><b>5.9</b> The intercept is not always the mean of the comparison group</a></li>
-<li class="chapter" data-level="5.10" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#recap"><i class="fa fa-check"></i><b>5.10</b> Recap</a></li>
-<li class="chapter" data-level="5.11" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#challenge"><i class="fa fa-check"></i><b>5.11</b> Challenge</a>
+<li class="chapter" data-level="5.5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-constant-residual-variance"><i class="fa fa-check"></i><b>5.5</b> Checking constant residual variance</a>
 <ul>
-<li class="chapter" data-level="5.11.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#activity-26"><i class="fa fa-check"></i><b>5.11.1</b> Activity</a></li>
-<li class="chapter" data-level="5.11.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#answers-1"><i class="fa fa-check"></i><b>5.11.2</b> Answers</a></li>
+<li class="chapter" data-level="5.5.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-20"><i class="fa fa-check"></i><b>5.5.1</b> Activity</a></li>
+<li class="chapter" data-level="5.5.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-23"><i class="fa fa-check"></i><b>5.5.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="5.12" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#brief-introduction-to-interactions"><i class="fa fa-check"></i><b>5.12</b> Brief introduction to interactions</a>
+<li class="chapter" data-level="5.6" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-relationships-between-residuals-and-predicted-outcome-or-predictors"><i class="fa fa-check"></i><b>5.6</b> Checking for relationships between residuals and predicted outcome or predictors</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-linearity"><i class="fa fa-check"></i><b>5.7</b> Checking linearity</a>
 <ul>
-<li class="chapter" data-level="5.12.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#what-is-an-interaction"><i class="fa fa-check"></i><b>5.12.1</b> What is an interaction?</a></li>
-<li class="chapter" data-level="5.12.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-to-test-for-interactions-in-r"><i class="fa fa-check"></i><b>5.12.2</b> How to test for interactions in R</a></li>
-<li class="chapter" data-level="5.12.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-interactions"><i class="fa fa-check"></i><b>5.12.3</b> Understanding interactions</a></li>
-<li class="chapter" data-level="5.12.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#further-reading"><i class="fa fa-check"></i><b>5.12.4</b> Further reading</a></li>
+<li class="chapter" data-level="5.7.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#what-should-be-linear-in-a-linear-model"><i class="fa fa-check"></i><b>5.7.1</b> What should be linear in a linear model?</a></li>
+<li class="chapter" data-level="5.7.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-for-linearity"><i class="fa fa-check"></i><b>5.7.2</b> Checking for linearity</a></li>
 </ul></li>
+<li class="chapter" data-level="5.8" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-influence-leave-one-out-analyses"><i class="fa fa-check"></i><b>5.8</b> Checking influence: leave-one-out analyses</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#residual-outliers"><i class="fa fa-check"></i><b>5.8.1</b> Residual outliers</a></li>
+<li class="chapter" data-level="5.8.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#cooks-distance"><i class="fa fa-check"></i><b>5.8.2</b> Cook’s distance</a></li>
+<li class="chapter" data-level="5.8.3" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#dfbeta-and-close-sibling-dfbetas"><i class="fa fa-check"></i><b>5.8.3</b> DFBETA and (close sibling) DFBETAS</a></li>
+<li class="chapter" data-level="5.8.4" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#view-them-all"><i class="fa fa-check"></i><b>5.8.4</b> View them all</a></li>
+<li class="chapter" data-level="5.8.5" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#so-er-what-should-we-do-with-potentially-influential-observations"><i class="fa fa-check"></i><b>5.8.5</b> So, er, what should we do with “potentially influential” observations…?</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Logistic regression</a>
+<li class="chapter" data-level="5.9" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#checking-the-variance-inflation-factors-vifs"><i class="fa fa-check"></i><b>5.9</b> Checking the variance inflation factors (VIFs)</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#setup"><i class="fa fa-check"></i><b>6.1</b> Setup</a></li>
-<li class="chapter" data-level="6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-dataset-3"><i class="fa fa-check"></i><b>6.2</b> The dataset</a></li>
-<li class="chapter" data-level="6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#warmup-activity"><i class="fa fa-check"></i><b>6.3</b> Warmup activity</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#activity-27"><i class="fa fa-check"></i><b>6.3.1</b> Activity</a></li>
-<li class="chapter" data-level="6.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#answer-29"><i class="fa fa-check"></i><b>6.3.2</b> Answer</a></li>
+<li class="chapter" data-level="5.9.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-22"><i class="fa fa-check"></i><b>5.9.1</b> Activity</a></li>
+<li class="chapter" data-level="5.9.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-25"><i class="fa fa-check"></i><b>5.9.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="logistic-regression.html"><a href="logistic-regression.html#the-punchline"><i class="fa fa-check"></i><b>6.4</b> The punchline</a></li>
-<li class="chapter" data-level="6.5" data-path="logistic-regression.html"><a href="logistic-regression.html#intermezzo-parametric-versus-nonparametric"><i class="fa fa-check"></i><b>6.5</b> Intermezzo: parametric versus nonparametric</a></li>
-<li class="chapter" data-level="6.6" data-path="logistic-regression.html"><a href="logistic-regression.html#glms"><i class="fa fa-check"></i><b>6.6</b> What is a generalised linear model?</a></li>
-<li class="chapter" data-level="6.7" data-path="logistic-regression.html"><a href="logistic-regression.html#what-is-the-log-function-again"><i class="fa fa-check"></i><b>6.7</b> What is the log function again…?</a>
+<li class="chapter" data-level="5.10" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#the-challenge"><i class="fa fa-check"></i><b>5.10</b> The challenge</a>
 <ul>
-<li class="chapter" data-level="6.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-arithmetic"><i class="fa fa-check"></i><b>6.7.1</b> The arithmetic</a></li>
-<li class="chapter" data-level="6.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#why-log"><i class="fa fa-check"></i><b>6.7.2</b> Why log?</a></li>
-</ul></li>
-<li class="chapter" data-level="6.8" data-path="logistic-regression.html"><a href="logistic-regression.html#intercept-only-models-again"><i class="fa fa-check"></i><b>6.8</b> Intercept-only models again</a></li>
-<li class="chapter" data-level="6.9" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-and-log-odds"><i class="fa fa-check"></i><b>6.9</b> Odds and log odds</a></li>
-<li class="chapter" data-level="6.10" data-path="logistic-regression.html"><a href="logistic-regression.html#back-to-that-intercept"><i class="fa fa-check"></i><b>6.10</b> Back to that intercept</a></li>
-<li class="chapter" data-level="6.11" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-slopes"><i class="fa fa-check"></i><b>6.11</b> Interpreting model slopes</a>
-<ul>
-<li class="chapter" data-level="6.11.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-on-the-log-odds-scale"><i class="fa fa-check"></i><b>6.11.1</b> Interpret on the log-odds scale</a></li>
-<li class="chapter" data-level="6.11.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-the-divide-by-4-approximation"><i class="fa fa-check"></i><b>6.11.2</b> Interpret using the “divide-by-4” approximation</a></li>
-<li class="chapter" data-level="6.11.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-odds"><i class="fa fa-check"></i><b>6.11.3</b> Interpret using odds</a></li>
-<li class="chapter" data-level="6.11.4" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-predicted-probabilities"><i class="fa fa-check"></i><b>6.11.4</b> Interpret using predicted probabilities</a></li>
-</ul></li>
-<li class="chapter" data-level="6.12" data-path="logistic-regression.html"><a href="logistic-regression.html#diagnostics"><i class="fa fa-check"></i><b>6.12</b> Diagnostics</a>
-<ul>
-<li class="chapter" data-level="6.12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#check-the-residual-distribution"><i class="fa fa-check"></i><b>6.12.1</b> Check the residual distribution</a></li>
-<li class="chapter" data-level="6.12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#check-that-the-residual-mean-is-constant"><i class="fa fa-check"></i><b>6.12.2</b> Check that the residual mean is constant</a></li>
-<li class="chapter" data-level="6.12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#linearity-of-predictors"><i class="fa fa-check"></i><b>6.12.3</b> Linearity of predictors</a></li>
-<li class="chapter" data-level="6.12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#influence"><i class="fa fa-check"></i><b>6.12.4</b> Influence</a></li>
-<li class="chapter" data-level="6.12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multicolinearity"><i class="fa fa-check"></i><b>6.12.5</b> Multicolinearity</a></li>
-</ul></li>
-<li class="chapter" data-level="6.13" data-path="logistic-regression.html"><a href="logistic-regression.html#a-challenge"><i class="fa fa-check"></i><b>6.13</b> A challenge</a>
-<ul>
-<li class="chapter" data-level="6.13.1" data-path="logistic-regression.html"><a href="logistic-regression.html#activity-31"><i class="fa fa-check"></i><b>6.13.1</b> Activity</a></li>
-<li class="chapter" data-level="6.13.2" data-path="logistic-regression.html"><a href="logistic-regression.html#an-answer"><i class="fa fa-check"></i><b>6.13.2</b> (An) Answer</a></li>
+<li class="chapter" data-level="5.10.1" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#activity-23"><i class="fa fa-check"></i><b>5.10.1</b> Activity</a></li>
+<li class="chapter" data-level="5.10.2" data-path="linear-regression-diagnostics.html"><a href="linear-regression-diagnostics.html#answer-26"><i class="fa fa-check"></i><b>5.10.2</b> Answer</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="complex-surveys.html"><a href="complex-surveys.html"><i class="fa fa-check"></i><b>7</b> Complex surveys</a>
+<li class="chapter" data-level="6" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html"><i class="fa fa-check"></i><b>6</b> Categorical predictors and interactions</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="complex-surveys.html"><a href="complex-surveys.html#readings"><i class="fa fa-check"></i><b>7.1</b> Readings</a></li>
-<li class="chapter" data-level="7.2" data-path="complex-surveys.html"><a href="complex-surveys.html#the-dataset-4"><i class="fa fa-check"></i><b>7.2</b> The dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="complex-surveys.html"><a href="complex-surveys.html#the-components-of-a-survey-design"><i class="fa fa-check"></i><b>7.3</b> The components of a survey design</a></li>
-<li class="chapter" data-level="7.4" data-path="complex-surveys.html"><a href="complex-surveys.html#describing-the-data"><i class="fa fa-check"></i><b>7.4</b> Describing the data</a>
+<li class="chapter" data-level="6.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#before-we-begin-2"><i class="fa fa-check"></i><b>6.1</b> Before we begin</a></li>
+<li class="chapter" data-level="6.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-dataset-2"><i class="fa fa-check"></i><b>6.2</b> The dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#factors"><i class="fa fa-check"></i><b>6.3</b> Factors</a></li>
+<li class="chapter" data-level="6.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#visualising-the-data"><i class="fa fa-check"></i><b>6.4</b> Visualising the data</a></li>
+<li class="chapter" data-level="6.5" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-punchline-occupation-type-does-predict-prestige"><i class="fa fa-check"></i><b>6.5</b> The punchline: occupation type does predict prestige</a></li>
+<li class="chapter" data-level="6.6" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-factors-in-regression-models"><i class="fa fa-check"></i><b>6.6</b> Understanding factors in regression models</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-32"><i class="fa fa-check"></i><b>7.4.1</b> Activity</a></li>
-<li class="chapter" data-level="7.4.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-33"><i class="fa fa-check"></i><b>7.4.2</b> Answer</a></li>
+<li class="chapter" data-level="6.6.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-are-categorical-variables-encoded"><i class="fa fa-check"></i><b>6.6.1</b> How are categorical variables encoded?</a></li>
+<li class="chapter" data-level="6.6.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-are-binary-two-level-categorical-predictors-encoded"><i class="fa fa-check"></i><b>6.6.2</b> How are binary (two-level) categorical predictors encoded?</a></li>
+<li class="chapter" data-level="6.6.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#categorical-predictors-with-3-or-more-levels"><i class="fa fa-check"></i><b>6.6.3</b> Categorical predictors with 3 or more levels</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="complex-surveys.html"><a href="complex-surveys.html#fitting-a-glm"><i class="fa fa-check"></i><b>7.5</b> Fitting a GLM</a>
+<li class="chapter" data-level="6.7" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>6.7</b> Interpreting the coefficients</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-33"><i class="fa fa-check"></i><b>7.5.1</b> Activity</a></li>
-<li class="chapter" data-level="7.5.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-34"><i class="fa fa-check"></i><b>7.5.2</b> Answer</a></li>
+<li class="chapter" data-level="6.7.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#activity-25"><i class="fa fa-check"></i><b>6.7.1</b> Activity</a></li>
+<li class="chapter" data-level="6.7.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#answer-28"><i class="fa fa-check"></i><b>6.7.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="complex-surveys.html"><a href="complex-surveys.html#slopes"><i class="fa fa-check"></i><b>7.6</b> Slopes</a>
+<li class="chapter" data-level="6.8" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#checking-all-combinations"><i class="fa fa-check"></i><b>6.8</b> Checking all combinations</a></li>
+<li class="chapter" data-level="6.9" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#the-intercept-is-not-always-the-mean-of-the-comparison-group"><i class="fa fa-check"></i><b>6.9</b> The intercept is not always the mean of the comparison group</a></li>
+<li class="chapter" data-level="6.10" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#recap"><i class="fa fa-check"></i><b>6.10</b> Recap</a></li>
+<li class="chapter" data-level="6.11" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#challenge"><i class="fa fa-check"></i><b>6.11</b> Challenge</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-34"><i class="fa fa-check"></i><b>7.6.1</b> Activity</a></li>
-<li class="chapter" data-level="7.6.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-35"><i class="fa fa-check"></i><b>7.6.2</b> Answer</a></li>
+<li class="chapter" data-level="6.11.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#activity-26"><i class="fa fa-check"></i><b>6.11.1</b> Activity</a></li>
+<li class="chapter" data-level="6.11.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#answers-1"><i class="fa fa-check"></i><b>6.11.2</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="complex-surveys.html"><a href="complex-surveys.html#diagnostics-1"><i class="fa fa-check"></i><b>7.7</b> Diagnostics</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="mediation-analysis.html"><a href="mediation-analysis.html"><i class="fa fa-check"></i><b>8</b> Mediation analysis</a>
+<li class="chapter" data-level="6.12" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#brief-introduction-to-interactions"><i class="fa fa-check"></i><b>6.12</b> Brief introduction to interactions</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="mediation-analysis.html"><a href="mediation-analysis.html#simulated-example"><i class="fa fa-check"></i><b>8.1</b> Simulated Example</a>
+<li class="chapter" data-level="6.12.1" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#what-is-an-interaction"><i class="fa fa-check"></i><b>6.12.1</b> What is an interaction?</a></li>
+<li class="chapter" data-level="6.12.2" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#how-to-test-for-interactions-in-r"><i class="fa fa-check"></i><b>6.12.2</b> How to test for interactions in R</a></li>
+<li class="chapter" data-level="6.12.3" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#understanding-interactions"><i class="fa fa-check"></i><b>6.12.3</b> Understanding interactions</a></li>
+<li class="chapter" data-level="6.12.4" data-path="categorical-predictors-and-interactions.html"><a href="categorical-predictors-and-interactions.html#further-reading-1"><i class="fa fa-check"></i><b>6.12.4</b> Further reading</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>7</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="mediation-analysis.html"><a href="mediation-analysis.html#make-up-some-data"><i class="fa fa-check"></i><b>8.1.1</b> Make up some data</a></li>
-<li class="chapter" data-level="8.1.2" data-path="mediation-analysis.html"><a href="mediation-analysis.html#analyse-it"><i class="fa fa-check"></i><b>8.1.2</b> Analyse it</a></li>
+<li class="chapter" data-level="7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#setup"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
+<li class="chapter" data-level="7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-dataset-3"><i class="fa fa-check"></i><b>7.2</b> The dataset</a></li>
+<li class="chapter" data-level="7.3" data-path="logistic-regression.html"><a href="logistic-regression.html#warmup-activity"><i class="fa fa-check"></i><b>7.3</b> Warmup activity</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#activity-27"><i class="fa fa-check"></i><b>7.3.1</b> Activity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#answer-29"><i class="fa fa-check"></i><b>7.3.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="logistic-regression.html"><a href="logistic-regression.html#the-punchline"><i class="fa fa-check"></i><b>7.4</b> The punchline</a></li>
+<li class="chapter" data-level="7.5" data-path="logistic-regression.html"><a href="logistic-regression.html#intermezzo-parametric-versus-nonparametric"><i class="fa fa-check"></i><b>7.5</b> Intermezzo: parametric versus nonparametric</a></li>
+<li class="chapter" data-level="7.6" data-path="logistic-regression.html"><a href="logistic-regression.html#glms"><i class="fa fa-check"></i><b>7.6</b> What is a generalised linear model?</a></li>
+<li class="chapter" data-level="7.7" data-path="logistic-regression.html"><a href="logistic-regression.html#what-is-the-log-function-again"><i class="fa fa-check"></i><b>7.7</b> What is the log function again…?</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-arithmetic"><i class="fa fa-check"></i><b>7.7.1</b> The arithmetic</a></li>
+<li class="chapter" data-level="7.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#why-log"><i class="fa fa-check"></i><b>7.7.2</b> Why log?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="logistic-regression.html"><a href="logistic-regression.html#intercept-only-models-again"><i class="fa fa-check"></i><b>7.8</b> Intercept-only models again</a></li>
+<li class="chapter" data-level="7.9" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-and-log-odds"><i class="fa fa-check"></i><b>7.9</b> Odds and log odds</a></li>
+<li class="chapter" data-level="7.10" data-path="logistic-regression.html"><a href="logistic-regression.html#back-to-that-intercept"><i class="fa fa-check"></i><b>7.10</b> Back to that intercept</a></li>
+<li class="chapter" data-level="7.11" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-slopes"><i class="fa fa-check"></i><b>7.11</b> Interpreting model slopes</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-on-the-log-odds-scale"><i class="fa fa-check"></i><b>7.11.1</b> Interpret on the log-odds scale</a></li>
+<li class="chapter" data-level="7.11.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-the-divide-by-4-approximation"><i class="fa fa-check"></i><b>7.11.2</b> Interpret using the “divide-by-4” approximation</a></li>
+<li class="chapter" data-level="7.11.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-odds"><i class="fa fa-check"></i><b>7.11.3</b> Interpret using odds</a></li>
+<li class="chapter" data-level="7.11.4" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-using-predicted-probabilities"><i class="fa fa-check"></i><b>7.11.4</b> Interpret using predicted probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="logistic-regression.html"><a href="logistic-regression.html#diagnostics"><i class="fa fa-check"></i><b>7.12</b> Diagnostics</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#check-the-residual-distribution"><i class="fa fa-check"></i><b>7.12.1</b> Check the residual distribution</a></li>
+<li class="chapter" data-level="7.12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#check-that-the-residual-mean-is-constant"><i class="fa fa-check"></i><b>7.12.2</b> Check that the residual mean is constant</a></li>
+<li class="chapter" data-level="7.12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#linearity-of-predictors"><i class="fa fa-check"></i><b>7.12.3</b> Linearity of predictors</a></li>
+<li class="chapter" data-level="7.12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#influence"><i class="fa fa-check"></i><b>7.12.4</b> Influence</a></li>
+<li class="chapter" data-level="7.12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multicolinearity"><i class="fa fa-check"></i><b>7.12.5</b> Multicolinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="logistic-regression.html"><a href="logistic-regression.html#a-challenge"><i class="fa fa-check"></i><b>7.13</b> A challenge</a>
+<ul>
+<li class="chapter" data-level="7.13.1" data-path="logistic-regression.html"><a href="logistic-regression.html#activity-31"><i class="fa fa-check"></i><b>7.13.1</b> Activity</a></li>
+<li class="chapter" data-level="7.13.2" data-path="logistic-regression.html"><a href="logistic-regression.html#an-answer"><i class="fa fa-check"></i><b>7.13.2</b> (An) Answer</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="chapter" data-level="8" data-path="complex-surveys.html"><a href="complex-surveys.html"><i class="fa fa-check"></i><b>8</b> Complex surveys</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="complex-surveys.html"><a href="complex-surveys.html#readings"><i class="fa fa-check"></i><b>8.1</b> Readings</a></li>
+<li class="chapter" data-level="8.2" data-path="complex-surveys.html"><a href="complex-surveys.html#the-dataset-4"><i class="fa fa-check"></i><b>8.2</b> The dataset</a></li>
+<li class="chapter" data-level="8.3" data-path="complex-surveys.html"><a href="complex-surveys.html#the-components-of-a-survey-design"><i class="fa fa-check"></i><b>8.3</b> The components of a survey design</a></li>
+<li class="chapter" data-level="8.4" data-path="complex-surveys.html"><a href="complex-surveys.html#describing-the-data"><i class="fa fa-check"></i><b>8.4</b> Describing the data</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-32"><i class="fa fa-check"></i><b>8.4.1</b> Activity</a></li>
+<li class="chapter" data-level="8.4.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-33"><i class="fa fa-check"></i><b>8.4.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="complex-surveys.html"><a href="complex-surveys.html#fitting-a-glm"><i class="fa fa-check"></i><b>8.5</b> Fitting a GLM</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-33"><i class="fa fa-check"></i><b>8.5.1</b> Activity</a></li>
+<li class="chapter" data-level="8.5.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-34"><i class="fa fa-check"></i><b>8.5.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="complex-surveys.html"><a href="complex-surveys.html#slopes"><i class="fa fa-check"></i><b>8.6</b> Slopes</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="complex-surveys.html"><a href="complex-surveys.html#activity-34"><i class="fa fa-check"></i><b>8.6.1</b> Activity</a></li>
+<li class="chapter" data-level="8.6.2" data-path="complex-surveys.html"><a href="complex-surveys.html#answer-35"><i class="fa fa-check"></i><b>8.6.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="complex-surveys.html"><a href="complex-surveys.html#diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="mediation-analysis.html"><a href="mediation-analysis.html"><i class="fa fa-check"></i><b>9</b> Mediation analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="mediation-analysis.html"><a href="mediation-analysis.html#simulated-example"><i class="fa fa-check"></i><b>9.1</b> Simulated Example</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="mediation-analysis.html"><a href="mediation-analysis.html#make-up-some-data"><i class="fa fa-check"></i><b>9.1.1</b> Make up some data</a></li>
+<li class="chapter" data-level="9.1.2" data-path="mediation-analysis.html"><a href="mediation-analysis.html#analyse-it"><i class="fa fa-check"></i><b>9.1.2</b> Analyse it</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -447,8 +463,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Logistic regression</h1>
+<div id="logistic-regression" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Logistic regression</h1>
 <p>By the end of this chapter you will understand:</p>
 <ul>
 <li>How generalised linear models (GLMs) generalise regression to deal with a wider variety of distributions of data.</li>
@@ -458,15 +474,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Much herein will be familiar from what we covered for linear regression. The main challenge is that the outcome variable is on the log-odds scale, which makes it trickier to interpret the model intercept and slopes. I provide four different ways to make sense of them, so you can choose which makes most sense to you.</p>
 <p>This <a href="https://twitter.com/ChelseaParlett/status/1304436259926896640?s=20">short video</a> might be helpful too.</p>
-<div id="setup" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Setup</h2>
+<div id="setup" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Setup</h2>
 <p>Let’s load the <code>tidyverse</code>.</p>
 <div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="logistic-regression.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>I’m also going to use <code>knitr</code> to make tables look prettier:</p>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="logistic-regression.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
 </div>
-<div id="the-dataset-3" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> The dataset</h2>
+<div id="the-dataset-3" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> The dataset</h2>
 <p>We will look at a different dataset in this chapter (HURRAH; <a href="psid1975.csv">download it here</a>), as analysed by Mroz (1987) and spotted in Fox and Weisberg (2019). The data are from the US Panel Study of Income Dynamics (PSID) in 1975: 753 married white women aged between 30 and 60.</p>
 <p>The outcome variable we will examine is whether participants participated in the labour force. So it will be worth thinking through your (implicit or otherwise) theories of what processes might be operating in 1975.</p>
 <p>We would expect a more diverse sample these days. You might also ponder what extra information you would want to know and why. For what it’s worth, I’m curious what both wife and husband thought about gender roles and what sort of childcare was available. I’m not sure if it’s relevant, but I am also curious to know how many participants were bisexual (we can’t tell, but it is often wrongly assumed that people in a heterosexual marriage are both heterosexual).</p>
@@ -540,18 +556,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>lfp_yes</code> variable was calculated using the line below. This might come in handy for your analyses should you wish to dichotomise a variable.</p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="logistic-regression.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(dat<span class="sc">$</span>lfp <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>)</span></code></pre></div>
 </div>
-<div id="warmup-activity" class="section level2 tabset" number="6.3">
-<h2><span class="header-section-number">6.3</span> Warmup activity</h2>
-<div id="activity-27" class="section level3" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> Activity</h3>
+<div id="warmup-activity" class="section level2 tabset" number="7.3">
+<h2><span class="header-section-number">7.3</span> Warmup activity</h2>
+<div id="activity-27" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Activity</h3>
 <ol style="list-style-type: lower-alpha">
 <li>What do you think might predict participation in the labour force? Have a think <em>before looking at the descriptives</em> and write down your thoughts.</li>
 <li>Set <code>wc</code> and <code>hc</code> to factors.</li>
 <li>Generate a table of descriptive statistics (“Table 1”) using a method of your choosing.</li>
 </ol>
 </div>
-<div id="answer-29" class="section level3" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> Answer</h3>
+<div id="answer-29" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Answer</h3>
 <p><strong>a. What do you think might predict participation in the labour force? Have a think before looking at the descriptives.</strong></p>
 <p>It was too late for me since I had already peeked and can only report my hindsight bias!</p>
 <p><strong>b. Set <code>wc</code> and <code>hc</code> to factors.</strong></p>
@@ -790,8 +806,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="R-notes_files/figure-html/age-work-graph-1.png" width="672" /></p>
 </div>
 </div>
-<div id="the-punchline" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> The punchline</h2>
+<div id="the-punchline" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> The punchline</h2>
 <p>We will spend some time going into the arithmetic of logistic regression model coefficients since it helps interpret what the models mean.</p>
 <p>So that you have a sense of where this is heading, here is how to fit a model predicting whether women were in paid employment from the number of children in the family aged 5 or younger (<code>k5</code>) and 6 to 18 (<code>k618</code>):</p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="logistic-regression.html#cb457-1" aria-hidden="true" tabindex="-1"></a>mod_kids <span class="ot">&lt;-</span> <span class="fu">glm</span>(lfp_yes <span class="sc">~</span> k5 <span class="sc">+</span> k618, <span class="at">data =</span> dat, <span class="at">family =</span> binomial)</span></code></pre></div>
@@ -805,8 +821,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="logistic-regression.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Confint</span>(mod_kids)</span></code></pre></div>
 <p>The R code involved is almost identical to what we used for linear regression. The main challenge will be interpreting the slopes, but I will share some tips to make this relatively painless.</p>
 </div>
-<div id="intermezzo-parametric-versus-nonparametric" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> Intermezzo: parametric versus nonparametric</h2>
+<div id="intermezzo-parametric-versus-nonparametric" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Intermezzo: parametric versus nonparametric</h2>
 <blockquote>
 <p>“The term nonparametric may have some historical significance and meaning for theoretical statisticians, but it only serves to confuse applied statisticians.”</p>
 </blockquote>
@@ -817,13 +833,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can think of parameters as being like knobs on an old radio. Tuning the knobs changes the parameters.</p>
 <p><img src="radio.png" width="300" /></p>
 <p>The normal distribution has two parameters, mean and standard deviation:</p>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-297-.gif" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-312-.gif" width="672" /></p>
 <p>We will be exploring a parametric approach to modelling binary data (whether or not someone was in paid employment) in this chapter, using a special case of the binomial distribution with size = 1. There is one parameter: the probability, and values are either 0 or 1.</p>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-298-.gif" width="288" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-313-.gif" width="288" /></p>
 <p>This distribution is somewhat easier to grasp than the curve of a normal distribution, though we will encounter a logistic-al irritation in using it in practice.</p>
 </div>
-<div id="glms" class="section level2" number="6.6">
-<h2><span class="header-section-number">6.6</span> What is a generalised linear model?</h2>
+<div id="glms" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> What is a generalised linear model?</h2>
 <p>As the name suggests, <em>generalised linear models</em> generalise the linear model. (Not to be confused with a <em>general</em> linear model – different thing.) They are initialised as GLM, which is pronounced “glim.”</p>
 <p>GLMs have three components (see Fox and Weisberg, 2019, pp. 272-275 for more detail):</p>
 <ol style="list-style-type: decimal">
@@ -842,12 +858,12 @@ where <span class="math inline">\(p\)</span> is the probability of an event happ
 <p>So, a linear regression model is a generalised linear model with a normal error distribution and an identity link. Logistic regression is a generalised linear model with a binomial error distribution and a log-odds (logit) link.</p>
 <p>The error distribution and link are together called the <em>family</em>. By default, <code>glm</code> chooses a sensible link for you so in practice you just have to name the error distribution.</p>
 </div>
-<div id="what-is-the-log-function-again" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> What is the log function again…?</h2>
+<div id="what-is-the-log-function-again" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> What is the log function again…?</h2>
 <p>To interpret logistic regression models we need to understand log-odds and to understand log-odds we need to grasp logs. I’m aware that it may be some time since you last used them!</p>
 <p>There are two aspects to revise: the arithmetic and why logs are typically used.</p>
-<div id="log-arithmetic" class="section level3 tabset" number="6.7.1">
-<h3><span class="header-section-number">6.7.1</span> The arithmetic</h3>
+<div id="log-arithmetic" class="section level3 tabset" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> The arithmetic</h3>
 <p>The arithmetic is easy: the <em>log</em> is simply the inverse of “to the power of” or exponentiation.</p>
 <p>Here is an example of exponentiation:</p>
 <p><span class="math display">\[
@@ -867,12 +883,12 @@ In R:</p>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="logistic-regression.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
 <p>… 32.</p>
-<div id="activity-28" class="section level4" number="6.7.1.1">
-<h4><span class="header-section-number">6.7.1.1</span> Activity</h4>
+<div id="activity-28" class="section level4" number="7.7.1.1">
+<h4><span class="header-section-number">7.7.1.1</span> Activity</h4>
 <p>Two to the power of what is 1024…?</p>
 </div>
-<div id="answer-30" class="section level4" number="6.7.1.2">
-<h4><span class="header-section-number">6.7.1.2</span> Answer</h4>
+<div id="answer-30" class="section level4" number="7.7.1.2">
+<h4><span class="header-section-number">7.7.1.2</span> Answer</h4>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="logistic-regression.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1024</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>It’s 10. Let’s check.</p>
@@ -881,8 +897,8 @@ In R:</p>
 <p>So much for the arithmetic; onto some intutions for why it is used…</p>
 </div>
 </div>
-<div id="why-log" class="section level3" number="6.7.2">
-<h3><span class="header-section-number">6.7.2</span> Why log?</h3>
+<div id="why-log" class="section level3" number="7.7.2">
+<h3><span class="header-section-number">7.7.2</span> Why log?</h3>
 <p>Sadly, these days we are <a href="https://www.weforum.org/agenda/2020/04/covid-19-spread-logarithmic-graph/">very aware</a> of exponential and log functions since they are used when communicating data on the Covid-19 pandemic.</p>
 <p>Suppose some quantity doubles over time; let’s take as an example the number of cat GIFs in my saved images over time:</p>
 <p><img src="spot.gif" /></p>
@@ -949,7 +965,7 @@ In R:</p>
 <span id="cb473-3"><a href="logistic-regression.html#cb473-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of cat GIFs&quot;</span>) <span class="sc">+</span></span>
 <span id="cb473-4"><a href="logistic-regression.html#cb473-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb473-5"><a href="logistic-regression.html#cb473-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-320-1.png" width="672" /></p>
 <p>As we saw <a href="logistic-regression.html#log-arithmetic">above</a>, we can also run <span class="math inline">\(2^\mathit{month}\)</span> in reverse. Given a particular number of cat GIFs, say 32, how many times did the original number double to get there? Simply calculate <span class="math inline">\(\log_2(32)\)</span>:</p>
 <div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="logistic-regression.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">32</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
@@ -962,7 +978,7 @@ In R:</p>
 <span id="cb476-6"><a href="logistic-regression.html#cb476-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">2</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb476-7"><a href="logistic-regression.html#cb476-7" aria-hidden="true" tabindex="-1"></a>     <span class="co"># this scale_y line says where to place the labels</span></span>
 <span id="cb476-8"><a href="logistic-regression.html#cb476-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">^</span>x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-322-1.png" width="672" /></p>
 <p>We can also log the values, so that the y-axis now says how many times the number of GIFs has doubled.</p>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="logistic-regression.html#cb477-1" aria-hidden="true" tabindex="-1"></a>doubles <span class="sc">%&gt;%</span></span>
 <span id="cb477-2"><a href="logistic-regression.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month, <span class="fu">log</span>(cat_GIFs,<span class="dv">2</span>))) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -970,12 +986,12 @@ In R:</p>
 <span id="cb477-4"><a href="logistic-regression.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb477-5"><a href="logistic-regression.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb477-6"><a href="logistic-regression.html#cb477-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) x, <span class="at">n =</span> <span class="dv">400</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-323-1.png" width="672" /></p>
 <p>I hope that provides some intuitions for what the log function does. Roughly, it transforms a process that multiplies, and can be hard to understand on the original scale, into a process that is additive.</p>
 </div>
 </div>
-<div id="intercept-only-models-again" class="section level2" number="6.8">
-<h2><span class="header-section-number">6.8</span> Intercept-only models again</h2>
+<div id="intercept-only-models-again" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> Intercept-only models again</h2>
 <p>For linear regression, the intercept in an intercept-only model was the mean of the the outcome variable. Intercepts in GLMs work the same; however, now we have the mild complication of the link function which is part of the arithmetic that makes GLMs work.</p>
 <p>The mean of the binary variable, <code>lfp_yes</code>, is:</p>
 <div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="logistic-regression.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes)</span></code></pre></div>
@@ -1015,8 +1031,8 @@ In R:</p>
 ##    0.275298</code></pre>
 <p>This is actually the <em>log-odds</em> of being in paid work, which is arithmetically related to the probability. So onto the next bit of arithmetic…</p>
 </div>
-<div id="odds-and-log-odds" class="section level2" number="6.9">
-<h2><span class="header-section-number">6.9</span> Odds and log odds</h2>
+<div id="odds-and-log-odds" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Odds and log odds</h2>
 <p>Odds are alternatives to probabilities for quantifying uncertainty. The probability of getting a 20 on one roll of a fair 20-sided die are <span class="math inline">\(\frac{1}{20}\)</span> or 0.05. The odds are 1 to 19 or <span class="math inline">\(\frac{1}{19}\)</span>.</p>
 <p>There are 20 possible outcomes, each equally likely. We are interested in the odds of one of those outcomes. The odds are the ratio of the probability that an event <em>will</em> happen to the probability that it will <em>not</em>. For the 20-sided die case, since every outcome is equally likely, we can just use the number of outcomes directly in the formula.</p>
 <p>More generally, if the probability of an event is <span class="math inline">\(p\)</span>, then the odds are</p>
@@ -1120,12 +1136,12 @@ So the fraction just turns upside down.</li>
 <span id="cb488-4"><a href="logistic-regression.html#cb488-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> plogis, <span class="at">n =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
 <span id="cb488-5"><a href="logistic-regression.html#cb488-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
 <span id="cb488-6"><a href="logistic-regression.html#cb488-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Log-odds (logit)&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-315-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-330-1.png" width="672" /></p>
 <p>Note how the relationship is mostly non-linear, except for a patch in the middle where it is linear. The log-odds stretch out to negative and plus infinity, whereas probabilities are bound between 0 and 1. The probability for a log-odds of 6 is 0.9975274. The probability for a log-odds of 15, far off the scale on this graph, is 0.9999939. It never quite reaches 1 or, in the opposite direction, 0.</p>
 <p>To summarise then, probability, odds, and log-odds are different and interchangeable ways to quantify how sure you are that something is going to happen.</p>
 </div>
-<div id="back-to-that-intercept" class="section level2" number="6.10">
-<h2><span class="header-section-number">6.10</span> Back to that intercept</h2>
+<div id="back-to-that-intercept" class="section level2" number="7.10">
+<h2><span class="header-section-number">7.10</span> Back to that intercept</h2>
 <p>We know the proportion of women in paid work:</p>
 <div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="logistic-regression.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dat<span class="sc">$</span>lfp_yes)</span></code></pre></div>
 <pre><code>## [1] 0.5683931</code></pre>
@@ -1155,8 +1171,8 @@ So the fraction just turns upside down.</li>
 \]</span></p>
 <p>Now we have got the hang of intercept-only models, onto slopes…</p>
 </div>
-<div id="interpret-slopes" class="section level2" number="6.11">
-<h2><span class="header-section-number">6.11</span> Interpreting model slopes</h2>
+<div id="interpret-slopes" class="section level2" number="7.11">
+<h2><span class="header-section-number">7.11</span> Interpreting model slopes</h2>
 <p>Look again at the graph:</p>
 <p><img src="R-notes_files/figure-html/age-work-graph-1.png" width="672" /></p>
 <p>Our hindsight hypothesis (having looked at the picture) – not a good way to do science, but fine for pedagogy – is that the number of children aged 5 or under will predict labour-force participation, but the number aged 6 or over will be irrelevant.</p>
@@ -1188,39 +1204,39 @@ So the fraction just turns upside down.</li>
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>And indeed that is what we get. But how should we interpret those coefficients? Here is a suite of options. Any one of these would and has been publishable (see if you can spot them in the literature), but they are not equally interpretable.</p>
-<div id="interpret-on-the-log-odds-scale" class="section level3 tabset" number="6.11.1">
-<h3><span class="header-section-number">6.11.1</span> Interpret on the log-odds scale</h3>
+<div id="interpret-on-the-log-odds-scale" class="section level3 tabset" number="7.11.1">
+<h3><span class="header-section-number">7.11.1</span> Interpret on the log-odds scale</h3>
 <p>This summary is a linear model on the log-odds (i.e., logit) scale. So we can interpret as before, just always ensuring we remember that the outcome units are log-odds rather than probabilities.</p>
-<div id="activity-29" class="section level4" number="6.11.1.1">
-<h4><span class="header-section-number">6.11.1.1</span> Activity</h4>
+<div id="activity-29" class="section level4" number="7.11.1.1">
+<h4><span class="header-section-number">7.11.1.1</span> Activity</h4>
 <p>Have a go at interpreting the intercept and slopes, focussing on the direction of effects and whether they are statistically significant.</p>
 </div>
-<div id="answer-31" class="section level4" number="6.11.1.2">
-<h4><span class="header-section-number">6.11.1.2</span> Answer</h4>
+<div id="answer-31" class="section level4" number="7.11.1.2">
+<h4><span class="header-section-number">7.11.1.2</span> Answer</h4>
 <p>The intercept is actually interpretable (for a change!). This gives the log-odds of being in work when a family has zero children: 0.44.</p>
 <p>For every extra child aged 0-5, the log odds of being in work decrease by 0.88, <span class="math inline">\(z = -5.6\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</p>
 <p>There is no statistically significant effect for children aged 6 or over; slope = 0.03, <span class="math inline">\(z = 0.5\)</span>, <span class="math inline">\(p = 0.64\)</span>.</p>
 </div>
 </div>
-<div id="interpret-using-the-divide-by-4-approximation" class="section level3 tabset" number="6.11.2">
-<h3><span class="header-section-number">6.11.2</span> Interpret using the “divide-by-4” approximation</h3>
+<div id="interpret-using-the-divide-by-4-approximation" class="section level3 tabset" number="7.11.2">
+<h3><span class="header-section-number">7.11.2</span> Interpret using the “divide-by-4” approximation</h3>
 <p>Two of my favourite statisticians, Andrew Gelman and Jennifer Hill (2007, p. 82), provide a handy approximation for transforming slopes on the log-odds scale to changes in probability:</p>
 <blockquote>
 <p>“As a rule of convenience, we can take logistic regression coefficients (other than the constant term) and divide them by 4 to get an upper bound of the predictive difference corresponding to a unit difference in x. This upper bound is a reasonable approximation near the midpoint of the logistic curve, where probabilities are close to 0.5.”</p>
 </blockquote>
 <p>(The constant term is another word for the intercept.)</p>
 <p>Here is the rule in a picture:</p>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-323-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-338-1.png" width="672" /></p>
 <p>Where the the dashed purple line overlaps the curve, the probability <span class="math inline">\(p = 0.5 + \frac{\mathit{logit}}{4}\)</span>.</p>
-<div id="activity-30" class="section level4" number="6.11.2.1">
-<h4><span class="header-section-number">6.11.2.1</span> Activity</h4>
+<div id="activity-30" class="section level4" number="7.11.2.1">
+<h4><span class="header-section-number">7.11.2.1</span> Activity</h4>
 <p>Can you decode that paragraph from Gelman and Hill and use it to interpret the coefficients?</p>
 <div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="logistic-regression.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
 ##  0.44478849 -0.87925889  0.02729833</code></pre>
 </div>
-<div id="answer-32" class="section level4" number="6.11.2.2">
-<h4><span class="header-section-number">6.11.2.2</span> Answer</h4>
+<div id="answer-32" class="section level4" number="7.11.2.2">
+<h4><span class="header-section-number">7.11.2.2</span> Answer</h4>
 <p>We can use the coefficients:</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="logistic-regression.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
@@ -1238,11 +1254,11 @@ So the fraction just turns upside down.</li>
 <p>The effect for children aged 6-18 was not statistically significant; moreover, the sample estimate is minuscule: every extra child adds 0.01 to the probability of being in work.</p>
 </div>
 </div>
-<div id="interpret-using-odds" class="section level3" number="6.11.3">
-<h3><span class="header-section-number">6.11.3</span> Interpret using odds</h3>
+<div id="interpret-using-odds" class="section level3" number="7.11.3">
+<h3><span class="header-section-number">7.11.3</span> Interpret using odds</h3>
 <p>There is an easy way to transform the predictors so that interpretation are on the odds scale, which are more interpretable than log-odds. Let’s explore why it works – skip to the <a href="logistic-regression.html#exp-meaning">So What?</a> section on a first read if you wish.</p>
-<div id="some-arithmetic" class="section level4" number="6.11.3.1">
-<h4><span class="header-section-number">6.11.3.1</span> Some arithmetic</h4>
+<div id="some-arithmetic" class="section level4" number="7.11.3.1">
+<h4><span class="header-section-number">7.11.3.1</span> Some arithmetic</h4>
 <p>Here is the model formula again:</p>
 <p><span class="math display">\[
 \log_e\frac{p}{1-p}= \beta_0 + \beta_1 x_1 + \beta_1x_2 + \cdots + \beta_n x_n
@@ -1266,8 +1282,8 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 \frac{p}{1-p}= \exp({\beta_0}) \times \exp({\beta_1})^{x_1} \times \exp({\beta_1})^{x_2} \times \cdots \times \exp({\beta_n})^{x_n}
 \]</span></p>
 </div>
-<div id="exp-meaning" class="section level4" number="6.11.3.2">
-<h4><span class="header-section-number">6.11.3.2</span> What does this mean? (Or: so what?)</h4>
+<div id="exp-meaning" class="section level4" number="7.11.3.2">
+<h4><span class="header-section-number">7.11.3.2</span> What does this mean? (Or: so what?)</h4>
 <p>Here are the coefficients from our model predicting being in paid work from number of children:</p>
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="logistic-regression.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_children)</span></code></pre></div>
 <pre><code>## (Intercept)          k5        k618 
@@ -1310,12 +1326,12 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 \]</span></p>
 </div>
 </div>
-<div id="interpret-using-predicted-probabilities" class="section level3" number="6.11.4">
-<h3><span class="header-section-number">6.11.4</span> Interpret using predicted probabilities</h3>
+<div id="interpret-using-predicted-probabilities" class="section level3" number="7.11.4">
+<h3><span class="header-section-number">7.11.4</span> Interpret using predicted probabilities</h3>
 <p>This is probably my favourite way to get to grips with how a model works and R does all the hard work for us. The idea is simply to ask the model for predicted probabilities for a range of inputs, chosen to help you and readers see how the outcome variable is related to the predictors.</p>
 <p>There are two ways to do it in R. The second is easier (and you would be forgiven for <a href="logistic-regression.html#easierpredictions">trying it first</a>) but the first explains what’s going on.</p>
-<div id="using-a-customs-predictions-table" class="section level4" number="6.11.4.1">
-<h4><span class="header-section-number">6.11.4.1</span> Using a customs predictions table</h4>
+<div id="using-a-customs-predictions-table" class="section level4" number="7.11.4.1">
+<h4><span class="header-section-number">7.11.4.1</span> Using a customs predictions table</h4>
 <p>The recipe is as follows. First, generate a data frame with values for predictors for which you would like predictions. This is a data frame with one column for each variable in the model.</p>
 <p>The <code>expand.grid</code> command is handy for this as it generates all combinations of the values you provide.</p>
 <div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="logistic-regression.html#cb515-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">k5   =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>,</span>
@@ -1424,11 +1440,11 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <span id="cb520-8"><a href="logistic-regression.html#cb520-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Probability of being in work&quot;</span>,</span>
 <span id="cb520-9"><a href="logistic-regression.html#cb520-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Children 6-18&quot;</span>) <span class="sc">+</span></span>
 <span id="cb520-10"><a href="logistic-regression.html#cb520-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-334-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-349-1.png" width="672" /></p>
 <p>By the way, predictions work for linear models fitted using <code>lm</code> too and can be particularly handy for making sense of interactions or other non-linear effects.</p>
 </div>
-<div id="easierpredictions" class="section level4" number="6.11.4.2">
-<h4><span class="header-section-number">6.11.4.2</span> Use ggeffects</h4>
+<div id="easierpredictions" class="section level4" number="7.11.4.2">
+<h4><span class="header-section-number">7.11.4.2</span> Use ggeffects</h4>
 <p>Every few months someone creates a helpful R package for creating or understanding models. The <code>ggeffects</code> package is tear-jerkingly beautiful. See Lüdecke (2018) for more information. There are also helpful examples on the <a href="https://strengejacke.github.io/ggeffects/">package webpage</a>.</p>
 <div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="logistic-regression.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span></code></pre></div>
 <p>The command for making predictions is called <code>ggpredict</code> and wants a model and at least one variable name. It can generate predictions for up to four variables whilst holding the others at some constant.</p>
@@ -1452,7 +1468,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <p>The package also comes with a <code>plot</code> function which automatically gives you a <code>ggplot</code> object.</p>
 <div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="logistic-regression.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb525-2"><a href="logistic-regression.html#cb525-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-337-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-352-1.png" width="672" /></p>
 <p>The grey area is a 95% confidence band.</p>
 <p>You can then modify this plot as you would any other <code>ggplot</code> object:</p>
 <div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="logistic-regression.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_children, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;k5&quot;</span>)) <span class="sc">%&gt;%</span></span>
@@ -1462,18 +1478,18 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <span id="cb526-5"><a href="logistic-regression.html#cb526-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of being in the labour force&quot;</span>) <span class="sc">+</span></span>
 <span id="cb526-6"><a href="logistic-regression.html#cb526-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb526-7"><a href="logistic-regression.html#cb526-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-338-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-353-1.png" width="672" /></p>
 <p>Before publication (or module assignment), be sure to explain in your Figure captions what exactly a graph shows, i.e., in this case that the number of children ages 6 to 18 has been held at 1.</p>
 </div>
 </div>
 </div>
-<div id="diagnostics" class="section level2" number="6.12">
-<h2><span class="header-section-number">6.12</span> Diagnostics</h2>
+<div id="diagnostics" class="section level2" number="7.12">
+<h2><span class="header-section-number">7.12</span> Diagnostics</h2>
 <p>Good news: we will use the same diagnostic tools as for linear regression. Actually (slightly) fewer will now apply.</p>
 <p>Load the <code>car</code> package:</p>
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="logistic-regression.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
-<div id="check-the-residual-distribution" class="section level3" number="6.12.1">
-<h3><span class="header-section-number">6.12.1</span> Check the residual distribution</h3>
+<div id="check-the-residual-distribution" class="section level3" number="7.12.1">
+<h3><span class="header-section-number">7.12.1</span> Check the residual distribution</h3>
 <p>You can check for outlying residuals as before:</p>
 <div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="logistic-regression.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(mod_children)</span></code></pre></div>
 <pre><code>## No Studentized residuals with Bonferroni p &lt; 0.05
@@ -1482,8 +1498,8 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 92 1.778802           0.075272           NA</code></pre>
 <p>Do not check if the residuals are normally distributed – they will not be and that is fine in GLM land.</p>
 </div>
-<div id="check-that-the-residual-mean-is-constant" class="section level3" number="6.12.2">
-<h3><span class="header-section-number">6.12.2</span> Check that the residual mean is constant</h3>
+<div id="check-that-the-residual-mean-is-constant" class="section level3" number="7.12.2">
+<h3><span class="header-section-number">7.12.2</span> Check that the residual mean is constant</h3>
 <p>The <code>residualPlots</code> works as before, except when you run it with default setting on this model and data it will complain that “all data are on boundary of neighbourhood, make span bigger.” The “span” refers to how much smoothing the smoother does!</p>
 <div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="logistic-regression.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_children,</span>
 <span id="cb530-2"><a href="logistic-regression.html#cb530-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
@@ -1491,19 +1507,19 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="logistic-regression.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_children,</span>
 <span id="cb531-2"><a href="logistic-regression.html#cb531-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb531-3"><a href="logistic-regression.html#cb531-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-342-1.png" width="576" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-357-1.png" width="576" /></p>
 <p>The patterns in the data points you see here are due to the outcome variable only taking on a 0 or a 1. This is to be expected. Focus on the magenta curves and ensure that they aren’t curves (if you see what I mean…?): they should be straight lines along zero. And indeed here they are.</p>
 <p>The variance does <em>not</em> need to be constant for GLMs other than the normal/Gaussian model.</p>
 </div>
-<div id="linearity-of-predictors" class="section level3" number="6.12.3">
-<h3><span class="header-section-number">6.12.3</span> Linearity of predictors</h3>
+<div id="linearity-of-predictors" class="section level3" number="7.12.3">
+<h3><span class="header-section-number">7.12.3</span> Linearity of predictors</h3>
 <p>We can use <code>crPlots</code> again to obtain component-plus-residual plots.</p>
 <div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="logistic-regression.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_children, <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-343-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-358-1.png" width="672" /></p>
 <p>These too are fine – no obvious curves, though potentially something worth exploring towards the upper end of <code>k618</code> where there isn’t much data (i.e., few families over 6 children). Again I had to fiddle with the <code>span</code> parameter to stop the smoother complaining.</p>
 </div>
-<div id="influence" class="section level3" number="6.12.4">
-<h3><span class="header-section-number">6.12.4</span> Influence</h3>
+<div id="influence" class="section level3" number="7.12.4">
+<h3><span class="header-section-number">7.12.4</span> Influence</h3>
 <p>Again everything we covered in the previous session applies here. Here’s a quick way to look at potentially influential points:</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="logistic-regression.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(mod_children) <span class="sc">%&gt;%</span></span>
 <span id="cb533-2"><a href="logistic-regression.html#cb533-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
@@ -1556,7 +1572,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 750  0.02  -0.07  -0.02    -0.08    1.02_*  0.00   0.02_*</code></pre>
 <p>We could also look at (my favourite) the DFBETA plots:</p>
 <div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="logistic-regression.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_children)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-345-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-360-1.png" width="672" /></p>
 <p>The numbers are minuscule, relative to the model slopes, so nothing to worry about. I am curious about the largest DFBETA for <code>k618</code>, though. The raw descriptives showed one person with eight children aged 6 to 18 who was in work. Is the slope being ever so slightly dragged up by her data?</p>
 <div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="logistic-regression.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_children) <span class="sc">%&gt;%</span></span>
 <span id="cb536-2"><a href="logistic-regression.html#cb536-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
@@ -1570,8 +1586,8 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 1 yes       1  0    8  37 no no 0.1625193 16.258</code></pre>
 <p>Yes, this is the one person with 8 children! But it doesn’t matter since the dataset is so large and the DFBETA minuscule.</p>
 </div>
-<div id="multicolinearity" class="section level3" number="6.12.5">
-<h3><span class="header-section-number">6.12.5</span> Multicolinearity</h3>
+<div id="multicolinearity" class="section level3" number="7.12.5">
+<h3><span class="header-section-number">7.12.5</span> Multicolinearity</h3>
 <p>Yep, you can still check the variance inflation factors (VIFs) and interpret as before!</p>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="logistic-regression.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_children)</span></code></pre></div>
 <pre><code>##       k5     k618 
@@ -1590,10 +1606,10 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <p>They are high as you might expect, given how the <code>kids</code> variable was created.</p>
 </div>
 </div>
-<div id="a-challenge" class="section level2 tabset" number="6.13">
-<h2><span class="header-section-number">6.13</span> A challenge</h2>
-<div id="activity-31" class="section level3" number="6.13.1">
-<h3><span class="header-section-number">6.13.1</span> Activity</h3>
+<div id="a-challenge" class="section level2 tabset" number="7.13">
+<h2><span class="header-section-number">7.13</span> A challenge</h2>
+<div id="activity-31" class="section level3" number="7.13.1">
+<h3><span class="header-section-number">7.13.1</span> Activity</h3>
 <p>There are several other variables in the dataset which you can now explore.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Does a model with the following predictors added predict better than one with only the number of children?</li>
@@ -1629,8 +1645,8 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <li>Try some diagnostics (this week you have some more creative freedom) – do you want to do anything as a result of what you find?</li>
 </ol>
 </div>
-<div id="an-answer" class="section level3" number="6.13.2">
-<h3><span class="header-section-number">6.13.2</span> (An) Answer</h3>
+<div id="an-answer" class="section level3" number="7.13.2">
+<h3><span class="header-section-number">7.13.2</span> (An) Answer</h3>
 <p><strong>a. Does a model with the following predictors [list of predictors] added predict better than one with only the number of children?</strong></p>
 <p>Here’s another way to add predictors to a previously fitted model; however, copy and paste works fine too!</p>
 <div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="logistic-regression.html#cb546-1" aria-hidden="true" tabindex="-1"></a>mod_more <span class="ot">&lt;-</span> <span class="fu">update</span>(mod_children,</span>
@@ -1696,7 +1712,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <span id="cb553-6"><a href="logistic-regression.html#cb553-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb553-7"><a href="logistic-regression.html#cb553-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
 <span id="cb553-8"><a href="logistic-regression.html#cb553-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-356-1.png" width="576" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-371-1.png" width="576" /></p>
 <p>Adjusted for: number of children aged 6 to 18 was fixed at 1, husband fixed at no college education, and income at the mean, $2013.</p>
 <p>(Wasn’t that fantastically easy? Most of the code was just fiddling with the layout.)</p>
 <p>How about income?</p>
@@ -1708,7 +1724,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <span id="cb554-6"><a href="logistic-regression.html#cb554-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb554-7"><a href="logistic-regression.html#cb554-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
 <span id="cb554-8"><a href="logistic-regression.html#cb554-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-357-1.png" width="576" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-372-1.png" width="576" /></p>
 <p>The effect of family income was sensitive to the number of children – more marked for lower numbers of children – highlighting why it is worth plotting model predictions.</p>
 <p><strong>c. Try some diagnostics (this week you have some more creative freedom) – do you want to do anything as a result of what you find?</strong></p>
 <p>I’m going to start with the VIFs.</p>
@@ -1720,13 +1736,13 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 <div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="logistic-regression.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_more,</span>
 <span id="cb557-2"><a href="logistic-regression.html#cb557-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> F,</span>
 <span id="cb557-3"><a href="logistic-regression.html#cb557-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-359-1.png" width="768" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-374-1.png" width="768" /></p>
 <p>The component + residual plots look beautifully linear:</p>
 <div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="logistic-regression.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_more,<span class="at">smooth =</span> <span class="fu">list</span>(<span class="at">span =</span> .<span class="dv">977</span>))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-360-1.png" width="768" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-375-1.png" width="768" /></p>
 <p>How about the DFBETA values?</p>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="logistic-regression.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_more)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-361-1.png" width="576" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-376-1.png" width="576" /></p>
 <p>Maybe worth looking at the largest DFBETA values for <code>inc</code>?</p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="logistic-regression.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_more) <span class="sc">%&gt;%</span></span>
 <span id="cb560-2"><a href="logistic-regression.html#cb560-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
@@ -1750,7 +1766,7 @@ since <span class="math inline">\(b^{x+y} = b^x b^y\)</span>. Note how all the a
 ## 4 yes       1  0    1  48  no  no 1.341559 59.00    1</code></pre>
 <p>They all have high family incomes, compared to the distribution…</p>
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="logistic-regression.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>inc)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-364-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-379-1.png" width="672" /></p>
 <p>Also all these participants are in work, so they are dragging the coefficient for income slightly upwards. We could try removing them and fitting the model again.</p>
 <div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="logistic-regression.html#cb565-1" aria-hidden="true" tabindex="-1"></a>sliced_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
 <span id="cb565-2"><a href="logistic-regression.html#cb565-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">104</span>,<span class="dv">119</span>,<span class="dv">386</span>,<span class="dv">402</span>))</span>

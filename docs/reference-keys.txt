@@ -54,6 +54,16 @@ final-challenge
 activity-10
 answer-13
 more-ideas-for-visualisations
+p-values-and-confidence-intervals
+correlation-recap
+testing-null-hypotheses
+what-can-samples-look-like-when-the-true-correlation-is-0
+understanding-actual-data-in-relation-to-these-simulations
+so-what-is-a-p-value
+confidence-intervals
+simulating-confidence
+what-is-a-confidence-interval-then
+further-reading
 linear-regression
 before-we-begin
 the-dataset
@@ -144,7 +154,7 @@ brief-introduction-to-interactions
 what-is-an-interaction
 how-to-test-for-interactions-in-r
 understanding-interactions
-further-reading
+further-reading-1
 logistic-regression
 setup
 the-dataset-3
