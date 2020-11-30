@@ -8,6 +8,11 @@ Chang, W. (2020). [R Graphics Cookbook](https://r-graphics.org/) (2nd ed.). Seba
 
 Colquhoun, D. (2014). [An investigation of the false discovery rate and the misinterpretation of p-values](https://doi.org/10.1098/rsos.140216). *Royal Society Open Science*, *1*, 140216. doi: 10.1098/rsos.140216
 
+Curtice, J., Hudson, N., and Montagu, I. (eds.) (2020) [*British Social
+Attitudes: The 37th Report*](https://www.bsa.natcen.ac.uk/latest-report/british-social-attitudes-37/fairness-and-justice-in-britain.aspx). London: The National Centre for Social Research.
+
+European Social Survey Round 9 Data (2018). Data file edition 2.0. NSD - Norwegian Centre for Research Data, Norway – Data Archive and distributor of ESS data for ESS ERIC. doi:10.21338/NSD-ESS9-2018.
+
 Fox, J. & Weisberg, S. (2019). *An R Companion to Applied Regression*, Third Edition, Sage.
 
 Gelman, A., & Hill, J. (2007). *Data Analysis Using Regression and Multilevel/Hierarchical Models*. Cambridge: Cambridge University Press.
