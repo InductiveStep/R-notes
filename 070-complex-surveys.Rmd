@@ -55,7 +55,6 @@ Read in the data.
 
 ```{r}
 ces <- read.csv("ces11.csv", stringsAsFactors = TRUE)
-head(ces)
 ```
 
 I'm setting `stringsAsFactors` to `TRUE` so that the variables which are obviously factors are setup accordingly (R used to this by default; sometimes it had irritating side-effects).
@@ -302,7 +301,7 @@ influence.measures(sm1)
 
 ## Another worked example: the European Social Survey
 
-NatCen recently [published](https://www.bsa.natcen.ac.uk/latest-report/british-social-attitudes-37/fairness-and-justice-in-britain.aspx) analyses of Fairness and justice in Britain (Curtice, Hudson, & Montagu, 2020), using data from the ninth wave of the 2019 European Social Survey (European Social Survey Round 9 Data, 2018).
+NatCen recently [published](https://www.bsa.natcen.ac.uk/latest-report/british-social-attitudes-37/fairness-and-justice-in-britain.aspx) analyses of fairness and justice in Britain (Curtice, Hudson, & Montagu, 2020), using data from the ninth wave of the 2019 European Social Survey (European Social Survey Round 9 Data, 2018).
 
 Let's see if we can replicate the results.
 
@@ -321,7 +320,7 @@ View(ess9)
 
 Okay, if that has worked then the next problem is finding the variables we want to analyse!
 
-The NatCen report opens with a spotlight figure:
+The report opens with a spotlight figure:
 
 > Only 20% of the British public think that differences in wealth in Britain are fair, whilst a majority (59%) think that wealth differences in Britain are unfairly large and a further 16% think that differences in wealth are unfairly small.
 
@@ -337,7 +336,7 @@ We will also need the variable for country (easier to spot) and any information 
 
 This also links to a guide to [weighting the data](https://www.europeansocialsurvey.org/docs/methodology/ESS_weighting_data_1_1.pdf).
 
-It's also worth printing all the variable names -- if only to spot that they have ended up in lower case:
+It's also worth printing all the variable names -- if only to spot that they have ended up in lower case.
 
 
 ### Set up the survey object
@@ -347,13 +346,10 @@ ess9_survey <- ess9 %>%
   as_survey_design(ids = idno,
                    strata = cntry,
                    nest = TRUE,
-                   weights = pspwght) %>%
-  filter(agea >= 18)
+                   weights = pspwght)
 ```
 
 The `nest` option takes account of the `ids` being nested within strata: in other words the same ID is used more than once across the dataset but only once in a country.
-
-I've also filtered the data so that participants are aged 18 or over.
 
 
 ### Try the analysis
@@ -401,6 +397,15 @@ gb_wealth <- ess9_survey %>%
 gb_wealth 
 ```
 
+The results are the same as per the report. Let's round to show this more clearly:
+
+```{r}
+gb_wealth %>%
+  mutate(perc = (prop*100) %>% round(0)) %>%
+  select(wltdffr_group, perc)
+```
+
+We can also plot the results:
 
 ```{r fig.height=6, fig.width=5}
 gb_wealth %>%
@@ -439,15 +444,6 @@ Run it for all the countries of interest:
 conts <- c("DE", "ES", "FR", "GB", "IT")
 euro_wealth <- map_dfr(conts, gimme_country_results)
 head(euro_wealth)
-```
-
-Looks like it worked. We can zoom in on "Fair" and calculate a rounded percentage to compare with Table 1 in the report:
-
-```{r}
-euro_wealth %>%
-  filter(wltdffr_group == "Fair") %>%
-  mutate(perc = round(prop*100, 0)) %>%
-  select(cntry, wltdffr_group, perc)
 ```
 
 
