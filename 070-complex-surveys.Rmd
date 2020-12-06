@@ -6,8 +6,6 @@ options(scipen=1)
 
 # Complex surveys
 
-**(Work in progress!)**
-
 By the end of this chapter you will know how to:
 
 * Setup a survey object using complex survey information such as sampling weight and stratification variables.

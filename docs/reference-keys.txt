@@ -218,9 +218,4 @@ diagnostics-1
 another-worked-example-the-european-social-survey
 set-up-the-survey-object
 try-the-analysis
-multilevel-models
-mediation-analysis
-simulated-example
-make-up-some-data
-analyse-it
 references
