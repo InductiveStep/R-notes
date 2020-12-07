@@ -795,6 +795,14 @@ ggpredict(interaction_mod, terms = c("income_1000s", "type")) %>%
 
 Hopefully this graph illustrates what it means that the relationship between income and prestige depends on occupation type -- the slopes are different for each type.
 
+We can also see what the model predictions look like without the interaction term:
+
+```{r}
+library(ggeffects)
+ggpredict(main_effect_mod, terms = c("income_1000s", "type")) %>%
+  plot(add.data = TRUE, ci = FALSE)
+```
+
 
 ### Further reading
 

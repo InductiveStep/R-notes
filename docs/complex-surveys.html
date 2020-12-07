@@ -478,8 +478,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Fit a GLM (logistic).</li>
 </ul>
 <p>We will use the <code>survey</code> package and a tidyverse-style wrapper called <code>srvyr</code>.</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="complex-surveys.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
-<span id="cb569-2"><a href="complex-surveys.html#cb569-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="complex-surveys.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb570-2"><a href="complex-surveys.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span></code></pre></div>
 <div id="readings" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Readings</h2>
 <p>These are handy:</p>
@@ -546,14 +546,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Read in the data.</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="complex-surveys.html#cb570-1" aria-hidden="true" tabindex="-1"></a>ces <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ces11.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="complex-surveys.html#cb571-1" aria-hidden="true" tabindex="-1"></a>ces <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ces11.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>I’m setting <code>stringsAsFactors</code> to <code>TRUE</code> so that the variables which are obviously factors are setup accordingly (R used to this by default; sometimes it had irritating side-effects).</p>
 </div>
 <div id="the-components-of-a-survey-design" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> The components of a survey design</h2>
 <p>The key parts of the dataset which describe the survey design are as follows:</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="complex-surveys.html#cb571-1" aria-hidden="true" tabindex="-1"></a>ces <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, province, population, weight) <span class="sc">%&gt;%</span></span>
-<span id="cb571-2"><a href="complex-surveys.html#cb571-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="complex-surveys.html#cb572-1" aria-hidden="true" tabindex="-1"></a>ces <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, province, population, weight) <span class="sc">%&gt;%</span></span>
+<span id="cb572-2"><a href="complex-surveys.html#cb572-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div>
 <pre><code>##     id province population  weight
 ## 1 2851       BC    3267345 4287.85
 ## 2  521       QC    5996930 9230.78
@@ -568,11 +568,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>weight</code> is the sampling weight, in this dataset calculated based on differences in province population, the study sample size therein, and household size.</li>
 </ul>
 <p>Here is how to setup a survey object using <code>srvyr</code>:</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="complex-surveys.html#cb573-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces <span class="sc">%&gt;%</span></span>
-<span id="cb573-2"><a href="complex-surveys.html#cb573-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey</span>(<span class="at">ids =</span> id,</span>
-<span id="cb573-3"><a href="complex-surveys.html#cb573-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">strata =</span> province,</span>
-<span id="cb573-4"><a href="complex-surveys.html#cb573-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">fpc =</span> population,</span>
-<span id="cb573-5"><a href="complex-surveys.html#cb573-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">weights =</span> weight)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="complex-surveys.html#cb574-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces <span class="sc">%&gt;%</span></span>
+<span id="cb574-2"><a href="complex-surveys.html#cb574-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey</span>(<span class="at">ids =</span> id,</span>
+<span id="cb574-3"><a href="complex-surveys.html#cb574-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">strata =</span> province,</span>
+<span id="cb574-4"><a href="complex-surveys.html#cb574-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">fpc =</span> population,</span>
+<span id="cb574-5"><a href="complex-surveys.html#cb574-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">weights =</span> weight)</span></code></pre></div>
 </div>
 <div id="describing-the-data" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Describing the data</h2>
@@ -590,9 +590,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="answer-33" class="section level3" number="9.4.2">
 <h3><span class="header-section-number">9.4.2</span> Answer</h3>
 <p><strong>a. use the <code>ces</code> data frame and <code>tidyverse</code> to calculate the number of people who think abortion should be banned</strong></p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="complex-surveys.html#cb574-1" aria-hidden="true" tabindex="-1"></a>ces <span class="sc">%&gt;%</span></span>
-<span id="cb574-2"><a href="complex-surveys.html#cb574-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
-<span id="cb574-3"><a href="complex-surveys.html#cb574-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="complex-surveys.html#cb575-1" aria-hidden="true" tabindex="-1"></a>ces <span class="sc">%&gt;%</span></span>
+<span id="cb575-2"><a href="complex-surveys.html#cb575-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
+<span id="cb575-3"><a href="complex-surveys.html#cb575-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ##   abortion     n
@@ -600,9 +600,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 No        1818
 ## 2 Yes        413</code></pre>
 <p><strong>b. do the same again, but this time use the <code>ces_s</code> survey object created above – what do you notice?</strong></p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="complex-surveys.html#cb577-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="sc">%&gt;%</span></span>
-<span id="cb577-2"><a href="complex-surveys.html#cb577-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
-<span id="cb577-3"><a href="complex-surveys.html#cb577-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">survey_total</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="complex-surveys.html#cb578-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="sc">%&gt;%</span></span>
+<span id="cb578-2"><a href="complex-surveys.html#cb578-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
+<span id="cb578-3"><a href="complex-surveys.html#cb578-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">survey_total</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   abortion         n    n_se
 ##   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;
@@ -612,22 +612,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>c. compare the proportions saying <code>yes</code> by group</strong></p>
 <p>One way to do this is by copy and paste!</p>
 <p>Unweighted:</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="complex-surveys.html#cb579-1" aria-hidden="true" tabindex="-1"></a>prop_unweighted <span class="ot">&lt;-</span> <span class="dv">413</span> <span class="sc">/</span> (<span class="dv">413</span> <span class="sc">+</span> <span class="dv">1818</span>)</span>
-<span id="cb579-2"><a href="complex-surveys.html#cb579-2" aria-hidden="true" tabindex="-1"></a>prop_unweighted</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="complex-surveys.html#cb580-1" aria-hidden="true" tabindex="-1"></a>prop_unweighted <span class="ot">&lt;-</span> <span class="dv">413</span> <span class="sc">/</span> (<span class="dv">413</span> <span class="sc">+</span> <span class="dv">1818</span>)</span>
+<span id="cb580-2"><a href="complex-surveys.html#cb580-2" aria-hidden="true" tabindex="-1"></a>prop_unweighted</span></code></pre></div>
 <pre><code>## [1] 0.1851188</code></pre>
 <p>Weighted:</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="complex-surveys.html#cb581-1" aria-hidden="true" tabindex="-1"></a>prop_weighted <span class="ot">&lt;-</span> <span class="dv">2964018</span> <span class="sc">/</span> (<span class="dv">2964018</span> <span class="sc">+</span>   <span class="dv">13059520</span>)</span>
-<span id="cb581-2"><a href="complex-surveys.html#cb581-2" aria-hidden="true" tabindex="-1"></a>prop_weighted</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="complex-surveys.html#cb582-1" aria-hidden="true" tabindex="-1"></a>prop_weighted <span class="ot">&lt;-</span> <span class="dv">2964018</span> <span class="sc">/</span> (<span class="dv">2964018</span> <span class="sc">+</span>   <span class="dv">13059520</span>)</span>
+<span id="cb582-2"><a href="complex-surveys.html#cb582-2" aria-hidden="true" tabindex="-1"></a>prop_weighted</span></code></pre></div>
 <pre><code>## [1] 0.184979</code></pre>
 <p>The unweighted proportion of “yes” is only a little different in this case: 0.1851188 (unweighted) v 0.184979 (weighted).</p>
 <p>Here’s how to answer the questions in one go:</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="complex-surveys.html#cb583-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="sc">%&gt;%</span></span>
-<span id="cb583-2"><a href="complex-surveys.html#cb583-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
-<span id="cb583-3"><a href="complex-surveys.html#cb583-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_raw =</span> <span class="fu">unweighted</span>(<span class="fu">n</span>()),</span>
-<span id="cb583-4"><a href="complex-surveys.html#cb583-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_weighted =</span> <span class="fu">survey_total</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb583-5"><a href="complex-surveys.html#cb583-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_raw =</span> n_raw <span class="sc">/</span> <span class="fu">sum</span>(n_raw),</span>
-<span id="cb583-6"><a href="complex-surveys.html#cb583-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop_weighted =</span> n_weighted <span class="sc">/</span> <span class="fu">sum</span>(n_weighted)) <span class="sc">%&gt;%</span></span>
-<span id="cb583-7"><a href="complex-surveys.html#cb583-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n_weighted_se)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="complex-surveys.html#cb584-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="sc">%&gt;%</span></span>
+<span id="cb584-2"><a href="complex-surveys.html#cb584-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(abortion) <span class="sc">%&gt;%</span></span>
+<span id="cb584-3"><a href="complex-surveys.html#cb584-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_raw =</span> <span class="fu">unweighted</span>(<span class="fu">n</span>()),</span>
+<span id="cb584-4"><a href="complex-surveys.html#cb584-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_weighted =</span> <span class="fu">survey_total</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb584-5"><a href="complex-surveys.html#cb584-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_raw =</span> n_raw <span class="sc">/</span> <span class="fu">sum</span>(n_raw),</span>
+<span id="cb584-6"><a href="complex-surveys.html#cb584-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop_weighted =</span> n_weighted <span class="sc">/</span> <span class="fu">sum</span>(n_weighted)) <span class="sc">%&gt;%</span></span>
+<span id="cb584-7"><a href="complex-surveys.html#cb584-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n_weighted_se)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   abortion n_raw n_weighted prop_raw prop_weighted
 ##   &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;
@@ -651,13 +651,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="answer-34" class="section level3" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> Answer</h3>
 <p><strong>a. <code>mutate</code> the survey object to add a binary variable called <code>againstAbortion</code> which is 1 if the participant is against abortion and 0 if not.</strong></p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="complex-surveys.html#cb585-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces_s <span class="sc">%&gt;%</span></span>
-<span id="cb585-2"><a href="complex-surveys.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">againstAbortion =</span> <span class="fu">as.numeric</span>(ces<span class="sc">$</span>abortion <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="complex-surveys.html#cb586-1" aria-hidden="true" tabindex="-1"></a>ces_s <span class="ot">&lt;-</span> ces_s <span class="sc">%&gt;%</span></span>
+<span id="cb586-2"><a href="complex-surveys.html#cb586-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">againstAbortion =</span> <span class="fu">as.numeric</span>(ces<span class="sc">$</span>abortion <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
 <p><strong>b. fit an intercept-only logistic regression model without using weights (you can use <code>as_tibble</code> to get the “raw” data frame hidden within the survey object).</strong></p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="complex-surveys.html#cb586-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb586-2"><a href="complex-surveys.html#cb586-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">as_tibble</span>(ces_s),</span>
-<span id="cb586-3"><a href="complex-surveys.html#cb586-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> binomial)</span>
-<span id="cb586-4"><a href="complex-surveys.html#cb586-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="complex-surveys.html#cb587-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb587-2"><a href="complex-surveys.html#cb587-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">as_tibble</span>(ces_s),</span>
+<span id="cb587-3"><a href="complex-surveys.html#cb587-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> binomial)</span>
+<span id="cb587-4"><a href="complex-surveys.html#cb587-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = againstAbortion ~ 1, family = binomial, data = as_tibble(ces_s))
@@ -680,10 +680,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p><strong>c. Do the same again, this time using the survey structure.</strong></p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="complex-surveys.html#cb588-1" aria-hidden="true" tabindex="-1"></a>sm0 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>, <span class="at">design =</span> ces_s,</span>
-<span id="cb588-2"><a href="complex-surveys.html#cb588-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="complex-surveys.html#cb589-1" aria-hidden="true" tabindex="-1"></a>sm0 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> <span class="dv">1</span>, <span class="at">design =</span> ces_s,</span>
+<span id="cb589-2"><a href="complex-surveys.html#cb589-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
 <pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="complex-surveys.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm0)</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="complex-surveys.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm0)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## svyglm(formula = againstAbortion ~ 1, design = ces_s, family = binomial)
@@ -702,10 +702,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p><strong>d. compare the predicted proportions with the “raw” proportions we calculated earlier</strong></p>
 <p>This undoes the log-odds (logit) transform:</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="complex-surveys.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(m0)))</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="complex-surveys.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(m0)))</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##   0.1851188</code></pre>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="complex-surveys.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)))</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="complex-surveys.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">coef</span>(sm0)))</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    0.184979</code></pre>
 <p>The answer is the same as for the simple unweighted and weighted proportions, respectively.</p>
@@ -721,11 +721,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answer-35" class="section level3" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> Answer</h3>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="complex-surveys.html#cb596-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> importance <span class="sc">+</span> education <span class="sc">+</span> gender,</span>
-<span id="cb596-2"><a href="complex-surveys.html#cb596-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">design =</span> ces_s,</span>
-<span id="cb596-3"><a href="complex-surveys.html#cb596-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="complex-surveys.html#cb597-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(againstAbortion <span class="sc">~</span> importance <span class="sc">+</span> education <span class="sc">+</span> gender,</span>
+<span id="cb597-2"><a href="complex-surveys.html#cb597-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">design =</span> ces_s,</span>
+<span id="cb597-3"><a href="complex-surveys.html#cb597-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial)</span></code></pre></div>
 <pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="complex-surveys.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="complex-surveys.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## svyglm(formula = againstAbortion ~ importance + education + gender, 
@@ -753,10 +753,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>To interpret those categorical predictors, it will help to check what the levels are:</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="complex-surveys.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>importance)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="complex-surveys.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>importance)</span></code></pre></div>
 <pre><code>## [1] &quot;not&quot;      &quot;notvery&quot;  &quot;somewhat&quot; &quot;very&quot;</code></pre>
 <p>So “not” is the comparison level.</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="complex-surveys.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>education) </span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="complex-surveys.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ces<span class="sc">$</span>education) </span></code></pre></div>
 <pre><code>## [1] &quot;bachelors&quot; &quot;college&quot;   &quot;higher&quot;    &quot;HS&quot;        &quot;lessHS&quot;    &quot;somePS&quot;</code></pre>
 <p>“bachelors” is the comparison level.</p>
 <p>Gender is just a binary.</p>
@@ -766,7 +766,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>People for whom religion was very important were more likely than those who said “not important at all” to be against abortion (log-odds 3.14)</p></li>
 </ul>
 <p>You could get the odds ratios like so:</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="complex-surveys.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm1)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="complex-surveys.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(sm1)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##        (Intercept)  importancenotvery importancesomewhat     importancevery 
 ##               0.02               1.59               3.78              23.12 
 ##   educationcollege    educationhigher        educationHS    educationlessHS 
@@ -775,37 +775,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##               1.15               1.39</code></pre>
 <p>So the odds ratio of “very” versus “not” important is 23.1.</p>
 <p>The <code>ggeffects</code> package also works with <code>survey</code> models (hurrah):</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="complex-surveys.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb606-2"><a href="complex-surveys.html#cb606-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(sm1, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;importance&quot;</span>))  <span class="sc">%&gt;%</span></span>
-<span id="cb606-3"><a href="complex-surveys.html#cb606-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
-<span id="cb606-4"><a href="complex-surveys.html#cb606-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-400-1.png" width="672" /></p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="complex-surveys.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb607-2"><a href="complex-surveys.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(sm1, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;importance&quot;</span>))  <span class="sc">%&gt;%</span></span>
+<span id="cb607-3"><a href="complex-surveys.html#cb607-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">+</span></span>
+<span id="cb607-4"><a href="complex-surveys.html#cb607-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-401-1.png" width="672" /></p>
 </div>
 </div>
 <div id="diagnostics-1" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> Diagnostics</h2>
 <p>Many of the diagnostic checks we previously encountered work here too.</p>
 <p>Here are the VIFs:</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="complex-surveys.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="complex-surveys.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(sm1)</span></code></pre></div>
 <pre><code>##                GVIF Df GVIF^(1/(2*Df))
 ## importance 1.052799  3        1.008612
 ## education  1.066741  5        1.006482
 ## gender     1.039299  1        1.019460</code></pre>
 <p>My favorite, the DFBETA plots:</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="complex-surveys.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(sm1)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-402-1.png" width="576" /></p>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="complex-surveys.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(sm1)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-403-1.png" width="576" /></p>
 <p>Try also:</p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="complex-surveys.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="complex-surveys.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(sm1)</span></code></pre></div>
 </div>
 <div id="another-worked-example-the-european-social-survey" class="section level2" number="9.8">
 <h2><span class="header-section-number">9.8</span> Another worked example: the European Social Survey</h2>
 <p>NatCen recently <a href="https://www.bsa.natcen.ac.uk/latest-report/british-social-attitudes-37/fairness-and-justice-in-britain.aspx">published</a> analyses of views on fairness and justice in Britain (Curtice, Hudson, &amp; Montagu, 2020), using data from the ninth wave of the 2019 European Social Survey (European Social Survey Round 9 Data, 2018).</p>
 <p>Let’s see if we can replicate the results.</p>
 <p>Firstly, you will have to download the data from <a href="https://www.europeansocialsurvey.org/data/download.html?r=9">the ESS website</a>. Go for the SPSS version. (You will have to register but it is a very quick process.) It will arrive as a zip file (<code>ESS9e02.spss.zip</code>). Simply extract the SPSS file therein (<code>ESS9e02.sav</code>) and move it to the same folder as your Markdown file.</p>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="complex-surveys.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb611-2"><a href="complex-surveys.html#cb611-2" aria-hidden="true" tabindex="-1"></a>ess9 <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">&quot;ESS9e02.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="complex-surveys.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb612-2"><a href="complex-surveys.html#cb612-2" aria-hidden="true" tabindex="-1"></a>ess9 <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">&quot;ESS9e02.sav&quot;</span>)</span></code></pre></div>
 <p>Try having a look:</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="complex-surveys.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ess9)</span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="complex-surveys.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ess9)</span></code></pre></div>
 <p>Okay, if that has worked then the next problem is finding the variables we want to analyse!</p>
 <p>The report opens with a spotlight figure:</p>
 <blockquote>
@@ -825,15 +825,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="set-up-the-survey-object" class="section level3" number="9.8.1">
 <h3><span class="header-section-number">9.8.1</span> Set up the survey object</h3>
 <p>First, I’m going to fix the country variable. It currently looks like:</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="complex-surveys.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess9<span class="sc">$</span>cntry)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="complex-surveys.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess9<span class="sc">$</span>cntry)</span></code></pre></div>
 <pre><code>## 
 ##   AT   BE   BG   CH   CY   CZ   DE   EE   ES   FI   FR   GB   HR   HU   IE   IT 
 ## 2499 1767 2198 1542  781 2398 2358 1904 1668 1755 2010 2204 1810 1661 2216 2745 
 ##   LT   LV   ME   NL   NO   PL   PT   RS   SE   SI   SK 
 ## 1835  918 1200 1673 1406 1500 1055 2043 1539 1318 1083</code></pre>
 <p>But the dataset also has nicer labels included, which we can get like this using the <code>as_factor</code> function (note the underscore). This function is in the <code>haven</code> package.</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="complex-surveys.html#cb615-1" aria-hidden="true" tabindex="-1"></a>ess9<span class="sc">$</span>cntry <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(ess9<span class="sc">$</span>cntry, <span class="at">levels =</span> <span class="st">&quot;labels&quot;</span>)</span>
-<span id="cb615-2"><a href="complex-surveys.html#cb615-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess9<span class="sc">$</span>cntry)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="complex-surveys.html#cb616-1" aria-hidden="true" tabindex="-1"></a>ess9<span class="sc">$</span>cntry <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(ess9<span class="sc">$</span>cntry, <span class="at">levels =</span> <span class="st">&quot;labels&quot;</span>)</span>
+<span id="cb616-2"><a href="complex-surveys.html#cb616-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess9<span class="sc">$</span>cntry)</span></code></pre></div>
 <pre><code>## 
 ## United Kingdom        Belgium        Germany        Estonia        Ireland 
 ##           2204           1767           2358           1904           2216 
@@ -848,11 +848,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         Cyprus        Czechia 
 ##            781           2398</code></pre>
 <p>Now let’s setup the survey object:</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="complex-surveys.html#cb617-1" aria-hidden="true" tabindex="-1"></a>ess9_survey <span class="ot">&lt;-</span> ess9 <span class="sc">%&gt;%</span></span>
-<span id="cb617-2"><a href="complex-surveys.html#cb617-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(<span class="at">ids =</span> idno,</span>
-<span id="cb617-3"><a href="complex-surveys.html#cb617-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> cntry,</span>
-<span id="cb617-4"><a href="complex-surveys.html#cb617-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nest =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb617-5"><a href="complex-surveys.html#cb617-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> pspwght)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="complex-surveys.html#cb618-1" aria-hidden="true" tabindex="-1"></a>ess9_survey <span class="ot">&lt;-</span> ess9 <span class="sc">%&gt;%</span></span>
+<span id="cb618-2"><a href="complex-surveys.html#cb618-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(<span class="at">ids =</span> idno,</span>
+<span id="cb618-3"><a href="complex-surveys.html#cb618-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> cntry,</span>
+<span id="cb618-4"><a href="complex-surveys.html#cb618-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb618-5"><a href="complex-surveys.html#cb618-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> pspwght)</span></code></pre></div>
 <p>The <code>nest</code> option takes account of the <code>ids</code> being nested within strata: in other words the same ID is used more than once across the dataset but only once in a country.</p>
 </div>
 <div id="try-the-analysis" class="section level3" number="9.8.2">
@@ -906,24 +906,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>So let’s create another variable which is grouped as per the NatCen report:</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="complex-surveys.html#cb618-1" aria-hidden="true" tabindex="-1"></a>ess9_survey <span class="ot">&lt;-</span> ess9_survey <span class="sc">%&gt;%</span></span>
-<span id="cb618-2"><a href="complex-surveys.html#cb618-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wltdffr_group =</span></span>
-<span id="cb618-3"><a href="complex-surveys.html#cb618-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
-<span id="cb618-4"><a href="complex-surveys.html#cb618-4" aria-hidden="true" tabindex="-1"></a>             wltdffr <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">4</span> <span class="sc">&amp;</span></span>
-<span id="cb618-5"><a href="complex-surveys.html#cb618-5" aria-hidden="true" tabindex="-1"></a>               wltdffr <span class="sc">&lt;=</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Unfairly small&quot;</span>,</span>
-<span id="cb618-6"><a href="complex-surveys.html#cb618-6" aria-hidden="true" tabindex="-1"></a>             wltdffr <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">&quot;Fair&quot;</span>,</span>
-<span id="cb618-7"><a href="complex-surveys.html#cb618-7" aria-hidden="true" tabindex="-1"></a>             wltdffr <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> wltdffr <span class="sc">&lt;=</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;Unfairly large&quot;</span></span>
-<span id="cb618-8"><a href="complex-surveys.html#cb618-8" aria-hidden="true" tabindex="-1"></a>           ),</span>
-<span id="cb618-9"><a href="complex-surveys.html#cb618-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">wltdffr_group =</span> <span class="fu">factor</span>(wltdffr_group,</span>
-<span id="cb618-10"><a href="complex-surveys.html#cb618-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Unfairly small&quot;</span>,</span>
-<span id="cb618-11"><a href="complex-surveys.html#cb618-11" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;Fair&quot;</span>,</span>
-<span id="cb618-12"><a href="complex-surveys.html#cb618-12" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;Unfairly large&quot;</span>))</span>
-<span id="cb618-13"><a href="complex-surveys.html#cb618-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="complex-surveys.html#cb619-1" aria-hidden="true" tabindex="-1"></a>gb_wealth <span class="ot">&lt;-</span> ess9_survey <span class="sc">%&gt;%</span></span>
-<span id="cb619-2"><a href="complex-surveys.html#cb619-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">==</span> <span class="st">&quot;United Kingdom&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb619-3"><a href="complex-surveys.html#cb619-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wltdffr_group) <span class="sc">%&gt;%</span></span>
-<span id="cb619-4"><a href="complex-surveys.html#cb619-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop =</span> <span class="fu">survey_mean</span>(<span class="at">vartype =</span> <span class="st">&quot;ci&quot;</span>))</span>
-<span id="cb619-5"><a href="complex-surveys.html#cb619-5" aria-hidden="true" tabindex="-1"></a>gb_wealth </span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="complex-surveys.html#cb619-1" aria-hidden="true" tabindex="-1"></a>ess9_survey <span class="ot">&lt;-</span> ess9_survey <span class="sc">%&gt;%</span></span>
+<span id="cb619-2"><a href="complex-surveys.html#cb619-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wltdffr_group =</span></span>
+<span id="cb619-3"><a href="complex-surveys.html#cb619-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
+<span id="cb619-4"><a href="complex-surveys.html#cb619-4" aria-hidden="true" tabindex="-1"></a>             wltdffr <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">4</span> <span class="sc">&amp;</span></span>
+<span id="cb619-5"><a href="complex-surveys.html#cb619-5" aria-hidden="true" tabindex="-1"></a>               wltdffr <span class="sc">&lt;=</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Unfairly small&quot;</span>,</span>
+<span id="cb619-6"><a href="complex-surveys.html#cb619-6" aria-hidden="true" tabindex="-1"></a>             wltdffr <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">&quot;Fair&quot;</span>,</span>
+<span id="cb619-7"><a href="complex-surveys.html#cb619-7" aria-hidden="true" tabindex="-1"></a>             wltdffr <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> wltdffr <span class="sc">&lt;=</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;Unfairly large&quot;</span></span>
+<span id="cb619-8"><a href="complex-surveys.html#cb619-8" aria-hidden="true" tabindex="-1"></a>           ),</span>
+<span id="cb619-9"><a href="complex-surveys.html#cb619-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">wltdffr_group =</span> <span class="fu">factor</span>(wltdffr_group,</span>
+<span id="cb619-10"><a href="complex-surveys.html#cb619-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Unfairly small&quot;</span>,</span>
+<span id="cb619-11"><a href="complex-surveys.html#cb619-11" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;Fair&quot;</span>,</span>
+<span id="cb619-12"><a href="complex-surveys.html#cb619-12" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;Unfairly large&quot;</span>))</span>
+<span id="cb619-13"><a href="complex-surveys.html#cb619-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="complex-surveys.html#cb620-1" aria-hidden="true" tabindex="-1"></a>gb_wealth <span class="ot">&lt;-</span> ess9_survey <span class="sc">%&gt;%</span></span>
+<span id="cb620-2"><a href="complex-surveys.html#cb620-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">==</span> <span class="st">&quot;United Kingdom&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb620-3"><a href="complex-surveys.html#cb620-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wltdffr_group) <span class="sc">%&gt;%</span></span>
+<span id="cb620-4"><a href="complex-surveys.html#cb620-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop =</span> <span class="fu">survey_mean</span>(<span class="at">vartype =</span> <span class="st">&quot;ci&quot;</span>))</span>
+<span id="cb620-5"><a href="complex-surveys.html#cb620-5" aria-hidden="true" tabindex="-1"></a>gb_wealth </span></code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ##   wltdffr_group    prop prop_low prop_upp
 ##   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -932,9 +932,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 Unfairly large 0.589    0.565    0.613 
 ## 4 &lt;NA&gt;           0.0508   0.0401   0.0615</code></pre>
 <p>The results are the same as per the report. Let’s round to show this more clearly:</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="complex-surveys.html#cb621-1" aria-hidden="true" tabindex="-1"></a>gb_wealth <span class="sc">%&gt;%</span></span>
-<span id="cb621-2"><a href="complex-surveys.html#cb621-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> (prop<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb621-3"><a href="complex-surveys.html#cb621-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wltdffr_group, perc)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="complex-surveys.html#cb622-1" aria-hidden="true" tabindex="-1"></a>gb_wealth <span class="sc">%&gt;%</span></span>
+<span id="cb622-2"><a href="complex-surveys.html#cb622-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> (prop<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb622-3"><a href="complex-surveys.html#cb622-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wltdffr_group, perc)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   wltdffr_group   perc
 ##   &lt;fct&gt;          &lt;dbl&gt;
@@ -943,26 +943,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 Unfairly large    59
 ## 4 &lt;NA&gt;               5</code></pre>
 <p>We can also plot the results:</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="complex-surveys.html#cb623-1" aria-hidden="true" tabindex="-1"></a>gb_wealth <span class="sc">%&gt;%</span></span>
-<span id="cb623-2"><a href="complex-surveys.html#cb623-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(wltdffr_group)) <span class="sc">%&gt;%</span></span>
-<span id="cb623-3"><a href="complex-surveys.html#cb623-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wltdffr_group, <span class="at">y =</span> prop<span class="sc">*</span><span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb623-4"><a href="complex-surveys.html#cb623-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#B053A1&quot;</span>) <span class="sc">+</span></span>
-<span id="cb623-5"><a href="complex-surveys.html#cb623-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> prop_low<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb623-6"><a href="complex-surveys.html#cb623-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> prop_upp<span class="sc">*</span><span class="dv">100</span>), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb623-7"><a href="complex-surveys.html#cb623-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb623-8"><a href="complex-surveys.html#cb623-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;%&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb623-9"><a href="complex-surveys.html#cb623-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;In your opinion, are differences in wealth in Britain</span><span class="sc">\n</span><span class="st">unfairly small, fair, or unfairly large?&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-412-1.png" width="480" /></p>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="complex-surveys.html#cb624-1" aria-hidden="true" tabindex="-1"></a>gb_wealth <span class="sc">%&gt;%</span></span>
+<span id="cb624-2"><a href="complex-surveys.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(wltdffr_group)) <span class="sc">%&gt;%</span></span>
+<span id="cb624-3"><a href="complex-surveys.html#cb624-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wltdffr_group, <span class="at">y =</span> prop<span class="sc">*</span><span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb624-4"><a href="complex-surveys.html#cb624-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#B053A1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb624-5"><a href="complex-surveys.html#cb624-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> prop_low<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb624-6"><a href="complex-surveys.html#cb624-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> prop_upp<span class="sc">*</span><span class="dv">100</span>), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb624-7"><a href="complex-surveys.html#cb624-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb624-8"><a href="complex-surveys.html#cb624-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;%&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb624-9"><a href="complex-surveys.html#cb624-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;In your opinion, are differences in wealth in Britain</span><span class="sc">\n</span><span class="st">unfairly small, fair, or unfairly large?&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-413-1.png" width="480" /></p>
 <p>Let’s do it again for a selection of countries. First, make a function which carries out the analysis for one country:</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="complex-surveys.html#cb624-1" aria-hidden="true" tabindex="-1"></a>gimme_country_results <span class="ot">&lt;-</span> <span class="cf">function</span>(the_cntry) {</span>
-<span id="cb624-2"><a href="complex-surveys.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  ess9_survey <span class="sc">%&gt;%</span></span>
-<span id="cb624-3"><a href="complex-surveys.html#cb624-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(cntry <span class="sc">==</span> the_cntry) <span class="sc">%&gt;%</span></span>
-<span id="cb624-4"><a href="complex-surveys.html#cb624-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wltdffr_group) <span class="sc">%&gt;%</span></span>
-<span id="cb624-5"><a href="complex-surveys.html#cb624-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop =</span> <span class="fu">survey_mean</span>(<span class="at">vartype =</span> <span class="st">&quot;ci&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb624-6"><a href="complex-surveys.html#cb624-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cntry =</span> the_cntry)</span>
-<span id="cb624-7"><a href="complex-surveys.html#cb624-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="complex-surveys.html#cb625-1" aria-hidden="true" tabindex="-1"></a>gimme_country_results <span class="ot">&lt;-</span> <span class="cf">function</span>(the_cntry) {</span>
+<span id="cb625-2"><a href="complex-surveys.html#cb625-2" aria-hidden="true" tabindex="-1"></a>  ess9_survey <span class="sc">%&gt;%</span></span>
+<span id="cb625-3"><a href="complex-surveys.html#cb625-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(cntry <span class="sc">==</span> the_cntry) <span class="sc">%&gt;%</span></span>
+<span id="cb625-4"><a href="complex-surveys.html#cb625-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wltdffr_group) <span class="sc">%&gt;%</span></span>
+<span id="cb625-5"><a href="complex-surveys.html#cb625-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop =</span> <span class="fu">survey_mean</span>(<span class="at">vartype =</span> <span class="st">&quot;ci&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb625-6"><a href="complex-surveys.html#cb625-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cntry =</span> the_cntry)</span>
+<span id="cb625-7"><a href="complex-surveys.html#cb625-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Check it works for the UK:</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="complex-surveys.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimme_country_results</span>(<span class="st">&quot;United Kingdom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="complex-surveys.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimme_country_results</span>(<span class="st">&quot;United Kingdom&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   wltdffr_group    prop prop_low prop_upp cntry         
 ##   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
@@ -971,9 +971,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 Unfairly large 0.589    0.565    0.613  United Kingdom
 ## 4 &lt;NA&gt;           0.0508   0.0401   0.0615 United Kingdom</code></pre>
 <p>Run it for all the countries of interest:</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="complex-surveys.html#cb627-1" aria-hidden="true" tabindex="-1"></a>conts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;France&quot;</span>, <span class="st">&quot;United Kingdom&quot;</span>, <span class="st">&quot;Italy&quot;</span>)</span>
-<span id="cb627-2"><a href="complex-surveys.html#cb627-2" aria-hidden="true" tabindex="-1"></a>euro_wealth <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(conts, gimme_country_results)</span>
-<span id="cb627-3"><a href="complex-surveys.html#cb627-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(euro_wealth)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="complex-surveys.html#cb628-1" aria-hidden="true" tabindex="-1"></a>conts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;France&quot;</span>, <span class="st">&quot;United Kingdom&quot;</span>, <span class="st">&quot;Italy&quot;</span>)</span>
+<span id="cb628-2"><a href="complex-surveys.html#cb628-2" aria-hidden="true" tabindex="-1"></a>euro_wealth <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(conts, gimme_country_results)</span>
+<span id="cb628-3"><a href="complex-surveys.html#cb628-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(euro_wealth)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   wltdffr_group    prop prop_low prop_upp cntry  
 ##   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  
@@ -984,22 +984,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Unfairly small 0.212    0.192    0.232  Spain  
 ## 6 Fair           0.0698   0.0575   0.0822 Spain</code></pre>
 <p>Next, try a plot:</p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="complex-surveys.html#cb629-1" aria-hidden="true" tabindex="-1"></a>euro_wealth <span class="sc">%&gt;%</span></span>
-<span id="cb629-2"><a href="complex-surveys.html#cb629-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(wltdffr_group)) <span class="sc">%&gt;%</span></span>
-<span id="cb629-3"><a href="complex-surveys.html#cb629-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cntry,</span>
-<span id="cb629-4"><a href="complex-surveys.html#cb629-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> prop<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb629-5"><a href="complex-surveys.html#cb629-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ymin =</span> prop_low<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb629-6"><a href="complex-surveys.html#cb629-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">ymax =</span> prop_upp<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb629-7"><a href="complex-surveys.html#cb629-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> wltdffr_group)) <span class="sc">+</span></span>
-<span id="cb629-8"><a href="complex-surveys.html#cb629-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">8</span>), <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
-<span id="cb629-9"><a href="complex-surveys.html#cb629-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">8</span>),</span>
-<span id="cb629-10"><a href="complex-surveys.html#cb629-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
-<span id="cb629-11"><a href="complex-surveys.html#cb629-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb629-12"><a href="complex-surveys.html#cb629-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb629-13"><a href="complex-surveys.html#cb629-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;%&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb629-14"><a href="complex-surveys.html#cb629-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;In your opinion, are differences in wealth</span><span class="sc">\n</span><span class="st">unfairly small, fair, or unfairly large?&quot;</span>,</span>
-<span id="cb629-15"><a href="complex-surveys.html#cb629-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="cn">NULL</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-416-1.png" width="576" /></p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="complex-surveys.html#cb630-1" aria-hidden="true" tabindex="-1"></a>euro_wealth <span class="sc">%&gt;%</span></span>
+<span id="cb630-2"><a href="complex-surveys.html#cb630-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(wltdffr_group)) <span class="sc">%&gt;%</span></span>
+<span id="cb630-3"><a href="complex-surveys.html#cb630-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cntry,</span>
+<span id="cb630-4"><a href="complex-surveys.html#cb630-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> prop<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb630-5"><a href="complex-surveys.html#cb630-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ymin =</span> prop_low<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb630-6"><a href="complex-surveys.html#cb630-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">ymax =</span> prop_upp<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb630-7"><a href="complex-surveys.html#cb630-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> wltdffr_group)) <span class="sc">+</span></span>
+<span id="cb630-8"><a href="complex-surveys.html#cb630-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">8</span>), <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb630-9"><a href="complex-surveys.html#cb630-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">8</span>),</span>
+<span id="cb630-10"><a href="complex-surveys.html#cb630-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb630-11"><a href="complex-surveys.html#cb630-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb630-12"><a href="complex-surveys.html#cb630-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb630-13"><a href="complex-surveys.html#cb630-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;%&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb630-14"><a href="complex-surveys.html#cb630-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;In your opinion, are differences in wealth</span><span class="sc">\n</span><span class="st">unfairly small, fair, or unfairly large?&quot;</span>,</span>
+<span id="cb630-15"><a href="complex-surveys.html#cb630-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-417-1.png" width="576" /></p>
 
 </div>
 </div>

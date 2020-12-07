@@ -1513,6 +1513,11 @@ For example, we found that occupation type explains variation in prestige. It is
 <span id="cb445-3"><a href="categorical-predictors-and-interactions.html#cb445-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">add.data =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="R-notes_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
 <p>Hopefully this graph illustrates what it means that the relationship between income and prestige depends on occupation type – the slopes are different for each type.</p>
+<p>We can also see what the model predictions look like without the interaction term:</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="categorical-predictors-and-interactions.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb446-2"><a href="categorical-predictors-and-interactions.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(main_effect_mod, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;income_1000s&quot;</span>, <span class="st">&quot;type&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb446-3"><a href="categorical-predictors-and-interactions.html#cb446-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">add.data =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 </div>
 <div id="further-reading-1" class="section level3" number="7.12.4">
 <h3><span class="header-section-number">7.12.4</span> Further reading</h3>
