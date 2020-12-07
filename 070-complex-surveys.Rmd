@@ -12,7 +12,7 @@ By the end of this chapter you will know how to:
 * Use a tidyverse-esq approach for descriptive statistics.
 * Fit a GLM (logistic).
 
-We will use the `survey` package and a wonderful tidyverse-style wrapper called `srvyr`.
+We will use the `survey` package and a tidyverse-style wrapper called `srvyr`.
 
 ```{r message=FALSE}
 library(survey)
@@ -301,7 +301,7 @@ influence.measures(sm1)
 
 ## Another worked example: the European Social Survey
 
-NatCen recently [published](https://www.bsa.natcen.ac.uk/latest-report/british-social-attitudes-37/fairness-and-justice-in-britain.aspx) analyses of fairness and justice in Britain (Curtice, Hudson, & Montagu, 2020), using data from the ninth wave of the 2019 European Social Survey (European Social Survey Round 9 Data, 2018).
+NatCen recently [published](https://www.bsa.natcen.ac.uk/latest-report/british-social-attitudes-37/fairness-and-justice-in-britain.aspx) analyses of views on fairness and justice in Britain (Curtice, Hudson, & Montagu, 2020), using data from the ninth wave of the 2019 European Social Survey (European Social Survey Round 9 Data, 2018).
 
 Let's see if we can replicate the results.
 
@@ -340,6 +340,22 @@ It's also worth printing all the variable names -- if only to spot that they hav
 
 
 ### Set up the survey object
+
+First, I'm going to fix the country variable. It currently looks like:
+
+```{r}
+table(ess9$cntry)
+```
+
+But the dataset also has nicer labels included, which we can get like this using the `as_factor` function (note the underscore). This function is in the `haven` package.
+
+
+```{r}
+ess9$cntry <- as_factor(ess9$cntry, levels = "labels")
+table(ess9$cntry)
+```
+
+Now let's setup the survey object:
 
 ```{r}
 ess9_survey <- ess9 %>%
@@ -391,7 +407,7 @@ ess9_survey <- ess9_survey %>%
 
 ```{r}
 gb_wealth <- ess9_survey %>%
-  filter(cntry == "GB") %>%
+  filter(cntry == "United Kingdom") %>%
   group_by(wltdffr_group) %>%
   summarise(prop = survey_mean(vartype = "ci"))
 gb_wealth 
@@ -411,7 +427,7 @@ We can also plot the results:
 gb_wealth %>%
   filter(!is.na(wltdffr_group)) %>%
   ggplot(aes(x = wltdffr_group, y = prop*100)) +
-  geom_col() +
+  geom_col(fill = "#B053A1") +
   geom_errorbar(aes(ymin = prop_low*100,
                     ymax = prop_upp*100), width = 0.2) +
   ylim(0,100) +
@@ -432,16 +448,16 @@ gimme_country_results <- function(the_cntry) {
 }
 ```
 
-Check it works for GB:
+Check it works for the UK:
 
 ```{r}
-gimme_country_results("GB")
+gimme_country_results("United Kingdom")
 ```
 
 Run it for all the countries of interest:
 
 ```{r}
-conts <- c("DE", "ES", "FR", "GB", "IT")
+conts <- c("Germany", "Spain", "France", "United Kingdom", "Italy")
 euro_wealth <- map_dfr(conts, gimme_country_results)
 head(euro_wealth)
 ```
