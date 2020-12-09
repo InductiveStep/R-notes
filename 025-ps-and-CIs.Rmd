@@ -383,7 +383,7 @@ This is *not* the same as saying that, for a particular study, there is a 95% pr
 
 ## Optional extra: s-values
 
-S-values are a neat idea for helping to think about -- maybe even (in some sense) *feel* -- the meaning of p-values! They're described by [Rafi and Greenland (2020)](https://doi.org/10.1186/s12874-020-01105-9). Let me try to illustrate the gist, starting with flips of a coin.
+S-values are a neat idea for helping to think about -- maybe even *feel* -- the meaning of p-values. They're described by [Rafi and Greenland (2020)](https://doi.org/10.1186/s12874-020-01105-9). Let me try to illustrate the gist, starting with flips of a coin.
 
 * Suppose you flip an apparently fair coin and the outcome is heads. How surprised would you feel?
 * Now flip it a couple of times: both outcomes are heads. How surprised would you feel now?
@@ -396,7 +396,7 @@ S-values are a way to think about p-values in terms of how surprised you would b
 Here is an example of a coin flipped three times. There are $2^3 = 8$ possibilities, enumerated in the table below:
 
 | First coin flip | Second coin flip | Third coin flip |
-|-----------------|------------------|-----------------|
+|:-:|:-:|:-:|
 |H | H | H |
 |H | H | T |
 |H | T | H |
