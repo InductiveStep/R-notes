@@ -583,10 +583,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Suppose you flip an apparently fair coin and the outcome is heads. How surprised would you feel?</li>
 <li>Now flip it a couple of times: both outcomes are heads. How surprised would you feel now?</li>
-<li>Flip the coin 20 times. All of the outcomes are heads. How surprised now?</li>
+<li>Flip the coin 40 times. All of the outcomes are heads. How surprised now?</li>
 </ul>
 <p>I suspect your level of surprise has gone from something like “meh” through to “WOW WHAT?!”</p>
-<p>S-values are a way to think about p-values in terms of how surprised you would be by a sequence of heads on coin flips, the number calculated from the <span class="math inline">\(p\)</span> you got, if the coin were fair.</p>
+<p>S-values provide a way to think about p-values in terms of how likely it would be to get a sequence of all heads from a number of flips of a fair coin. That number of flips is the s-value and is calculated from the p-value.</p>
+<p>In other words, s-values and p-values are linked by this statement: the probability of getting all heads by flipping a fair coin <span class="math inline">\(s\)</span> times is <span class="math inline">\(p\)</span>.</p>
 <p>Here is an example of a coin flipped three times. There are <span class="math inline">\(2^3 = 8\)</span> possibilities, enumerated in the table below:</p>
 <table>
 <thead>
@@ -691,7 +692,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Now here is the connection with p-values. Suppose you get <span class="math inline">\(p = 0.03125\)</span>; that’s the same probability as the probability of obtaining five heads in a row from five coin tosses. The s-value is 5.</p>
+<p>Now here is the connection with p-values. Suppose you run a statistical test and get <span class="math inline">\(p = 0.03125\)</span>; that’s the same probability as that of obtaining five heads in a row from five coin tosses. The s-value is 5.</p>
 <p>Or suppose you merely got <span class="math inline">\(p = 0.5\)</span>. That’s the probability of obtaining heads after one flip of the coin. The s-value is 1.</p>
 <p>The larger the s-value, the more surprised you would be <em>if the coin were fair</em>.</p>
 <p>To convert p-values to s-values, we want to find an <span class="math inline">\(n\)</span>, such that</p>
@@ -711,8 +712,8 @@ s = -\log_2(p)
 <p>What about the traditional (or notorious?) 0.05 level?</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="p-values-and-confidence-intervals.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">log</span>(<span class="fl">0.05</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 4.321928</code></pre>
-<p>So that’s the same as getting all heads when you flip a coin 4.32 times – which isn’t entirely intuitive when expressed as coin flips. But you could think of it as surprising as at least 4 but not 5 heads in a row.</p>
-<p>Here are examples for common thresholds:</p>
+<p>So that’s the same as getting all heads when you flip a coin 4.32 times – which isn’t entirely intuitive when expressed as coin flips. But you could think of it being at least as surprising as getting four heads in a row if you flipped a coin four times.</p>
+<p>Here are examples for common thresholds for <span class="math inline">\(p\)</span>:</p>
 <table>
 <thead>
 <tr class="header">

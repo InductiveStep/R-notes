@@ -387,11 +387,13 @@ S-values are a neat idea for helping to think about -- maybe even *feel* -- the 
 
 * Suppose you flip an apparently fair coin and the outcome is heads. How surprised would you feel?
 * Now flip it a couple of times: both outcomes are heads. How surprised would you feel now?
-* Flip the coin 20 times. All of the outcomes are heads. How surprised now?
+* Flip the coin 40 times. All of the outcomes are heads. How surprised now?
 
 I suspect your level of surprise has gone from something like "meh" through to "WOW WHAT?!"
 
-S-values are a way to think about p-values in terms of how surprised you would be by a sequence of heads on coin flips, the number calculated from the $p$ you got, if the coin were fair.
+S-values provide a way to think about p-values in terms of how likely it would be to get a sequence of all heads from a number of flips of a fair coin. That number of flips is the s-value and is calculated from the p-value.
+
+In other words, s-values and p-values are linked by this statement: the probability of getting all heads by flipping a fair coin $s$ times is $p$.
 
 Here is an example of a coin flipped three times. There are $2^3 = 8$ possibilities, enumerated in the table below:
 
@@ -414,7 +416,7 @@ More generally, the probability of getting all heads from $n$ fair coin flips is
 tibble(Flips = 1:10, `Probability all heads` = (1/(2^Flips)) %>% round(5)) %>% knitr::kable()
 ```
 
-Now here is the connection with p-values. Suppose you get $p = 0.03125$; that's the same probability as the probability of obtaining five heads in a row from five coin tosses. The s-value is 5.
+Now here is the connection with p-values. Suppose you run a statistical test and get $p = 0.03125$; that's the same probability as that of obtaining five heads in a row from five coin tosses. The s-value is 5.
 
 Or suppose you merely got $p = 0.5$. That's the probability of obtaining heads after one flip of the coin. The s-value is 1.
 
@@ -450,9 +452,9 @@ What about the traditional (or notorious?) 0.05 level?
 -log(0.05, 2)
 ```
 
-So that's the same as getting all heads when you flip a coin 4.32 times -- which isn't entirely intuitive when expressed as coin flips. But you could think of it as surprising as at least 4 but not 5 heads in a row.
+So that's the same as getting all heads when you flip a coin 4.32 times -- which isn't entirely intuitive when expressed as coin flips. But you could think of it being at least as surprising as getting four heads in a row if you flipped a coin four times.
 
-Here are examples for common thresholds:
+Here are examples for common thresholds for $p$:
 
 ```{r echo=FALSE}
 options(scipen = 99)
