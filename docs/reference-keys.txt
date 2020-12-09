@@ -1,6 +1,7 @@
 starting-rstudio
 download-install-and-run
 make-a-new-r-notebook-file
+read-the-clues-it-provides
 save-the-file
 run-the-example-r-command
 clear-it-and-try-a-sum
@@ -70,6 +71,7 @@ so-what-is-a-p-value
 confidence-intervals
 simulating-confidence
 what-is-a-confidence-interval-then
+optional-extra-s-values
 further-reading
 linear-regression
 before-we-begin

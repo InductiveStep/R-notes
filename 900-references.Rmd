@@ -29,6 +29,8 @@ Mroz, T. A. (1987). The sensitivity of an empirical model of married women's hou
 
 Noether, G. E. (1984). Nonparametrics: The Early Years-Impressions and Recollections. *American Statistician*, *38*, 173-178]
 
+Rafi, Z., & Greenland, S. (2020). [Semantic and cognitive tools to aid statistical science: replace confidence and significance by compatibility and surprise](https://doi.org/10.1186/s12874-020-01105-9). BMC Medical Research Methodology, 20(1), 244. doi: 10.1186/s12874-020-01105-9
+
 Tingley, D., Yamamoto, T., Hirose, K., Keele, L., & Imai, K. (2014). [mediation: R Package for Causal Mediation Analysis](https://www.jstatsoft.org/article/view/v059i05). *Journal of Statistical Software*, *59*(5), 1–38. doi: 10.18637/jss.v059.i05
 
 Van Buuren, S. (2018). [Flexible Imputation of Missing Data (2nd Edition)](https://stefvanbuuren.name/fimd/). Chapman & Hall/CRC. Boca Raton, FL.

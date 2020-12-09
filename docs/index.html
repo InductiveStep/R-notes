@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard (they/them)  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-12-07" />
+<meta name="date" content="2020-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,10 +141,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="starting-rstudio.html"><a href="starting-rstudio.html#download-install-and-run"><i class="fa fa-check"></i><b>1.1</b> Download, install, and run</a></li>
 <li class="chapter" data-level="1.2" data-path="starting-rstudio.html"><a href="starting-rstudio.html#make-a-new-r-notebook-file"><i class="fa fa-check"></i><b>1.2</b> Make a new R Notebook file</a></li>
-<li class="chapter" data-level="1.3" data-path="starting-rstudio.html"><a href="starting-rstudio.html#save-the-file"><i class="fa fa-check"></i><b>1.3</b> Save the file</a></li>
-<li class="chapter" data-level="1.4" data-path="starting-rstudio.html"><a href="starting-rstudio.html#run-the-example-r-command"><i class="fa fa-check"></i><b>1.4</b> Run the example R command</a></li>
-<li class="chapter" data-level="1.5" data-path="starting-rstudio.html"><a href="starting-rstudio.html#clear-it-and-try-a-sum"><i class="fa fa-check"></i><b>1.5</b> Clear it and try a sum</a></li>
-<li class="chapter" data-level="1.6" data-path="starting-rstudio.html"><a href="starting-rstudio.html#did-that-help"><i class="fa fa-check"></i><b>1.6</b> Did that help?</a></li>
+<li class="chapter" data-level="1.3" data-path="starting-rstudio.html"><a href="starting-rstudio.html#read-the-clues-it-provides"><i class="fa fa-check"></i><b>1.3</b> Read the clues it provides</a></li>
+<li class="chapter" data-level="1.4" data-path="starting-rstudio.html"><a href="starting-rstudio.html#save-the-file"><i class="fa fa-check"></i><b>1.4</b> Save the file</a></li>
+<li class="chapter" data-level="1.5" data-path="starting-rstudio.html"><a href="starting-rstudio.html#run-the-example-r-command"><i class="fa fa-check"></i><b>1.5</b> Run the example R command</a></li>
+<li class="chapter" data-level="1.6" data-path="starting-rstudio.html"><a href="starting-rstudio.html#clear-it-and-try-a-sum"><i class="fa fa-check"></i><b>1.6</b> Clear it and try a sum</a></li>
+<li class="chapter" data-level="1.7" data-path="starting-rstudio.html"><a href="starting-rstudio.html#did-that-help"><i class="fa fa-check"></i><b>1.7</b> Did that help?</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="starting-r.html"><a href="starting-r.html"><i class="fa fa-check"></i><b>2</b> Starting R</a>
 <ul>
@@ -250,7 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#simulating-confidence"><i class="fa fa-check"></i><b>4.3.1</b> Simulating confidence</a></li>
 <li class="chapter" data-level="4.3.2" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#what-is-a-confidence-interval-then"><i class="fa fa-check"></i><b>4.3.2</b> What is a confidence interval, then?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>4.4</b> Further reading</a></li>
+<li class="chapter" data-level="4.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#optional-extra-s-values"><i class="fa fa-check"></i><b>4.4</b> Optional extra: s-values</a></li>
+<li class="chapter" data-level="4.5" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>4.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear regression</a>
 <ul>
@@ -472,13 +474,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Using R for social research</h1>
 <p class="author"><em>Andi Fugard (they/them) <BR> (<a href="mailto:almost@gmail.com">almost@gmail.com</a>, @<a href="https://twitter.com/InductiveStep">InductiveStep</a>)</em></p>
-<p class="date"><em>07 December 2020</em></p>
+<p class="date"><em>09 December 2020</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
 <p>These notes are based on weekly tutorial sheets I developed for a postgraduate social science course in 2020 to complement weekly lectures and online seminars. They were written in <a href="https://rmarkdown.rstudio.com/">R Markdown</a>, using the <a href="https://bookdown.org/"><code>bookdown</code> package</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>The core texts we used were Fox and Weisberg (2019), <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An R Companion to Applied Regression (Third Edition)</a> and Healy (2019) <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a> – both fabulous for learning applied statistics using R.</p>
-<p>All the datasets used are available in <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f">CRAN</a> packages, e.g., <code>car</code>; however, I think it helps to learn how to read in csv files, so that is what I ask readers to do. All the necessary files are linked in each chapter.</p>
+<p>The core texts we used were Fox and Weisberg (2019), <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An R Companion to Applied Regression (Third Edition)</a> and Healy (2019) <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a> – both fabulous for learning applied statistics using R. The main aim of these tutorials is to help people understand the books.</p>
+<p>All the datasets used are available in <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f">CRAN</a> packages, e.g., <code>car</code>; however, I think it helps to learn how to read in csv files, so that is what I ask readers to do. It’s easy but fiddly, e.g., because Windows hides file extensions by default so users don’t always know what files are really called. All the necessary files are linked in each chapter.</p>
 <p>I have included exercises which all come with solutions; to hide these, simply use the scrollbar to ensure that they are off the edge of the visible part of the screen…<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>Feedback <a href="mailto:almost@gmail.com">welcome</a>.</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><BR>

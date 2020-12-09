@@ -381,6 +381,88 @@ If you run loads of studies with random samples from the same population, then t
 This is *not* the same as saying that, for a particular study, there is a 95% probability that it includes the true value.
 
 
+## Optional extra: s-values
+
+S-values are a neat idea for helping to think about -- maybe even (in some sense) *feel* -- the meaning of p-values! They're described by [Rafi and Greenland (2020)](https://doi.org/10.1186/s12874-020-01105-9). Let me try to illustrate the gist, starting with flips of a coin.
+
+* Suppose you flip an apparently fair coin and the outcome is heads. How surprised would you feel?
+* Now flip it a couple of times: both outcomes are heads. How surprised would you feel now?
+* Flip the coin 20 times. All of the outcomes are heads. How surprised now?
+
+I suspect your level of surprise has gone from something like "meh" through to "WOW WHAT?!"
+
+S-values are a way to think about p-values in terms of how surprised you would be by a sequence of heads on coin flips, the number calculated from the $p$ you got, if the coin were fair.
+
+Here is an example of a coin flipped three times. There are $2^3 = 8$ possibilities, enumerated in the table below:
+
+| First coin flip | Second coin flip | Third coin flip |
+|-----------------|------------------|-----------------|
+|H | H | H |
+|H | H | T |
+|H | T | H |
+|H | T | T |
+|T | H | H |
+|T | H | T |
+|T | T | H |
+|T | T | T |
+
+If the coin is fair, then the probability of each outcome is $\frac{1}{8}$. In particular, the probability of all heads is also $\frac{1}{8}$, or 0.125.
+
+More generally, the probability of getting all heads from $n$ fair coin flips is $\frac{1}{2^n}$. Here is a table showing some examples:
+
+```{r echo=FALSE}
+tibble(Flips = 1:10, `Probability all heads` = (1/(2^Flips)) %>% round(5)) %>% knitr::kable()
+```
+
+Now here is the connection with p-values. Suppose you get $p = 0.03125$; that's the same probability as the probability of obtaining five heads in a row from five coin tosses. The s-value is 5.
+
+Or suppose you merely got $p = 0.5$. That's the probability of obtaining heads after one flip of the coin. The s-value is 1.
+
+The larger the s-value, the more surprised you would be *if the coin were fair*.
+
+To convert p-values to s-values, we want to find an $n$, such that
+
+$$
+\frac{1}{2^n} = p
+$$
+
+The log function (which we encounter again later, repeatedly) does this for us:
+
+$$
+s = -\log_2(p)
+$$
+
+
+In R, here is the s-value for $p = 0.5$.
+
+```{r}
+-log(0.5, 2)
+```
+And $p = 0.03125$
+
+```{r}
+-log(0.03125, 2)
+```
+
+What about the traditional (or notorious?) 0.05 level?
+
+```{r}
+-log(0.05, 2)
+```
+
+So that's the same as getting all heads when you flip a coin 4.32 times -- which isn't entirely intuitive when expressed as coin flips. But you could think of it as surprising as at least 4 but not 5 heads in a row.
+
+Here are examples for common thresholds:
+
+```{r echo=FALSE}
+options(scipen = 99)
+tibble(`p-value` = c(1, 0.5, 0.05, 0.01, 0.001, 0.0001, 0.00001), `s-value` = (-log(`p-value`,2)) %>% round(2)) %>% knitr::kable()
+options(scipen = 0)
+```
+
+
+
+
 ## Further reading
 
 Try [Greenland et al. (2016)](https://link.springer.com/article/10.1007/s10654-016-0149-3) who have a long list of misconceptions to try to avoid. I also liked [Colquhoun's (2014)](https://doi.org/10.1098/rsos.140216) explanation of p-values by analogy with the properties of diagnostic tests.

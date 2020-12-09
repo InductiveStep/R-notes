@@ -25,9 +25,9 @@ knitr::knit_hooks$set(webgl = hook_webgl)
 
 These notes are based on weekly tutorial sheets I developed for a postgraduate social science course in 2020 to complement weekly lectures and online seminars. They were written in [R Markdown](https://rmarkdown.rstudio.com/), using the [`bookdown` package](https://bookdown.org/).^[The GitHub repository is [over here](https://github.com/InductiveStep/R-notes).]
 
-The core texts we used were Fox and Weisberg (2019), [An R Companion to Applied Regression (Third Edition)](https://socialsciences.mcmaster.ca/jfox/Books/Companion/) and Healy (2019) [Data Visualization: A Practical Introduction](https://socviz.co/) -- both fabulous for learning applied statistics using R.
+The core texts we used were Fox and Weisberg (2019), [An R Companion to Applied Regression (Third Edition)](https://socialsciences.mcmaster.ca/jfox/Books/Companion/) and Healy (2019) [Data Visualization: A Practical Introduction](https://socviz.co/) -- both fabulous for learning applied statistics using R. The main aim of these tutorials is to help people understand the books.
 
-All the datasets used are available in [CRAN](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f) packages, e.g., `car`; however, I think it helps to learn how to read in csv files, so that is what I ask readers to do. All the necessary files are linked in each chapter.
+All the datasets used are available in [CRAN](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f) packages, e.g., `car`; however, I think it helps to learn how to read in csv files, so that is what I ask readers to do. It's easy but fiddly, e.g., because Windows hides file extensions by default so users don't always know what files are really called. All the necessary files are linked in each chapter.
 
 I have included exercises which all come with solutions; to hide these, simply use the scrollbar to ensure that they are off the edge of the visible part of the screen...^[I originally used the `.tabset` attribute to hide answers; however, it doesn't work for `bookdown`.]
 

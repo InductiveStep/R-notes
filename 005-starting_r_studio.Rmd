@@ -1,6 +1,6 @@
 # Starting RStudio
 
-This is an attempt to explain how to get going super fast, mostly by using animated GIFs. For something more substantial, try Healy's intro [over here](https://socviz.co/gettingstarted.html).
+This is an attempt to explain how to get going super-fast, mostly by using animated GIFs. For something more substantial, try Healy's intro [over here](https://socviz.co/gettingstarted.html).
 
 
 ## Download, install, and run
@@ -15,6 +15,16 @@ Once both are installed, run RStudio.
 
 ![](start_rstudio.gif)
 
+## Read the clues it provides
+
+Here they are:
+
+>This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+>
+>Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+In a couple of steps' time, you are going to try this.
+
 
 ## Save the file
 
@@ -23,10 +33,14 @@ Once both are installed, run RStudio.
 
 ## Run the example R command
 
+Now try what the clue suggested:
+
 ![](run_script.gif)
 
 
 ## Clear it and try a sum
+
+This step involves adding a "chunk" which is where R code goes -- see the GIF below for how to do this...
 
 ![](clear_script.gif)
 

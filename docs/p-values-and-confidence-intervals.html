@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard (they/them)  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-12-07" />
+<meta name="date" content="2020-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,10 +141,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="starting-rstudio.html"><a href="starting-rstudio.html#download-install-and-run"><i class="fa fa-check"></i><b>1.1</b> Download, install, and run</a></li>
 <li class="chapter" data-level="1.2" data-path="starting-rstudio.html"><a href="starting-rstudio.html#make-a-new-r-notebook-file"><i class="fa fa-check"></i><b>1.2</b> Make a new R Notebook file</a></li>
-<li class="chapter" data-level="1.3" data-path="starting-rstudio.html"><a href="starting-rstudio.html#save-the-file"><i class="fa fa-check"></i><b>1.3</b> Save the file</a></li>
-<li class="chapter" data-level="1.4" data-path="starting-rstudio.html"><a href="starting-rstudio.html#run-the-example-r-command"><i class="fa fa-check"></i><b>1.4</b> Run the example R command</a></li>
-<li class="chapter" data-level="1.5" data-path="starting-rstudio.html"><a href="starting-rstudio.html#clear-it-and-try-a-sum"><i class="fa fa-check"></i><b>1.5</b> Clear it and try a sum</a></li>
-<li class="chapter" data-level="1.6" data-path="starting-rstudio.html"><a href="starting-rstudio.html#did-that-help"><i class="fa fa-check"></i><b>1.6</b> Did that help?</a></li>
+<li class="chapter" data-level="1.3" data-path="starting-rstudio.html"><a href="starting-rstudio.html#read-the-clues-it-provides"><i class="fa fa-check"></i><b>1.3</b> Read the clues it provides</a></li>
+<li class="chapter" data-level="1.4" data-path="starting-rstudio.html"><a href="starting-rstudio.html#save-the-file"><i class="fa fa-check"></i><b>1.4</b> Save the file</a></li>
+<li class="chapter" data-level="1.5" data-path="starting-rstudio.html"><a href="starting-rstudio.html#run-the-example-r-command"><i class="fa fa-check"></i><b>1.5</b> Run the example R command</a></li>
+<li class="chapter" data-level="1.6" data-path="starting-rstudio.html"><a href="starting-rstudio.html#clear-it-and-try-a-sum"><i class="fa fa-check"></i><b>1.6</b> Clear it and try a sum</a></li>
+<li class="chapter" data-level="1.7" data-path="starting-rstudio.html"><a href="starting-rstudio.html#did-that-help"><i class="fa fa-check"></i><b>1.7</b> Did that help?</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="starting-r.html"><a href="starting-r.html"><i class="fa fa-check"></i><b>2</b> Starting R</a>
 <ul>
@@ -250,7 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#simulating-confidence"><i class="fa fa-check"></i><b>4.3.1</b> Simulating confidence</a></li>
 <li class="chapter" data-level="4.3.2" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#what-is-a-confidence-interval-then"><i class="fa fa-check"></i><b>4.3.2</b> What is a confidence interval, then?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>4.4</b> Further reading</a></li>
+<li class="chapter" data-level="4.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#optional-extra-s-values"><i class="fa fa-check"></i><b>4.4</b> Optional extra: s-values</a></li>
+<li class="chapter" data-level="4.5" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>4.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear regression</a>
 <ul>
@@ -575,8 +577,183 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is <em>not</em> the same as saying that, for a particular study, there is a 95% probability that it includes the true value.</p>
 </div>
 </div>
-<div id="further-reading" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Further reading</h2>
+<div id="optional-extra-s-values" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Optional extra: s-values</h2>
+<p>S-values are a neat idea for helping to think about – maybe even (in some sense) <em>feel</em> – the meaning of p-values! They’re described by <a href="https://doi.org/10.1186/s12874-020-01105-9">Rafi and Greenland (2020)</a>. Let me try to illustrate the gist, starting with flips of a coin.</p>
+<ul>
+<li>Suppose you flip an apparently fair coin and the outcome is heads. How surprised would you feel?</li>
+<li>Now flip it a couple of times: both outcomes are heads. How surprised would you feel now?</li>
+<li>Flip the coin 20 times. All of the outcomes are heads. How surprised now?</li>
+</ul>
+<p>I suspect your level of surprise has gone from something like “meh” through to “WOW WHAT?!”</p>
+<p>S-values are a way to think about p-values in terms of how surprised you would be by a sequence of heads on coin flips, the number calculated from the <span class="math inline">\(p\)</span> you got, if the coin were fair.</p>
+<p>Here is an example of a coin flipped three times. There are <span class="math inline">\(2^3 = 8\)</span> possibilities, enumerated in the table below:</p>
+<table>
+<thead>
+<tr class="header">
+<th>First coin flip</th>
+<th>Second coin flip</th>
+<th>Third coin flip</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>H</td>
+<td>H</td>
+<td>H</td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td>H</td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td>H</td>
+<td>T</td>
+<td>H</td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>H</td>
+<td>H</td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>H</td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>T</td>
+<td>H</td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<p>If the coin is fair, then the probability of each outcome is <span class="math inline">\(\frac{1}{8}\)</span>. In particular, the probability of all heads is also <span class="math inline">\(\frac{1}{8}\)</span>, or 0.125.</p>
+<p>More generally, the probability of getting all heads from <span class="math inline">\(n\)</span> fair coin flips is <span class="math inline">\(\frac{1}{2^n}\)</span>. Here is a table showing some examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Flips</th>
+<th align="right">Probability all heads</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.50000</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">0.25000</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0.12500</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.06250</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.03125</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.01562</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">0.00781</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">0.00391</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">0.00195</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">0.00098</td>
+</tr>
+</tbody>
+</table>
+<p>Now here is the connection with p-values. Suppose you get <span class="math inline">\(p = 0.03125\)</span>; that’s the same probability as the probability of obtaining five heads in a row from five coin tosses. The s-value is 5.</p>
+<p>Or suppose you merely got <span class="math inline">\(p = 0.5\)</span>. That’s the probability of obtaining heads after one flip of the coin. The s-value is 1.</p>
+<p>The larger the s-value, the more surprised you would be <em>if the coin were fair</em>.</p>
+<p>To convert p-values to s-values, we want to find an <span class="math inline">\(n\)</span>, such that</p>
+<p><span class="math display">\[
+\frac{1}{2^n} = p
+\]</span></p>
+<p>The log function (which we encounter again later, repeatedly) does this for us:</p>
+<p><span class="math display">\[
+s = -\log_2(p)
+\]</span></p>
+<p>In R, here is the s-value for <span class="math inline">\(p = 0.5\)</span>.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="p-values-and-confidence-intervals.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">log</span>(<span class="fl">0.5</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>And <span class="math inline">\(p = 0.03125\)</span></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="p-values-and-confidence-intervals.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">log</span>(<span class="fl">0.03125</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>What about the traditional (or notorious?) 0.05 level?</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="p-values-and-confidence-intervals.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">log</span>(<span class="fl">0.05</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 4.321928</code></pre>
+<p>So that’s the same as getting all heads when you flip a coin 4.32 times – which isn’t entirely intuitive when expressed as coin flips. But you could think of it as surprising as at least 4 but not 5 heads in a row.</p>
+<p>Here are examples for common thresholds:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">p-value</th>
+<th align="right">s-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1.00000</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="right">0.50000</td>
+<td align="right">1.00</td>
+</tr>
+<tr class="odd">
+<td align="right">0.05000</td>
+<td align="right">4.32</td>
+</tr>
+<tr class="even">
+<td align="right">0.01000</td>
+<td align="right">6.64</td>
+</tr>
+<tr class="odd">
+<td align="right">0.00100</td>
+<td align="right">9.97</td>
+</tr>
+<tr class="even">
+<td align="right">0.00010</td>
+<td align="right">13.29</td>
+</tr>
+<tr class="odd">
+<td align="right">0.00001</td>
+<td align="right">16.61</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="further-reading" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Further reading</h2>
 <p>Try <a href="https://link.springer.com/article/10.1007/s10654-016-0149-3">Greenland et al. (2016)</a> who have a long list of misconceptions to try to avoid. I also liked <a href="https://doi.org/10.1098/rsos.140216">Colquhoun’s (2014)</a> explanation of p-values by analogy with the properties of diagnostic tests.</p>
 
 </div>

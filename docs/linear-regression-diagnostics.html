@@ -24,7 +24,7 @@
 <meta name="author" content="Andi Fugard (they/them)  (almost@gmail.com, @InductiveStep)" />
 
 
-<meta name="date" content="2020-12-07" />
+<meta name="date" content="2020-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,10 +141,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="starting-rstudio.html"><a href="starting-rstudio.html#download-install-and-run"><i class="fa fa-check"></i><b>1.1</b> Download, install, and run</a></li>
 <li class="chapter" data-level="1.2" data-path="starting-rstudio.html"><a href="starting-rstudio.html#make-a-new-r-notebook-file"><i class="fa fa-check"></i><b>1.2</b> Make a new R Notebook file</a></li>
-<li class="chapter" data-level="1.3" data-path="starting-rstudio.html"><a href="starting-rstudio.html#save-the-file"><i class="fa fa-check"></i><b>1.3</b> Save the file</a></li>
-<li class="chapter" data-level="1.4" data-path="starting-rstudio.html"><a href="starting-rstudio.html#run-the-example-r-command"><i class="fa fa-check"></i><b>1.4</b> Run the example R command</a></li>
-<li class="chapter" data-level="1.5" data-path="starting-rstudio.html"><a href="starting-rstudio.html#clear-it-and-try-a-sum"><i class="fa fa-check"></i><b>1.5</b> Clear it and try a sum</a></li>
-<li class="chapter" data-level="1.6" data-path="starting-rstudio.html"><a href="starting-rstudio.html#did-that-help"><i class="fa fa-check"></i><b>1.6</b> Did that help?</a></li>
+<li class="chapter" data-level="1.3" data-path="starting-rstudio.html"><a href="starting-rstudio.html#read-the-clues-it-provides"><i class="fa fa-check"></i><b>1.3</b> Read the clues it provides</a></li>
+<li class="chapter" data-level="1.4" data-path="starting-rstudio.html"><a href="starting-rstudio.html#save-the-file"><i class="fa fa-check"></i><b>1.4</b> Save the file</a></li>
+<li class="chapter" data-level="1.5" data-path="starting-rstudio.html"><a href="starting-rstudio.html#run-the-example-r-command"><i class="fa fa-check"></i><b>1.5</b> Run the example R command</a></li>
+<li class="chapter" data-level="1.6" data-path="starting-rstudio.html"><a href="starting-rstudio.html#clear-it-and-try-a-sum"><i class="fa fa-check"></i><b>1.6</b> Clear it and try a sum</a></li>
+<li class="chapter" data-level="1.7" data-path="starting-rstudio.html"><a href="starting-rstudio.html#did-that-help"><i class="fa fa-check"></i><b>1.7</b> Did that help?</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="starting-r.html"><a href="starting-r.html"><i class="fa fa-check"></i><b>2</b> Starting R</a>
 <ul>
@@ -250,7 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#simulating-confidence"><i class="fa fa-check"></i><b>4.3.1</b> Simulating confidence</a></li>
 <li class="chapter" data-level="4.3.2" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#what-is-a-confidence-interval-then"><i class="fa fa-check"></i><b>4.3.2</b> What is a confidence interval, then?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>4.4</b> Further reading</a></li>
+<li class="chapter" data-level="4.4" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#optional-extra-s-values"><i class="fa fa-check"></i><b>4.4</b> Optional extra: s-values</a></li>
+<li class="chapter" data-level="4.5" data-path="p-values-and-confidence-intervals.html"><a href="p-values-and-confidence-intervals.html#further-reading"><i class="fa fa-check"></i><b>4.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear regression</a>
 <ul>
@@ -479,8 +481,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Before we begin</h2>
 <p>You could continue on the end of last week’s Markdown file or make a new one. We will be using the same <code>prestige.csv</code> dataset, so whatever you do please ensure the data is saved in the same folder as your Markdown file.</p>
 <p>Ensure these handy packages are installed and included:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="linear-regression-diagnostics.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb244-2"><a href="linear-regression-diagnostics.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="linear-regression-diagnostics.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb250-2"><a href="linear-regression-diagnostics.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="the-dataset-1" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> The dataset</h2>
@@ -524,17 +526,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Read it in:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="linear-regression-diagnostics.html#cb245-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;prestige.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="linear-regression-diagnostics.html#cb251-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;prestige.csv&quot;</span>)</span></code></pre></div>
 <p>I’m going to <code>mutate</code> this to add the income in $1000s again.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="linear-regression-diagnostics.html#cb246-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb246-2"><a href="linear-regression-diagnostics.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_1000s =</span> income<span class="sc">/</span><span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="linear-regression-diagnostics.html#cb252-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb252-2"><a href="linear-regression-diagnostics.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_1000s =</span> income<span class="sc">/</span><span class="dv">1000</span>)</span></code></pre></div>
 </div>
 <div id="fit-a-regression-model" class="section level2 tabset" number="6.3">
 <h2><span class="header-section-number">6.3</span> Fit a regression model</h2>
 <p>We will spend some time exploring this simple two-predictor model, so ensure it exists in the environment:</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="linear-regression-diagnostics.html#cb247-1" aria-hidden="true" tabindex="-1"></a>mod_both <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s,</span>
-<span id="cb247-2"><a href="linear-regression-diagnostics.html#cb247-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> dat)</span>
-<span id="cb247-3"><a href="linear-regression-diagnostics.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="linear-regression-diagnostics.html#cb253-1" aria-hidden="true" tabindex="-1"></a>mod_both <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s,</span>
+<span id="cb253-2"><a href="linear-regression-diagnostics.html#cb253-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> dat)</span>
+<span id="cb253-3"><a href="linear-regression-diagnostics.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ education + income_1000s, data = dat)
@@ -562,8 +564,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.3.2</span> Answer</h3>
 <p>Both education and income are statistically significant predictors of prestige (both <em>p</em>’s &lt; .001). Each year of education is associated with 4.1 more prestige points and $1000 more income is associated with 1.4 extra prestige points (whilst holding other predictors constant). The model explains 79% of the variance in prestige and, perhaps unsurprisingly with that high an <span class="math inline">\(R^2\)</span>, is statistically significantly better than the intercept-only model, <span class="math inline">\(F(2,99) = 195.6\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</p>
 <p>Note how that model test is included in the last line of the model summary; we can also check it explicitly with:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="linear-regression-diagnostics.html#cb249-1" aria-hidden="true" tabindex="-1"></a>mod0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat)</span>
-<span id="cb249-2"><a href="linear-regression-diagnostics.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod0, mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="linear-regression-diagnostics.html#cb255-1" aria-hidden="true" tabindex="-1"></a>mod0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat)</span>
+<span id="cb255-2"><a href="linear-regression-diagnostics.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod0, mod_both)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: prestige ~ 1
@@ -578,20 +580,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="checking-for-normally-distributed-residuals" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Checking for normally distributed residuals</h2>
 <p>To obtain the residuals for a model, use the command <code>resid</code> and save them somewhere. I will add them onto the <code>dat</code> data frame so that it is easy to cross reference each residual with the original data:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="linear-regression-diagnostics.html#cb251-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_resids <span class="ot">&lt;-</span> <span class="fu">resid</span>(mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="linear-regression-diagnostics.html#cb257-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_resids <span class="ot">&lt;-</span> <span class="fu">resid</span>(mod_both)</span></code></pre></div>
 <p>These should have a normal, also known as a Gaussian distribution, in linear regression models. How do we check…?</p>
 <div id="base-r-histogram" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Base R histogram</h3>
 <p>One way is to have a look at a histogram using the base R <code>hist</code> function:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="linear-regression-diagnostics.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>mod_both_resids)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="linear-regression-diagnostics.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>mod_both_resids)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <p>Is that a normal distribution? Probably, yes; however, in general <code>¯\_(ツ)_/¯</code>, it is not always obvious. There are better ways to check – read on!</p>
 </div>
 <div id="quantile-comparison-plot" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Quantile-comparison plot</h3>
 <p>An easier way to check the distribution is using a quantile-comparison plot, also known as a quantile-quantile or Q-Q plot. The <code>car</code> package, associated with the Fox and Weisberg (2019) textbook, has a lovely function for creating them called <code>qqPlot</code>:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="linear-regression-diagnostics.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(dat<span class="sc">$</span>mod_both_resids, <span class="at">id =</span> <span class="fu">list</span>(<span class="at">labels =</span> dat<span class="sc">$</span>occ, <span class="at">n =</span> <span class="dv">2</span>))</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="linear-regression-diagnostics.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(dat<span class="sc">$</span>mod_both_resids, <span class="at">id =</span> <span class="fu">list</span>(<span class="at">labels =</span> dat<span class="sc">$</span>occ, <span class="at">n =</span> <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 <pre><code>## newsboys  farmers 
 ##       53       67</code></pre>
 <p>By default it always labels the two most extreme values and tells you what rows they are on. I have added the <code>n</code> parameter explicitly with the default value of 2 so that you can play around with it. I also used the <code>id</code> parameter to tell the function the names of the occupations. (Leave it out to see what happens.)</p>
@@ -600,23 +602,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="illustration-using-simulated-data" class="section level4" number="6.4.2.1">
 <h4><span class="header-section-number">6.4.2.1</span> Illustration using simulated data</h4>
 <p>Let’s try a Q-Q plot for a skewed distribution which is definitely not normally distributed:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="linear-regression-diagnostics.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># this line means you get the same (pseudo)random numbers as me</span></span>
-<span id="cb255-2"><a href="linear-regression-diagnostics.html#cb255-2" aria-hidden="true" tabindex="-1"></a>skewed <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
-<span id="cb255-3"><a href="linear-regression-diagnostics.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(skewed)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="linear-regression-diagnostics.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># this line means you get the same (pseudo)random numbers as me</span></span>
+<span id="cb261-2"><a href="linear-regression-diagnostics.html#cb261-2" aria-hidden="true" tabindex="-1"></a>skewed <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
+<span id="cb261-3"><a href="linear-regression-diagnostics.html#cb261-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(skewed)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 <p>Here is the <code>qqPlot</code>:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="linear-regression-diagnostics.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(skewed)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="linear-regression-diagnostics.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(skewed)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 <pre><code>## [1] 12  9</code></pre>
 <p>The points do not all lie on the diagonal; indeed there is marked curvature.</p>
 <p>Now, a sample we know to be normally distributed and large (2500 “participants”) so it will be easy to see its shape.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="linear-regression-diagnostics.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
-<span id="cb258-2"><a href="linear-regression-diagnostics.html#cb258-2" aria-hidden="true" tabindex="-1"></a>perfectly_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">2500</span>, <span class="dv">1000</span>, <span class="dv">200</span>)</span>
-<span id="cb258-3"><a href="linear-regression-diagnostics.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(perfectly_normal)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="linear-regression-diagnostics.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
+<span id="cb264-2"><a href="linear-regression-diagnostics.html#cb264-2" aria-hidden="true" tabindex="-1"></a>perfectly_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">2500</span>, <span class="dv">1000</span>, <span class="dv">200</span>)</span>
+<span id="cb264-3"><a href="linear-regression-diagnostics.html#cb264-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(perfectly_normal)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <p>Here is the <code>qqPlot</code>:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="linear-regression-diagnostics.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(perfectly_normal)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="linear-regression-diagnostics.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(perfectly_normal)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 <pre><code>## [1] 2112  230</code></pre>
 <p>Note how two extreme points are always labelled; this does not mean they are outliers.</p>
 </div>
@@ -626,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You could also use a statistical test of whether the residuals have a normal distribution, but it would not be a good idea. If the sample size is relatively small, then the test has low power; in other words, it won’t be very good at detecting non-normal data. If the sample size is large, then the test has high power to detect even minuscule deviations from a normal distribution – deviations so small that they won’t have any noticeable impact on results.</p>
 <p>For completeness here is one such test, the Shapiro-Wilk normality test.</p>
 <p>Let’s try it first on <code>perfectly_normal</code>:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="linear-regression-diagnostics.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(perfectly_normal)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="linear-regression-diagnostics.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(perfectly_normal)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -634,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## W = 0.99935, p-value = 0.5612</code></pre>
 <p>The p-value is above 0.05 so this is “not statistically significant.” The test checks for <em>deviation</em> from a normal distribution, so we did not find evidence that the data is non-normal. Note my judicious use of negatives there; I do not commit myself to belief that the data are normal!</p>
 <p>Now try again for the <code>skewed</code> data:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="linear-regression-diagnostics.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(skewed)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="linear-regression-diagnostics.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(skewed)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -647,7 +649,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="answer-22" class="section level4" number="6.4.3.2">
 <h4><span class="header-section-number">6.4.3.2</span> Answer</h4>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="linear-regression-diagnostics.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(mod_both))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="linear-regression-diagnostics.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(mod_both))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -661,7 +663,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.5</span> Checking constant residual variance</h2>
 <p>Linear regression assumes that residual variance is constant for all values of the predicted outcomes and predictors. If it is constant, then the residuals are said to be <em>homoscedastic</em>; otherwise if the variance varies then they are <em>heteroscedastic</em>.</p>
 <p>Here is a picture of made up data to illustrate, focussing initially on the predicted outcomes. We want the residuals to be homoscedastic as shown in graph <em>a</em> on the left.</p>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-184-1.png" width="768" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-189-1.png" width="768" /></p>
 <div id="activity-20" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Activity</h3>
 <p>Above, we have fitted a model called <code>mod_both</code>. We already have the residuals saved in <code>dat$mod_both_resids</code>. You can get the predicted values of a model (i.e., ask the model to tell you a predicted prestige, based on rows of data for education and income) using the <code>predict</code> function; save them in <code>dat$mod_both_predicted</code>.</p>
@@ -670,12 +672,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="answer-23" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Answer</h3>
 <p>First save the predicted values:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="linear-regression-diagnostics.html#cb267-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="linear-regression-diagnostics.html#cb273-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_both)</span></code></pre></div>
 <p>Now plot them against the residuals:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="linear-regression-diagnostics.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> mod_both_predicted, <span class="at">y =</span> mod_both_resids)) <span class="sc">+</span></span>
-<span id="cb268-2"><a href="linear-regression-diagnostics.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb268-3"><a href="linear-regression-diagnostics.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted outcome&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residual&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="linear-regression-diagnostics.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> mod_both_predicted, <span class="at">y =</span> mod_both_resids)) <span class="sc">+</span></span>
+<span id="cb274-2"><a href="linear-regression-diagnostics.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb274-3"><a href="linear-regression-diagnostics.html#cb274-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted outcome&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residual&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
 <p>The variance looks fairly constant across levels of the prediction, maybe decreasing a little as the prediction increases.</p>
 <p>The next section provides an even faster way to check for constant variance for the predicted outcome and predictors.</p>
 </div>
@@ -689,24 +691,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>This includes the <em>mean</em> of the residuals as well as the <em>variance</em> introduced in the previous section. We can check both in the same plots with <code>residualPlots</code>.</p>
 <p>The blue curves below show a quadratic function fitted by regression and can help spot any patterns in the mean of the residuals. In these graphs, the blue curve should ideally be a horizontal straight line (i.e., it should not be a curve!) and the points should be randomly scattered around it…</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="linear-regression-diagnostics.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_both, <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-187-1.png" width="576" /></p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="linear-regression-diagnostics.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_both, <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-192-1.png" width="576" /></p>
 <p>(Look up the help for <code>residualPlots</code> to see what happens if you set <code>tests = TRUE</code>; but you probably don’t need that distraction now.)</p>
 <p>The graph for income is a particular worry; we can zoom in and have a closer look:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="linear-regression-diagnostics.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_both, <span class="at">terms =</span> <span class="sc">~</span> income_1000s,</span>
-<span id="cb270-2"><a href="linear-regression-diagnostics.html#cb270-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">fitted =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb270-3"><a href="linear-regression-diagnostics.html#cb270-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="linear-regression-diagnostics.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residualPlots</span>(mod_both, <span class="at">terms =</span> <span class="sc">~</span> income_1000s,</span>
+<span id="cb276-2"><a href="linear-regression-diagnostics.html#cb276-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">fitted =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb276-3"><a href="linear-regression-diagnostics.html#cb276-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">tests =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>(Look up the help for <code>residualPlots</code> to see what happens if you set <code>fitted = TRUE</code> – or give it a go!)</p>
 <p>The curviness suggests that the mean of the residuals vary as a function of income, which suggets that we may wish to transform the income variable (more on this later). It’s tricky to see what is going on with the <em>variance</em> of the residuals.</p>
 <p>Fox and Weisberg (2019, pp. 415-417) introduce a formal statistical test of non-constant variance called the <em>Breusch-Pagan test</em> or <em>non-constant variance score test</em>. For example, you can use it to check whether the residual variance varies along the magnitude of the predictions:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="linear-regression-diagnostics.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="linear-regression-diagnostics.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(mod_both)</span></code></pre></div>
 <pre><code>## Non-constant Variance Score Test 
 ## Variance formula: ~ fitted.values 
 ## Chisquare = 0.1664679, Df = 1, p = 0.68327</code></pre>
 <p>This is not statistically significant, <span class="math inline">\(\chi^2(1) = 0.17\)</span>, <span class="math inline">\(p = .68\)</span>. So there is no evidence that the residual variance varies by predicted outcome.</p>
 <p>You can also check predictors. Here is a test of whether the residual variance varies as a function of income:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="linear-regression-diagnostics.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(mod_both, <span class="sc">~</span> income_1000s)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="linear-regression-diagnostics.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(mod_both, <span class="sc">~</span> income_1000s)</span></code></pre></div>
 <pre><code>## Non-constant Variance Score Test 
 ## Variance formula: ~ income_1000s 
 ## Chisquare = 2.019597, Df = 1, p = 0.15528</code></pre>
@@ -723,18 +725,18 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots \beta_n x_n
 \]</span></p>
 <p>Confusingly (perhaps?), this does not mean that linear regression can only model linear relationships, since we can transform <em>y</em> and the <em>x</em>’s in arbitrary ways.</p>
 <p>Here is a made up dataset:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="linear-regression-diagnostics.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">202</span>)</span>
-<span id="cb275-2"><a href="linear-regression-diagnostics.html#cb275-2" aria-hidden="true" tabindex="-1"></a>made_up <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb275-3"><a href="linear-regression-diagnostics.html#cb275-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x), <span class="dv">0</span>, .<span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="linear-regression-diagnostics.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">202</span>)</span>
+<span id="cb281-2"><a href="linear-regression-diagnostics.html#cb281-2" aria-hidden="true" tabindex="-1"></a>made_up <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb281-3"><a href="linear-regression-diagnostics.html#cb281-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x), <span class="dv">0</span>, .<span class="dv">5</span>))</span></code></pre></div>
 <p>And a picture thereof:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="linear-regression-diagnostics.html#cb276-1" aria-hidden="true" tabindex="-1"></a>made_up_scatter <span class="ot">&lt;-</span> made_up <span class="sc">%&gt;%</span></span>
-<span id="cb276-2"><a href="linear-regression-diagnostics.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb276-3"><a href="linear-regression-diagnostics.html#cb276-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb276-4"><a href="linear-regression-diagnostics.html#cb276-4" aria-hidden="true" tabindex="-1"></a>made_up_scatter</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="linear-regression-diagnostics.html#cb282-1" aria-hidden="true" tabindex="-1"></a>made_up_scatter <span class="ot">&lt;-</span> made_up <span class="sc">%&gt;%</span></span>
+<span id="cb282-2"><a href="linear-regression-diagnostics.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb282-3"><a href="linear-regression-diagnostics.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb282-4"><a href="linear-regression-diagnostics.html#cb282-4" aria-hidden="true" tabindex="-1"></a>made_up_scatter</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p>If you try to model <em>x</em> and <em>y</em> as-is, then the coefficients will be incorrect.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="linear-regression-diagnostics.html#cb277-1" aria-hidden="true" tabindex="-1"></a>wrong_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> made_up)</span>
-<span id="cb277-2"><a href="linear-regression-diagnostics.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wrong_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="linear-regression-diagnostics.html#cb283-1" aria-hidden="true" tabindex="-1"></a>wrong_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> made_up)</span>
+<span id="cb283-2"><a href="linear-regression-diagnostics.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wrong_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = made_up)
@@ -754,17 +756,17 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots \beta_n x_n
 ## Multiple R-squared:  0.002289,   Adjusted R-squared:  -0.00275 
 ## F-statistic: 0.4542 on 1 and 198 DF,  p-value: 0.5011</code></pre>
 <p>Adding the regression line to the data shows why:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="linear-regression-diagnostics.html#cb279-1" aria-hidden="true" tabindex="-1"></a>made_up_scatter <span class="sc">+</span></span>
-<span id="cb279-2"><a href="linear-regression-diagnostics.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(wrong_mod)[<span class="dv">1</span>],</span>
-<span id="cb279-3"><a href="linear-regression-diagnostics.html#cb279-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(wrong_mod)[<span class="dv">2</span>],</span>
-<span id="cb279-4"><a href="linear-regression-diagnostics.html#cb279-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="linear-regression-diagnostics.html#cb285-1" aria-hidden="true" tabindex="-1"></a>made_up_scatter <span class="sc">+</span></span>
+<span id="cb285-2"><a href="linear-regression-diagnostics.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(wrong_mod)[<span class="dv">1</span>],</span>
+<span id="cb285-3"><a href="linear-regression-diagnostics.html#cb285-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(wrong_mod)[<span class="dv">2</span>],</span>
+<span id="cb285-4"><a href="linear-regression-diagnostics.html#cb285-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <p>However, if you transform the <em>x</em> first, then the predictions will be fine. Below, to illustrate, I am squaring <em>x</em>, so we are trying to estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> for the model:</p>
 <p><span class="math display">\[
 y = \beta_0 + \beta_1 x^2
 \]</span></p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="linear-regression-diagnostics.html#cb280-1" aria-hidden="true" tabindex="-1"></a>better_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> made_up)</span>
-<span id="cb280-2"><a href="linear-regression-diagnostics.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(better_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="linear-regression-diagnostics.html#cb286-1" aria-hidden="true" tabindex="-1"></a>better_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> made_up)</span>
+<span id="cb286-2"><a href="linear-regression-diagnostics.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(better_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ I(x^2), data = made_up)
@@ -785,20 +787,20 @@ y = \beta_0 + \beta_1 x^2
 ## F-statistic:  1216 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The <code>I</code> inhibits R from trying to interpret <code>x^2</code> as anything other than arithmetic: <span class="math inline">\(x^2\)</span>.</p>
 <p>Now let’s plot the model predictions:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="linear-regression-diagnostics.html#cb282-1" aria-hidden="true" tabindex="-1"></a>made_up<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(better_mod)</span>
-<span id="cb282-2"><a href="linear-regression-diagnostics.html#cb282-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-3"><a href="linear-regression-diagnostics.html#cb282-3" aria-hidden="true" tabindex="-1"></a>made_up <span class="sc">%&gt;%</span></span>
-<span id="cb282-4"><a href="linear-regression-diagnostics.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb282-5"><a href="linear-regression-diagnostics.html#cb282-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb282-6"><a href="linear-regression-diagnostics.html#cb282-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x,</span>
-<span id="cb282-7"><a href="linear-regression-diagnostics.html#cb282-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> predicted),</span>
-<span id="cb282-8"><a href="linear-regression-diagnostics.html#cb282-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="linear-regression-diagnostics.html#cb288-1" aria-hidden="true" tabindex="-1"></a>made_up<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(better_mod)</span>
+<span id="cb288-2"><a href="linear-regression-diagnostics.html#cb288-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-3"><a href="linear-regression-diagnostics.html#cb288-3" aria-hidden="true" tabindex="-1"></a>made_up <span class="sc">%&gt;%</span></span>
+<span id="cb288-4"><a href="linear-regression-diagnostics.html#cb288-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb288-5"><a href="linear-regression-diagnostics.html#cb288-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb288-6"><a href="linear-regression-diagnostics.html#cb288-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x,</span>
+<span id="cb288-7"><a href="linear-regression-diagnostics.html#cb288-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> predicted),</span>
+<span id="cb288-8"><a href="linear-regression-diagnostics.html#cb288-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <p>That looks a lot better!</p>
 <p>To see why “linear” regression is able to handle a decidedly non-linear relationship, look at <span class="math inline">\(y\)</span> plotted against <span class="math inline">\(x^2\)</span>:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="linear-regression-diagnostics.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(made_up, <span class="fu">aes</span>(x<span class="sc">^</span><span class="dv">2</span>, y)) <span class="sc">+</span> </span>
-<span id="cb283-2"><a href="linear-regression-diagnostics.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="linear-regression-diagnostics.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(made_up, <span class="fu">aes</span>(x<span class="sc">^</span><span class="dv">2</span>, y)) <span class="sc">+</span> </span>
+<span id="cb289-2"><a href="linear-regression-diagnostics.html#cb289-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <p>This relationship <em>is</em> linear, so linear regression can describe it. Regression analysis doesn’t care what you do with the predictors before asking it to fit a linear model.</p>
 <p>Chapter 3.4 of Fox and Weisberg (2019) introduces the art of data transformation. In social science, it is common to use log and polynomial transformations like squaring and cubing. In areas with developed theory, more complex relationships can be conjectured which mean something in the theory, rather than merely reacting to pattern in graphs.</p>
 <p>It is possible to do all kinds of things to data to squeeze them into particular models, also known as “analysing the data to within an inch of its life.” Where possible, any transformations should be added to an analysis plan before the data are seen. Unanticipated transformations should be clearly noted in write-ups – this is crucially important.</p>
@@ -806,18 +808,18 @@ y = \beta_0 + \beta_1 x^2
 <div id="checking-for-linearity" class="section level3 tabset" number="6.7.2">
 <h3><span class="header-section-number">6.7.2</span> Checking for linearity</h3>
 <p>One thing you can do is look at pairwise relationships between the predictors and outcome variables with scatterplots. We already saw in last week’s tutorial a hint that there is a nonlinear relationship between income and prestige:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="linear-regression-diagnostics.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(income, prestige)) <span class="sc">+</span></span>
-<span id="cb284-2"><a href="linear-regression-diagnostics.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="linear-regression-diagnostics.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(income, prestige)) <span class="sc">+</span></span>
+<span id="cb290-2"><a href="linear-regression-diagnostics.html#cb290-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p>Sometimes nonlinear relationships can only be spotted after a model has been fitted and variance explained by other predictors. A fab way to see is via a <strong>component-plus-residual plot</strong>, also known as a <strong>partial-residual plot</strong> (see Fox and Weisberg, 2019, pp. 410-412).</p>
 <p>It’s a one-liner, showing the model prediction for that predictor as a straight dashed blue line and a local regression curve in magenta to help visualise the shape of the data. The magenta and blue ideally overlap.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="linear-regression-diagnostics.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="linear-regression-diagnostics.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 <p>This is equivalent to the following line, which explicitly names all the predictors:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="linear-regression-diagnostics.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both, <span class="at">terms =</span> <span class="sc">~</span> education <span class="sc">+</span> income_1000s)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="linear-regression-diagnostics.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both, <span class="at">terms =</span> <span class="sc">~</span> education <span class="sc">+</span> income_1000s)</span></code></pre></div>
 <p>So you can select specific predictors by naming them, which can be helpful when you are struggling to squeeze all predictors onto the screen.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="linear-regression-diagnostics.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both, <span class="at">terms =</span> <span class="sc">~</span> income_1000s)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="linear-regression-diagnostics.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both, <span class="at">terms =</span> <span class="sc">~</span> income_1000s)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 <p>Each plot shows the predictor on the x-axis and the partial residuals on the y-axis. Each partial residual in the plot above is calculated as</p>
 <p><span class="math display">\[\epsilon_i + \beta_{\mathtt{income\_1000s}} \mathtt{income\_1000s}_{i}\]</span></p>
 <p>In other words, the residual, <span class="math inline">\(\epsilon_i\)</span>, plus the slope multiplied by income; i.e., it’s the prediction from this part of the model. These are also known as <em>component + residual plots</em>.</p>
@@ -834,10 +836,10 @@ y = \beta_0 + \beta_1 x^2
 <div id="answer-24" class="section level4" number="6.7.2.2">
 <h4><span class="header-section-number">6.7.2.2</span> Answer</h4>
 <p><strong>a. Calculate a new variable, with a name of your choice, which is equal to the log of <code>income_1000s</code> and add it to the data frame.</strong></p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="linear-regression-diagnostics.html#cb288-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>income_1000s_logged <span class="ot">&lt;-</span> <span class="fu">log</span>(dat<span class="sc">$</span>income_1000s)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="linear-regression-diagnostics.html#cb294-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>income_1000s_logged <span class="ot">&lt;-</span> <span class="fu">log</span>(dat<span class="sc">$</span>income_1000s)</span></code></pre></div>
 <p><strong>b. Fit the regression model again, using this logged variable and education as predictors.</strong></p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="linear-regression-diagnostics.html#cb289-1" aria-hidden="true" tabindex="-1"></a>mod_both_again <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s_logged, <span class="at">data =</span> dat)</span>
-<span id="cb289-2"><a href="linear-regression-diagnostics.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both_again)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="linear-regression-diagnostics.html#cb295-1" aria-hidden="true" tabindex="-1"></a>mod_both_again <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s_logged, <span class="at">data =</span> dat)</span>
+<span id="cb295-2"><a href="linear-regression-diagnostics.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both_again)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ education + income_1000s_logged, data = dat)
@@ -858,13 +860,13 @@ y = \beta_0 + \beta_1 x^2
 ## Multiple R-squared:  0.831,  Adjusted R-squared:  0.8275 
 ## F-statistic: 243.3 on 2 and 99 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong>c. What impact does this have on the linearity of the predictor?</strong></p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="linear-regression-diagnostics.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both_again)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="linear-regression-diagnostics.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mod_both_again)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <p>This looks much better!</p>
 <p><strong>d. How do you now interpret the relationship between (logged) income and prestige?</strong></p>
 <p>Both predictors were statistically significant (see the summary above) so we can focus on the coefficients:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="linear-regression-diagnostics.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_both_again) <span class="sc">%&gt;%</span></span>
-<span id="cb292-2"><a href="linear-regression-diagnostics.html#cb292-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="linear-regression-diagnostics.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mod_both_again) <span class="sc">%&gt;%</span></span>
+<span id="cb298-2"><a href="linear-regression-diagnostics.html#cb298-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##         (Intercept)           education income_1000s_logged 
 ##               -16.2                 4.0                11.4</code></pre>
 <p>Prestige increases by 11.4 points for every unit increase in logged income, whilst holding education constant. Prestige increases by 4 points for every year of education, whilst holding logged income constant.</p>
@@ -889,15 +891,15 @@ y = \beta_0 + \beta_1 x^2
 </ol>
 <p>We will consider a range of leave-one-out statistics below, but first a picture which I hope is helpful.</p>
 <p>Here is small made up dataset with a naughty data point up at the top right.</p>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>Here is an animation showing what happens to the regression slope when each row of data is removed; note what happens to the regression line when the sixth is dropped out:</p>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-207-.gif" width="672" /></p>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-212-.gif" width="672" /></p>
 <p>There are many (many) ways to assess the impact. I will cover three below:</p>
 <div id="residual-outliers" class="section level3" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Residual outliers</h3>
 <p>You can test whether there are any outlier residuals with a Bonferroni Outlier Test. This is equivalent to dropping each observation in turn and seeing whether it leads to a mean shift in model estimates. The “Bonferroni” part refers to an p-value adjustment that accounts for the number of tests carried out, equal to the number of rows in the dataset.</p>
 <p>Here is how to use it – simply provide the model to test:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="linear-regression-diagnostics.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="linear-regression-diagnostics.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(mod_both)</span></code></pre></div>
 <pre><code>## No Studentized residuals with Bonferroni p &lt; 0.05
 ## Largest |rstudent|:
 ##     rstudent unadjusted p-value Bonferroni p
@@ -908,10 +910,10 @@ y = \beta_0 + \beta_1 x^2
 <h3><span class="header-section-number">6.8.2</span> Cook’s distance</h3>
 <p>Cook’s distance measures the combined impact on all model coefficients (i.e., the intercept and slopes) of leaving out a row of data.</p>
 <p>You can calculate it as follows (I will save the results onto <code>dat</code>):</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="linear-regression-diagnostics.html#cb296-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_cooks <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(mod_both)</span>
-<span id="cb296-2"><a href="linear-regression-diagnostics.html#cb296-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb296-3"><a href="linear-regression-diagnostics.html#cb296-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_cooks <span class="sc">%&gt;%</span></span>
-<span id="cb296-4"><a href="linear-regression-diagnostics.html#cb296-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="linear-regression-diagnostics.html#cb302-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_cooks <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(mod_both)</span>
+<span id="cb302-2"><a href="linear-regression-diagnostics.html#cb302-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-3"><a href="linear-regression-diagnostics.html#cb302-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>mod_both_cooks <span class="sc">%&gt;%</span></span>
+<span id="cb302-4"><a href="linear-regression-diagnostics.html#cb302-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##   [1] 0.00 0.28 0.00 0.00 0.01 0.01 0.01 0.00 0.00 0.00 0.01 0.00 0.01 0.00 0.03
 ##  [16] 0.01 0.00 0.00 0.03 0.06 0.02 0.00 0.00 0.07 0.05 0.04 0.03 0.00 0.05 0.00
 ##  [31] 0.03 0.01 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.04 0.00 0.00 0.00 0.00
@@ -920,16 +922,16 @@ y = \beta_0 + \beta_1 x^2
 ##  [76] 0.00 0.00 0.00 0.01 0.00 0.00 0.02 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.03
 ##  [91] 0.02 0.01 0.00 0.00 0.00 0.00 0.01 0.00 0.01 0.01 0.00 0.00</code></pre>
 <p>Some statisticians suggest that a value over 1 indicates trouble (we see another threshold shortly), so we can look at the maximum value:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="linear-regression-diagnostics.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(dat<span class="sc">$</span>mod_both_cooks)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="linear-regression-diagnostics.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(dat<span class="sc">$</span>mod_both_cooks)</span></code></pre></div>
 <pre><code>## [1] 0.2796504</code></pre>
 <p>That is fine.</p>
 <p>Others suggest eyeing up the data and seeing if any values for Cook’s distance looks visually large relative to the others:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="linear-regression-diagnostics.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>mod_both_cooks, <span class="at">ylab =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="linear-regression-diagnostics.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>mod_both_cooks, <span class="at">ylab =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
 <p>The “Index” ranges from 1 to the total number of values.</p>
 <p>Just one stands out – which is also the maximum value we just identified. We can use <code>filter</code> to have a look:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="linear-regression-diagnostics.html#cb301-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb301-2"><a href="linear-regression-diagnostics.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mod_both_cooks <span class="sc">&gt;</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="linear-regression-diagnostics.html#cb307-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb307-2"><a href="linear-regression-diagnostics.html#cb307-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mod_both_cooks <span class="sc">&gt;</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>##                occ education income women prestige type income_1000s
 ## 1 general managers     12.26  25879  4.02     69.1 prof       25.879
 ##   mod_both_resids mod_both_predicted income_1000s_logged mod_both_cooks
@@ -940,8 +942,8 @@ y = \beta_0 + \beta_1 x^2
 <h3><span class="header-section-number">6.8.3</span> DFBETA and (close sibling) DFBETAS</h3>
 <p>DFBETA values (my favourite) are calculated for the intercept and each slope. They simply denote the difference in the coefficients between models with versus without a particular row of data. If the coefficient without an observation is larger, then the DEBETA for that observation and predictor will be positive.</p>
 <p>Calculate them with:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="linear-regression-diagnostics.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_both)  <span class="sc">%&gt;%</span></span>
-<span id="cb303-2"><a href="linear-regression-diagnostics.html#cb303-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="linear-regression-diagnostics.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbeta</span>(mod_both)  <span class="sc">%&gt;%</span></span>
+<span id="cb309-2"><a href="linear-regression-diagnostics.html#cb309-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##     (Intercept) education income_1000s
 ## 1        -0.076     0.003        0.013
 ## 2        -0.408     0.152       -0.200
@@ -1046,12 +1048,12 @@ y = \beta_0 + \beta_1 x^2
 ## 101      -0.024     0.001        0.000
 ## 102       0.068    -0.004       -0.002</code></pre>
 <p>Visualise them with:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="linear-regression-diagnostics.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_both)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="linear-regression-diagnostics.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetaPlots</span>(mod_both)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 <p>To work out whether a DFBETA matters, you must think what the units of the predictors are. So for example there is an observation which reduces the slope for income in $1000s by about 0.2. Is that big enough to cause concern for a measure of prestige which ranges from 0 to 100? Maybe it is worth a look to see which occupation is responsible.</p>
 <p>There is also a standardised version, DFBETAS (the S is for standardised, not a plural; pronounce it as “standardised D F beta”), which divides the DFBETA by the standard error of the slope in the model with the row of data removed.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="linear-regression-diagnostics.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetas</span>(mod_both) <span class="sc">%&gt;%</span></span>
-<span id="cb306-2"><a href="linear-regression-diagnostics.html#cb306-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="linear-regression-diagnostics.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetas</span>(mod_both) <span class="sc">%&gt;%</span></span>
+<span id="cb312-2"><a href="linear-regression-diagnostics.html#cb312-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##     (Intercept) education income_1000s
 ## 1         -0.02      0.01         0.06
 ## 2         -0.13      0.44        -0.90
@@ -1156,8 +1158,8 @@ y = \beta_0 + \beta_1 x^2
 ## 101       -0.01      0.00         0.00
 ## 102        0.02     -0.01        -0.01</code></pre>
 <p>Visualise DFBETAS with:</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="linear-regression-diagnostics.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetasPlots</span>(mod_both)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="linear-regression-diagnostics.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetasPlots</span>(mod_both)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
 <p>Note how the graphs look identical to those for DFBETA except that the y-axis scale has changed.</p>
 <p>Some statisticians argue that a DFBETAS (i.e., the standardised one) value over <span class="math inline">\(1\)</span> or below <span class="math inline">\(-1\)</span> is potentially troublesome, so should be inspected.</p>
 </div>
@@ -1197,8 +1199,8 @@ y = \beta_0 + \beta_1 x^2
 <p>The R help for this command is spectacularly poor so I have added in the thresholds <a href="https://github.com/wch/r-source/blob/trunk/src/library/stats/R/lm.influence.R">as per the current R code</a> (it’s all open source), where <span class="math inline">\(k\)</span> is the number of predictors (including the intercept) and <span class="math inline">\(n\)</span> is the number of observations. The absolute value of <span class="math inline">\(x\)</span>, written <span class="math inline">\(|x|\)</span>, means remove any negative sign, so <span class="math inline">\(|-42| = 42\)</span>. Any values over the relevant threshold are marked with an asterisk.</p>
 <p>Bollen and Jackman (1985) provide alternative recommendations, e.g., <span class="math inline">\(2/\sqrt{n}\)</span> for DFBETAS. Others refuse to name a threshold and instead emphasise looking at the pattern of values and using subjective judgement to determine whether any are outlying.</p>
 <p>Let’s have a look at all the influence measures for our model, <code>mod_both</code>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="linear-regression-diagnostics.html#cb309-1" aria-hidden="true" tabindex="-1"></a>mod_both_influence <span class="ot">&lt;-</span> <span class="fu">influence.measures</span>(mod_both)</span>
-<span id="cb309-2"><a href="linear-regression-diagnostics.html#cb309-2" aria-hidden="true" tabindex="-1"></a>mod_both_influence</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="linear-regression-diagnostics.html#cb315-1" aria-hidden="true" tabindex="-1"></a>mod_both_influence <span class="ot">&lt;-</span> <span class="fu">influence.measures</span>(mod_both)</span>
+<span id="cb315-2"><a href="linear-regression-diagnostics.html#cb315-2" aria-hidden="true" tabindex="-1"></a>mod_both_influence</span></code></pre></div>
 <pre><code>## Influence measures of
 ##   lm(formula = prestige ~ education + income_1000s, data = dat) :
 ## 
@@ -1314,7 +1316,7 @@ y = \beta_0 + \beta_1 x^2
 </ul>
 <p>Cook’s distance is over to the right as <code>cook.d</code>.</p>
 <p>One way to deal with this mess is to look only at those rows where any of the measures cross their threshold, which we get with a handy <code>summary</code> command (hurrah!):</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="linear-regression-diagnostics.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both_influence)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="linear-regression-diagnostics.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both_influence)</span></code></pre></div>
 <pre><code>## Potentially influential observations of
 ##   lm(formula = prestige ~ education + income_1000s, data = dat) :
 ## 
@@ -1331,11 +1333,11 @@ y = \beta_0 + \beta_1 x^2
 <h3><span class="header-section-number">6.8.5</span> So, er, what should we do with “potentially influential” observations…?</h3>
 <p>Now we are back to the art of analysis.</p>
 <p>You could try removing all the potentially influence observations by using <code>slice</code> with a <code>-</code> like so:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="linear-regression-diagnostics.html#cb313-1" aria-hidden="true" tabindex="-1"></a>sliced_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb313-2"><a href="linear-regression-diagnostics.html#cb313-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">17</span>,<span class="dv">24</span>,<span class="dv">46</span>,<span class="dv">53</span>,<span class="dv">67</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="linear-regression-diagnostics.html#cb319-1" aria-hidden="true" tabindex="-1"></a>sliced_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb319-2"><a href="linear-regression-diagnostics.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">17</span>,<span class="dv">24</span>,<span class="dv">46</span>,<span class="dv">53</span>,<span class="dv">67</span>))</span></code></pre></div>
 <p>Then refit the model:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="linear-regression-diagnostics.html#cb314-1" aria-hidden="true" tabindex="-1"></a>mod_both_sliced <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s, <span class="at">data =</span> sliced_dat)</span>
-<span id="cb314-2"><a href="linear-regression-diagnostics.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both_sliced)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="linear-regression-diagnostics.html#cb320-1" aria-hidden="true" tabindex="-1"></a>mod_both_sliced <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s, <span class="at">data =</span> sliced_dat)</span>
+<span id="cb320-2"><a href="linear-regression-diagnostics.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_both_sliced)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = prestige ~ education + income_1000s, data = sliced_dat)
@@ -1356,17 +1358,17 @@ y = \beta_0 + \beta_1 x^2
 ## Multiple R-squared:  0.8077, Adjusted R-squared:  0.8035 
 ## F-statistic: 195.3 on 2 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Both predictors are still statistically significant… Have the coefficients changed?</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="linear-regression-diagnostics.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="st">&quot;Original&quot;</span>     <span class="ot">=</span> <span class="fu">coef</span>(mod_both),</span>
-<span id="cb316-2"><a href="linear-regression-diagnostics.html#cb316-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Outliers out&quot;</span> <span class="ot">=</span> <span class="fu">coef</span>(mod_both_sliced)) <span class="sc">%&gt;%</span></span>
-<span id="cb316-3"><a href="linear-regression-diagnostics.html#cb316-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="linear-regression-diagnostics.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="st">&quot;Original&quot;</span>     <span class="ot">=</span> <span class="fu">coef</span>(mod_both),</span>
+<span id="cb322-2"><a href="linear-regression-diagnostics.html#cb322-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Outliers out&quot;</span> <span class="ot">=</span> <span class="fu">coef</span>(mod_both_sliced)) <span class="sc">%&gt;%</span></span>
+<span id="cb322-3"><a href="linear-regression-diagnostics.html#cb322-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##              Original Outliers out
 ## (Intercept)     -6.85        -8.02
 ## education        4.14         4.10
 ## income_1000s     1.36         1.68</code></pre>
 <p>The coefficient for education is about the same; the coefficient for income has increased a little. At the moment, I don’t have any substantive reason to exclude these six values. Maybe if you have a developed theory of occupations then looking in more detail at the potentially outlying ones will help…? Here’s how to see them – I’m using <code>slice</code> again, this time without the <code>-</code> which means to keep rather than exclude the listed rows. I have also used <code>select</code> to focus on variables which I thought might help work out what is going on.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="linear-regression-diagnostics.html#cb318-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb318-2"><a href="linear-regression-diagnostics.html#cb318-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">17</span>,<span class="dv">24</span>,<span class="dv">46</span>,<span class="dv">53</span>,<span class="dv">67</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb318-3"><a href="linear-regression-diagnostics.html#cb318-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(occ, education, income_1000s, prestige, mod_both_predicted)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="linear-regression-diagnostics.html#cb324-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb324-2"><a href="linear-regression-diagnostics.html#cb324-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">17</span>,<span class="dv">24</span>,<span class="dv">46</span>,<span class="dv">53</span>,<span class="dv">67</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb324-3"><a href="linear-regression-diagnostics.html#cb324-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(occ, education, income_1000s, prestige, mod_both_predicted)</span></code></pre></div>
 <pre><code>##                occ education income_1000s prestige mod_both_predicted
 ## 1 general managers     12.26       25.879     69.1           79.10290
 ## 2          lawyers     15.77       19.263     82.3           84.61986
@@ -1381,12 +1383,12 @@ y = \beta_0 + \beta_1 x^2
 <h2><span class="header-section-number">6.9</span> Checking the variance inflation factors (VIFs)</h2>
 <p>Multicollinearity is a long word meaning that two or more predictors are highly linearly correlated with each other. This is a problem for interpreting coefficients since we interpret each one whilst holding the others constant. But if they are highly correlated, then holding other predictors constant is challenging!</p>
 <p>There is a command called <code>vif</code> in the <code>car</code> package which calculates variance inflation factors for us and can be used to check for multicolinearity:</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="linear-regression-diagnostics.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_both)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="linear-regression-diagnostics.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod_both)</span></code></pre></div>
 <pre><code>##    education income_1000s 
 ##     1.500598     1.500598</code></pre>
 <p>We want the VIFs close to 1. If they are 4 then that is cause for mild worry and 9 probably signals that something has to be done, e.g., removing a predictor.</p>
 <p>We can interpret the meaning of VIFs by taking their square root: this says how many times wider the 95% confidence intervals are compared to what they would be with uncorrelated predictors:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="linear-regression-diagnostics.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(mod_both))</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="linear-regression-diagnostics.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(mod_both))</span></code></pre></div>
 <pre><code>##    education income_1000s 
 ##     1.224989     1.224989</code></pre>
 <p>So the trouble thresholds I provided above lead to confidence intervals that are twice (VIF = 4; <span class="math inline">\(\sqrt{4}=2\)</span>) or three times (VIF = 9; <span class="math inline">\(\sqrt{9}=3\)</span>) the width of those for uncorrelated predictors.</p>
@@ -1396,11 +1398,11 @@ y = \beta_0 + \beta_1 x^2
 </div>
 <div id="answer-25" class="section level3" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> Answer</h3>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="linear-regression-diagnostics.html#cb324-1" aria-hidden="true" tabindex="-1"></a>viffed_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span></span>
-<span id="cb324-2"><a href="linear-regression-diagnostics.html#cb324-2" aria-hidden="true" tabindex="-1"></a>                     income_1000s <span class="sc">+</span></span>
-<span id="cb324-3"><a href="linear-regression-diagnostics.html#cb324-3" aria-hidden="true" tabindex="-1"></a>                     income_1000s_logged,</span>
-<span id="cb324-4"><a href="linear-regression-diagnostics.html#cb324-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> dat)</span>
-<span id="cb324-5"><a href="linear-regression-diagnostics.html#cb324-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(viffed_model))</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="linear-regression-diagnostics.html#cb330-1" aria-hidden="true" tabindex="-1"></a>viffed_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span></span>
+<span id="cb330-2"><a href="linear-regression-diagnostics.html#cb330-2" aria-hidden="true" tabindex="-1"></a>                     income_1000s <span class="sc">+</span></span>
+<span id="cb330-3"><a href="linear-regression-diagnostics.html#cb330-3" aria-hidden="true" tabindex="-1"></a>                     income_1000s_logged,</span>
+<span id="cb330-4"><a href="linear-regression-diagnostics.html#cb330-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> dat)</span>
+<span id="cb330-5"><a href="linear-regression-diagnostics.html#cb330-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(viffed_model))</span></code></pre></div>
 <pre><code>##           education        income_1000s income_1000s_logged 
 ##            1.230514            2.231250            2.177696</code></pre>
 <p>The width of the confidence intervals for both income variables is double what they would be if all predictors were uncorrelated, which suggests something is up… The logging has meant that the predictors are not perfectly linearly correlated, but it is challenging to interpret income whilst holding logged income constant.</p>
@@ -1424,16 +1426,16 @@ y = \beta_0 + \beta_1 x^2
 <div id="answer-26" class="section level3" number="6.10.2">
 <h3><span class="header-section-number">6.10.2</span> Answer</h3>
 <p><strong>a. Fit a model predicting prestige from education, income (in $1000s, logged), and the percentage of women in the occupation</strong></p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="linear-regression-diagnostics.html#cb326-1" aria-hidden="true" tabindex="-1"></a>challenge_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span></span>
-<span id="cb326-2"><a href="linear-regression-diagnostics.html#cb326-2" aria-hidden="true" tabindex="-1"></a>                      income_1000s_logged <span class="sc">+</span></span>
-<span id="cb326-3"><a href="linear-regression-diagnostics.html#cb326-3" aria-hidden="true" tabindex="-1"></a>                      women,</span>
-<span id="cb326-4"><a href="linear-regression-diagnostics.html#cb326-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="linear-regression-diagnostics.html#cb332-1" aria-hidden="true" tabindex="-1"></a>challenge_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span></span>
+<span id="cb332-2"><a href="linear-regression-diagnostics.html#cb332-2" aria-hidden="true" tabindex="-1"></a>                      income_1000s_logged <span class="sc">+</span></span>
+<span id="cb332-3"><a href="linear-regression-diagnostics.html#cb332-3" aria-hidden="true" tabindex="-1"></a>                      women,</span>
+<span id="cb332-4"><a href="linear-regression-diagnostics.html#cb332-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dat)</span></code></pre></div>
 <p><strong>b. Does this model fit better than the model without the percentage of women added?</strong></p>
 <p>I’ve lost track of what models I have fitted above, so here is the relevant simpler model again:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="linear-regression-diagnostics.html#cb327-1" aria-hidden="true" tabindex="-1"></a>without_gender_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s_logged,</span>
-<span id="cb327-2"><a href="linear-regression-diagnostics.html#cb327-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="linear-regression-diagnostics.html#cb333-1" aria-hidden="true" tabindex="-1"></a>without_gender_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income_1000s_logged,</span>
+<span id="cb333-2"><a href="linear-regression-diagnostics.html#cb333-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> dat)</span></code></pre></div>
 <p>Compare the two models with an F-test, simpler first:</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="linear-regression-diagnostics.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(without_gender_mod, challenge_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="linear-regression-diagnostics.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(without_gender_mod, challenge_mod)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: prestige ~ education + income_1000s_logged
@@ -1443,36 +1445,36 @@ y = \beta_0 + \beta_1 x^2
 ## 2     98 4929.9  1    123.75 2.4601   0.12</code></pre>
 <p>There is no statistically significant improvement in model fit, <span class="math inline">\(F(1,98) = 2.5\)</span>, <span class="math inline">\(p = .12\)</span>.</p>
 <p><strong>c. Is there multicollinearity?</strong></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="linear-regression-diagnostics.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(challenge_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="linear-regression-diagnostics.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(challenge_mod)</span></code></pre></div>
 <pre><code>##           education income_1000s_logged               women 
 ##            1.877097            2.572283            1.806431</code></pre>
 <p>We can interpret the VIFs by taking their square root: this says how many times wider the 95% confidence intervals would be compared with uncorrelated predictors:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="linear-regression-diagnostics.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(challenge_mod))</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="linear-regression-diagnostics.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(challenge_mod))</span></code></pre></div>
 <pre><code>##           education income_1000s_logged               women 
 ##            1.370072            1.603834            1.344035</code></pre>
 <p>So the largest VIF is for income, and the correlations in predictors mean its confidence interval is about 1.6 times wider.</p>
 <p>Based on finger-in-the-wind subjective judgement, I am going to conclude that this doesn’t matter. Though it may do if I wanted a particularly precise estimate.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="linear-regression-diagnostics.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Confint</span>(challenge_mod) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="linear-regression-diagnostics.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Confint</span>(challenge_mod) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##                     Estimate  2.5 % 97.5 %
 ## (Intercept)           -18.14 -24.48 -11.79
 ## education               3.73   3.03   4.43
 ## income_1000s_logged    13.44   9.64  17.24
 ## women                   0.05  -0.01   0.11</code></pre>
 <p><strong>d. Are the relationships linear?</strong></p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="linear-regression-diagnostics.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(challenge_mod)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-232-1.png" width="576" /></p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="linear-regression-diagnostics.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(challenge_mod)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-237-1.png" width="576" /></p>
 <p>It looks like a bit of a curve for the predictor of percentage women in the occupation, which might suggest adding a squared term – which coincidentally we try in the next question…</p>
 <p><strong>e. Try adding the percentage of women squared as an additional predictor and checking for linearity again</strong></p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="linear-regression-diagnostics.html#cb337-1" aria-hidden="true" tabindex="-1"></a>challenge_mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span></span>
-<span id="cb337-2"><a href="linear-regression-diagnostics.html#cb337-2" aria-hidden="true" tabindex="-1"></a>                       income_1000s_logged <span class="sc">+</span></span>
-<span id="cb337-3"><a href="linear-regression-diagnostics.html#cb337-3" aria-hidden="true" tabindex="-1"></a>                       women <span class="sc">+</span></span>
-<span id="cb337-4"><a href="linear-regression-diagnostics.html#cb337-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">I</span>(women<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb337-5"><a href="linear-regression-diagnostics.html#cb337-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> dat)</span></code></pre></div>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="linear-regression-diagnostics.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(challenge_mod2)</span></code></pre></div>
-<p><img src="R-notes_files/figure-html/unnamed-chunk-234-1.png" width="576" /></p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="linear-regression-diagnostics.html#cb343-1" aria-hidden="true" tabindex="-1"></a>challenge_mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span></span>
+<span id="cb343-2"><a href="linear-regression-diagnostics.html#cb343-2" aria-hidden="true" tabindex="-1"></a>                       income_1000s_logged <span class="sc">+</span></span>
+<span id="cb343-3"><a href="linear-regression-diagnostics.html#cb343-3" aria-hidden="true" tabindex="-1"></a>                       women <span class="sc">+</span></span>
+<span id="cb343-4"><a href="linear-regression-diagnostics.html#cb343-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">I</span>(women<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb343-5"><a href="linear-regression-diagnostics.html#cb343-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="linear-regression-diagnostics.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(challenge_mod2)</span></code></pre></div>
+<p><img src="R-notes_files/figure-html/unnamed-chunk-239-1.png" width="576" /></p>
 <p>Now the relationships are much more linear.</p>
 <p><strong>f. Does the model you just fitted (in <em>e</em>) explain statistically significantly more variance than the model with only income and education as predictors?</strong></p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="linear-regression-diagnostics.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(without_gender_mod, challenge_mod2)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="linear-regression-diagnostics.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(without_gender_mod, challenge_mod2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: prestige ~ education + income_1000s_logged
@@ -1484,7 +1486,7 @@ y = \beta_0 + \beta_1 x^2
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Yes it does, <span class="math inline">\(F(2, 97) = 3.9\)</span>, <span class="math inline">\(p = .024\)</span>.</p>
 <p><strong>g. Check the DFBETAS values (again for the model fitted in <em>e</em>) – are any concerning?</strong></p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="linear-regression-diagnostics.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">influence.measures</span>(challenge_mod2))</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="linear-regression-diagnostics.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">influence.measures</span>(challenge_mod2))</span></code></pre></div>
 <pre><code>## Potentially influential observations of
 ##   lm(formula = prestige ~ education + income_1000s_logged + women +      I(women^2), data = dat) :
 ## 
