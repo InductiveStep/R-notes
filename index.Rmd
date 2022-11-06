@@ -1,6 +1,6 @@
 --- 
 title: "Using R for social research"
-author: "Andi Fugard (they/them) <BR> ([almost@gmail.com](mailto:almost@gmail.com), @[InductiveStep](https://twitter.com/InductiveStep))"
+author: "Andi Fugard (they/them) <BR> ([contact me here](https://www.andifugard.info/contact/))"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -9,7 +9,7 @@ bibliography:
 - packages.bib
 biblio-style: apalike
 link-citations: yes
-description: These are some notes on using R
+description: Some notes on using R
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +31,7 @@ All the datasets used are available in [CRAN](https://cran.r-project.org/doc/FAQ
 
 I have included exercises which all come with solutions; to hide these, simply use the scrollbar to ensure that they are off the edge of the visible part of the screen...^[I originally used the `.tabset` attribute to hide answers; however, it doesn't work for `bookdown`.]
 
-Feedback [welcome](mailto:almost@gmail.com).
+Feedback [welcome](https://www.andifugard.info/contact/).
 
 
 
